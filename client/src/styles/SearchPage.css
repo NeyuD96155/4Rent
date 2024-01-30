@@ -1,0 +1,39 @@
+/* SearchPage.css */
+.search-page {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .search-page h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .search-page form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .search-page input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    flex-grow: 1;
+  }
+  
+  .search-page button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .search-page button:hover {
+    background-color: #003d82;
+  }
+  
