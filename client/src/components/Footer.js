@@ -5,7 +5,7 @@ import '../styles/Footer.css'; // Ensure this CSS file exists for styling
 export default function Footer() {
   return (
     <footer className="footer">
-      <div className="container">
+      <div className="footer-container">
         <div className="row">
           <div className="footer-col">
             <h4>4Rent</h4>

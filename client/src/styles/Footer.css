@@ -1,13 +1,14 @@
 .footer {
-    background-color: #333;
-    color: white;
+    background-color: #c4eaff47;
+    color: rgb(245, 20, 20);
     text-align: center;
     padding: 20px 0;
     font-family: 'Open Sans', sans-serif; /* Improved typography */
 }
 
-.footer .container {
+.footer .footer-container {
     max-width: 1170px;
+    background-color: #c4eaff00;
     margin: auto;
     padding: 0 15px;
     display: flex; /* Flex layout for better alignment */
@@ -24,7 +25,7 @@
 
 .footer .footer-col h4 {
     font-size: 18px;
-    color: #ffffff;
+    color: #000000;
     text-transform: uppercase;
     margin-bottom: 15px;
     position: relative;
@@ -39,13 +40,13 @@
 }
 
 .footer .footer-col ul li a {
-    color: #bbbbbb;
+    color: #444;
     text-decoration: none;
     transition: color 0.3s ease; /* Transition for hover effect */
 }
 
 .footer .footer-col ul li a:hover {
-    color: #ffffff; /* Change color on hover */
+    color: #d30000; /* Change color on hover */
     text-decoration: underline; /* Underline on hover for better visibility */
 }
 

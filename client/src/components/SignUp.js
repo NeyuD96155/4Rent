@@ -24,27 +24,27 @@ export default function SignUp() {
             name="firstName"
             required
             id="firstName"
-            placeholder="Cho hỏi vị huynh đệ Họ gì ?"
+            placeholder="First Name"
             autoFocus
           />
           <input
             required
             id="lastName"
-            placeholder="Cho bố m xin cái tên"
+            placeholder="Last Name"
             name="lastName"
             autoComplete="family-name"
           />
           <input
             required
             id="email"
-            placeholder="Nổ bố m cái địa chỉ email "
+            placeholder="Email "
             name="email"
             autoComplete="email"
           />
           <input
             required
             name="password"
-            placeholder="Đặt mật khẩu đi thằng l"
+            placeholder="Password"
             type="password"
             id="password"
             autoComplete="new-password"
@@ -62,7 +62,7 @@ export default function SignUp() {
         </div>
       </form>
       <p className="signup-copy">
-        Copyright © Your Website {new Date().getFullYear()}.
+        Copyright © 4Rent Website {new Date().getFullYear()}.
       </p>
     </div>
   );
