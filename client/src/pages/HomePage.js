@@ -8,12 +8,16 @@ import Search from "../components/Search";
 import SignUp from "../components/SignUp";
 import SignIn from "../components/SignIn";
 import { GettingStarted, ExchangeTimeshares, MaximizeVacation } from "../components/GuidesCom/GettingStarted";
+import Payment from "../components/Payment";
+import CancellationPolicy from "../components/policy/CancellationPolicy";
 function Homepage() {
     return (
         <Router>
             <NavigationBar />
             <Routes>
                 <Route path="/"/>
+                <Route path="/payment" element={<Payment />} />
+                <Route path="/cancellation-policy" element={<CancellationPolicy />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/signin" element={<SignIn />} />
                 <Route path="/guides" element={<Guides />} />

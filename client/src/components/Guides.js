@@ -1,35 +1,47 @@
 import React from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import '../styles/Guide.css';
 
 const Guides = () => {
   const guideList = [
-    { title: "Getting Started with 4Rent", description: "A step-by-step guide to start using the 4Rent platform.", link: "/getting-started" },
-    { title: "How to Exchange Timeshares", description: "Learn how to easily exchange timeshares on our platform.", link: "/exchange-timeshares" },
-    { title: "Maximizing Your Vacation Experience", description: "Tips and tricks to get the most out of your timeshare vacations.", link: "/maximize-vacation" },
+    {
+      title: "Chuẩn bị cho 4Rent",
+      description: "Hướng dẫn sử dụng nền tảng 4Rent từng bước cho người mới bắt đầu",
+      link: "/getting-started",
+      imageUrl: "./assets/img/i2.jpg"
+    },
+    {
+      title: "Làm sao để thuê kì nghỉ ?",
+      description: "Hướng dẫn cách thuê kì nghỉ một cách dễ dàng",
+      link: "/exchange-timeshares",
+      imageUrl: "./assets/img/i3.jpg"
+    },
+    {
+      title: "Nâng cao tối đa trải nghiệm của bạn",
+      description: "Các mẹo để lựa chọn kì nghỉ hợp lí.",
+      link: "/maximize-vacation",
+      imageUrl: "./assets/img/i5.jpg"
+    },
   ];
 
   return (
-    <Container>
-      <Row className="my-5">
-        <Col>
-          <h1>Guides</h1>
-          <Row>
-            {guideList.map((guide, index) => (
-              <Col key={index} md={4} className="mb-4">
-                <Card>
-                  <Card.Body>
-                    <Card.Title>{guide.title}</Card.Title>
-                    <Card.Text>{guide.description}</Card.Text>
-                    <Link to={guide.link}>Read More</Link>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </Col>
-      </Row>
-    </Container>
+    <div className="guide-container">
+      <div className="guide-header">
+        <h1>Guides</h1>
+      </div>
+      <div className="guide-grid">
+        {guideList.map((guide, index) => (
+          <div key={index} className="guide-card">
+            <img className="guide-image" src={guide.imageUrl} alt={`Image for ${guide.title}`} />
+            <div className="guide-body">
+              <h2 className="guide-title">{guide.title}</h2>
+              <p className="guide-text">{guide.description}</p>
+              <Link to={guide.link} className="guide-read-more">Read More</Link>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 

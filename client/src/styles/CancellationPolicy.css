@@ -1,0 +1,66 @@
+.cancellation-policy-container {
+    max-width: 800px;
+
+    margin:2em auto;
+    padding: 2em;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border-left: 5px solid #ff6e7f; /* Adding a colored border for style */
+    position: relative; /* For pseudo-element positioning */
+    overflow: hidden; /* To ensure the pseudo-element is contained within the border-radius */
+}
+
+.cancellation-policy-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(135deg, #ff6e7f 0%, #bfe9ff 100%);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.cancellation-policy-container h1 {
+    color: #007bff;
+    text-align: center;
+    margin-bottom: 1em;
+    font-weight: bold;
+}
+
+.cancellation-policy-container h2 {
+    color: #495057;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    font-weight: normal;
+}
+
+.cancellation-policy-container p, .cancellation-policy-container ul, .cancellation-policy-container li {
+    color: #495057; /* Adjusted for better readability */
+    line-height: 1.6;
+    font-size: 1em;
+}
+
+.cancellation-policy-container ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.cancellation-policy-container li {
+    margin-bottom: 0.5em;
+}
+
+@media (max-width: 768px) {
+    .cancellation-policy-container {
+        padding: 1em;
+        margin:1em auto;
+        box-shadow: none;
+        border-radius: 0;
+        border-left: none;
+        .cancellation-policy-container::before {
+            height: 3px; /* Thinner top bar on smaller screens */
+        }
+    }
+}
