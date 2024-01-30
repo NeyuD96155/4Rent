@@ -32,7 +32,7 @@ const Guides = () => {
       <div className="guide-grid">
         {guideList.map((guide, index) => (
           <div key={index} className="guide-card">
-            <img className="guide-image" src={guide.imageUrl} alt={`Image for ${guide.title}`} />
+            <img className="guide-image" src={guide.imageUrl} alt={`${guide.title}`} />
             <div className="guide-body">
               <h2 className="guide-title">{guide.title}</h2>
               <p className="guide-text">{guide.description}</p>
