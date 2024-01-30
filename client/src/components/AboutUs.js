@@ -27,13 +27,13 @@ const AboutUs = () => {
           </p>
         </div>
         <div className="col-md-6">
-          <img src="./assets/img/i2.jpg" alt="Vision Image" className="img-fluid" />
+          <img src="./assets/img/i2.jpg" alt="Vision" className="img-fluid" />
         </div>
       </div>
 
       <div className="row">
         <div className="col-md-6">
-          <img src="./assets/img/i1.jpg" alt="Mission Image" className="img-fluid" />
+          <img src="./assets/img/i1.jpg" alt="Mission" className="img-fluid" />
         </div>
         <div className="col-md-6">
           <h2>Our Mission</h2>
