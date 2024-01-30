@@ -19,24 +19,24 @@ const SignIn = () => {
     <h1 className="signup-title">Sign in</h1>
       <form className="signup-form" onSubmit={handleSubmit}> {/* Changed class */}
         <div className="signup-grid">
-          <label htmlFor="username">Username</label>
+          {/* <label htmlFor="username">Username</label> */}
           <input
             type="text"
             id="username"
             name="username"
             value={credentials.username}
-            placeholder="nhập username vào đi ?"
+            placeholder="Username"
             onChange={handleInputChange}
             required
           />
 
-          <label htmlFor="password">Password</label>
+          {/* <label htmlFor="password">Password</label> */}
           <input
             type="password"
             id="password"
             name="password"
             value={credentials.password}
-            placeholder="mật khẩu lẹ đi cu"
+            placeholder="Password"
             onChange={handleInputChange}
             required
           />
@@ -45,9 +45,12 @@ const SignIn = () => {
           <button type="submit" className="signup-submit">Sign In</button> {/* Changed class */}
         </div>
         <div className="signup-footer">
-          dont have an account yet? <a href="/signup">Sign up</a>
+          Did have an account yet? <a href="/signup">Sign up</a>
         </div>
       </form>
+      <p className="signup-copy">
+        Copyright © 4Rent Website {new Date().getFullYear()}.
+      </p>
     </div>
   );
 };
