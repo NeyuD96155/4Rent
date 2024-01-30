@@ -7,6 +7,7 @@ import AboutUs from "../components/AboutUs";
 import Search from "../components/Search";
 import SignUp from "../components/SignUp";
 import SignIn from "../components/SignIn";
+import { GettingStarted, ExchangeTimeshares, MaximizeVacation } from "../components/GuidesCom/GettingStarted";
 function Homepage() {
     return (
         <Router>
@@ -19,6 +20,9 @@ function Homepage() {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/about" element={<AboutUs />} />
                 <Route path="/search" element={<Search />} />
+                <Route path="/getting-started" element={<GettingStarted />} />
+                    <Route path="/exchange-timeshares" element={<ExchangeTimeshares />} />
+                    <Route path="/maximize-vacation" element={<MaximizeVacation />} />
                 {/* Define other routes here */}
             </Routes>
             <Footer />

@@ -1,11 +1,11 @@
 import React from 'react';
-import { Container, Row, Col, Image } from 'react-bootstrap';
+import '../styles/About.css';
 
 const AboutUs = () => {
   return (
-    <Container>
-      <Row className="my-5">
-        <Col>
+    <div className="container">
+      <div className="row my-5">
+        <div className="col">
           <h1>About Us</h1>
           <p>Learn more about the 4Rent company and our mission.</p>
           <p>
@@ -14,36 +14,73 @@ const AboutUs = () => {
             enables users to exchange their timeshare properties in a seamless and
             efficient manner, ensuring a hassle-free vacation planning experience.
           </p>
-        </Col>
-      </Row>
-      <Row>
-        <Col md={6}>
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col-md-6">
           <h2>Our Vision</h2>
           <p>
             At 4Rent, our vision is to revolutionize the way people vacation. We
             strive to connect timeshare owners with a vast network of properties,
             enabling them to explore new destinations with ease and comfort.
           </p>
-        </Col>
-        <Col md={6}>
-          <Image src="path-to-your-vision-image.jpg" alt="Vision Image" fluid />
-        </Col>
-      </Row>
-      <Row>
-        <Col md={6}>
-          <Image src="path-to-your-mission-image.jpg" alt="Mission Image" fluid />
-        </Col>
-        <Col md={6}>
+        </div>
+        <div className="col-md-6">
+          <img src="./assets/img/i2.jpg" alt="Vision Image" className="img-fluid" />
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col-md-6">
+          <img src="./assets/img/i1.jpg" alt="Mission Image" className="img-fluid" />
+        </div>
+        <div className="col-md-6">
           <h2>Our Mission</h2>
           <p>
             Our mission is to empower timeshare owners by providing them with a
             diverse range of exchange options, top-notch customer service, and
             invaluable resources to enhance their vacation experiences.
           </p>
-        </Col>
-      </Row>
-      {/* You can add more sections about team, history, values, etc. here */}
-    </Container>
+        </div>
+      </div>
+
+      <div className="row my-4">
+        <div className="col">
+          <h2>Our Team</h2>
+          <p>
+            Meet the passionate individuals behind 4Rent. Our team is composed of
+            experts in real estate, technology, and customer service, all dedicated
+            to making your vacation dreams a reality.
+          </p>
+          {/* Include team member profiles or photos here */}
+        </div>
+      </div>
+
+      <div className="row my-4">
+        <div className="col">
+          <h2>Our History</h2>
+          <p>
+            Founded in 2010, 4Rent started as a small startup and has since grown
+            into a leading name in the timeshare exchange industry. Our journey is
+            a testament to our commitment to innovation and customer satisfaction.
+          </p>
+          {/* Include a timeline or key historical events here */}
+        </div>
+      </div>
+
+      <div className="row my-4">
+        <div className="col">
+          <h2>Our Values</h2>
+          <p>
+            At 4Rent, we are guided by values of integrity, collaboration, and
+            excellence. These principles are at the heart of everything we do, from
+            the way we conduct business to how we interact with our community.
+          </p>
+          {/* Expand on specific values and examples of how they are applied */}
+        </div>
+      </div>
+    </div>
   );
 };
 

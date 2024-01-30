@@ -10,7 +10,7 @@ export default function Footer() {
           <div className="footer-col">
             <h4>4Rent</h4>
             <p>
-              Discover your perfect vacation spot with our trusted timeshare exchange platform.
+              Khám phá nền tảng lừa đảo lớn nhất Đông Nam á
             </p>
           </div>
           <div className="footer-col">
@@ -24,14 +24,14 @@ export default function Footer() {
           <div className="footer-col">
             <h4>Contact Us</h4>
             <p>
-              123 Vacation Rd., Holiday City, XY 12345<br />
+              Lừa đảo mà contact làm gì cha ?<br />
               <Link to="tel:+1234567890">(123) 456-7890</Link> {/* This will still work as a regular phone link */}
             </p>
           </div>
         </div>
         <div className="footer-bottom">
           <p>
-            My sticky footer can be found here.
+        
           </p>
           <p className="copyright">
             Copyright © 4Rent {new Date().getFullYear()}.

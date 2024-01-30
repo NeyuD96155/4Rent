@@ -24,27 +24,27 @@ export default function SignUp() {
             name="firstName"
             required
             id="firstName"
-            placeholder="First Name"
+            placeholder="Cho hỏi vị huynh đệ Họ gì ?"
             autoFocus
           />
           <input
             required
             id="lastName"
-            placeholder="Last Name"
+            placeholder="Cho bố m xin cái tên"
             name="lastName"
             autoComplete="family-name"
           />
           <input
             required
             id="email"
-            placeholder="Email Address"
+            placeholder="Nổ bố m cái địa chỉ email "
             name="email"
             autoComplete="email"
           />
           <input
             required
             name="password"
-            placeholder="Password"
+            placeholder="Đặt mật khẩu đi thằng l"
             type="password"
             id="password"
             autoComplete="new-password"

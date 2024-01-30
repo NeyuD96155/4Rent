@@ -25,6 +25,7 @@ const SignIn = () => {
             id="username"
             name="username"
             value={credentials.username}
+            placeholder="nhập username vào đi ?"
             onChange={handleInputChange}
             required
           />
@@ -35,6 +36,7 @@ const SignIn = () => {
             id="password"
             name="password"
             value={credentials.password}
+            placeholder="mật khẩu lẹ đi cu"
             onChange={handleInputChange}
             required
           />
