@@ -1,60 +1,72 @@
+/* Navbar.css */
 .navbar-container {
-    background-color: #f8f9fa;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 15px 20px;
+    background-color: #343a40; /* Dark background color */
 }
 
 .navbar-logo {
+    font-size: 1.8rem;
     font-weight: bold;
-    color: #007bff;
-    transition: color 0.2s ease;
-}
-
-.navbar-logo:hover {
-    color: #0056b3;
-}
-
-.navbar-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+    color: #d13a3a; /* Red text color */
+    text-decoration: none;
 }
 
 .navbar-link {
-    color: #495057;
-    transition: color 0.2s ease;
-    margin: 0 15px;
+    font-size: 1.1rem;
+    color: #050303; /* Dark text color */
+    text-decoration: none;
+    margin-right: 15px;
+    transition: color 0.3s ease;
 }
 
 .navbar-link:hover {
-    color: #007bff;
+    color: #0375f0; /* Highlight color on hover */
 }
 
 .navbar-user-icon {
-    font-size: 20px;
-    line-height: 20px;
+    font-size: 1.8rem;
+    color: #ffffff; /* White text color */
+    cursor: pointer;
 }
 
-.navbar-user-dropdown .dropdown-item {
-    color: #495057;
+.navbar-user-dropdown {
+    margin-top: 5px;
 }
 
-.navbar-user-dropdown .dropdown-item:hover {
-    color: #007bff;
+.dropdown-item {
+    color: #333;
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem 1.5rem;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.5;
+    color: #333;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-@media (max-width: 992px) {
-    .navbar-collapse {
-        flex-grow: 0;
-    }
+.dropdown-item:hover {
+    background-color: #f8f9fa; /* Background color on hover */
+    color: #007bff; /* Highlight color on hover */
+}
 
-    .navbar-nav {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+/* Set color to white for the user icon */
+.navbar-user-dropdown .user.icon {
+    color: #ffffff;
+}
 
-    .navbar-link, .navbar-user-dropdown {
-        margin: 5px 0;
-        width: 100%;
-    }
+/* Style the Navbar Toggle button */
+.navbar-toggler {
+    border: none;
+    background: transparent;
+    color: #ffffff; /* White text color */
+}
+
+.navbar-toggler-icon {
+    background-color: #ffffff; /* White background color */
 }
