@@ -1,17 +1,24 @@
 // Card.js
 import React from 'react';
-import '../styles/Card.css';  // Import CSS file
+import PropTypes from 'prop-types';
+import '../styles/Card.css';
 
-const Card = ({ title, description, imageUrl, price, onClickDetail }) => {
+const Card = ({ title, description, imageUrl, price }) => {
   return (
     <div className="card">
-      <h2>{title}</h2>
-      <img src={imageUrl} alt={title} />
-      <p>{description}</p>
-      <p>Price: {price}</p>
-      <button onClick={onClickDetail}>Detail</button>
+      <h2 className="card-title">{title}</h2>
+      <img className="card-image" src={imageUrl} alt={title} />
+      <p className="card-description">{description}</p>
+      <p className="card-price">Price: {price}</p>
     </div>
   );
+};
+
+Card.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
 };
 
 export default Card;
