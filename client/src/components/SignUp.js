@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom"
 import '../styles/SignUp.css'; // Make sure to create a SignUp.css file for styling
 
 export default function SignUp() {
@@ -58,7 +59,7 @@ export default function SignUp() {
           Sign Up
         </button>
         <div className="signup-footer">
-          Already have an account? <a href="/signin">Sign in</a>
+          Already have an account? <Link to="/signin">Sign in</Link>
         </div>
       </form>
       <p className="signup-copy">

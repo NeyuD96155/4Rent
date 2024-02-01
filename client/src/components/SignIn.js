@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Link} from "react-router-dom";
 import '../styles/SignUp.css'; // Ensure this path is correct
 
 const SignIn = () => {
@@ -19,7 +20,7 @@ const SignIn = () => {
     <h1 className="signup-title">Sign in</h1>
       <form className="signup-form" onSubmit={handleSubmit}> {/* Changed class */}
         <div className="signup-grid">
-          {/* <label htmlFor="username">Username</label> */}
+          <label htmlFor="username">Username</label>
           <input
             type="text"
             id="username"
@@ -30,7 +31,7 @@ const SignIn = () => {
             required
           />
 
-          {/* <label htmlFor="password">Password</label> */}
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
@@ -45,7 +46,7 @@ const SignIn = () => {
           <button type="submit" className="signup-submit">Sign In</button> {/* Changed class */}
         </div>
         <div className="signup-footer">
-          Did have an account yet? <a href="/signup">Sign up</a>
+          Did have an account yet? <Link to="/signup">Sign up</Link>
         </div>
       </form>
       <p className="signup-copy">
