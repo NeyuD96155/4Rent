@@ -1,0 +1,19 @@
+/* DetailPage.css */
+.detail-page-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .detail-page-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .detail-page-price {
+    font-weight: bold;
+    color: #d13a3a; /* or your desired color */
+  }
+  
