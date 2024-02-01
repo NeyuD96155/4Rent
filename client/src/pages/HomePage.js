@@ -14,7 +14,7 @@ import {
 } from "../components/GuidesCom/GettingStarted";
 import Payment from "../components/Payment";
 import CancellationPolicy from "../components/policy/CancellationPolicy";
-import HomePageContent from "../components/HomePageContent";
+import HomePageContent from "../pages/HomePageContent";
 import DetailPage from "../components/DetailPage";
 function Homepage() {
     return (
