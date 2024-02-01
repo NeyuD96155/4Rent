@@ -1,87 +1,109 @@
-import React from 'react';
-import '../styles/About.css';
+/* eslint-disable jsx-a11y/img-redundant-alt */
+import React from "react";
+import "../styles/About.css";
 
 const AboutUs = () => {
-  return (
-    <div className="container">
-      <div className="row my-5">
-        <div className="col">
-          <h1>About Us</h1>
-          <p>Learn more about the 4Rent company and our mission.</p>
-          <p>
-            4Rent is a leading timeshare exchange platform, dedicated to providing
-            exceptional vacation experiences across the globe. Our platform
-            enables users to exchange their timeshare properties in a seamless and
-            efficient manner, ensuring a hassle-free vacation planning experience.
-          </p>
-        </div>
-      </div>
+    return (
+        <div className="container">
+            <div className="row my-5">
+                <div className="col">
+                    <h1>Về chúng tôi</h1>
+                    <p>
+                        Tìm hiểu nhiều hơn về 4Rent và sứ mệnh mà chúng tôi mang
+                        lại
+                    </p>
+                    <p>
+                        4Rent là một nền tảng nơi mà mọi người có thể thuê và
+                        cho thuê kì nghỉ.Nền tảng của chúng tôi cho phép người
+                        dùng trao đổi căn hộ của họ một cách đơn giản và hiệu
+                        quả, đảm bảo trải nghiệm lập kế hoạch kỳ nghỉ không gặp
+                        rắc rối.
+                    </p>
+                </div>
+            </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <h2>Our Vision</h2>
-          <p>
-            At 4Rent, our vision is to revolutionize the way people vacation. We
-            strive to connect timeshare owners with a vast network of properties,
-            enabling them to explore new destinations with ease and comfort.
-          </p>
-        </div>
-        <div className="col-md-6">
-          <img src="./assets/img/i2.jpg" alt="Vision" className="img-fluid" />
-        </div>
-      </div>
+            <div className="row">
+                <div className="col-md-6">
+                    <h2>Tầm nhìn của chúng tôi</h2>
+                    <p>
+                        Tại 4Rent, tầm nhìn của chúng tôi là cách mạng hóa cách
+                        mọi người đi nghỉ. Chúng tôi cố gắng kết nối các chủ sở
+                        hữu timeshare với mạng lưới cơ sở kinh doanh rộng lớn,
+                        cho phép họ khám phá các điểm đến mới một cách dễ dàng
+                        và thoải mái.
+                    </p>
+                    </div>
+                <div className="col-md-6">
+                    <img
+                        src="./assets/img/i2.jpg"
+                        alt="Vision Image"
+                        className="img-fluid"
+                    />
+                </div>
+           
 
-      <div className="row">
-        <div className="col-md-6">
-          <img src="./assets/img/i1.jpg" alt="Mission" className="img-fluid" />
-        </div>
-        <div className="col-md-6">
-          <h2>Our Mission</h2>
-          <p>
-            Our mission is to empower timeshare owners by providing them with a
-            diverse range of exchange options, top-notch customer service, and
-            invaluable resources to enhance their vacation experiences.
-          </p>
-        </div>
-      </div>
+            <div className="row">
+                <div className="col-md-6">
+                    <img
+                        src="./assets/img/i1.jpg"
+                        alt="Mission Image"
+                        className="img-fluid"
+                    />
+                    </div>
+                <div className="col-md-6">
+                    <h2>Nhiệm vụ của chúng tôi</h2>
+                    <p>
+                        Sứ mệnh của chúng tôi là trao quyền cho chủ sở hữu
+                        timeshare bằng cách cung cấp cho họ nhiều tùy chọn trao
+                        đổi đa dạng, dịch vụ khách hàng hàng đầu và các nguồn
+                        lực vô giá để nâng cao trải nghiệm kỳ nghỉ của họ.
+                        
+                    </p>
+                </div>
+            </div>
+</div>
+            <div className="row my-4">
+                <div className="col">
+                    <h2>Các thành viên</h2>
+                    <p>
+                        Gặp gỡ những cá nhân đầy nhiệt huyết đằng sau 4Rent. Đội
+                        của chúng tôi bao gồm các chuyên gia về bất động sản,
+                        công nghệ và dịch vụ khách hàng, tất cả tận tâm để làm
+                        cho kỳ nghỉ của bạn giấc mơ thành hiện thực.
+                    </p>
+                    {/* Include team member profiles or photos here */}
+                </div>
+            </div>
 
-      <div className="row my-4">
-        <div className="col">
-          <h2>Our Team</h2>
-          <p>
-            Meet the passionate individuals behind 4Rent. Our team is composed of
-            experts in real estate, technology, and customer service, all dedicated
-            to making your vacation dreams a reality.
-          </p>
-          {/* Include team member profiles or photos here */}
-        </div>
-      </div>
+            <div className="row my-4">
+                <div className="col">
+                    <h2>Lịch sử</h2>
+                    <p>
+                        Được thành lập vào năm 2024, 4Rent khởi đầu là một công
+                        ty khởi nghiệp nhỏ và kể từ đó đã phát triển thành một
+                        tên tuổi hàng đầu trong lĩnh vực chia sẻ thời gian ngành
+                        trao đổi. Cuộc hành trình của chúng tôi là minh chứng
+                        cho cam kết đổi mới và sự hài lòng của khách hàng.
+                    </p>
+                    {/* Include a timeline or key historical events here */}
+                </div>
+            </div>
 
-      <div className="row my-4">
-        <div className="col">
-          <h2>Our History</h2>
-          <p>
-            Founded in 2010, 4Rent started as a small startup and has since grown
-            into a leading name in the timeshare exchange industry. Our journey is
-            a testament to our commitment to innovation and customer satisfaction.
-          </p>
-          {/* Include a timeline or key historical events here */}
+            <div className="row my-4">
+                <div className="col">
+                    <h2>Giá trị</h2>
+                    <p>
+                        Tại 4Rent, chúng tôi được hướng dẫn bởi các giá trị về
+                        tính chính trực, sự hợp tác và sự xuất sắc. Những nguyên
+                        tắc này ở trọng tâm của mọi việc chúng tôi làm, từ cách
+                        chúng tôi tiến hành kinh doanh đến cách chúng tôi tương
+                        tác với cộng đồng của mình.
+                    </p>
+                    {/* Expand on specific values and examples of how they are applied */}
+                </div>
+            </div>
         </div>
-      </div>
-
-      <div className="row my-4">
-        <div className="col">
-          <h2>Our Values</h2>
-          <p>
-            At 4Rent, we are guided by values of integrity, collaboration, and
-            excellence. These principles are at the heart of everything we do, from
-            the way we conduct business to how we interact with our community.
-          </p>
-          {/* Expand on specific values and examples of how they are applied */}
-        </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default AboutUs;

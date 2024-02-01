@@ -6,14 +6,14 @@ const GettingStarted = () => {
       <Container>
         <Row className="my-5">
           <Col>
-            <h1>Getting Started with 4Rent</h1>
+            <h2>Khởi đầu với 4Rent</h2>
             <p>
-              Welcome to 4Rent! This detailed guide will walk you through the basics of setting up your account, browsing listings, and making your first timeshare exchange.
+              Chào mừng bạn đến với 4Rent! Những hướng dẫn chi tiết sau sẽ giúp bạn có thể thiết lập cho tài khoản của bạn, duyệt danh sách, và thuê kì nghỉ đầu tiên cho bạn.
             </p>
             
             <h2>Setting Up Your Account</h2>
             <p>
-              Create your 4Rent account by signing up on our platform. Fill in the required details, verify your email, and set up your profile.
+              Tạo một tài khoản bằng cách đăng kí tài khoản thông qua nền tảng của chúng tôi. Điền vào những trường thông tin cần thiết, xác thực email của bạn, và thiết lập hồ sơ của bạn.
             </p>
             
             <h2>Browsing Listings</h2>

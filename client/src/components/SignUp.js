@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom"
 import '../styles/SignUp.css'; // Make sure to create a SignUp.css file for styling
 
 export default function SignUp() {
@@ -24,27 +25,27 @@ export default function SignUp() {
             name="firstName"
             required
             id="firstName"
-            placeholder="Cho hỏi vị huynh đệ Họ gì ?"
+            placeholder="First Name"
             autoFocus
           />
           <input
             required
             id="lastName"
-            placeholder="Cho bố m xin cái tên"
+            placeholder="Last Name"
             name="lastName"
             autoComplete="family-name"
           />
           <input
             required
             id="email"
-            placeholder="Nổ bố m cái địa chỉ email "
+            placeholder="Email "
             name="email"
             autoComplete="email"
           />
           <input
             required
             name="password"
-            placeholder="Đặt mật khẩu đi thằng l"
+            placeholder="Password"
             type="password"
             id="password"
             autoComplete="new-password"
@@ -58,11 +59,11 @@ export default function SignUp() {
           Sign Up
         </button>
         <div className="signup-footer">
-          Already have an account? <a href="/signin">Sign in</a>
+          Already have an account? <Link to="/signin">Sign in</Link>
         </div>
       </form>
       <p className="signup-copy">
-        Copyright © Your Website {new Date().getFullYear()}.
+        Copyright © 4Rent Website {new Date().getFullYear()}.
       </p>
     </div>
   );

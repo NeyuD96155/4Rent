@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Link} from "react-router-dom";
 import '../styles/SignUp.css'; // Ensure this path is correct
 
 const SignIn = () => {
@@ -25,7 +26,7 @@ const SignIn = () => {
             id="username"
             name="username"
             value={credentials.username}
-            placeholder="nhập username vào đi ?"
+            placeholder="Username"
             onChange={handleInputChange}
             required
           />
@@ -36,7 +37,7 @@ const SignIn = () => {
             id="password"
             name="password"
             value={credentials.password}
-            placeholder="mật khẩu lẹ đi cu"
+            placeholder="Password"
             onChange={handleInputChange}
             required
           />
@@ -45,9 +46,12 @@ const SignIn = () => {
           <button type="submit" className="signup-submit">Sign In</button> {/* Changed class */}
         </div>
         <div className="signup-footer">
-          dont have an account yet? <a href="/signup">Sign up</a>
+          Did have an account yet? <Link to="/signup">Sign up</Link>
         </div>
       </form>
+      <p className="signup-copy">
+        Copyright © 4Rent Website {new Date().getFullYear()}.
+      </p>
     </div>
   );
 };

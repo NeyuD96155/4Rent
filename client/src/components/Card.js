@@ -1,8 +1,8 @@
 // Card.js
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../styles/Card.css';
 
+import '../styles/Card.css';
 const Card = ({ title, description, imageUrl, price }) => {
   return (
     <div className="card">
