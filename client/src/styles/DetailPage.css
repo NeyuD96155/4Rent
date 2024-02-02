@@ -1,53 +1,112 @@
-/* DetailPage.css */
+/* Trong file styles/DetailPage.css */
 
+/*Hình ảnh*/
+/* Container chứa toàn bộ hình ảnh */
 .detail-page-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  background-color: #f8f8f8;
-  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
 
-.detail-page-image {
+/* Ảnh lớn */
+.detail-page-large-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-right: 20px;
+  transition: transform 0.3s ease-in-out; /* Thêm hiệu ứng transform */
+}
+
+/* Ảnh nhỏ */
+.detail-page-small-images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  max-width: 38%;
+}
+
+.detail-page-small-image {
   width: 100%;
-  max-height: 400px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 20px;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out; /* Thêm hiệu ứng transform */
 }
 
-.detail-page-title {
+/* Hiệu ứng khi hover */
+.detail-page-large-image:hover,
+.detail-page-small-image:hover {
+  transform: scale(1.03); /* Hiệu ứng phóng to khi hover */
+}
+
+
+/* Container chung cho phần 2 và phần 3 */
+.detail-page-details-and-booking {
+  display: flex;
+  justify-content: space-between; /* Canh giữa theo chiều ngang */
+  max-width: 800px; /* Điều chỉnh chiều rộng tối đa của phần 2 và phần 3 */
+  margin: 20px auto; /* Canh giữa và thêm khoảng cách với các phần tử khác */
+}
+
+/* Phần 2: Thông tin căn hộ và chủ nhà */
+.detail-page-details {
+  width: 48%; /* Điều chỉnh chiều rộng của phần thông tin */
+  box-sizing: border-box; /* Giữ cho padding và border không làm thay đổi chiều rộng */
+}
+
+.detail-page-details h2 {
   font-size: 24px;
-  font-weight: bold;
   margin-bottom: 10px;
-  color: #333;
 }
 
-.detail-page-description {
+.detail-page-details p {
   font-size: 16px;
-  color: #555;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
 }
 
 .detail-page-price {
-  font-size: 18px;
   font-weight: bold;
-  color: #007bff;
+  color: #ff5722; /* Màu cam, có thể điều chỉnh theo ý muốn */
+}
+
+.detail-page-details p:last-child {
+  margin-bottom: 20px; /* Khoảng cách lớn với phần tử cuối cùng */
+}
+
+/* Phần 3: Bảng đặt phòng */
+.booking-section {
+  width: 48%; /* Điều chỉnh chiều rộng của phần 3 */
+  box-sizing: border-box; /* Giữ cho padding và border không làm thay đổi chiều rộng */
+}
+
+.booking-section label {
+  display: block;
   margin-bottom: 10px;
 }
 
+.booking-section input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
 .detail-page-button {
-  background-color: #e787eb;
+  background-color: #FF385C;
   color: #fff;
-  padding: 12px 20px;
-  font-size: 18px;
+  padding: 10px 20px;
   border: none;
-  border-radius: 6px;
+  border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s;
 }
 
 .detail-page-button:hover {
-  background-color: #ee193c;
+  background-color: #D81E47;
 }
+
+
+

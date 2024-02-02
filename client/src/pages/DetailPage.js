@@ -12,13 +12,14 @@ const DetailPage = () => {
     navigate('/payment');
   };
 
-  // Kiểm tra nếu location.state không tồn tại hoặc là null
+  let content;
+
   if (!location.state) {
     const mockData = {
       title: 'Luxury Apartment',
       description: 'Another gorgeous apartment with modern amenities.',
       images: [
-        'https://api.xaynhadeponline.com/uploads/xu_huong_thiet_ke_nha_cap_4_2c53ffe032.jpg',
+        'https://hoanggiavu.vn/wp-content/uploads/2020/12/mau-villa-dep-nhat-2020-2021-2.jpg',
         'https://api.xaynhadeponline.com/uploads/xu_huong_thiet_ke_nha_cap_4_2c53ffe032.jpg',
         'https://api.xaynhadeponline.com/uploads/xu_huong_thiet_ke_nha_cap_4_2c53ffe032.jpg',
         'https://api.xaynhadeponline.com/uploads/xu_huong_thiet_ke_nha_cap_4_2c53ffe032.jpg',
@@ -34,49 +35,102 @@ const DetailPage = () => {
 
     const { title, description, images, price, member } = mockData;
 
-    return (
-      <div className="detail-page-container">
-        <h2>{title}</h2>
+    content = (
+      <>
+        {/* Phần 1: Hình ảnh */}
+        <div className="detail-page-container">
+          <img
+            src={images[0]}
+            alt="Large Image"
+            className="detail-page-large-image"
+          />
 
-        {/* Display multiple images */}
-        {images.map((image, index) => (
-          <img key={index} src={image} alt={`Image ${index + 1}`} className="detail-page-image" />
-        ))}
+          <div className="detail-page-small-images">
+            {images.slice(1, 5).map((image, index) => (
+              <img
+                key={index}
+                src={image}
+                alt={`Image ${index + 1}`}
+                className="detail-page-small-image"
+              />
+            ))}
+          </div>
+        </div>
+        <div className="detail-page-details-and-booking">
+          {/* Phần 2: Thông tin căn hộ và chủ nhà */}
+          <div className="detail-page-details">
+            <h2>{title}</h2>
+            <p>{description}</p>
+            <p className="detail-page-price">Price: {price}</p>
+            <p>Property Owner: {member.name}</p>
+            <p>Contact: {member.contact}</p>
+          </div>
 
-        <p>{description}</p>
-        <p className="detail-page-price">Price: {price}</p>
+          {/* Phần 3: Bảng đặt phòng */}
+          <div className="booking-section">
+            <label htmlFor="checkinDate">Check-In Date:</label>
+            <input type="date" id="checkinDate" />
 
-        {/* Display member information */}
-        <p>Property Owner: {member.name}</p>
-        <p>Contact: {member.contact}</p>
+            <label htmlFor="checkoutDate">Check-Out Date:</label>
+            <input type="date" id="checkoutDate" />
 
-        {/* Thêm nút chuyển hướng đến trang thanh toán */}
-        <button className='detail-page-button' onClick={() => redirectToPayment()}>Đặt Phòng</button>
-      </div>
+            <button className="detail-page-button" onClick={() => redirectToPayment()}>Đặt Phòng</button>
+          </div>
+        </div>
+      </>
+    );
+  } else {
+    // Dữ liệu từ location.state tồn tại
+    const { title, description, images, price, member } = location.state;
+
+    content = (
+      <>
+        {/* Phần 1: Hình ảnh */}
+        <div className="detail-page-container">
+          <img
+            src={images[0]}
+            alt="Large Image"
+            className="detail-page-large-image"
+          />
+
+          <div className="detail-page-small-images">
+            {images.slice(1, 5).map((image, index) => (
+              <img
+                key={index}
+                src={image}
+                alt={`Image ${index + 1}`}
+                className="detail-page-small-image"
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Phần 2: Thông tin căn hộ và chủ nhà */}
+        <div className="detail-page-details">
+          <h2>{title}</h2>
+          <p>{description}</p>
+          <p className="detail-page-price">Price: {price}</p>
+          <p>Property Owner: {member.name}</p>
+          <p>Contact: {member.contact}</p>
+        </div>
+
+        {/* Phần 3: Bảng đặt phòng */}
+        <div className="booking-section">
+          <label htmlFor="checkinDate">Check-In Date:</label>
+          <input type="date" id="checkinDate" />
+
+          <label htmlFor="checkoutDate">Check-Out Date:</label>
+          <input type="date" id="checkoutDate" />
+
+          <button onClick={() => redirectToPayment()}>Đặt Phòng</button>
+        </div>
+      </>
     );
   }
 
-  // Dữ liệu từ location.state tồn tại
-  const { title, description, images, price, member } = location.state;
-
   return (
-    <div className="detail-page-container">
-      <h2>{title}</h2>
-
-      {/* Display multiple images */}
-      {images.map((image, index) => (
-        <img key={index} src={image} alt={`Image ${index + 1}`} className="detail-page-image" />
-      ))}
-
-      <p>{description}</p>
-      <p className="detail-page-price">Price: {price}</p>
-
-      {/* Display member information */}
-      <p>Property Owner: {member.name}</p>
-      <p>Contact: {member.contact}</p>
-
-      {/* Thêm nút chuyển hướng đến trang thanh toán */}
-      <button onClick={() => redirectToPayment()}>Go to Payment</button>
+    <div>
+      {content}
     </div>
   );
 };
