@@ -5,7 +5,10 @@
     justify-content: center;
     height: 100vh;
     background: linear-gradient(135deg, #ff6e7f 0%, #bfe9ff 100%);
-    padding: 10px; /* Consistent padding with login container */
+    padding: 10px;
+    margin: 2em auto;
+    border-radius: 10px;
+max-width: 1170px;
 }
 
 .signup-title {

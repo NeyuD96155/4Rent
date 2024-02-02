@@ -1,6 +1,9 @@
 .guide-container {
     background: linear-gradient(135deg, #ff6e7f 0%, #bfe9ff 100%);
     padding: 2em 0;
+    margin: 2em auto;
+    max-width: 1170px;
+    border-radius: 10px;
 }
 
 .guide-header h1 {
