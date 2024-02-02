@@ -36,6 +36,25 @@ const HomePageContent = () => {
             imageUrl: 'https://api.xaynhadeponline.com/uploads/xu_huong_thiet_ke_nha_cap_4_2c53ffe032.jpg',
             price: '$1200 per night',
         },
+        {
+            title: 'Luxury Apartment 2',
+            description: 'Another gorgeous apartment with modern amenities.',
+            imageUrl: 'https://api.xaynhadeponline.com/uploads/xu_huong_thiet_ke_nha_cap_4_2c53ffe032.jpg',
+            price: '$1200 per night',
+        },
+        {
+            title: 'Luxury Apartment 2',
+            description: 'Another gorgeous apartment with modern amenities.',
+            imageUrl: 'https://api.xaynhadeponline.com/uploads/xu_huong_thiet_ke_nha_cap_4_2c53ffe032.jpg',
+            price: '$1200 per night',
+        },
+        {
+            title: 'Luxury Apartment 2',
+            description: 'Another gorgeous apartment with modern amenities.',
+            imageUrl: 'https://api.xaynhadeponline.com/uploads/xu_huong_thiet_ke_nha_cap_4_2c53ffe032.jpg',
+            price: '$1200 per night',
+        },
+        
         
         // Add more apartments as needed
     ];
