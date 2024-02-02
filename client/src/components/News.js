@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Guide.css';
 
-const Guides = () => {
+const News = () => {
   const guideList = [
     {
       title: "Chuẩn bị cho 4Rent",
@@ -46,7 +46,7 @@ const Guides = () => {
   return (
     <div className="guide-container">
       <div className="guide-header">
-        <h1>Guides</h1>
+        <h1>NEWS</h1>
       </div>
       <div className="guide-grid">
         {guideList.map((guide, index) => (
@@ -64,4 +64,4 @@ const Guides = () => {
   );
 };
 
-export default Guides;
+export default News;

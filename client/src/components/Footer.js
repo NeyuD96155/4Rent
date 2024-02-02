@@ -10,22 +10,22 @@ export default function Footer() {
           <div className="footer-col">
             <h4>4Rent</h4>
             <p>
-              Khám phá nền tảng lừa đảo lớn nhất Đông Nam á
+              Khám phá nền tảng cho thuê lớn nhất Đông Nam Á
             </p>
           </div>
           <div className="footer-col">
-            <h4>Quick Links</h4>
+            <h4>Thông tin nhanh</h4>
             <ul>
-              <li><Link to="/about-us">About Us</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
-              <li><Link to="/faq">FAQ</Link></li> {/* Assuming you have a FAQ page */}
+              <li><Link to="/about-us">Về chúng tôi</Link></li>
+              <li><Link to="/contact">Liên Hệ</Link></li>
+              <li><Link to="/faq">Các câu hỏi thường gặp</Link></li> {/* Assuming you have a FAQ page */}
             </ul>
           </div>
           <div className="footer-col">
-            <h4>Contact Us</h4>
+            <h4>Liên hệ với chúng tôi</h4>
             <p>
-              Lừa đảo mà contact làm gì cha ?<br />
-              <Link to="tel:+1234567890">(123) 456-7890</Link> {/* This will still work as a regular phone link */}
+              Thông tin liên hệ<br />
+              <Link to="tel:0832345780">083 2345 780</Link> {/* This will still work as a regular phone link */}
             </p>
           </div>
         </div>

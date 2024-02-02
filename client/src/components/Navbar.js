@@ -10,10 +10,12 @@ const NavigationBar = () => {
       </div>
       <div className="navbar-links">
         <Link to="/search" className="navbar-link">Search Timeshare</Link>
+        <Link to="/news" className="navbar-link">News</Link>
         <Link to="/guides" className="navbar-link">Guides</Link>
         <Link to="/contact" className="navbar-link">Contact</Link>
         <Link to="/about" className="navbar-link">About Us</Link>
         <Link to="/payment" className="navbar-link">Payment</Link>
+       
         {/* User Icon with Dropdown Menu */}
         <div className="navbar-user-dropdown">
           <div className="user-icon navbar-user-icon"></div>

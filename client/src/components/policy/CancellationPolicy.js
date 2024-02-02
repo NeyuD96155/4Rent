@@ -11,13 +11,13 @@ const CancellationPolicy = () => {
 
       <h2>Hủy Trước Ngày Nhận Phòng</h2>
       <ul>
-        <li>Hủy ít nhất 24 giờ trước ngày nhận phòng: Hoàn lại toàn bộ số tiền.</li>
+        <li>Hủy ít nhất 3 ngày trước ngày nhận phòng: Hoàn lại toàn bộ số tiền.</li>
         <li>Hủy trong vòng 24 giờ trước ngày nhận phòng: Phí hủy là 50% giá trị đặt phòng.</li>
       </ul>
 
       <h2>Hủy Sau Khi Nhận Phòng</h2>
       <p>
-        Nếu bạn quyết định hủy sau khi đã nhận phòng, bạn có thể phải chịu phí hủy bổ sung tùy thuộc vào các điều khoản cụ thể của từng chỗ ở.
+        Nếu bạn quyết định hủy sau khi đã nhận phòng, bạn có thể phải chịu phí tùy thuộc vào các điều khoản cụ thể của từng chỗ ở.
       </p>
 
       <h2>Lưu Ý</h2>
