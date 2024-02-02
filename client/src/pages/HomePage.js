@@ -15,7 +15,7 @@ import {
 import Payment from "../components/Payment";
 import CancellationPolicy from "../components/policy/CancellationPolicy";
 import HomePageContent from "../pages/HomePageContent";
-import DetailPage from "../components/DetailPage";
+import DetailPage from "../pages/DetailPage";
 function Homepage() {
     return (
         <Router>
