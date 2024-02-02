@@ -66,13 +66,17 @@ const HomePageContent = () => {
             imageUrl: 'https://api.xaynhadeponline.com/uploads/xu_huong_thiet_ke_nha_cap_4_2c53ffe032.jpg',
             price: '$1200 per night',
         },
-        
+
         // Add more apartments as needed
     ];
 
     return (
         <div className="home-page-content">
-            <h1>Các căn hộ nổi bật</h1>
+            <div class="background-section">
+                <h2>New Arrival</h2>
+                <p>Discover Our New Real Estates</p>
+                <a href="/news" class="buy-now-button">Find Out Now</a>
+            </div>
             <div className="card-container">
                 {apartments.map((apartment, index) => (
                     <Link
