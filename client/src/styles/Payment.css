@@ -4,6 +4,8 @@
     border-radius: 8px;
     display: flex;
     justify-content: space-between;
+    margin: 2em auto;
+    max-width: 1170px;
 }
 
 .form-group, .start-date, .guests-number, .cancellation-policy-card, .guest-requirements-list, .booking-confirmation, .payment-method, .price-details-card {
