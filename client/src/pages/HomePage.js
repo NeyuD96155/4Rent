@@ -16,8 +16,9 @@ import Payment from "../components/Payment";
 import CancellationPolicy from "../components/policy/CancellationPolicy";
 
 import HomePageContent from "../pages/HomePageContent";
-import DetailPage from "../pages/DetailPage";
+import PostDetail from "../components/PostDetail";
 import News from '../components/News';
+
 
 function Homepage() {
     return (
@@ -47,7 +48,7 @@ function Homepage() {
                     path="/maximize-vacation"
                     element={<MaximizeVacation />}
                 />
-                  <Route path="/detail/:id" element={<DetailPage />} />
+                  <Route path="/detail/:id" element={<PostDetail />} />
                 {/* Define other routes here */}
             </Routes>
             <Footer />
