@@ -1,7 +1,7 @@
 .payment-container {
     background: linear-gradient(135deg, #ff6e7f 0%, #bfe9ff 100%);
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 10px;
     display: flex;
     justify-content: space-between;
     margin: 2em auto;

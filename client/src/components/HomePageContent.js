@@ -60,7 +60,7 @@ const HomePageContent = () => {
 
     return (
         <div className="home-page-content">
-            <h1>Welcome to 4Rent</h1>
+            <h1>Các căn hộ nổi bật</h1>
             <div className="card-container">
                 {apartments.map((apartment, index) => (
                     <Link

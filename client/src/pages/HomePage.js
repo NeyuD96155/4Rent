@@ -16,6 +16,7 @@ import Payment from "../components/Payment";
 import CancellationPolicy from "../components/policy/CancellationPolicy";
 import HomePageContent from "../components/HomePageContent";
 import DetailPage from "../components/DetailPage";
+import news from '../components/News';
 function Homepage() {
     return (
         <Router>
@@ -29,6 +30,7 @@ function Homepage() {
                 />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/signin" element={<SignIn />} />
+                <Route path="/news" element={<News />} />
                 <Route path="/guides" element={<Guides />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/about" element={<AboutUs />} />
