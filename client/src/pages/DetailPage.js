@@ -1,14 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useLocation } from 'react-router-dom';
-import '../styles/DetailPage.css'; // Import CSS file
+import { useLocation, useNavigate } from 'react-router-dom';
+import '../styles/DetailPage.css';
 
 const DetailPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  // Move the function declaration to the top
+  const redirectToPayment = () => {
+    // Chuyển hướng đến trang thanh toán (paymentpage)
+    navigate('/payment');
+  };
 
   // Kiểm tra nếu location.state không tồn tại hoặc là null
   if (!location.state) {
-    // Dữ liệu giả mạo nếu không có dữ liệu từ location.state
     const mockData = {
       title: 'Luxury Apartment',
       description: 'Another gorgeous apartment with modern amenities.',
@@ -16,7 +22,6 @@ const DetailPage = () => {
       price: '$1200 per night',
     };
 
-    // Destructuring thuộc tính từ mockData
     const { title, description, imageUrl, price } = mockData;
 
     return (
@@ -25,6 +30,9 @@ const DetailPage = () => {
         <img src={imageUrl} alt={title} className="detail-page-image" />
         <p>{description}</p>
         <p className="detail-page-price">Price: {price}</p>
+
+        {/* Thêm nút chuyển hướng đến trang thanh toán */}
+        <button className='detail-page-button' onClick={() => redirectToPayment()}>Go to Payment</button>
       </div>
     );
   }
@@ -38,6 +46,9 @@ const DetailPage = () => {
       <img src={imageUrl} alt={title} className="detail-page-image" />
       <p>{description}</p>
       <p className="detail-page-price">Price: {price}</p>
+
+      {/* Thêm nút chuyển hướng đến trang thanh toán */}
+      <button onClick={() => redirectToPayment()}>Go to Payment</button>
     </div>
   );
 };

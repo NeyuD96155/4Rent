@@ -1,19 +1,53 @@
 /* DetailPage.css */
+
 .detail-page-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .detail-page-image {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 20px;
-  }
-  
-  .detail-page-price {
-    font-weight: bold;
-    color: #d13a3a; /* or your desired color */
-  }
-  
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  background-color: #f8f8f8;
+  border-radius: 12px;
+}
+
+.detail-page-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.detail-page-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.detail-page-description {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.detail-page-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.detail-page-button {
+  background-color: #025bb9;
+  color: #fff;
+  padding: 12px 20px;
+  font-size: 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.detail-page-button:hover {
+  background-color: #b42bb4;
+}
