@@ -38,7 +38,7 @@
 }
 
 .detail-page-button {
-  background-color: #025bb9;
+  background-color: #e787eb;
   color: #fff;
   padding: 12px 20px;
   font-size: 18px;
@@ -49,5 +49,5 @@
 }
 
 .detail-page-button:hover {
-  background-color: #b42bb4;
+  background-color: #ee193c;
 }

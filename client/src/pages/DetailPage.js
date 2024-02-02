@@ -32,7 +32,7 @@ const DetailPage = () => {
         <p className="detail-page-price">Price: {price}</p>
 
         {/* Thêm nút chuyển hướng đến trang thanh toán */}
-        <button className='detail-page-button' onClick={() => redirectToPayment()}>Go to Payment</button>
+        <button className='detail-page-button' onClick={() => redirectToPayment()}>Đặt Phòng</button>
       </div>
     );
   }
