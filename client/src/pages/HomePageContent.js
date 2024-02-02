@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Card from '../components/Card';
-import '../styles/HomepageContent.css';
+import '../styles/HomePageContent.css';
 
 const HomePageContent = () => {
     const apartments = [
