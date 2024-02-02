@@ -25,41 +25,41 @@ const SignIn = () => {
         <div className="signup-container">
             {" "}
             {/* Changed class to match signup */}
-            <h1 className="signup-title">Sign in</h1>
+            <h1 className="signup-title">Đăng nhập</h1>
             <form className="signup-form" onSubmit={handleSubmit}>
                 {" "}
                 {/* Changed class */}
                 <div className="signup-grid">
-                    <label htmlFor="username">Username</label>
+                    <label htmlFor="username">Tên đăng nhập</label>
                     <input
                         type="text"
                         id="username"
                         name="username"
                         value={credentials.username}
-                        placeholder="Username"
+                        placeholder="Tên đăng nhập"
                         onChange={handleInputChange}
                         required
                     />
 
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password">Mật khẩu</label>
                     <input
                         type="password"
                         id="password"
                         name="password"
                         value={credentials.password}
-                        placeholder="Password"
+                        placeholder="Mật khẩu"
                         onChange={handleInputChange}
                         required
                     />
                 </div>
                 <div className="form-actions">
                     <button type="submit" className="signup-submit">
-                        Sign In
+                        Đăng nhập
                     </button>{" "}
                     {/* Changed class */}
                 </div>
                 <div className="signup-footer">
-                    Did have an account yet? <Link to="/signup">Sign up</Link>
+                    Chưa có tài khoản?! <Link to="/signup"><br></br>Đăng kí ngay bây giờ</Link>
                 </div>
             </form>
             <p className="signup-copy">

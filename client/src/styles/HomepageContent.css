@@ -1,5 +1,53 @@
 /* HomePageContent.css */
 
+/* Styling cho phần background */
+.background-section {
+  background-image: url('https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?cs=srgb&dl=pexels-alex-staudinger-1732414.jpg&fm=jpg');
+  /* Đặt đường dẫn đến ảnh background */
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  /* Màu chữ trắng để đảm bảo đọc được trên ảnh */
+  text-align: center;
+  padding: 100px 0;
+  /* Khoảng cách giữa phần header và nội dung phía sau */
+}
+
+.background-section h2 {
+  color: #000;
+  /* Màu đen cho tiêu đề "New Arrival" */
+  margin-top: 0;
+  /* Loại bỏ margin trên đỉnh */
+}
+
+.background-section p {
+  color: #ffcc00;
+  /* Màu vàng cho đoạn văn bản "Discover Our New Collection" */
+  font-size: 1.5em;
+  /* Font size lớn hơn */
+  margin-top: -10px;
+  /* Dịch lên phía trên */
+  text-transform: uppercase;
+  /* In hoa chữ */
+  font-weight: bold;
+  /* In đậm chữ */
+}
+
+.buy-now-button {
+  background-color: #aa920c;
+  color: #ffffff;
+  padding: 15px 30px;
+  font-size: 1.2em;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.buy-now-button:hover {
+  background-color: #9fa114;
+}
+
+
 .home-page-content {
   padding: 20px;
   text-align: center;
@@ -50,6 +98,6 @@
 /* Adjustments for mobile responsiveness */
 @media (max-width: 768px) {
   .card {
-      width: 100%;
+    width: 100%;
   }
 }

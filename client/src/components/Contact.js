@@ -24,15 +24,15 @@ const Contact = () => {
     <Container>
       <Row className="my-5">
         <Col>
-          <h1>Contact Us</h1>
-          <p>Here you can find how to contact the 4Rent team for support or inquiries.</p>
+          <h1>Liên hệ với chúng tôi</h1>
+          <p>Bạn có thể liên hệ với 4Rent tại đây</p>
 
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formName">
-              <Form.Label>Name</Form.Label>
+              <Form.Label>Tên</Form.Label>
               <Form.Control 
                 type="text" 
-                placeholder="Enter your name" 
+                placeholder="Nhập tên của bạn" 
                 name="name" 
                 value={formData.name} 
                 onChange={handleChange} 
@@ -40,10 +40,10 @@ const Contact = () => {
             </Form.Group>
 
             <Form.Group controlId="formEmail">
-              <Form.Label>Email address</Form.Label>
+              <Form.Label>Địa chỉ email</Form.Label>
               <Form.Control 
                 type="email" 
-                placeholder="Enter your email" 
+                placeholder="Nhập email của bạn" 
                 name="email" 
                 value={formData.email} 
                 onChange={handleChange} 
@@ -51,11 +51,11 @@ const Contact = () => {
             </Form.Group>
 
             <Form.Group controlId="formMessage">
-              <Form.Label>Message</Form.Label>
+              <Form.Label>Tin nhắn</Form.Label>
               <Form.Control 
                 as="textarea" 
                 rows={3} 
-                placeholder="Your message" 
+                placeholder="Tin nhắn" 
                 name="message" 
                 value={formData.message} 
                 onChange={handleChange} 
@@ -63,7 +63,7 @@ const Contact = () => {
             </Form.Group>
 
             <Button variant="primary" type="submit">
-              Submit
+              Gửi
             </Button>
           </Form>
         </Col>

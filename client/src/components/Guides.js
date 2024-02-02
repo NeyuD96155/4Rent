@@ -22,6 +22,25 @@ const Guides = () => {
       link: "/maximize-vacation",
       imageUrl: "./assets/img/i5.jpg"
     },
+    {
+        title: "Nâng cao tối đa trải nghiệm của bạn",
+        description: "Các mẹo để lựa chọn kì nghỉ hợp lí.",
+        link: "/maximize-vacation",
+        imageUrl: "./assets/img/i5.jpg"
+      },
+      {
+        title: "Nâng cao tối đa trải nghiệm của bạn",
+        description: "Các mẹo để lựa chọn kì nghỉ hợp lí.",
+        link: "/maximize-vacation",
+        imageUrl: "./assets/img/i5.jpg"
+      },
+      {
+        title: "Nâng cao tối đa trải nghiệm của bạn",
+        description: "Các mẹo để lựa chọn kì nghỉ hợp lí.",
+        link: "/maximize-vacation",
+        imageUrl: "./assets/img/i5.jpg"
+      },
+      
   ];
 
   return (

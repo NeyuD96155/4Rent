@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, createRoutesFromChildren } from "react-router-dom";
 import "../styles/SignUp.css"; // Make sure to create a SignUp.css file for styling
 import api from "../config/axios";
 
@@ -32,18 +32,20 @@ const SignUp = () => {
 
     return (
         <div className="signup-container">
-            <h1 className="signup-title">Sign up</h1>
+            <h1 className="signup-title">Đăng kí</h1>
             <form className="signup-form" noValidate onSubmit={handleSubmit}>
                 <div className="signup-grid">
-                    <input
-                        autoComplete="given-name"
-                        name="role"
-                        required
-                        id="role"
-                        placeholder="Role"
-                        onChange={handleInputChange}
-                        autoFocus
-                    />
+                    <select name='Role' >
+                        <option value='String'>
+                            Member
+                        </option>
+                        <option value='String'>
+                            Renter
+                        </option>
+                        
+
+                    </select>
+                
                     {/* <input
                         required
                         id="lastName"
@@ -57,38 +59,39 @@ const SignUp = () => {
                         id="email"
                         placeholder="Email "
                         onChange={handleInputChange}
+                        
                         name="email"
                         autoComplete="email"
                     />
                     <input
                         required
                         id="username"
-                        placeholder="Username "
+                        placeholder="Tên đăng nhập "
                         onChange={handleInputChange}
                         name="username"
+                        value={credentials.username}
                         autoComplete="username"
                     />
 
                     <input
                         required
                         name="password"
-                        placeholder="Password"
+                        placeholder="Mật khẩu"
                         onChange={handleInputChange}
                         type="password"
+                        value={credentials.password}
                         id="password"
                         autoComplete="new-password"
                     />
                     <label className="signup-checkbox-label">
-                        <input type="checkbox" value="allowExtraEmails" />I want
-                        to receive inspiration, marketing promotions and updates
-                        via email.
+                        <input type="checkbox" value="allowExtraEmails" />
                     </label>
                 </div>
                 <button type="submit" className="signup-submit">
                     Sign Up
                 </button>
                 <div className="signup-footer">
-                    Already have an account? <Link to="/signin">Sign in</Link>
+                    Đã có tài khoản? <Link to="/signin">Đăng nhập</Link>
                 </div>
             </form>
             <p className="signup-copy">
