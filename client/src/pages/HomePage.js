@@ -16,7 +16,7 @@ import Payment from "../components/Payment";
 import CancellationPolicy from "../components/policy/CancellationPolicy";
 import HomePageContent from "../components/HomePageContent";
 import DetailPage from "../components/DetailPage";
-import news from '../components/News';
+import News from '../components/News';
 function Homepage() {
     return (
         <Router>
