@@ -5,7 +5,7 @@ import Card from './Card';
 import '../styles/Landing.css'
 import SearchBar from './SearchBar';
 
-const HomePageContent = () => {
+const Landing = () => {
     const apartments = [
         {
             title: 'Luxury Apartment 1',
@@ -86,4 +86,4 @@ const HomePageContent = () => {
     );
 };
 
-export default HomePageContent;
+export default Landing;
