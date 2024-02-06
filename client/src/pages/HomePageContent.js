@@ -1,10 +1,16 @@
 // HomePageContent.js
 import React from 'react';
 import { Link } from 'react-router-dom';
+<<<<<<<< HEAD:client/src/components/Landing.js
+import Card from './Card';
+import '../styles/Landing.css'
+import SearchBar from './SearchBar';
+========
 import Card from '../components/Card';
 import '../styles/HomepageContent.css';
+>>>>>>>> 9eb05c0bc67d51e1d3b9a53dfec237e4fa4a0b1e:client/src/pages/HomePageContent.js
 
-const HomePageContent = () => {
+const Landing = () => {
     const apartments = [
         {
             title: 'Luxury Apartment 1',
@@ -72,11 +78,16 @@ const HomePageContent = () => {
 
     return (
         <div className="home-page-content">
+<<<<<<<< HEAD:client/src/components/Landing.js
+            <SearchBar/>
+            <h1>Các căn hộ nổi bật</h1>
+========
             <div class="background-section">
                 <h2>New Arrival</h2>
                 <p>Discover Our New Real Estates</p>
                 <a href="/news" class="buy-now-button">Find Out Now</a>
             </div>
+>>>>>>>> 9eb05c0bc67d51e1d3b9a53dfec237e4fa4a0b1e:client/src/pages/HomePageContent.js
             <div className="card-container">
                 {apartments.map((apartment, index) => (
                     <Link
@@ -100,4 +111,4 @@ const HomePageContent = () => {
     );
 };
 
-export default HomePageContent;
+export default Landing;

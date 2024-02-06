@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import Guides from "../components/Guides";
 import Contact from "../components/Contact";
 import AboutUs from "../components/AboutUs";
-import Search from "../components/Search";
+import Search from "../components/SearchBar";
 import SignUp from "../components/SignUp";
 import SignIn from "../components/SignIn";
 import {
@@ -14,9 +14,8 @@ import {
 } from "../components/GuidesCom/GettingStarted";
 import Payment from "../components/Payment";
 import CancellationPolicy from "../components/policy/CancellationPolicy";
-
-import HomePageContent from "../pages/HomePageContent";
-import PostDetail from "../components/PostDetail";
+import HomePageContent from "../components/HomePageContent";
+import DetailPage from "../components/DetailPage";
 import News from '../components/News';
 
 
@@ -38,12 +37,13 @@ function Homepage() {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/about" element={<AboutUs />} />
                 <Route path="/search" element={<Search />} />
+
                 <Route path="/getting-started" element={<GettingStarted />} />
                 <Route
                     path="/exchange-timeshares"
                     element={<ExchangeTimeshares />}
                 />
-                <Route path="/" element={<HomePageContent />} />
+                <Route path="/" element={<Landing />} />
                 <Route
                     path="/maximize-vacation"
                     element={<MaximizeVacation />}
