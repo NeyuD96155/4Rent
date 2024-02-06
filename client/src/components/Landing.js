@@ -2,7 +2,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Card from './Card';
-import '../styles/HomepageContent.css'
+import '../styles/Landing.css'
+import SearchBar from './SearchBar';
 
 const HomePageContent = () => {
     const apartments = [
@@ -60,6 +61,7 @@ const HomePageContent = () => {
 
     return (
         <div className="home-page-content">
+            <SearchBar/>
             <h1>Các căn hộ nổi bật</h1>
             <div className="card-container">
                 {apartments.map((apartment, index) => (

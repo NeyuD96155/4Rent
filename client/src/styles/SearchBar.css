@@ -1,0 +1,30 @@
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .search-bar input[type="text"],
+  .search-bar input[type="date"],
+  .search-bar input[type="number"],
+  .search-bar select {
+    margin-right: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    /* Adjust width as per your requirement */
+  }
+  
+  .search-bar button {
+    padding: 10px 20px;
+    background-color: #0066a2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Add more styles for hover effects, focus states, and responsiveness */
+  
