@@ -14,9 +14,11 @@ import {
 } from "../components/GuidesCom/GettingStarted";
 import Payment from "../components/Payment";
 import CancellationPolicy from "../components/policy/CancellationPolicy";
-import Landing from "../components/Landing";
-import PostDetail from "../components/PostDetail";
+import HomePageContent from "../components/HomePageContent";
+import DetailPage from "../components/DetailPage";
 import News from '../components/News';
+
+
 function Homepage() {
     return (
         <Router>

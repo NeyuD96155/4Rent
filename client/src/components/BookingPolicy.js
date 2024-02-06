@@ -1,13 +1,11 @@
 // BookingPolicy.js
-import React from "react";
+import React from 'react';
 
-const BookingPolicy = ({ bookingPolicy }) => {
-    return (
-        <div>
-            <h3>Booking Policy</h3>
-            <p>{bookingPolicy}</p>
-        </div>
-    );
-};
+const BookingPolicy = ({ bookingPolicy }) => (
+  <div>
+    <h3>Booking and Cancellation Policy</h3>
+    <p>{bookingPolicy}</p>
+  </div>
+);
 
 export default BookingPolicy;

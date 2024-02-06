@@ -1,14 +1,13 @@
 // Gallery.js
 import React from 'react';
 
-const Gallery = ({ images }) => {
-  return (
+const Gallery = ({ images }) => (
     <div>
-      {images.map((image, index) => (
-        <img key={index} src={image} alt={`Gallery ${index}`} style={{ width: '100%', padding: '10px' }} />
-      ))}
-    </div>
-  );
-};
+    {images.map((image, index) => (
+      <img key={index} src={image} alt={`Gallery item ${index + 1}`} style={{ maxWidth: '100%', height: 'auto' }} />
+    ))}
+</div>
+
+);
 
 export default Gallery;
