@@ -3,7 +3,7 @@
     margin: 2em auto;
     padding: 2em;
 
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     background: linear-gradient(135deg, #ff6e7f 0%, #bfe9ff 100%);
 }
@@ -20,11 +20,16 @@
     margin-bottom: 1em;
 }
 
-.detail-page-container p, .detail-page-container h3 {
+.detail-page-container p,
+.detail-page-container h3 {
     color: #495057;
 }
 
-.detail-page-price, .detail-page-rating, .detail-page-location, .detail-page-available-dates, .detail-page-max-guests {
+.detail-page-price,
+.detail-page-rating,
+.detail-page-location,
+.detail-page-available-dates,
+.detail-page-max-guests {
     font-weight: bold;
     margin-bottom: 0.5em;
 }

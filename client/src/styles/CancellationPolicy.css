@@ -1,13 +1,13 @@
 .cancellation-policy-container {
     max-width: 1170px;
-    margin:2em auto;
+    margin: 2em auto;
     padding: 2em;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    border-left: 5px solid #ff6e7f; /* Adding a colored border for style */
-    position: relative; /* For pseudo-element positioning */
-    overflow: hidden; /* To ensure the pseudo-element is contained within the border-radius */
+    border-left: 5px solid #ff6e7f;
+    position: relative;
+    overflow: hidden;
 }
 
 .cancellation-policy-container::before {
@@ -36,8 +36,10 @@
     font-weight: normal;
 }
 
-.cancellation-policy-container p, .cancellation-policy-container ul, .cancellation-policy-container li {
-    color: #495057; /* Adjusted for better readability */
+.cancellation-policy-container p,
+.cancellation-policy-container ul,
+.cancellation-policy-container li {
+    color: #495057;
     line-height: 1.6;
     font-size: 1em;
 }
@@ -54,12 +56,13 @@
 @media (max-width: 768px) {
     .cancellation-policy-container {
         padding: 1em;
-        margin:1em auto;
+        margin: 1em auto;
         box-shadow: none;
         border-radius: 0;
         border-left: none;
+
         .cancellation-policy-container::before {
-            height: 3px; /* Thinner top bar on smaller screens */
+            height: 3px;
         }
     }
 }

@@ -7,48 +7,48 @@
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: flex-start;
-  }
-  
-  .footer-section {
+}
+
+.footer-section {
     display: flex;
     flex-direction: column;
     margin: 0 15px;
     min-width: 150px;
-    max-width: 300px; /* Ensures content is not too stretched on larger screens */
-  }
-  
-  .footer-section h4 {
+    max-width: 300px;
+}
+
+.footer-section h4 {
     color: #111;
     font-size: 18px;
     margin-bottom: 15px;
-  }
-  
-  .footer-section ul {
+}
+
+.footer-section ul {
     list-style: none;
     margin: 0;
     padding: 0;
-  }
-  
-  .footer-section ul li {
+}
+
+.footer-section ul li {
     margin-bottom: 10px;
-  }
-  
-  .footer-section ul li a {
+}
+
+.footer-section ul li a {
     color: #666;
     text-decoration: none;
     transition: color 0.3s;
-  }
-  
-  .footer-section ul li a:hover {
+}
+
+.footer-section ul li a:hover {
     color: #0d6efd;
-  }
-  
-  .footer-social {
+}
+
+.footer-social {
     display: flex;
     align-items: center;
-  }
-  
-  .footer-social a {
+}
+
+.footer-social a {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -60,60 +60,60 @@
     color: #333;
     font-size: 16px;
     transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .footer-social a:hover {
+}
+
+.footer-social a:hover {
     background-color: #0d6efd;
     color: #fff;
-  }
-  
-  .footer-subscribe {
+}
+
+.footer-subscribe {
     display: flex;
     align-items: center;
     border-radius: 20px;
     margin-top: 20px;
-  }
-  
-  .footer-subscribe input[type=email] {
+}
+
+.footer-subscribe input[type=email] {
     flex-grow: 1;
     padding: 10px 15px;
-    border: 1px solid #ccc; /* Adds a subtle border for better definition */
-    background-color: #f9f9f9; /* Matches the footer background for integration */
-  }
-  
-  .footer-subscribe button {
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+.footer-subscribe button {
     padding: 10px 20px;
     border-radius: 4px;
     background-color: #28a745;
     color: #fff;
     border: none;
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease; /* Added transform transition */
-  }
-  
-  .footer-subscribe button:hover {
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-subscribe button:hover {
     background-color: #218838;
-    transform: translateY(-3px); /* Lift effect on hover */
-  }
-  
-  .footer-payment {
+    transform: translateY(-3px);
+}
+
+.footer-payment {
     display: flex;
     align-items: center;
     margin-top: 20px;
-  }
-  
-  .footer-payment img {
+}
+
+.footer-payment img {
     height: 24px;
     margin-right: 15px;
     opacity: 0.8;
     transition: opacity 0.3s;
-  }
-  
-  .footer-payment img:hover {
+}
+
+.footer-payment img:hover {
     opacity: 1;
-  }
-  
-  .footer-bottom {
+}
+
+.footer-bottom {
     border-top: 1px solid #ddd;
     padding-top: 20px;
     display: flex;
@@ -122,60 +122,59 @@
     align-items: center;
     margin-top: 40px;
     font-size: 14px;
-  }
-  
-  .footer-bottom p {
+}
+
+.footer-bottom p {
     color: #000000;
     margin: 15px 20px;
-  }
-  
-  .footer-bottom a {
+}
+
+.footer-bottom a {
     color: #0d6efd;
     text-decoration: none;
     transition: color 0.3s;
-  }
-  
-  .footer-bottom a:hover {
+}
+
+.footer-bottom a:hover {
     text-decoration: underline;
-  }
-  
-  @media (max-width: 992px) {
+}
+
+@media (max-width: 992px) {
     .footer {
-      padding: 20px 0; /* Reduces padding for smaller screens */
+        padding: 20px 0;
     }
-  
+
     .footer-section,
     .footer-social,
     .footer-subscribe,
     .footer-payment,
     .footer-bottom {
-      width: 100%; /* Ensures full width utilization on smaller screens */
-      text-align: center; /* Centers content for a cleaner look */
-      margin: 10px 0; /* Reduces margin for a tighter layout */
+        width: 100%;
+        text-align: center;
+        margin: 10px 0;
     }
-  
+
     .footer-section {
-      margin: 20px 0; /* Provides more space around sections */
+        margin: 20px 0;
     }
-  
+
     .footer-social a,
     .footer-payment img {
-      margin: 0 5px; /* Adjusts spacing for social icons and payment images */
+        margin: 0 5px;
     }
-  
+
     .footer-bottom {
-      flex-direction: column; /* Stacks elements vertically */
+        flex-direction: column;
     }
-  }
-  
-  @media (max-width: 768px) {
+}
+
+@media (max-width: 768px) {
     .footer {
-      flex-direction: column; /* Stacks footer sections vertically */
-      align-items: center; /* Centers items for a consistent look */
+        flex-direction: column;
+        align-items: center;
     }
-  
+
     .footer-section {
-      margin-bottom: 30px; /* Increases spacing for better readability */
+        margin-bottom: 30px;
     }
-  }
-  
+}

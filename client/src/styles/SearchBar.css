@@ -1,30 +1,70 @@
 .search-bar {
     display: flex;
     align-items: center;
-    background-color: #f0f0f0;
+    background-color: #232a34;
     padding: 10px;
-    border-radius: 5px;
-  }
-  
-  .search-bar input[type="text"],
-  .search-bar input[type="date"],
-  .search-bar input[type="number"],
-  .search-bar select {
+    width: 100%;
+    box-sizing: border-box;
+    /* Ensures padding does not affect the overall width */
+}
+
+.search-bar input[type="text"],
+.search-bar input[type="date"],
+.search-bar input[type="number"],
+.search-bar select {
     margin-right: 10px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    /* Adjust width as per your requirement */
-  }
-  
-  .search-bar button {
-    padding: 10px 20px;
-    background-color: #0066a2;
-    color: white;
+    flex-grow: 1;
+    background-color: #fff;
+    color: #333;
+}
+
+.search-bar button {
     border: none;
-    border-radius: 5px;
+    padding: 12px 24px;
+    margin: 5px;
+    border-radius: 4px;
     cursor: pointer;
-  }
-  
-  /* Add more styles for hover effects, focus states, and responsiveness */
-  
+    font-size: 16px;
+    font-weight: 600;
+    transition: transform 0.3s ease-out, background-color 0.3s ease;
+    background-color: #546de5;
+    color: #fff;
+}
+
+.search-bar button:hover {
+    background-color: #4c63b6;
+    transform: scale(1.05);
+}
+
+.search-bar button:active {
+    transform: translateY(1px);
+}
+
+.search-bar input:focus,
+.search-bar select:focus {
+    border-color: #0066a2;
+    outline: none;
+}
+
+@media (max-width: 768px) {
+    .search-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-bar input[type="text"],
+    .search-bar input[type="date"],
+    .search-bar input[type="number"],
+    .search-bar select,
+    .search-bar button {
+        margin: 5px 0;
+        width: auto;
+    }
+
+    .search-bar button {
+        align-self: center;
+    }
+}

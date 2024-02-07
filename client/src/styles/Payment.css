@@ -8,10 +8,17 @@
     max-width: 1170px;
 }
 
-.form-group, .start-date, .guests-number, .cancellation-policy-card, .guest-requirements-list, .booking-confirmation, .payment-method, .price-details-card {
+.form-group,
+.start-date,
+.guests-number,
+.cancellation-policy-card,
+.guest-requirements-list,
+.booking-confirmation,
+.payment-method,
+.price-details-card {
     background: #fff;
     padding: 10px;
-    width:50%;
+    width: 50%;
     margin-bottom: 10px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -20,7 +27,14 @@
     transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
-.form-group:hover, .start-date:hover, .guests-number:hover, .cancellation-policy-card:hover, .guest-requirements-list:hover, .booking-confirmation:hover, .payment-method:hover, .price-details-card:hover {
+.form-group:hover,
+.start-date:hover,
+.guests-number:hover,
+.cancellation-policy-card:hover,
+.guest-requirements-list:hover,
+.booking-confirmation:hover,
+.payment-method:hover,
+.price-details-card:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     transform: translateY(-5px);
     border-radius: 10px;
@@ -50,10 +64,13 @@
     font-weight: bold;
     color: #495057;
     margin-bottom: 0.5em;
-    
+
 }
 
-.date-input, .guests-input, .payment-method-select, .card-input {
+.date-input,
+.guests-input,
+.payment-method-select,
+.card-input {
     width: 100%;
     padding: 0.75em;
     border-radius: 5px;
@@ -62,7 +79,10 @@
     transition: border-color 0.2s ease-in-out;
 }
 
-.date-input:focus, .guests-input:focus, .payment-method-select:focus, .card-input:focus {
+.date-input:focus,
+.guests-input:focus,
+.payment-method-select:focus,
+.card-input:focus {
     border-color: #ff6e7f;
     outline: none;
     border-radius: 10px;
@@ -99,7 +119,17 @@
 }
 
 @media (max-width: 768px) {
-    .payment-container, .form-group, .start-date, .guests-number, .cancellation-policy-card, .guest-requirements-list, .booking-confirmation, .payment-method, .price-details-card, .booking-button {
+
+    .payment-container,
+    .form-group,
+    .start-date,
+    .guests-number,
+    .cancellation-policy-card,
+    .guest-requirements-list,
+    .booking-confirmation,
+    .payment-method,
+    .price-details-card,
+    .booking-button {
         margin: 10px;
         width: auto;
     }
