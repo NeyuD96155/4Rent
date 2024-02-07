@@ -6,7 +6,7 @@
     border-radius: 10px;
     padding: 1em;
     background: linear-gradient(135deg, #ff6e7f 0%, #bfe9ff 100%);
-    color: #fff; /* Adjusted for better readability on gradient */
+    color: #fff;
 }
 
 .row {
@@ -15,7 +15,6 @@
 
 .row .col {
     background-color: rgba(255, 255, 255, 0.9);
-    /* Slightly transparent background */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -31,18 +30,16 @@
 h1,
 h2 {
     color: #007bff;
-    /* Using the theme color for headers */
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 
 }
 .row{
     display: flex;
-    align-items: center; /* Aligns items vertically in the center */
+    align-items: center;
     justify-content: space-between;
 }
 .col-md-6 {
     background-color: rgba(255, 255, 255, 0.9);
-    /* Slightly transparent background */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -58,7 +55,6 @@ h2 {
 
 p {
     color: #495057;
-    /* Improved readability */
     line-height: 1.6;
 }
 

@@ -18,7 +18,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px; /* Spacing between cards */
+    gap: 20px;
+    /* Spacing between cards */
 }
 
 .guide-card {
@@ -27,7 +28,7 @@
     border-radius: 10px;
     overflow: hidden;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    width: 300px; /* Adjust based on your design preference */
+    width: 300px;
 }
 
 .guide-card:hover {
@@ -77,6 +78,6 @@
     }
 
     .guide-card {
-        width: 90%; /* Adjust for smaller screens */
+        width: 90%;
     }
 }

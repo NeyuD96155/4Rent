@@ -1,16 +1,15 @@
-/* Navbar.css */
+
 .navbar-container {
-    /* background: linear-gradient(135deg,#bfe9ff 0%, #ff6e7f 75%); */
     background: #fff1f1 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 16px;
+    padding: 5px 20px;
   }
   
   .navbar-logo a {
     text-decoration: none;
-    color: #333; /* Dark text for contrast */
+    color: #333;
     font-weight: bold;
     font-size: 1.5em;
   }
@@ -27,7 +26,7 @@
   }
   
   .navbar-link:hover {
-    background-color: #ddd; /* Light hover effect */
+    background-color: #ddd;
     transition: ease-in 0.3s, ease-out 0.3s;
   }
   
@@ -37,7 +36,7 @@
   }
   
   .user-icon::after {
-    content: "👤"; /* Simple user icon */
+    content: "👤"; 
     display: block;
   }
   

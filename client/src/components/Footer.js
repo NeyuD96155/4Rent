@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/Footer.css";
 import { Link } from "react-router-dom";
+
 const Footer = () => {
     return (
         <footer className="footer">
@@ -11,10 +12,10 @@ const Footer = () => {
                         <Link to="/our-story">Câu chuyện của 4Rent</Link>
                     </li>
                     <li>
-                        <Link to="/contact">Liên Hệ</Link>
+                        <Link to="/contact1">Liên Hệ</Link>
                     </li>
                     <li>
-                        <Link to="/privacy">Chính sách & bảo mật</Link>
+                        <Link to="/privacy-policy">Chính sách & Bảo mật</Link>
                     </li>
                 </ul>
             </div>
@@ -61,14 +62,9 @@ const Footer = () => {
                     </li>
                 </ul>
             </div>
-            {/* <div className="footer-section footer-social">
-          <a href="#linkedin"><i className="fab fa-linkedin-in"></i></a>
-          <a href="#twitter"><i className="fab fa-twitter"></i></a>
-          <a href="#facebook"><i className="fab fa-facebook-f"></i></a>
-        </div> */}
             <div className="footer-section footer-subscribe">
-                <input type="email" placeholder="Enter Your Email" />
-                <button>Subscribe</button>
+                <input type="email" placeholder="Nhập Email của Bạn" />
+                <button>Đăng Ký</button>
             </div>
             <div className="footer-payment">
                 <img
@@ -85,9 +81,9 @@ const Footer = () => {
                 />
             </div>
             <div className="footer-bottom">
-                <p>&copy; Copyright 4Rent</p>
+                <p>&copy; Bản quyền 4Rent</p>
                 <p>4Rent@gmail.com</p>
-                <p>4Rent: Bay thả ga, không lo giá !</p>
+                <p>4Rent: Bay thả ga, không lo giá!</p>
                 <p>S10.06, Thủ Đức, TP.HCM</p>
                 <p>+84 83 2345 780</p>
             </div>
