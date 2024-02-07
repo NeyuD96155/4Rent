@@ -62,10 +62,6 @@ const Footer = () => {
                     </li>
                 </ul>
             </div>
-            <div className="footer-section footer-subscribe">
-                <input type="email" placeholder="Nhập Email của Bạn" />
-                <button>Đăng Ký</button>
-            </div>
             <div className="footer-payment">
                 <img
                     src="https://th.bing.com/th/id/OIP.3oJG6k7jSxQHmkjN9aRvNQHaDA?w=310&h=142&c=7&r=0&o=5&dpr=1.3&pid=1.7"

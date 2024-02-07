@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Card from "./Card";
 import "../styles/Landing.css";
-import SearchBar from "./SearchBar";
+// import SearchBar from "./SearchBar";
 import HeroSection from "./HeroSection";
 const Landing = () => {
     const apartments = [
@@ -69,7 +69,7 @@ const Landing = () => {
 
     return (
         <div className="landing-page">
-            <SearchBar />
+            {/* <SearchBar /> */}
             <HeroSection />
             <div className="card-container">
                 {apartments.map((apartment, index) => (

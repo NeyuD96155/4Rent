@@ -46,7 +46,7 @@ const Guides = () => {
   return (
     <div className="guide-container">
       <div className="guide-header">
-        <h1>Guides</h1>
+        <h1>HƯỚNG DẪN</h1>
       </div>
       <div className="guide-grid">
         {guideList.map((guide, index) => (
