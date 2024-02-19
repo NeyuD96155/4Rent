@@ -1,61 +1,48 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/Guide.css';
+import '../styles/News.css'; 
 
 const News = () => {
-  const guideList = [
+  const newsList = [
     {
-      title: "Chuẩn bị cho 4Rent",
-      description: "Hướng dẫn sử dụng nền tảng 4Rent từng bước cho người mới bắt đầu",
-      link: "/getting-started",
-      imageUrl: "./assets/img/i2.jpg"
+      title: "4Rent Expands to New Locations",
+      description: "Discover new destinations where you can enjoy your timeshare vacations with 4Rent.",
+      link: "/new-locations",
+      imageUrl: "./assets/news/new-locations.jpg" // Make sure the path and image exist
     },
     {
-      title: "Làm sao để thuê kì nghỉ ?",
-      description: "Hướng dẫn cách thuê kì nghỉ một cách dễ dàng",
-      link: "/exchange-timeshares",
-      imageUrl: "./assets/img/i3.jpg"
+      title: "Tips for First-Time Timeshare Renters",
+      description: "Everything you need to know before renting a timeshare to ensure a smooth and enjoyable experience.",
+      link: "/timeshare-tips",
+      imageUrl: "./assets/news/timeshare-tips.jpg" // Make sure the path and image exist
     },
     {
-      title: "Nâng cao tối đa trải nghiệm của bạn",
-      description: "Các mẹo để lựa chọn kì nghỉ hợp lí.",
+      title: "The Future of Timeshare Vacations with 4Rent",
+      description: "How 4Rent is innovating the timeshare industry to offer more flexibility and options for travelers.",
+      link: "/future-of-timeshare",
+      imageUrl: "./assets/news/future-of-timeshare.jpg" // Make sure the path and image exist
+    },
+    {
+      title: "Maximizing Your Vacation Experience with 4Rent",
+      description: "Learn how to make the most out of your timeshare rentals for unforgettable vacations.",
       link: "/maximize-vacation",
-      imageUrl: "./assets/img/i5.jpg"
+      imageUrl: "./assets/news/maximize-vacation.jpg" // Make sure the path and image exist
     },
-    {
-        title: "Nâng cao tối đa trải nghiệm của bạn",
-        description: "Các mẹo để lựa chọn kì nghỉ hợp lí.",
-        link: "/maximize-vacation",
-        imageUrl: "./assets/img/i5.jpg"
-      },
-      {
-        title: "Nâng cao tối đa trải nghiệm của bạn",
-        description: "Các mẹo để lựa chọn kì nghỉ hợp lí.",
-        link: "/maximize-vacation",
-        imageUrl: "./assets/img/i5.jpg"
-      },
-      {
-        title: "Nâng cao tối đa trải nghiệm của bạn",
-        description: "Các mẹo để lựa chọn kì nghỉ hợp lí.",
-        link: "/maximize-vacation",
-        imageUrl: "./assets/img/i5.jpg"
-      },
-      
   ];
 
   return (
-    <div className="guide-container">
-      <div className="guide-header">
-        <h1>NEWS</h1>
+    <div className="news-container">
+      <div className="news-header">
+        <h1>Latest News</h1>
       </div>
-      <div className="guide-grid">
-        {guideList.map((guide, index) => (
-          <div key={index} className="guide-card">
-            <img className="guide-image" src={guide.imageUrl} alt={`${guide.title}`} />
-            <div className="guide-body">
-              <h2 className="guide-title">{guide.title}</h2>
-              <p className="guide-text">{guide.description}</p>
-              <Link to={guide.link} className="guide-read-more">Read More</Link>
+      <div className="news-grid">
+        {newsList.map((item, index) => (
+          <div key={index} className="news-card">
+            <img className="news-image" src={item.imageUrl} alt={item.title} />
+            <div className="news-body">
+              <h2 className="news-title">{item.title}</h2>
+              <p className="news-text">{item.description}</p>
+              <Link to={item.link} className="news-read-more">Read More</Link>
             </div>
           </div>
         ))}

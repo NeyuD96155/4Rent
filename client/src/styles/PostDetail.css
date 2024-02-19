@@ -1,0 +1,73 @@
+.detail-page-container {
+    max-width: 1170px;
+    margin: 2em auto;
+    padding: 2em;
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ff6e7f 0%, #bfe9ff 100%);
+}
+
+.detail-page-container h2 {
+    color: #007bff;
+    margin-bottom: 1em;
+}
+
+.detail-page-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 1em;
+}
+
+.detail-page-container p,
+.detail-page-container h3 {
+    color: #495057;
+}
+
+.detail-page-price,
+.detail-page-rating,
+.detail-page-location,
+.detail-page-available-dates,
+.detail-page-max-guests {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+
+.detail-page-amenities h3 {
+    margin-top: 1em;
+}
+
+.detail-page-amenities ul {
+    list-style-type: circle;
+    padding-left: 20px;
+}
+
+.detail-page-amenities li {
+    margin-bottom: 0.5em;
+}
+
+.detail-page-book-now-btn {
+    display: block;
+    width: 100%;
+    padding: 0.75em;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1em;
+    font-size: 1em;
+}
+
+.detail-page-book-now-btn:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .detail-page-container {
+        padding: 1em;
+        box-shadow: none;
+        border-radius: 0;
+    }
+}

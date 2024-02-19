@@ -71,7 +71,6 @@ const AboutUs = () => {
                         công nghệ và dịch vụ khách hàng, tất cả tận tâm để làm
                         cho kỳ nghỉ của bạn giấc mơ thành hiện thực.
                     </p>
-                    {/* Include team member profiles or photos here */}
                 </div>
             </div>
 
@@ -85,7 +84,6 @@ const AboutUs = () => {
                         trao đổi. Cuộc hành trình của chúng tôi là minh chứng
                         cho cam kết đổi mới và sự hài lòng của khách hàng.
                     </p>
-                    {/* Include a timeline or key historical events here */}
                 </div>
             </div>
 
@@ -99,7 +97,6 @@ const AboutUs = () => {
                         chúng tôi tiến hành kinh doanh đến cách chúng tôi tương
                         tác với cộng đồng của mình.
                     </p>
-                    {/* Expand on specific values and examples of how they are applied */}
                 </div>
             </div>
         </div>
