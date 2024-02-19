@@ -95,10 +95,35 @@
     margin-bottom: 10px;
   }
   /* Adjustments for mobile responsiveness */
-  @media (max-width: 768px) {
-    .card {
-        width: 100%;
-      width: 100%;
+/* Adjustments for mobile responsiveness */
+@media (max-width: 576px) {
+    .background-section {
+        padding: 50px 0; /* Decrease padding on smaller screens */
     }
-  }
+
+    .background-section h2 {
+        font-size: 1.2rem; /* Decrease font size for smaller screens */
+    }
+
+    .background-section p {
+        font-size: 1rem; /* Decrease font size for smaller screens */
+    }
+
+    .card {
+        width: calc(100% - 40px); /* Take full width with margin adjustment */
+        margin: 10px;
+    }
+}
+
+/* Adjustments for tablets */
+@media (min-width: 577px) and (max-width: 768px) {
+    .background-section {
+        padding: 80px 0; /* Adjust padding for tablets */
+    }
+
+    .card {
+        width: calc(50% - 40px); /* Take half width with margin adjustment */
+        margin: 10px;
+    }
+}
   

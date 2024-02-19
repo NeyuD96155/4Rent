@@ -1,71 +1,84 @@
+
 .hero-container {
-    position: relative;
-    width: 100%;
-    height: 500px;
-    background: linear-gradient(rgba(0, 0, 0, 0.401), rgba(0, 0, 0, 0.111)), url('https://images.alltrails.com/eyJidWNrZXQiOiJhc3NldHMuYWxsdHJhaWxzLmNvbSIsImtleSI6InVwbG9hZHMvcGhvdG8vaW1hZ2UvNTcxMDMwNTMvYmE0OTIwZTQ0YjY4NGYzZWU1YWM4YmU5M2MxMmU1MzUuanBnIiwiZWRpdHMiOnsidG9Gb3JtYXQiOiJqcGVnIiwicmVzaXplIjp7IndpZHRoIjoyMDQ0LCJoZWlnaHQiOjYyNCwiZml0IjoiY292ZXIifSwicm90YXRlIjpudWxsLCJqcGVnIjp7InRyZWxsaXNRdWFudGlzYXRpb24iOnRydWUsIm92ZXJzaG9vdERlcmluZ2luZyI6dHJ1ZSwib3B0aW1pc2VTY2FucyI6dHJ1ZSwicXVhbnRpc2F0aW9uVGFibGUiOjN9fX0=') no-repeat center center/cover;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    text-align: center;
-    color: #fff;
-    padding:5px 10px;
-}
-
-.hero-container p {
-    color: #fff;
-}
-
-.hero-btn {
-    margin-top: 32px;
-    display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-}
-
-.btn {
+    height: 500px; /* Full screen height */
+    padding: 0 20px;
+    background-image: url('https://images.alltrails.com/eyJidWNrZXQiOiJhc3NldHMuYWxsdHJhaWxzLmNvbSIsImtleSI6InVwbG9hZHMvcGhvdG8vaW1hZ2UvNTcxMDMwNTMvYmE0OTIwZTQ0YjY4NGYzZWU1YWM4YmU5M2MxMmU1MzUuanBnIiwiZWRpdHMiOnsidG9Gb3JtYXQiOiJqcGVnIiwicmVzaXplIjp7IndpZHRoIjoyMDQ0LCJoZWlnaHQiOjYyNCwiZml0IjoiY292ZXIifSwicm90YXRlIjpudWxsLCJqcGVnIjp7InRyZWxsaXNRdWFudGlzYXRpb24iOnRydWUsIm92ZXJzaG9vdERlcmluZ2luZyI6dHJ1ZSwib3B0aW1pc2VTY2FucyI6dHJ1ZSwicXVhbnRpc2F0aW9uVGFibGUiOjN9fX0='); /* Adjust based on your project */
+    background-size: cover;
+    background-position: center;
+    color: #fff; /* Adjust text color based on your design */
+    text-align: center;
+    position: relative;
+  }
+  
+  .hero-container p{
+    color:#fff;
+  }
+  h1 {
+    font-size: 2.5rem; /* Large text for the headline */
+    margin-bottom: 0.5rem;
+  }
+  
+  p {
+    font-size: 1.25rem; /* Adjust size for the subtext */
+    margin-bottom: 2rem;
+  }
+  
+  .hero-btn {
+    display: flex;
+    gap: 20px; /* Space between buttons */
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+  }
+  
+  .btn {
+    padding: 10px 20px;
     border: none;
-    padding: 12px 24px;
-    margin: 5px;
-    border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    transition: transform 0.3s ease-out, background-color 0.3s ease;
-}
-
-.btn-primary {
-    background-color: #546de5;
-    color: #fff;
-}
-
-.btn-primary:hover {
-    background-color: #4c63b6;
-    transform: scale(1.05);
-}
-
-.btn-outline {
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-primary {
+    background-color: #007bff; /* Example primary color */
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3; /* Darker shade for hover effect */
+  }
+  
+  .btn-outline {
     background-color: transparent;
-    border: 2px solid #fff;
-    color: #fff;
-}
-
-.btn-outline:hover:focus {
-    background-color: #fff;
-    color: #546de5;
-    transform: scale(1.05);
-}
-
-@media (max-width: 768px) {
-    .hero-container {
-        height: 400px;
+    color: white;
+    border: 1px solid white; /* Outline effect */
+  }
+  
+  .btn-outline:hover {
+    background-color: white; /* Fill color on hover */
+    color: #007bff; /* Text color change on hover */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem; /* Slightly smaller text on tablet */
     }
-
+  
+    p {
+      font-size: 1rem; /* Adjust subtext size */
+    }
+  }
+  
+  @media (max-width: 480px) {
     .hero-btn {
-        flex-direction: column;
+      flex-direction: column; /* Stack buttons vertically on small screens */
     }
-
+  
     .btn {
-        width: 80%;
-        margin: 10px 0;
+      width: 100%; /* Full width buttons for better touch targets */
+      margin-bottom: 10px; /* Space between stacked buttons */
     }
-}
+  }
+  
