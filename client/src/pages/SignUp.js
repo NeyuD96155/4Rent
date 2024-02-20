@@ -16,7 +16,7 @@ const SignUp = () => {
         const { name, value } = e.target;
         setCredentials({ ...credentials, [name]: value });
     };
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
