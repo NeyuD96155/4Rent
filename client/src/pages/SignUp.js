@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import "../styles/SignUp.css"; // Make sure to create a SignUp.css file for styling
+import { Link, useNavigate } from "react-router-dom";
+import "../styles/SignUp.css";
 import api from "../config/axios";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const SignUp = () => {
     const [credentials, setCredentials] = useState({
         role: "MEMBER",
@@ -10,24 +11,23 @@ const SignUp = () => {
         email: "",
         password: "",
     });
-
+    const navigate = useNavigate();
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setCredentials({ ...credentials, [name]: value });
     };
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await api.post("/register", credentials);
-        console.log(response.data);
-
-        // const data = new FormData(e.currentTarget);
-        // console.log({
-        //     firstName: data.get("firstName"),
-        //     lastName: data.get("lastName"),
-        //     email: data.get("email"),
-        //     password: data.get("password"),
-        // });
+        try {
+            const response = await api.post("/register", credentials);
+            console.log(response.data);
+            toast.success("Đăng kí thành công!");
+            navigate("/signin");
+        } catch (error) {
+            console.log(error);
+            toast.error("Đăng kí thất bại: " + error.response.data);
+        }
     };
 
     return (

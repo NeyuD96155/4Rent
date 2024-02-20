@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import "../styles/SignUp.css"; // Ensure this path is correct
+import { Link, useNavigate } from "react-router-dom";
+import "../styles/SignUp.css";
 import api from "../config/axios";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const SignIn = () => {
     const [credentials, setCredentials] = useState({
         username: "",
         password: "",
     });
+
+    const navigate = useNavigate();
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -16,19 +19,21 @@ const SignIn = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await api.post("/login", credentials);
-        console.log(response.data);
-        // Perform login logic here
+        try {
+            const response = await api.post("/login", credentials);
+            console.log(response.data);
+            toast.success("Đăng nhập thành công!");
+            navigate("/");
+        } catch (error) {
+            console.log(error);
+            toast.error("Đăng nhập thất bại: " + error.response.data);
+        }
     };
 
     return (
         <div className="signup-container">
-            {" "}
-            {/* Changed class to match signup */}
             <h1 className="signup-title">Đăng nhập</h1>
             <form className="signup-form" onSubmit={handleSubmit}>
-                {" "}
-                {/* Changed class */}
                 <div className="signup-grid">
                     <label htmlFor="username">Tên đăng nhập</label>
                     <input
@@ -55,11 +60,11 @@ const SignIn = () => {
                 <div className="form-actions">
                     <button type="submit" className="signup-submit">
                         Đăng nhập
-                    </button>{" "}
-                    {/* Changed class */}
+                    </button>
                 </div>
                 <div className="signup-footer">
-                    Chưa có tài khoản?! <Link to="/signup"><br></br>Đăng kí ngay bây giờ</Link>
+                    Chưa có tài khoản?!{" "}
+                    <Link to="/signup">Đăng kí ngay bây giờ</Link>
                 </div>
             </form>
             <p className="signup-copy">
