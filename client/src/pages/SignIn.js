@@ -4,23 +4,16 @@ import "../styles/SignUp.css";
 import api from "../config/axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {Button, Form, Input} from 'antd'
 const SignIn = () => {
-    const [credentials, setCredentials] = useState({
-        username: "",
-        password: "",
-    });
-
     const navigate = useNavigate();
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setCredentials({ ...credentials, [name]: value });
-    };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+
+    const handleSubmit = async (values) => {
+        console.log(values);
         try {
-            const response = await api.post("/login", credentials);
+            const response = await api.post("/login", values);
             console.log(response.data);
             toast.success("Đăng nhập thành công!");
             navigate("/");
@@ -33,7 +26,7 @@ const SignIn = () => {
     return (
         <div className="signup-container">
             <h1 className="signup-title">Đăng nhập</h1>
-            <form className="signup-form" onSubmit={handleSubmit}>
+            {/* <form className="signup-form" onSubmit={handleSubmit}>
                 <div className="signup-grid">
                     <label htmlFor="username">Tên đăng nhập</label>
                     <input
@@ -44,6 +37,12 @@ const SignIn = () => {
                         placeholder="Tên đăng nhập"
                         onChange={handleInputChange}
                         required
+                        rules={[
+                            {
+                              required: true,
+                              message: 'Please input your username!',
+                            },
+                          ]}
                     />
 
                     <label htmlFor="password">Mật khẩu</label>
@@ -66,7 +65,32 @@ const SignIn = () => {
                     Chưa có tài khoản?!{" "}
                     <Link to="/signup">Đăng kí ngay bây giờ</Link>
                 </div>
-            </form>
+            </form> */}
+
+            <Form className="signup-form" labelCol={{
+                span: 24
+            }} onFinish={handleSubmit}>
+                <Form.Item name="username" label="Username" rules={[{
+                    required: true,
+                    message: "Please input username!!!"
+                }]}>
+                    <Input/>
+                </Form.Item>
+
+                <Form.Item name="password" label="Password" rules={[{
+                    required: true,
+                    message: "Please input password!!!"
+                }]}>
+                    <Input.Password/>
+                </Form.Item>
+
+                <div className="form-actions" >
+                    <button type="submit" className="signup-submit">
+                        Đăng nhập
+                    </button>
+                </div>
+            </Form>
+
             <p className="signup-copy">
                 Copyright © 4Rent Website {new Date().getFullYear()}.
             </p>
