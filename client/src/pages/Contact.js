@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import '../styles/Contact.css';
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -22,6 +23,7 @@ const Contact = () => {
 
   return (
     <Container>
+
       <Row className="my-5">
         <Col>
           <h1>Liên hệ với chúng tôi</h1>

@@ -5,7 +5,7 @@ import api from "../config/axios";
 
 const SignUp = () => {
     const [credentials, setCredentials] = useState({
-        role: "",
+        role: "MEMBER",
         username: "",
         email: "",
         password: "",
@@ -38,8 +38,8 @@ const SignUp = () => {
                     <label>
                         Role
                         <select name="Role">
-                            <option value="String">Member</option>
-                            <option value="String">Renter</option>
+                            <option value="MEMBER">Member</option>
+                            <option value="RENTER">Renter</option>
                         </select>
                     </label>
                     {/* <input

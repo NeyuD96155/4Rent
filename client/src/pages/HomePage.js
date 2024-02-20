@@ -1,18 +1,18 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NavigationBar from "../components/Navbar";
 import Footer from "../components/Footer";
-import Guides from "../components/Guides";
-import Contact from "../components/Contact";
-import AboutUs from "../components/AboutUs";
+import Guides from "../pages/Guides";
+import Contact from "../pages/Contact";
+import AboutUs from "../pages/AboutUs";
 import Search from "../components/SearchBar";
-import SignUp from "../components/SignUp";
-import SignIn from "../components/SignIn";
+import SignUp from "../pages/SignUp";
+import SignIn from "../pages/SignIn";
 import {GettingStarted,ExchangeTimeshares,MaximizeVacation,} from "../components/guide/GettingStarted";
 import Payment from "../components/Payment";
 import CancellationPolicy from "../components/policy/CancellationPolicy";
 import PostDetail from "../components/PostDetail";
-import News from "../components/News";
-import Landing from "../components/Landing";
+import News from "../pages/News";
+import Landing from "../pages/Landing";
 import {Contact1,OurStory,PrivacyPolicy,} from "../components/Footer/Components";
 
 function Homepage() {

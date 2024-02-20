@@ -1,10 +1,10 @@
 // HomePageContent.js
 import React from "react";
 import { Link } from "react-router-dom";
-import Card from "./Card";
+import Card from "../components/Card";
 import "../styles/Landing.css";
 // import SearchBar from "./SearchBar";
-import HeroSection from "./HeroSection";
+import HeroSection from "../components/HeroSection";
 const Landing = () => {
     const apartments = [
         {
