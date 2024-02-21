@@ -3,32 +3,56 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: auto; /* Adjusted for better flexibility on different screens */
+    min-height: 100vh; /* Ensure it takes at least the full viewport height */
     background: linear-gradient(135deg, #ff6e7f 0%, #bfe9ff 100%);
-    padding: 10px;
+    padding: 20px;
     margin: 2em auto;
     border-radius: 10px;
     max-width: 1170px;
+    box-sizing: border-box; /* Ensure padding doesn't affect the overall width */
 }
 
+.signup-grid select {
+    width: 100%; /* Đảm bảo rằng thẻ select chiếm đủ không gian */
+    padding: 8px 12px; /* Thêm padding để tăng kích thước clickable và cải thiện vẻ ngoài */
+    border: 1px solid #ccc; /* Đường viền màu xám nhạt */
+    border-radius: 4px; /* Bo góc để thẻ select mềm mại và hiện đại hơn */
+    background-color: white; /* Màu nền cho thẻ select */
+    font-size: 16px; /* Kích thước chữ phù hợp để dễ đọc */
+    color: #495057; /* Màu chữ tối để tăng độ tương phản */
+    margin-bottom: 10px; /* Khoảng cách với các phần tử xung quanh */
+    appearance: none; /* Loại bỏ style mặc định của trình duyệt */
+    -webkit-appearance: none; /* Loại bỏ style mặc định của trình duyệt cho Chrome và Safari */
+    -moz-appearance: none; /* Loại bỏ style mặc định của trình duyệt cho Firefox */
+    background-image: url('https://th.bing.com/th/id/OIP.oO5xqBC2Q69_HMxV84AW4AAAAA?rs=1&pid=ImgDetMain'); /* Thêm một biểu tượng mũi tên để chỉ ra đây là một dropdown */
+    background-repeat: no-repeat;
+    background-position: right 10px center; /* Đặt biểu tượng mũi tên ở bên phải, giữa thẻ select */
+    background-size: 12px; /* Kích thước của biểu tượng mũi tên */
+  }
+  
+  select:focus {
+    border-color: #80bdff; /* Màu viền khi thẻ select được focus */
+    outline: none; /* Loại bỏ đường viền mặc định khi focus */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Thêm bóng để nhấn mạnh thẻ select khi được chọn */
+  }
+  
 .signup-title {
     margin-bottom: 1em;
-    font-size: 2em;
+    font-size: 2em; /* Consider scaling down on smaller screens */
     color: #495057;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .signup-form {
-    width: 320px;
+    width: 100%; /* Flexibility for smaller screens */
+    max-width: 320px; /* Max width to maintain form size */
     padding: 2em;
     background: rgba(255, 255, 255, 0.95);
-    /* Increased opacity for readability */
     box-shadow: 0 12px 20px 0 rgba(0, 0, 0, 0.25);
     border-radius: 10px;
-
+    box-sizing: border-box;
 }
-
-
 
 .signup-grid input {
     width: 100%;
@@ -72,7 +96,6 @@
 .signup-submit:hover {
     background-color: #218838;
     transform: translateY(-3px);
-    outline: none;
 }
 
 .signup-footer {
@@ -83,12 +106,12 @@
 .signup-footer a {
     color: #007bff;
     text-decoration: none;
-    transition: color 0.2s ease, transform 0.2s ease;
+    transition: color 0.2s ease;
 }
 
 .signup-footer a:hover {
-    text-decoration: none;
     color: #0056b3;
+    text-decoration: underline; /* Added for better visual feedback */
 }
 
 .signup-copy {
@@ -99,8 +122,23 @@
 }
 
 @media (max-width: 768px) {
+    .signup-container {
+        margin: 1em; /* Reduced margin for smaller screens */
+    }
     .signup-form {
-        width: calc(100% - 40px);
-        margin: 20px;
+        padding: 1em; /* Reduced padding for a more compact layout */
+        margin: 0 20px; /* Ensure some spacing on very small screens */
+    }
+    .signup-title {
+        font-size: 1.5em; /* Scaled down title for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .signup-form {
+        margin: 0 10px; /* Further reduce margin for very small screens */
+    }
+    .signup-title, .signup-footer, .signup-copy {
+        text-align: center; /* Center align text for a cohesive look on small screens */
     }
 }

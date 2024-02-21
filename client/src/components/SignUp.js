@@ -35,17 +35,13 @@ const SignUp = () => {
             <h1 className="signup-title">Đăng kí</h1>
             <form className="signup-form" noValidate onSubmit={handleSubmit}>
                 <div className="signup-grid">
-                    <select name='Role' >
-                        <option value='String'>
-                            Member
-                        </option>
-                        <option value='String'>
-                            Renter
-                        </option>
-                        
-
-                    </select>
-                
+                    <label>
+                        Role
+                        <select name="Role">
+                            <option value="String">Member</option>
+                            <option value="String">Renter</option>
+                        </select>
+                    </label>
                     {/* <input
                         required
                         id="lastName"
@@ -54,38 +50,45 @@ const SignUp = () => {
                         name="lastName"
                         autoComplete="family-name"
                     /> */}
-                    <input
-                        required
-                        id="email"
-                        placeholder="Email "
-                        onChange={handleInputChange}
-                        
-                        name="email"
-                        autoComplete="email"
-                    />
-                    <input
-                        required
-                        id="username"
-                        placeholder="Tên đăng nhập "
-                        onChange={handleInputChange}
-                        name="username"
-                        value={credentials.username}
-                        autoComplete="username"
-                    />
-
-                    <input
-                        required
-                        name="password"
-                        placeholder="Mật khẩu"
-                        onChange={handleInputChange}
-                        type="password"
-                        value={credentials.password}
-                        id="password"
-                        autoComplete="new-password"
-                    />
-                    <label className="signup-checkbox-label">
-                        <input type="checkbox" value="allowExtraEmails" />
+                    <label>
+                        Email
+                        <input
+                            required
+                            id="email"
+                            placeholder="Email "
+                            onChange={handleInputChange}
+                            name="email"
+                            autoComplete="email"
+                        />
                     </label>
+                    <label>
+                        Tên đăng nhập
+                        <input
+                            required
+                            id="username"
+                            placeholder="Tên đăng nhập "
+                            onChange={handleInputChange}
+                            name="username"
+                            value={credentials.username}
+                            autoComplete="username"
+                        />
+                    </label>
+                    <label>
+                        Mật khẩu
+                        <input
+                            required
+                            name="password"
+                            placeholder="Mật khẩu"
+                            onChange={handleInputChange}
+                            type="password"
+                            value={credentials.password}
+                            id="password"
+                            autoComplete="new-password"
+                        />
+                    </label>
+                    {/* <label className="signup-checkbox-label">
+                        <input type="checkbox" value="allowExtraEmails" />
+                    </label>     */}
                 </div>
                 <button type="submit" className="signup-submit">
                     Sign Up

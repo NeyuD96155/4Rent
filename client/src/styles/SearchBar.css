@@ -1,70 +1,61 @@
 .search-bar {
     display: flex;
-    align-items: center;
-    background-color: #232a34;
-    padding: 10px;
-    width: 100%;
-    box-sizing: border-box;
-    /* Ensures padding does not affect the overall width */
+    flex-wrap: wrap;
+    gap: 10px; /* Adjust the gap between elements as needed */
+    justify-content: center;
+    padding: 1%; /* Use percentage padding for responsiveness */
+    box-sizing: border-box; /* Include padding in element's total width and height */
 }
 
 .search-bar input[type="text"],
 .search-bar input[type="date"],
 .search-bar input[type="number"],
-.search-bar select {
-    margin-right: 10px;
-    padding: 10px;
+.search-bar select,
+.search-bar button {
+    flex: 1 1 auto; /* Allow elements to grow and shrink based on content */
+    padding: 1%; /* Use percentage padding for responsiveness */
     border: 1px solid #ccc;
     border-radius: 5px;
-    flex-grow: 1;
-    background-color: #fff;
-    color: #333;
 }
 
 .search-bar button {
+    background-color: #007bff;
+    color: white;
     border: none;
-    padding: 12px 24px;
-    margin: 5px;
-    border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    transition: transform 0.3s ease-out, background-color 0.3s ease;
-    background-color: #546de5;
-    color: #fff;
 }
 
 .search-bar button:hover {
-    background-color: #4c63b6;
-    transform: scale(1.05);
+    background-color: #0056b3;
 }
 
-.search-bar button:active {
-    transform: translateY(1px);
-}
-
-.search-bar input:focus,
-.search-bar select:focus {
-    border-color: #0066a2;
-    outline: none;
-}
-
+/* Responsive adjustments */
 @media (max-width: 768px) {
     .search-bar {
-        flex-direction: column;
-        align-items: stretch;
+        flex-wrap: nowrap; /* Prevent elements from wrapping */
+        justify-content: space-between;
+        padding: 2%; /* Increase padding for smaller screens */
     }
 
-    .search-bar input[type="text"],
-    .search-bar input[type="date"],
-    .search-bar input[type="number"],
+    .search-bar input,
     .search-bar select,
     .search-bar button {
-        margin: 5px 0;
-        width: auto;
+        flex: 1 1 30%; /* Adjust width to take 30% of the container */
+        min-width: auto; /* Allow elements to shrink to content width */
+    }
+}
+
+@media (max-width: 480px) {
+    .search-bar {
+        flex-direction: column;
+        align-items: stretch; /* Stretch elements to full width */
+        padding: 3%; /* Increase padding for smaller screens */
     }
 
+    .search-bar input,
+    .search-bar select,
     .search-bar button {
-        align-self: center;
+        flex: 1 1 auto; /* Allow elements to grow and shrink */
+        min-width: auto;
     }
 }

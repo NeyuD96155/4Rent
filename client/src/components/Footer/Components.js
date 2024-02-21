@@ -2,84 +2,92 @@ import React, { useState } from "react";
 export const OurStory = () => {
     return (
         <div style={{ padding: "20px" }}>
-            <h1>About 4Rent</h1>
+            <h1>Về 4Rent</h1>
             <p>
-                Founded in the vibrant heart of tech innovation, 4Rent emerged
-                as a pioneering platform dedicated to revolutionizing the
-                timeshare industry. Our journey began with a simple yet powerful
-                idea: to create a seamless, user-friendly space where
-                individuals could rent out their timeshare properties with ease
-                and transparency.
+                Được thành lập ở trung tâm sôi động của đổi mới công nghệ, 4Rent
+                nổi lên như một nền tảng tiên phong dành riêng cho việc cách
+                mạng hóa ngành công nghiệp chia sẻ thời gian. Cuộc hành trình
+                của chúng tôi bắt đầu bằng một hành động đơn giản nhưng mạnh mẽ
+                ý tưởng: tạo ra một không gian liền mạch, thân thiện với người
+                dùng, nơi các cá nhân có thể thuê tài sản chia sẻ thời gian của
+                họ một cách dễ dàng và sự minh bạch.
             </p>
             <p>
-                The concept of 4Rent was born out of personal frustration with
-                the complexities and rigidities of traditional timeshare
-                exchanges. Our founders, avid travelers themselves, encountered
-                numerous obstacles when trying to make the most of their
-                timeshare investments. Faced with these challenges, they saw an
-                opportunity to simplify the process, making vacation rentals
-                more accessible and enjoyable for everyone involved.
+                Khái niệm 4Rent ra đời từ sự thất vọng của cá nhân trước sự phức
+                tạp và cứng nhắc của các sàn giao dịch chia sẻ thời gian truyền
+                thống. Những người sáng lập của chúng tôi, những người đam mê du
+                lịch, đã gặp phải vô số trở ngại khi cố gắng tận dụng tối đa
+                khoản đầu tư chia sẻ thời gian của mình. Đối mặt với những thách
+                thức này, họ nhận thấy cơ hội để đơn giản hóa quy trình, giúp
+                việc cho thuê nhà nghỉ dưỡng trở nên dễ tiếp cận và thú vị hơn
+                đối với tất cả những người tham gia.
             </p>
             <p>
-                Our platform connects timeshare owners with travelers seeking
-                unique accommodation experiences around the globe. By harnessing
-                the power of technology, we've streamlined the rental process,
-                offering a wide range of properties at the click of a button.
-                From the sandy beaches of Nha Trang to the historic streets of
-                Đà Nẵng and the breathtaking landscapes of Hạ Long, 4Rent offers
-                unparalleled access to some of the world's most sought-after
-                destinations.
+                Nền tảng của chúng tôi kết nối chủ sở hữu timeshare với khách du
+                lịch đang tìm kiếm trải nghiệm lưu trú độc đáo trên toàn cầu.
+                Bằng cách khai thác sức mạnh của công nghệ, chúng tôi đã hợp lý
+                hóa quy trình cho thuê, cung cấp nhiều loại tài sản chỉ bằng một
+                nút bấm. Từ những bãi biển đầy cát của Nha Trang đến những con
+                phố lịch sử của Đà Nẵng và những cảnh quan ngoạn mục của Hạ
+                Long, 4Rent mang đến khả năng tiếp cận tuyệt vời đến một số điểm
+                đến được săn đón nhiều nhất trên thế giới.
             </p>
             <p>
-                At 4Rent, we believe in creating lasting memories without the
-                hassle. Our mission is to empower timeshare owners to unlock the
-                full potential of their properties, while providing travelers
-                with affordable, flexible, and unique vacation options. We're
-                committed to building a community based on trust, transparency,
-                and mutual respect, where every vacation rental is an
-                opportunity for adventure and connection.
+                Tại 4Rent, chúng tôi tin vào việc tạo ra những kỷ niệm lâu dài
+                mà không gặp rắc rối. Sứ mệnh của chúng tôi là trao quyền cho
+                chủ sở hữu chia sẻ thời gian để khai thác toàn bộ tiềm năng tài
+                sản của họ, đồng thời cung cấp cho khách du lịch các lựa chọn kỳ
+                nghỉ độc đáo, linh hoạt và giá cả phải chăng. Chúng tôi cam kết
+                xây dựng một cộng đồng dựa trên sự tin cậy, minh bạch và tôn
+                trọng lẫn nhau, trong đó mỗi kỳ nghỉ cho thuê là cơ hội để phiêu
+                lưu và kết nối.
             </p>
             <p>
-                As we continue to grow and evolve, our dedication to innovation,
-                customer satisfaction, and sustainable tourism remains at the
-                core of everything we do. We're excited about the future of
-                travel and timeshare rentals, and we invite you to join us on
-                this journey. Whether you're looking to rent out your timeshare
-                or plan your next vacation, 4Rent is your gateway to a world of
-                possibilities.
+                Khi chúng tôi tiếp tục tăng trưởng và phát triển, sự cống hiến
+                của chúng tôi cho sự đổi mới, sự hài lòng của khách hàng và du
+                lịch bền vững vẫn là cốt lõi trong mọi việc chúng tôi làm. Chúng
+                tôi rất vui mừng về tương lai của du lịch và cho thuê chia sẻ
+                thời gian và chúng tôi mời bạn tham gia cùng chúng tôi trong
+                hành trình này. Cho dù bạn đang muốn cho thuê timeshare của mình
+                hay lên kế hoạch cho kỳ nghỉ tiếp theo, 4Rent là cửa ngõ dẫn bạn
+                đến một thế giới tiện nghi.
             </p>
-            <h2>Our Vision</h2>
+            <h2>Tầm nhìn của chúng tôi</h2>
             <p>
-                To be the leading online platform for timeshare rentals, where
-                anyone can easily access affordable, high-quality vacation
-                experiences worldwide.
+                Trở thành nền tảng trực tuyến hàng đầu về dịch vụ cho thuê chia
+                sẻ thời gian, nơi mọi người có thể dễ dàng tiếp cận những trải
+                nghiệm kỳ nghỉ chất lượng cao, giá cả phải chăng trên toàn thế
+                giới.
             </p>
-            <h2>Our Values</h2>
+            <h2>Giá trị mà 4Rent mang lại</h2>
             <ul>
                 <li>
-                    <strong>Transparency:</strong> We believe in clear, honest
-                    communication and fair dealings in all our transactions.
+                    <strong>Minh bạch:</strong> Chúng tôi tin vào sự giao
+                    tiếp rõ ràng, trung thực và giao dịch công bằng trong tất cả
+                    các giao dịch của mình.
                 </li>
                 <li>
-                    <strong>Innovation:</strong> We're constantly seeking new
-                    ways to improve our platform and services, embracing
-                    technology to meet the changing needs of our users.
+                    <strong>Sự đổi mới:</strong> Chúng tôi không ngừng tìm kiếm
+                    những cách thức mới để cải thiện nền tảng và dịch vụ của
+                    mình, áp dụng công nghệ để đáp ứng nhu cầu không ngừng thay
+                    đổi của người dùng.
                 </li>
                 <li>
-                    <strong>Community:</strong> We're building a global network
-                    of timeshare owners and travelers based on mutual respect
-                    and shared love for travel.
+                    <strong>Cộng đồng:</strong> Chúng tôi đang xây dựng một mạng
+                    lưới toàn cầu gồm các chủ sở hữu timeshare và khách du lịch
+                    dựa trên sự tôn trọng lẫn nhau và tình yêu chung dành cho du
+                    lịch.
                 </li>
                 <li>
-                    <strong>Sustainability:</strong> We advocate for responsible
-                    tourism, encouraging practices that benefit local
-                    communities and preserve natural environments.
+                    <strong>Sự bền vững:</strong> Chúng tôi ủng hộ du lịch có
+                    trách nhiệm, khuyến khích các hoạt động mang lại lợi ích cho
+                    cộng đồng địa phương và bảo tồn môi trường tự nhiên.
                 </li>
             </ul>
             <p>
-                Thank you for considering 4Rent for your timeshare rental needs.
-                We're here to help you discover the joy of travel, one rental at
-                a time.
+                Cảm ơn bạn đã quan tâm đến 4Rent cho nhu cầu thuê timeshare của
+                mình. Chúng tôi ở đây để giúp bạn khám phá niềm vui du lịch, mỗi
+                lần thuê một chiếc.
             </p>
         </div>
     );
@@ -157,7 +165,6 @@ export const Contact1 = () => {
         </div>
     );
 };
-
 
 export const PrivacyPolicy = () => {
     return (

@@ -6,11 +6,11 @@ const HeroSection = () => {
   return (
     <div className="hero-container">
       
-      <h1>ADVENTURE AWAITS</h1>
-      <p>What are you waiting for?</p>
+      <h1>CUỘC PHIÊU LƯU ĐANG CHỜ ĐỢI</h1>
+      <p> Bạn còn chờ gì nữa ? </p>
       <div className="hero-btn">
-        <button className="btn btn-primary">GET STARTED</button>
-        <button className="btn btn-outline">START TO RENT</button>
+        <button className="btn btn-primary">HƯỚNG DẪN</button>
+        <button className="btn btn-outline">THUÊ NGAY</button>
       </div>
     </div>
   );
