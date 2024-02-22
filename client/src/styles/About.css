@@ -1,56 +1,39 @@
+/* Base styles */
 .container {
     max-width: 1170px;
     margin: 2em auto;
     padding: 1em;
-    max-width: 1170px;
     border-radius: 10px;
-    padding: 1em;
     background: linear-gradient(135deg, #ff6e7f 0%, #bfe9ff 100%);
     color: #fff;
+    box-sizing: border-box; /* Ensure padding does not affect the container's width */
 }
 
 .row {
-    margin: 2em;
-}
-
-.row .col {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.row .col:hover {
-    transform: translateY(-5px);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-h1,
-h2 {
-    color: #007bff;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-
-}
-.row{
     display: flex;
+    flex-wrap: wrap; /* Allow rows to wrap in smaller screens */
     align-items: center;
     justify-content: space-between;
+    margin: 2em 0;
 }
-.col-md-6 {
+
+.col, .col-md-6 {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 1em; /* Add space between columns when wrapped */
 }
 
-.col-md-6:hover {
+.col:hover, .col-md-6:hover {
     transform: translateY(-5px);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
 
+h1, h2 {
+    color: #007bff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 p {
@@ -65,8 +48,40 @@ p {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .container {
+        padding: 0.5em;
+    }
+
+    .row {
+        margin: 1em 0;
+    }
+
+    .col, .col-md-6 {
+        /* Adjust column padding for medium devices */
+        padding: 15px;
+    }
+}
+
 @media (max-width: 768px) {
     .row {
-        margin-bottom: 1em;
+        flex-direction: column; /* Stack columns vertically in smaller devices */
+    }
+
+    .col, .col-md-6 {
+        /* Ensure full width on small devices */
+        width: 100%;
+        max-width: 100%; /* Prevents exceeding the parent's width */
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        margin: 1em auto;
+    }
+
+    .row .col, .row .col-md-6 {
+        padding: 10px;
     }
 }

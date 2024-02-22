@@ -21,7 +21,11 @@ const SearchBar = () => {
 
             <label>
                 {/* Adults */}
-                <input type="number" min="1" placeholder="Số lượng người tham gia" />
+                <input
+                    type="number"
+                    min="1"
+                    placeholder="Số lượng người tham gia"
+                />
             </label>
 
             <label>

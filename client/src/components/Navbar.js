@@ -13,7 +13,10 @@ const NavigationBar = () => {
         <Link to="/guides" className="navbar-link">Hướng Dẫn</Link>
         <Link to="/contact" className="navbar-link">Liên Hệ</Link>
         <Link to="/about" className="navbar-link">Về Chúng Tôi</Link>
-        <Link to="/post" className="navbar-link">Đăng Bài</Link>
+        <Link to="/post" className="navbar-link">Đăng Căn Hộ</Link>
+        <Link to="/estate" className="navbar-link">Căn hộ</Link>
+        <Link to="/payment" className="navbar-link">Thanh Toán</Link>
+        {/* User Icon with Dropdown Menu */}
         <div className="navbar-user-dropdown">
           <div className="user-icon navbar-user-icon"></div>
           <div className="dropdown-content">

@@ -91,6 +91,7 @@
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.2s ease;
     font-weight: bold;
+    margin-top: 20px;
 }
 
 .signup-submit:hover {
