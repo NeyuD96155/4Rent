@@ -12,10 +12,10 @@ const handleBefore = config => {
   config.headers['Authorization'] = `Bearer ${token}`;
   return config;
 };
-const handleError = error => {
-  console.log(error);
-  return;
-};
+// const handleError = error => {
+//   console.log(error);
+//   return;
+// };
 api.interceptors.request.use(handleBefore, null);
 // api.interceptors.response.use(null, handleError);
 

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/SignUp.css";
 import api from "../config/axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Button, Form, Input } from "antd";
+import { Form, Input } from "antd";
 const SignIn = () => {
     const navigate = useNavigate();
 
