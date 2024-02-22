@@ -1,8 +1,8 @@
 import React from 'react';
 import { Form, Button, DatePicker, Switch } from 'antd';
-import api from '../config/axios'; // Ensure axios is correctly configured
+import api from '../config/axios'; 
 import { toast } from "react-toastify";
-import moment from 'moment'; // Used for bookingDate
+import moment from 'moment'; 
 
 const Booking = ({ userId, estateId }) => {
   const [form] = Form.useForm();
@@ -14,12 +14,12 @@ const Booking = ({ userId, estateId }) => {
       estateId,
       checkIn: values.checkIn.format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
       checkOut: values.checkOut.format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
-      bookingDate: moment().format('YYYY-MM-DDTHH:mm:ss.SSSZ'), // Booking date set to current date
-      status: values.status || false, // Default to false if not selected
+      bookingDate: moment().format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
+      status: values.status || false,
     };
 
     try {
-      await api.post('/Booking', formattedValues); // Directly await the API call without assigning its result to a variable
+      await api.post('/Booking', formattedValues); 
       toast.success("Đặt phòng thành công!");
       form.resetFields();
     } catch (error) {

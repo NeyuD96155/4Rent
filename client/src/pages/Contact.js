@@ -1,77 +1,54 @@
-import React, { useState } from 'react';
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-import '../styles/Contact.css';
+// ContactUs.js
+import React from 'react';
+import { Form, Input, Button } from 'antd';
 
-const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
+const { TextArea } = Input;
 
-  const handleChange = (event) => {
-    setFormData({ ...formData, [event.target.name]: event.target.value });
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Handle form submission logic, e.g., sending data to a backend server
-    console.log('Form Data:', formData);
-    // Clear form after submission
-    setFormData({ name: '', email: '', message: '' });
+const ContactUs = () => {
+  const onFinish = (values) => {
+    console.log('Submitted values:', values);
   };
 
   return (
-    <Container>
+    <div style={{ padding: '20px' }}>
+      <h1>Liên hệ chúng tôi</h1>
+      <Form
+        name="contact_form"
+        onFinish={onFinish}
+        layout="vertical"
+      >
+        <Form.Item
+          label="Tên của bạn"
+          name="name"
+          rules={[{ required: true, message: 'Vui lòng nhập tên của bạn!' }]}
+        >
+          <Input />
+        </Form.Item>
 
-      <Row className="my-5">
-        <Col>
-          <h1>Liên hệ với chúng tôi</h1>
-          <p>Bạn có thể liên hệ với 4Rent tại đây</p>
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[{ required: true, message: 'Vui lòng nhập email của bạn!', type: 'email' }]}
+        >
+          <Input />
+        </Form.Item>
 
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formName">
-              <Form.Label>Tên</Form.Label>
-              <Form.Control 
-                type="text" 
-                placeholder="Nhập tên của bạn" 
-                name="name" 
-                value={formData.name} 
-                onChange={handleChange} 
-              />
-            </Form.Group>
+        <Form.Item
+          label="Nội dung tin nhắn"
+          name="message"
+          rules={[{ required: true, message: 'Vui lòng nhập nội dung tin nhắn!' }]}
+        >
+          <TextArea rows={4} />
+        </Form.Item>
 
-            <Form.Group controlId="formEmail">
-              <Form.Label>Địa chỉ email</Form.Label>
-              <Form.Control 
-                type="email" 
-                placeholder="Nhập email của bạn" 
-                name="email" 
-                value={formData.email} 
-                onChange={handleChange} 
-              />
-            </Form.Group>
-
-            <Form.Group controlId="formMessage">
-              <Form.Label>Tin nhắn</Form.Label>
-              <Form.Control 
-                as="textarea" 
-                rows={3} 
-                placeholder="Tin nhắn" 
-                name="message" 
-                value={formData.message} 
-                onChange={handleChange} 
-              />
-            </Form.Group>
-
-            <Button variant="primary" type="submit">
-              Gửi
-            </Button>
-          </Form>
-        </Col>
-      </Row>
-    </Container>
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Gửi tin nhắn
+          </Button>
+        </Form.Item>
+      </Form>
+    </div>
   );
 };
 
-export default Contact;
+export default ContactUs;
