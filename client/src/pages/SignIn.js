@@ -4,11 +4,9 @@ import "../styles/SignUp.css";
 import api from "../config/axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {Button, Form, Input} from 'antd'
+import { Button, Form, Input } from "antd";
 const SignIn = () => {
     const navigate = useNavigate();
-
-
 
     const handleSubmit = async (values) => {
         console.log(values);
@@ -67,27 +65,46 @@ const SignIn = () => {
                 </div>
             </form> */}
 
-            <Form className="signup-form" labelCol={{
-                span: 24
-            }} onFinish={handleSubmit}>
-                <Form.Item name="username" label="Username" rules={[{
-                    required: true,
-                    message: "Please input username!!!"
-                }]}>
-                    <Input/>
+            <Form
+                className="signup-form"
+                labelCol={{
+                    span: 24,
+                }}
+                onFinish={handleSubmit}
+            >
+                <Form.Item
+                    name="username"
+                    label="Username"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Please input username!!!",
+                        },
+                    ]}
+                >
+                    <Input />
                 </Form.Item>
 
-                <Form.Item name="password" label="Password" rules={[{
-                    required: true,
-                    message: "Please input password!!!"
-                }]}>
-                    <Input.Password/>
+                <Form.Item
+                    name="password"
+                    label="Password"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Please input password!!!",
+                        },
+                    ]}
+                >
+                    <Input.Password />
                 </Form.Item>
 
-                <div className="form-actions" >
+                <div className="form-actions">
                     <button type="submit" className="signup-submit">
                         Đăng nhập
                     </button>
+                </div>
+                <div className="signup-footer">
+                    Chưa có tài khoản? <Link to="/signup">Đăng kí</Link>
                 </div>
             </Form>
 

@@ -14,7 +14,9 @@ import PostDetail from "../components/PostDetail";
 import News from "../pages/News";
 import Landing from "../pages/Landing";
 import {Contact1,OurStory,PrivacyPolicy,} from "../components/Footer/Components";
-
+import Post from "../pages/Post"
+import Estate from "../pages/Estate"
+import Booking from "../pages/Booking"
 function Homepage() {
     return (
         <Router>
@@ -37,6 +39,9 @@ function Homepage() {
                 <Route path="/" element={<Landing />} />
                 <Route path="/maximize-vacation" element={<MaximizeVacation />}/>
                 <Route path="/detail/:id" element={<PostDetail />} />
+                <Route path="/post" element={<Post />} />
+                <Route path="/estate" element={<Estate />} />
+                <Route path="/booking" element={<Booking />} />
             </Routes>
             <Footer />
         </Router>
