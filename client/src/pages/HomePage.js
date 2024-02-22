@@ -8,7 +8,7 @@ import Search from "../components/SearchBar";
 import SignUp from "../pages/SignUp";
 import SignIn from "../pages/SignIn";
 import {GettingStarted,ExchangeTimeshares,MaximizeVacation,} from "../components/guide/GettingStarted";
-import Payment from "../components/Payment";
+import Payment from "./Payment";
 import CancellationPolicy from "../components/policy/CancellationPolicy";
 import PostDetail from "../components/PostDetail";
 import News from "../pages/News";
