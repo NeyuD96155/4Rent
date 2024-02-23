@@ -1,38 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import api from '../config/axios'; // Đảm bảo bạn đã cấu hình axios đúng cách
+import api from '../config/axios';
 import { toast } from "react-toastify";
+import { Card, Col, Row } from 'antd'; // Using Ant Design components for layout
 
 const EstateListings = () => {
-  const [estates, setEstates] = useState([]); // Lưu trữ dữ liệu từ API
+  const [estates, setEstates] = useState([]);
 
   useEffect(() => {
     const fetchEstates = async () => {
       try {
-        const response = await api.get('/estate');
-        setEstates(response.data); // Lưu dữ liệu vào state
+        const response = await api.get('/estate'); // Adjust the endpoint as needed
+        setEstates(response.data);
       } catch (error) {
-        // Kiểm tra và xử lý lỗi một cách linh hoạt hơn
-        const errorMessage = error.response?.data?.message || "Có lỗi xảy ra khi lấy dữ liệu.";
-        toast.error(`Lỗi khi lấy dữ liệu: ${errorMessage}`);
+        toast.error(`Failed to fetch estates: ${error.response?.data?.message || error.message}`);
       }
     };
-  
+
     fetchEstates();
   }, []);
+
   return (
-    <div>
-      <h1>Danh Sách Căn Hộ</h1>
-      <div>
+    <div style={{ padding: '20px' }}>
+      <Row gutter={16}>
         {estates.map((estate) => (
-          <div key={estate.id}>
-            <h2>{estate.name}</h2>
-            <p>{estate.description}</p>
-            <p>Địa điểm: {estate.location}</p>
-            <p>Loại: {estate.type}</p>
-            {/* Thêm bất kỳ thông tin nào bạn muốn hiển thị */}
-          </div>
+          <Col span={8} key={estate.id}>
+            <Card title={estate.title} bordered={false}>
+              <p><strong>Price:</strong> ${estate.price}</p>
+              <p><strong>Description:</strong> {estate.content}</p>
+              <p><strong>Posted On:</strong> {new Date(estate.postDate).toLocaleDateString()}</p>
+              {/* Add more estate details here */}
+            </Card>
+          </Col>
         ))}
-      </div>
+      </Row>
     </div>
   );
 };

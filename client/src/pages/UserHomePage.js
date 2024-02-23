@@ -17,7 +17,7 @@ import Post from "../pages/Post"
 import Estate from "../pages/Estate"
 import Booking from "../pages/Booking"
 import Profile from "../pages/Profile"
-function Homepage() {
+function UserHomepage() {
     return (
         <Router>
             <NavigationBar />   
@@ -46,4 +46,4 @@ function Homepage() {
     );
 }
 
-export default Homepage;
+export default UserHomepage;
