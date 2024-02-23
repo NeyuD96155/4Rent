@@ -15,7 +15,7 @@ const Footer = () => {
                         <Link to="/contact">Liên Hệ</Link>
                     </li>
                     <li>
-                        <Link to="/FAQ">FAQ</Link>
+                        <Link to="/Faq">FAQ</Link>
                     </li>
                 </ul>
             </div>
