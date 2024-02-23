@@ -17,6 +17,7 @@ import Post from "../pages/Post"
 import Estate from "../pages/Estate"
 import Booking from "../pages/Booking"
 import Profile from "../pages/Profile"
+import Policy from "../components/Policy";
 function Homepage() {
     return (
         <Router>
@@ -40,6 +41,7 @@ function Homepage() {
                 <Route path="/estate" element={<Estate />} />
                 <Route path="/booking" element={<Booking />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/policy" element={<Policy />} />
             </Routes>
             <Footer />
         </Router>

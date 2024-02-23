@@ -55,23 +55,11 @@ const NavigationBar = () => {
                 <Link to="/">4Rent</Link>
             </div>
             <div className="navbar-links">
-                <Link to="/news" className="navbar-link">
-                    Tin Tức
-                </Link>
-                <Link to="/guides" className="navbar-link">
-                    Hướng Dẫn
-                </Link>
-                <Link to="/contact" className="navbar-link">
-                    Liên Hệ
-                </Link>
-                <Link to="/about" className="navbar-link">
-                    Về Chúng Tôi
-                </Link>
                 <Link to="/post" className="navbar-link">
-                   Đăng căn hộ
+                    Đăng căn hộ
                 </Link>
                 <Link to="/profile" className="navbar-link">
-                   Profile
+                    Profile
                 </Link>
                 {isLoggedIn ? (
                     <Dropdown menu={userDropdownMenu}>

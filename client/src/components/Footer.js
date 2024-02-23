@@ -9,13 +9,13 @@ const Footer = () => {
                 <h4>Về chúng tôi</h4>
                 <ul>
                     <li>
-                        <Link to="/our-story">Câu chuyện của 4Rent</Link>
+                        <Link to="/about">Câu chuyện của 4Rent</Link>
                     </li>
                     <li>
                         <Link to="/contact">Liên Hệ</Link>
                     </li>
                     <li>
-                        <Link to="/privacy-policy">Chính sách & Bảo mật</Link>
+                        <Link to="/FAQ">FAQ</Link>
                     </li>
                 </ul>
             </div>
@@ -23,13 +23,13 @@ const Footer = () => {
                 <h4>Chúng tôi cung cấp</h4>
                 <ul>
                     <li>
-                        <a href="#sponsorship">Tài trợ chuyến đi</a>
+                        <Link to="/Policy">Chính sách & Bảo mật</Link>
                     </li>
                     <li>
-                        <a href="#last-minute-flights">Chuyến bay phút chót</a>
+                        <Link to="/Privacy">Quyền riêng tư</Link>
                     </li>
                     <li>
-                        <a href="#best-deals">Ưu đãi tốt nhất</a>
+                        <Link to="/Rules">Điều Khoản</Link>
                     </li>
                 </ul>
             </div>
