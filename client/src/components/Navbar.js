@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Avatar, Menu, Dropdown } from "antd";
 import {
@@ -7,42 +7,34 @@ import {
     LogoutOutlined,
 } from "@ant-design/icons";
 import "../styles/Navbar.css";
+import { useAuth } from '../context/AuthContext '; 
 
 const NavigationBar = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const { isLoggedIn, logout } = useAuth();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        // Check if the user is logged in by looking for a token in local storage
-        const token = localStorage.getItem("token");
-        setIsLoggedIn(!!token);
-    }, []);
-
     const handleLogout = () => {
-        // Remove the token from local storage to log the user out
-        localStorage.removeItem("token");
-        setIsLoggedIn(false);
-        navigate("/signin"); // Redirect the user to the sign-in page
+        logout(); // Sử dụng phương thức logout từ context để xử lý việc đăng xuất
+        navigate("/signin");
     };
 
-    // Define the menu for Dropdown using 'menu' prop
-    const userDropdownMenu = (
+    const menu = (
         <Menu
             items={[
                 {
                     key: "profile",
                     icon: <UserOutlined />,
-                    label: <Link to="/profile">View Profile</Link>,
+                    label: <Link to="/profile">Xem Thông Tin Cá Nhân</Link>,
                 },
                 {
                     key: "history",
                     icon: <HistoryOutlined />,
-                    label: <Link to="/history">History</Link>,
+                    label: <Link to="/history">Xem Lịch Sử Giao Dịch</Link>,
                 },
                 {
                     key: "logout",
                     icon: <LogoutOutlined />,
-                    label: "Logout",
+                    label: "Đăng Xuất",
                     onClick: handleLogout,
                 },
             ]}
@@ -58,17 +50,17 @@ const NavigationBar = () => {
                 <Link to="/post" className="navbar-link">
                     Đăng căn hộ
                 </Link>
-                <Link to="/profile" className="navbar-link">
-                    Profile
-                </Link>
                 {isLoggedIn ? (
-                    <Dropdown menu={userDropdownMenu}>
-                        <a onClick={(e) => e.preventDefault()}>
+                    <Dropdown overlay={menu}>
+                        <button 
+                            onClick={(e) => e.preventDefault()} 
+                            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+                        >
                             <Avatar
                                 style={{ backgroundColor: "#87d068" }}
                                 icon={<UserOutlined />}
                             />
-                        </a>
+                        </button>
                     </Dropdown>
                 ) : (
                     <>
