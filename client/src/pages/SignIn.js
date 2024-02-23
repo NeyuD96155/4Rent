@@ -18,7 +18,7 @@ const SignIn = () => {
 
         toast.success("Đăng nhập thành công!");
         // Redirect based on the role
-        navigate(response.data.role === 'MEMBER' ? "/member-dashboard" : "/renter-dashboard");
+        navigate(response.data.role === 'MEMBER' ? "/" : "/renter-dashboard");
       } else {
         toast.error("Account not enabled or missing data.");
       }
