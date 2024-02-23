@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Avatar, Menu, Dropdown } from "antd";
 import {
@@ -7,17 +7,28 @@ import {
     LogoutOutlined,
 } from "@ant-design/icons";
 import "../styles/Navbar.css";
-import { useAuth } from '../context/AuthContext '; 
+import { useAuth } from "../context/AuthContext ";
+import { toast } from "react-toastify";
 
 const NavigationBar = () => {
     const { isLoggedIn, logout } = useAuth();
     const navigate = useNavigate();
 
+    useEffect(() => {
+        // Kiểm tra và hiển thị thông báo chào mừng
+        const welcomeMessage = sessionStorage.getItem("welcomeMessage");
+        if (isLoggedIn && welcomeMessage) {
+            toast.success(welcomeMessage);
+            // Xóa thông báo sau khi hiển thị để không hiển thị lại khi reload trang
+            sessionStorage.removeItem("welcomeMessage");
+        }
+    }, [isLoggedIn]);
     const handleLogout = () => {
         logout(); // Sử dụng phương thức logout từ context để xử lý việc đăng xuất
         navigate("/signin");
     };
 
+    // Định nghĩa menu và phần còn lại của component như trước
     const menu = (
         <Menu
             items={[
@@ -52,9 +63,14 @@ const NavigationBar = () => {
                 </Link>
                 {isLoggedIn ? (
                     <Dropdown overlay={menu}>
-                        <button 
-                            onClick={(e) => e.preventDefault()} 
-                            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+                        <button
+                            onClick={(e) => e.preventDefault()}
+                            style={{
+                                background: "none",
+                                border: "none",
+                                cursor: "pointer",
+                                padding: 0,
+                            }}
                         >
                             <Avatar
                                 style={{ backgroundColor: "#87d068" }}

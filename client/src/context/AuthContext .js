@@ -7,9 +7,18 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
 
-    const login = (token) => {
+    const login = (token, username) => {
         localStorage.setItem('token', token);
+        localStorage.setItem('username', username); // Đảm bảo lưu tên người dùng
         setIsLoggedIn(true);
+    
+        // Đặt thông báo chào mừng trong sessionStorage
+        if (!localStorage.getItem('hasLoggedInBefore')) {
+            sessionStorage.setItem('welcomeMessage', `Chào mừng ${username} đã đến với trang web`);
+            localStorage.setItem('hasLoggedInBefore', 'true');
+        } else {
+            sessionStorage.setItem('welcomeMessage', `Chào mừng ${username} đã quay trở lại`);
+        }
     };
 
     const logout = () => {
