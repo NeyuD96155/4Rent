@@ -12,7 +12,7 @@ const Footer = () => {
                         <Link to="/our-story">Câu chuyện của 4Rent</Link>
                     </li>
                     <li>
-                        <Link to="/contact1">Liên Hệ</Link>
+                        <Link to="/contact">Liên Hệ</Link>
                     </li>
                     <li>
                         <Link to="/privacy-policy">Chính sách & Bảo mật</Link>
