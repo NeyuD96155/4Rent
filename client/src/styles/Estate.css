@@ -27,3 +27,12 @@
   .post-card img{
     width: 100%;
   }
+
+.post-image {
+    width: 200px; /* Set your desired width */
+    height: 200px; /* Set your desired height */
+    object-fit: cover; /* This will ensure the image covers the area without stretching */
+    border-radius: 8px; /* Optional: Adds rounded corners to the images */
+    margin-bottom: 10px; /* Optional: Adds some space below the image */
+  }
+  

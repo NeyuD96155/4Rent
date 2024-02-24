@@ -21,7 +21,6 @@ const TimesharePosts = () => {
     fetchPosts();
   }, []);
 
-
   const handlePostClick = (postId) => {
     navigate(`/post/detail/${postId}`); 
   };
@@ -30,16 +29,19 @@ const TimesharePosts = () => {
     <div className="timeshare-posts-container">
       <h1>Timeshare Posts</h1>
       <div className="posts">
-        {posts.map((post, index) => {
-          console.log(post.resources);
-          return <div key={index} className="post-card" onClick={() => handlePostClick(post.id)}>
-            {post.resources.length > 0 ? <img  src={post.resources[0].url}/> : <img src='https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg'/>}
-          <h2>{post.title}</h2>
-          <p>{post.content}</p>
-          <p>Price: ${post.price}</p>
-          <p>Date Posted: {format(new Date(post.postDate), 'PPP')}</p>
-        </div>
-        })}
+        {posts.map((post, index) => (
+          <div key={index} className="post-card" onClick={() => handlePostClick(post.id)}>
+            <img 
+              className="post-image"
+              src={post.resources.length > 0 ? post.resources[0].url : 'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg'}
+              alt="Post"
+            />
+            <h2>{post.title}</h2>
+            <p>{post.content}</p>
+            <p>Price: ${post.price}</p>
+            <p>Date Posted: {format(new Date(post.postDate), 'PPP')}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
