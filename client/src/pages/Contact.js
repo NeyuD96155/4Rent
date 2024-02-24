@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Layout, Menu, Card, Form, Input, Button, DatePicker, Rate } from 'antd';
+import { Layout, Menu, Card, Form, Input, Button, Rate } from 'antd';
 import { MessageOutlined, InfoCircleOutlined, CustomerServiceOutlined } from '@ant-design/icons';
 
 const { Content, Sider } = Layout;

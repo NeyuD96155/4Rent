@@ -1,26 +1,48 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
-  const [authState, setAuthState] = useState(null);
-
-  useEffect(() => {
-    // Here, you might want to check for an existing auth token/session in localStorage or cookies
-    // and set the initial auth state accordingly
-    const token = localStorage.getItem('token');
-    if (token) {
-      setAuthState({ token });
-      // You might also want to validate the token against your backend
-    }
-  }, []);
-
-  return (
-    <AuthContext.Provider value={{ authState, setAuthState }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
-
-// Hook to use the auth context
 export const useAuth = () => useContext(AuthContext);
+
+export const AuthProvider = ({ children }) => {
+    const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
+
+    const login = (token, username) => {
+        localStorage.setItem('token', token);
+        localStorage.setItem('username', username); // Đảm bảo lưu tên người dùng
+        setIsLoggedIn(true);
+    
+        // Đặt thông báo chào mừng trong sessionStorage
+        if (!localStorage.getItem('hasLoggedInBefore')) {
+            sessionStorage.setItem('welcomeMessage', `Chào mừng ${username} đã đến với trang web`);
+            localStorage.setItem('hasLoggedInBefore', 'true');
+        } else {
+            sessionStorage.setItem('welcomeMessage', `Chào mừng ${username} đã quay trở lại`);
+        }
+    };
+
+    const logout = () => {
+        localStorage.removeItem('token');
+        setIsLoggedIn(false);
+    };
+
+    // Cập nhật trạng thái isLoggedIn dựa vào sự thay đổi của localStorage
+    useEffect(() => {
+        const syncLogout = (event) => {
+            if (event.key === 'logout') {
+                setIsLoggedIn(false);
+            }
+        };
+
+        window.addEventListener('storage', syncLogout);
+        return () => {
+            window.removeEventListener('storage', syncLogout);
+        };
+    }, []);
+
+    return (
+        <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+            {children}
+        </AuthContext.Provider>
+    );
+};

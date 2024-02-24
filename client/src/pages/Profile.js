@@ -8,7 +8,7 @@ const { Option } = Select;
 
 const ProfilePage = () => {
   const [selectedKey, setSelectedKey] = useState('profile');
-
+  const [token] = useState(localStorage.getItem('token'));
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
     // Handle form submission here
@@ -22,23 +22,24 @@ const ProfilePage = () => {
     switch (key) {
       case 'profile':
         return (
-          <Card title="Thông tin cá nhân">
+            <Card title="Thông tin cá nhân">
             <Form layout="vertical" onFinish={onFinish}>
-              <Form.Item label="Họ và tên" name="fullName" rules={[{ required: true ,message: "nhap di"  }]}>
+              <Form.Item label="Họ và tên" name="fullName" rules={[{ required: true, message: "Vui lòng nhập họ và tên!" }]}>
                 <Input placeholder="Nhập họ và tên của bạn" />
               </Form.Item>
-              <Form.Item label="Ngày tháng năm sinh" name="dob ">
+              <Form.Item label="Ngày tháng năm sinh" name="dob">
                 <DatePicker style={{ width: '100%' }} />
               </Form.Item>
-              <Form.Item label="Số điện thoại" name="fullName" rules={[{ required: true, message:"nhap di bro"}]}>
+              <Form.Item label="Số điện thoại" name="phone" rules={[{ required: true, message: "Vui lòng nhập số điện thoại!" }]}>
                 <Input placeholder="Nhập số điện thoại" />
               </Form.Item>
               <Form.Item label="Mô tả" name="bio">
                 <TextArea rows={3} placeholder="Nói một chút về bản thân bạn" />
               </Form.Item>
-
-              
-              
+              {/* Hiển thị token */}
+              <Form.Item label="Token của bạn">
+                <Input placeholder="Token" disabled value={token} />
+              </Form.Item>
               <Form.Item>
                 <Button type="primary" htmlType="submit">Cập nhật hồ sơ</Button>
               </Form.Item>
@@ -87,26 +88,25 @@ const ProfilePage = () => {
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Sider width={200} style={{ background: '#fff' }}>
-        <Menu
-          mode="inline"
-          selectedKeys={[selectedKey]}
-          onClick={handleMenuClick}
-          style={{ height: '100%', borderRight: 0 }}
-        >
-          <Menu.Item key="profile" icon={<UserOutlined />}>Hồ sơ</Menu.Item>
-          <Menu.Item key="security" icon={<LockOutlined />}>Bảo mật</Menu.Item>
-          <Menu.Item key="notifications" icon={<MailOutlined />}>Thông báo</Menu.Item>
-          {/* Add more Menu.Items here if needed */}
-        </Menu>
-      </Sider>
-      <Layout style={{ padding: '0 24px 24px' }}>
-        <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
-          {renderProfileContent(selectedKey)}
-        </Content>
-      </Layout>
+    <Sider width={200} style={{ background: '#fff' }}>
+      <Menu
+        mode="inline"
+        selectedKeys={[selectedKey]}
+        onClick={handleMenuClick}
+        style={{ height: '100%', borderRight: 0 }}
+      >
+        <Menu.Item key="profile" icon={<UserOutlined />}>Hồ sơ</Menu.Item>
+        <Menu.Item key="security" icon={<LockOutlined />}>Bảo mật</Menu.Item>
+        <Menu.Item key="notifications" icon={<MailOutlined />}>Thông báo</Menu.Item>
+      </Menu>
+    </Sider>
+    <Layout style={{ padding: '0 24px 24px' }}>
+      <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
+        {renderProfileContent(selectedKey)}
+      </Content>
     </Layout>
-  );
+  </Layout>
+);
 };
 
 export default ProfilePage;
