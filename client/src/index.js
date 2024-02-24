@@ -6,8 +6,9 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ToastContainer } from "react-toastify";
 import { AuthProvider } from "./context/AuthContext ";
-import { store } from './redux/store';
 import { Provider } from 'react-redux';
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "./redux/store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     
@@ -27,8 +28,10 @@ root.render(
                 pauseOnHover
             />
             <Provider store={store}>
-            <App />
-            </Provider>
+                <PersistGate loading={null} persistor={persistor} >
+                    <App />
+                </PersistGate>
+            </Provider>,
         </AuthProvider>
     </React.StrictMode>
 );
