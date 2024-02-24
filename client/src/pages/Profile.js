@@ -1,30 +1,56 @@
 import React, { useEffect, useState } from "react";
-import { Layout, Form, Input, Button, Menu, Card, Select } from "antd";
+import { Layout, Form, Input, Button, Menu, Card, Select, notification } from "antd";
 import { UserOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
 import api from "../config/axios";
 import { useForm } from "antd/es/form/Form";
 
 const { Content, Sider } = Layout;
-const { TextArea } = Input;
 const { Option } = Select;
 
 const ProfilePage = () => {
     const [selectedKey, setSelectedKey] = useState("profile");
     const [token] = useState(localStorage.getItem("token"));
     const [form] = useForm();
-    const onFinish = async (values) => {
-        console.log("Received values of form: ", values);
 
+    useEffect(() => {
+        fetchProfile();
+    }, []);
+
+    const fetchProfile = async () => {
+        try {
+            const response = await api.get("/api/profile", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            form.setFieldsValue({
+                fullName: response.data.fullname,
+                phone: response.data.phoneNumber,
+                dob: response.data.dateOfBirth,
+                address: response.data.address,
+                gender: response.data.gender,
+                email: response.data.email,
+            });
+        } catch (error) {
+            console.error("Failed to fetch profile:", error.response ? error.response.data : error.message);
+            notification.error({
+                message: 'Failed to fetch profile',
+                description: 'There was a problem retrieving your profile information. Please try again later.',
+            });
+        }
+    };
+
+    const onFinish = async (values) => {
         const payload = {
-            id: values.id,
-            role: values.role,
-            fullname: values.fullName,
-            phoneNumber: values.phone,
-            dateOfBirth: values.dob,
-            gender: values.gender,
-            address: values.address,
-            email: values.email,
-        };
+                        id: values.id,
+                        role: values.role,
+                        fullname: values.fullName,
+                        phoneNumber: values.phone,
+                        dateOfBirth: values.dob,
+                        gender: values.gender,
+                        address: values.address,
+                        email: values.email,
+                    };
 
         try {
             const response = await api.put("/api/update", payload, {
@@ -33,11 +59,16 @@ const ProfilePage = () => {
                 },
             });
             console.log("Update response:", response.data);
+            notification.success({
+                message: 'Profile Updated',
+                description: 'Your profile was successfully updated.',
+            });
         } catch (error) {
-            console.error(
-                "Failed to update profile:",
-                error.response ? error.response.data : error.message
-            );
+            console.error("Failed to update profile:", error.response ? error.response.data : error.message);
+            notification.error({
+                message: 'Profile Update Failed',
+                description: 'There was a problem updating your profile. Please try again.',
+            });
         }
     };
 
@@ -45,13 +76,23 @@ const ProfilePage = () => {
         setSelectedKey(e.key);
     };
 
-    const renderProfileContent = (key) => {
-        switch (key) {
+    const renderProfileContent = () => {
+        switch (selectedKey) {
             case "profile":
-                return (
-                    <Card title="Thông tin cá nhân">
-                        <Form layout="vertical" onFinish={onFinish} form={form}>
-                            <Form.Item
+                return renderProfileForm();
+            case "security":
+                return renderSecurityForm();
+            case "notifications":
+                return renderNotificationSettings();
+            default:
+                return null;
+        }
+    };
+
+    const renderProfileForm = () => (
+        <Card title="Thông tin cá nhân">
+            <Form layout="vertical" onFinish={onFinish} form={form}>
+            <Form.Item
                                 label="Họ và tên"
                                 name="fullName"
                                 rules={[
@@ -120,13 +161,13 @@ const ProfilePage = () => {
                                     Cập nhật hồ sơ
                                 </Button>
                             </Form.Item>
-                        </Form>
-                    </Card>
-                );
-            case "security":
-                return (
-                    <Card title="Bảo mật">
-                        <Form layout="vertical" onFinish={onFinish}>
+            </Form>
+        </Card>
+    );
+
+    const renderSecurityForm = () => (
+        <Card title="Bảo mật">
+             <Form layout="vertical" onFinish={onFinish}>
                             <Form.Item
                                 label="Mật khẩu hiện tại"
                                 name="currentPassword"
@@ -154,12 +195,12 @@ const ProfilePage = () => {
                                 </Button>
                             </Form.Item>
                         </Form>
-                    </Card>
-                );
-            case "notifications":
-                return (
-                    <Card title="Cài đặt thông báo">
-                        <Form layout="vertical" onFinish={onFinish}>
+        </Card>
+    );
+
+    const renderNotificationSettings = () => (
+        <Card title="Cài đặt thông báo">
+            <Form layout="vertical" onFinish={onFinish}>
                             <Form.Item
                                 label="Thông báo email"
                                 name="emailNotifications"
@@ -178,29 +219,8 @@ const ProfilePage = () => {
                                 </Button>
                             </Form.Item>
                         </Form>
-                    </Card>
-                );
-            default:
-                return null;
-        }
-    };
-
-    useEffect(() => {
-        const fetchProfile = async () => {
-            console.log("fetch profile");
-            const response = await api.get("/api/profile");
-            console.log(response.data);
-            form.setFieldsValue({
-                fullName: response.data.fullname,
-                phone: response.data.phoneNumber,
-                dob: response.data.dateOfBirth,
-                address: response.data.address,
-                gender: response.data.gender,
-                email: response.data.email,
-            });
-        };
-        fetchProfile();
-    }, []);
+        </Card>
+    );
 
     return (
         <Layout style={{ minHeight: "100vh" }}>
@@ -211,7 +231,7 @@ const ProfilePage = () => {
                     onClick={handleMenuClick}
                     style={{ height: "100%", borderRight: 0 }}
                 >
-                    <Menu.Item key="profile" icon={<UserOutlined />}>
+                     <Menu.Item key="profile" icon={<UserOutlined />}>
                         Hồ sơ
                     </Menu.Item>
                     <Menu.Item key="security" icon={<LockOutlined />}>
@@ -231,7 +251,7 @@ const ProfilePage = () => {
                         minHeight: 280,
                     }}
                 >
-                    {renderProfileContent(selectedKey)}
+                    {renderProfileContent()}
                 </Content>
             </Layout>
         </Layout>

@@ -1,7 +1,7 @@
 :root {
-    --navbar-background-color: #fff1f1;
-    --link-color: #333;
-    --link-hover-background-color: #ddd;
+    --navbar-background-color: #000000;
+    --link-color: #ffffff;
+    --link-hover-background-color: #ffffff;
     --dropdown-background-color: #f9f9f9;
     --transition-speed: 0.3s;
   }
@@ -41,6 +41,7 @@
   .navbar-link:hover,
   .dropdown-item:hover {
     background-color: var(--link-hover-background-color);
+    color:#000000
   }
   
   .navbar-user-dropdown {
