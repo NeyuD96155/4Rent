@@ -9,85 +9,181 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 const ProfilePage = () => {
-  const [selectedKey, setSelectedKey] = useState('profile');
-  const [token] = useState(localStorage.getItem('token'));
-  const [form] = useForm();
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values);
-    // Handle form submission here
-  };
+    const [selectedKey, setSelectedKey] = useState("profile");
+    const [token] = useState(localStorage.getItem("token"));
+    const [form] = useForm();
+    const onFinish = async (values) => {
+        console.log("Received values of form: ", values);
+
+        const payload = {
+            id: values.id,
+            role: values.role,
+            fullname: values.fullName,
+            phoneNumber: values.phone,
+            dateOfBirth: values.dob,
+            gender: values.gender,
+            address: values.address,
+            email: values.email,
+        };
+
+        try {
+            const response = await api.put("/api/update", payload, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            console.log("Update response:", response.data);
+        } catch (error) {
+            console.error(
+                "Failed to update profile:",
+                error.response ? error.response.data : error.message
+            );
+        }
+    };
 
     const handleMenuClick = (e) => {
         setSelectedKey(e.key);
     };
 
-  const renderProfileContent = (key) => {
-    switch (key) {
-      case 'profile':
-        return (
-            <Card title="Thông tin cá nhân">
-            <Form layout="vertical" onFinish={onFinish} form={form}>
-              <Form.Item label="Họ và tên" name="fullName" rules={[{ required: true, message: "Vui lòng nhập họ và tên!" }]}>
-                <Input placeholder="Nhập họ và tên của bạn" />
-              </Form.Item>
-              <Form.Item label="Ngày tháng năm sinh" name="dob">
-                <DatePicker style={{ width: '100%' }} />
-              </Form.Item>
-              <Form.Item label="Số điện thoại" name="phone" rules={[{ required: true, message: "Vui lòng nhập số điện thoại!" }]}>
-                <Input placeholder="Nhập số điện thoại" />
-              </Form.Item>
-              <Form.Item label="Mô tả" name="bio">
-                <TextArea rows={3} placeholder="Nói một chút về bản thân bạn" />
-              </Form.Item>
-              {/* Hiển thị token */}
-              <Form.Item label="Token của bạn">
-                <Input placeholder="Token" disabled value={token} />
-              </Form.Item>
-              <Form.Item>
-                <Button type="primary" htmlType="submit">Cập nhật hồ sơ</Button>
-              </Form.Item>
-            </Form>
-          </Card>
-        );
-      case 'security':
-        return (
-          <Card title="Bảo mật">
-            <Form layout="vertical" onFinish={onFinish}>
-              <Form.Item label="Mật khẩu hiện tại" name="currentPassword" rules={[{ required: true }]}>
-                <Input.Password placeholder="Nhập mật khẩu hiện tại" />
-              </Form.Item>
-              <Form.Item label="Mật khẩu mới" name="newPassword" rules={[{ required: true }]}>
-                <Input.Password placeholder="Nhập mật khẩu mới" />
-              </Form.Item>
-              <Form.Item label="Xác nhận mật khẩu mới" name="confirmNewPassword" rules={[{ required: true }]}>
-                <Input.Password placeholder="Xác nhận mật khẩu mới" />
-              </Form.Item>
-              <Form.Item>
-                <Button type="primary" htmlType="submit">Đổi mật khẩu</Button>
-              </Form.Item>
-            </Form>
-          </Card>
-        );
-      case 'notifications':
-        return (
-          <Card title="Cài đặt thông báo">
-            <Form layout="vertical" onFinish={onFinish}>
-              <Form.Item label="Thông báo email" name="emailNotifications" valuePropName="checked">
-                <Select defaultValue="subscribed">
-                  <Option value="subscribed">Đăng kí</Option>
-                  <Option value="unsubscribed">Hủy đăng kí</Option>
-                </Select>
-              </Form.Item>
-              <Form.Item>
-                <Button type="primary" htmlType="submit">Cập nhật thông báo</Button>
-              </Form.Item>
-            </Form>
-          </Card>
-        );
-      default:
-        return null;
-    }
-  };
+    const renderProfileContent = (key) => {
+        switch (key) {
+            case "profile":
+                return (
+                    <Card title="Thông tin cá nhân">
+                        <Form layout="vertical" onFinish={onFinish} form={form}>
+                            <Form.Item
+                                label="Họ và tên"
+                                name="fullName"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: "Vui lòng nhập họ và tên!",
+                                    },
+                                ]}
+                            >
+                                <Input placeholder="Nhập họ và tên của bạn" />
+                            </Form.Item>
+                            <Form.Item
+                                label="Số điện thoại"
+                                name="phone"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: "Vui lòng nhập họ và tên!",
+                                    },
+                                ]}
+                            >
+                                <Input placeholder="Nhập họ và tên của bạn" />
+                            </Form.Item>
+                            <Form.Item label="Năm sinh" name="dob">
+                                <Input placeholder="Nhập năm sinh" />
+                            </Form.Item>
+                            <Form.Item
+                                label="Giới tính"
+                                name="gender"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: "Vui lòng nhập giới tính!",
+                                    },
+                                ]}
+                            >
+                                <Input placeholder="Nhập số điện thoại" />
+                            </Form.Item>
+                            <Form.Item
+                                label="Địa chỉ"
+                                name="address"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: "Vui lòng nhập địa chỉ!",
+                                    },
+                                ]}
+                            >
+                                <Input placeholder="Nhập số điện thoại" />
+                            </Form.Item>
+                            <Form.Item
+                                label="Email"
+                                name="email"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: "Vui lòng nhập địa chỉ Email!",
+                                    },
+                                ]}
+                            >
+                                <Input placeholder="Nhập số điện thoại" />
+                            </Form.Item>
+
+                            <Form.Item>
+                                <Button type="primary" htmlType="submit">
+                                    Cập nhật hồ sơ
+                                </Button>
+                            </Form.Item>
+                        </Form>
+                    </Card>
+                );
+            case "security":
+                return (
+                    <Card title="Bảo mật">
+                        <Form layout="vertical" onFinish={onFinish}>
+                            <Form.Item
+                                label="Mật khẩu hiện tại"
+                                name="currentPassword"
+                                rules={[{ required: true }]}
+                            >
+                                <Input.Password placeholder="Nhập mật khẩu hiện tại" />
+                            </Form.Item>
+                            <Form.Item
+                                label="Mật khẩu mới"
+                                name="newPassword"
+                                rules={[{ required: true }]}
+                            >
+                                <Input.Password placeholder="Nhập mật khẩu mới" />
+                            </Form.Item>
+                            <Form.Item
+                                label="Xác nhận mật khẩu mới"
+                                name="confirmNewPassword"
+                                rules={[{ required: true }]}
+                            >
+                                <Input.Password placeholder="Xác nhận mật khẩu mới" />
+                            </Form.Item>
+                            <Form.Item>
+                                <Button type="primary" htmlType="submit">
+                                    Đổi mật khẩu
+                                </Button>
+                            </Form.Item>
+                        </Form>
+                    </Card>
+                );
+            case "notifications":
+                return (
+                    <Card title="Cài đặt thông báo">
+                        <Form layout="vertical" onFinish={onFinish}>
+                            <Form.Item
+                                label="Thông báo email"
+                                name="emailNotifications"
+                                valuePropName="checked"
+                            >
+                                <Select defaultValue="subscribed">
+                                    <Option value="subscribed">Đăng kí</Option>
+                                    <Option value="unsubscribed">
+                                        Hủy đăng kí
+                                    </Option>
+                                </Select>
+                            </Form.Item>
+                            <Form.Item>
+                                <Button type="primary" htmlType="submit">
+                                    Cập nhật thông báo
+                                </Button>
+                            </Form.Item>
+                        </Form>
+                    </Card>
+                );
+            default:
+                return null;
+        }
+    };
 
     useEffect(() => {
         const fetchProfile = async () => {
