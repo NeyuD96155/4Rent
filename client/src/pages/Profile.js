@@ -99,8 +99,6 @@ const ProfilePage = () => {
         form.setFieldsValue({
             fullName: response.data.fullname,
             phone: response.data.phoneNumber,
-            dob:res
-
         })
       }
       fetchProfile()
