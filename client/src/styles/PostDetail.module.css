@@ -64,21 +64,6 @@ button[type="submit"]:hover {
   background-color: #0056b3;
 }
 
-.postImage:hover {
-  transform: scale(1.03);
-}
-
-@media (max-width: 768px) {
-  .detailsAndBookingContainer {
-    flex-direction: column;
-  }
-
-  .postInfoContainer,
-  .bookingBoxContainer {
-    flex: 1 1 100%;
-    margin: 0;
-  }
-}
 /* PostDetail.css */
 .postDetailContainer {
   display: flex;
@@ -114,7 +99,7 @@ button[type="submit"]:hover {
   justify-content: space-between;
   margin-top: 30px;
 }
-
+/* Booking Box*/
 .postInfoContainer,
 .bookingBoxContainer {
   background-color: #ffffff;
@@ -181,4 +166,79 @@ button:hover {
     margin: 0;
   }
 }
+/* Tiện Nghi */ 
+.amenitiesContainer {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
+.amenitiesTitle {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 20px;
+}
+
+.amenitiesList {
+  list-style: none;
+  padding: 0;
+}
+
+.amenitiesList li {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.showMoreButton {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+}
+
+.showMoreButton:hover {
+  background-color: #0056b3;
+}
+
+/*Feed Back*/
+.feedbackContainer {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.feedbackTitle {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.feedbackList {
+  list-style: none;
+  padding: 0;
+}
+
+.feedbackItem {
+  margin-bottom: 20px;
+}
+
+.feedbackText {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.feedbackAuthor {
+  font-size: 14px;
+  color: #666;
+  font-style: italic;
+}

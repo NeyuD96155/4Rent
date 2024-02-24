@@ -82,6 +82,41 @@ const PostDetail = () => {
                         <button type="button" onClick={handleBookRoom}>Book Room</button>
                     </div>
                 </div>
+
+                {/* Phần 4: Tiện Nghi */}
+                <div className={styles.amenitiesContainer}>
+                    <h2 className={styles.amenitiesTitle}>Nơi này có những gì cho bạn</h2>
+                    <ul className={styles.amenitiesList}>
+                        <li>Hướng nhìn ra hồ</li>
+                        <li>Chỗ đỗ xe miễn phí tại nơi ở</li>
+                        <li>Bồn tắm nước nóng riêng – có sẵn hoặc phục vụ quanh năm, mở cửa theo giờ giấc cụ thể</li>
+                        <li>Cho phép thú cưng</li>
+                        <li>Điều hòa nhiệt độ</li>
+                        <li>Bồn tắm</li>
+                        <li>Sân sau</li>
+                        <li>Bếp đốt lửa trại</li>
+                        <li>Không có: Máy phát hiện khí CO</li>
+                        <li>Không có: Máy báo khói</li>
+                    </ul>
+                    <button className={styles.showMoreButton}>Hiển thị tất cả tiện nghi</button>
+                </div>
+                {/* Phần 5: Feedback của Khách Hàng */}
+                <div className={styles.feedbackContainer}>
+                    <h2 className={styles.feedbackTitle}>Feedback của Khách Hàng</h2>
+                    <div className={styles.feedbackList}>
+                        {/* Ví dụ về feedback */}
+                        <div className={styles.feedbackItem}>
+                            <p className={styles.feedbackText}>“Chỗ ở tuyệt vời với tầm nhìn ra hồ đẹp mắt. Bồn tắm nước nóng là điểm cộng lớn!”</p>
+                            <p className={styles.feedbackAuthor}>- Nguyễn Văn A</p>
+                        </div>
+                        <div className={styles.feedbackItem}>
+                            <p className={styles.feedbackText}>“Rất hài lòng với kỳ nghỉ của mình tại đây. Sẽ quay lại!”</p>
+                            <p className={styles.feedbackAuthor}>- Trần Thị B</p>
+                        </div>
+                        {/* Thêm các feedback khác tại đây */}
+                    </div>
+                </div>
+
             </div>
         </div>
     );
