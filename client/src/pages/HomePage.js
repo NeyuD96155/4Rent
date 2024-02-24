@@ -42,7 +42,7 @@ function Homepage() {
                 <Route path="/exchange-timeshares" element={<ExchangeTimeshares />}/>
                 <Route path="/" element={<Landing />} />
                 <Route path="/maximize-vacation" element={<MaximizeVacation />}/>
-                <Route path="/detail/:id" element={<PostDetail />} />
+                <Route path="/post/detail/:postId" element={<PostDetail />} />
                 <Route path="/post" element={<Post />} />
                 <Route path="/estate" element={<Estate />} />
                 <Route path="/booking" element={<Booking />} />
