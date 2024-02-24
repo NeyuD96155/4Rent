@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Layout, Form, Input, Button, Menu, Card, DatePicker, Select } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
+import api from '../config/axios';
+import { useForm } from 'antd/es/form/Form';
 
 const { Content, Sider } = Layout;
 const { TextArea } = Input;
@@ -9,6 +11,7 @@ const { Option } = Select;
 const ProfilePage = () => {
   const [selectedKey, setSelectedKey] = useState('profile');
   const [token] = useState(localStorage.getItem('token'));
+  const [form] = useForm();
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
     // Handle form submission here
@@ -23,7 +26,7 @@ const ProfilePage = () => {
       case 'profile':
         return (
             <Card title="Thông tin cá nhân">
-            <Form layout="vertical" onFinish={onFinish}>
+            <Form layout="vertical" onFinish={onFinish} form={form}>
               <Form.Item label="Họ và tên" name="fullName" rules={[{ required: true, message: "Vui lòng nhập họ và tên!" }]}>
                 <Input placeholder="Nhập họ và tên của bạn" />
               </Form.Item>
@@ -85,6 +88,23 @@ const ProfilePage = () => {
         return null;
     }
   };
+
+
+
+  useEffect(()=>{
+    const fetchProfile = async () => {
+        console.log('fetch profile');
+        const response = await api.get('/api/profile')
+        console.log(response.data);
+        form.setFieldsValue({
+            fullName: response.data.fullname,
+            phone: response.data.phoneNumber,
+            dob:res
+
+        })
+      }
+      fetchProfile()
+  }, [])
 
   return (
     <Layout style={{ minHeight: '100vh' }}>

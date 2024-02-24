@@ -16,8 +16,7 @@ const SignIn = () => {
       const response = await api.post("/login", values);
       if (response.status === 200 && response.data) { 
         // Sử dụng hàm login từ AuthContext để cập nhật trạng thái đăng nhập
-        login(response.data.token);
-  
+        login(response.data.token, response.data.username);
         toast.success("Đăng nhập thành công!");
         navigate("/"); // Chuyển hướng người dùng tới trang chính
       } else {
