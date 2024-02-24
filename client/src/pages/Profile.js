@@ -12,9 +12,33 @@ const ProfilePage = () => {
     const [selectedKey, setSelectedKey] = useState("profile");
     const [token] = useState(localStorage.getItem("token"));
     const [form] = useForm();
-    const onFinish = (values) => {
+    const onFinish = async (values) => {
         console.log("Received values of form: ", values);
-        // Handle form submission here
+
+        const payload = {
+            id: values.id,
+            role: values.role,
+            fullname: values.fullName,
+            phoneNumber: values.phone,
+            dateOfBirth: values.dob,
+            gender: values.gender,
+            address: values.address,
+            email: values.email,
+        };
+
+        try {
+            const response = await api.put("/api/update", payload, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            console.log("Update response:", response.data);
+        } catch (error) {
+            console.error(
+                "Failed to update profile:",
+                error.response ? error.response.data : error.message
+            );
+        }
     };
 
     const handleMenuClick = (e) => {
@@ -30,6 +54,18 @@ const ProfilePage = () => {
                             <Form.Item
                                 label="Họ và tên"
                                 name="fullName"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: "Vui lòng nhập họ và tên!",
+                                    },
+                                ]}
+                            >
+                                <Input placeholder="Nhập họ và tên của bạn" />
+                            </Form.Item>
+                            <Form.Item
+                                label="Số điện thoại"
+                                name="phone"
                                 rules={[
                                     {
                                         required: true,
