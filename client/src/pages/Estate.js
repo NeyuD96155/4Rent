@@ -1,40 +1,45 @@
-import React, { useEffect, useState } from 'react';
-import api from '../config/axios';
-import { toast } from "react-toastify";
-import { Card, Col, Row } from 'antd'; // Using Ant Design components for layout
-
-const EstateListings = () => {
-  const [estates, setEstates] = useState([]);
+import React, { useState, useEffect } from 'react';
+import api from "../config/axios";
+import { format } from 'date-fns';
+import { useNavigate } from 'react-router-dom'; 
+import '../styles/Estate.css'
+const TimesharePosts = () => {
+  const [posts, setPosts] = useState([]);
+  const navigate = useNavigate(); 
 
   useEffect(() => {
-    const fetchEstates = async () => {
+    const fetchPosts = async () => {
       try {
-        const response = await api.get('/estate'); // Adjust the endpoint as needed
-        setEstates(response.data);
+        const response = await api.get('/post/show');
+        setPosts(response.data);
       } catch (error) {
-        toast.error(`Failed to fetch estates: ${error.response?.data?.message || error.message}`);
+        console.error('Error fetching timeshare posts:', error);
       }
     };
 
-    fetchEstates();
+    fetchPosts();
   }, []);
 
+
+  const handlePostClick = (postId) => {
+    navigate(`/post/detail/${postId}`); 
+  };
+
   return (
-    <div style={{ padding: '20px' }}>
-      <Row gutter={16}>
-        {estates.map((estate) => (
-          <Col span={8} key={estate.id}>
-            <Card title={estate.title} bordered={false}>
-              <p><strong>Price:</strong> ${estate.price}</p>
-              <p><strong>Description:</strong> {estate.content}</p>
-              <p><strong>Posted On:</strong> {new Date(estate.postDate).toLocaleDateString()}</p>
-              {/* Add more estate details here */}
-            </Card>
-          </Col>
+    <div className="timeshare-posts-container">
+      <h1>Timeshare Posts</h1>
+      <div className="posts">
+        {posts.map((post, index) => (
+          <div key={index} className="post-card" onClick={() => handlePostClick(post.id)}>
+            <h2>{post.title}</h2>
+            <p>{post.content}</p>
+            <p>Price: ${post.price}</p>
+            <p>Date Posted: {format(new Date(post.postDate), 'PPP')}</p>
+          </div>
         ))}
-      </Row>
+      </div>
     </div>
   );
 };
 
-export default EstateListings;
+export default TimesharePosts;
