@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-    Layout,
-    Form,
-    Input,
-    Button,
-    Menu,
-    Card,
-    Select,
-} from "antd";
+import { Layout, Form, Input, Button, Menu, Card, Select } from "antd";
 import { UserOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
 import api from "../config/axios";
 import { useForm } from "antd/es/form/Form";
@@ -86,7 +78,6 @@ const ProfilePage = () => {
                             >
                                 <Input placeholder="Nhập số điện thoại" />
                             </Form.Item>
-                           
 
                             {/* Hiển thị token */}
 
