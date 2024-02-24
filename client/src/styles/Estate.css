@@ -1,0 +1,38 @@
+.timeshare-posts-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    width: 100%;
+  }
+  
+  .post-card {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .post-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .post-card img{
+    width: 100%;
+  }
+
+.post-image {
+    width: 200px; /* Set your desired width */
+    height: 200px; /* Set your desired height */
+    object-fit: cover; /* This will ensure the image covers the area without stretching */
+    border-radius: 8px; /* Optional: Adds rounded corners to the images */
+    margin-bottom: 10px; /* Optional: Adds some space below the image */
+  }
+  
