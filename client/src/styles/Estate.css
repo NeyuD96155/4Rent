@@ -24,3 +24,6 @@
     transform: translateY(-5px);
   }
   
+  .post-card img{
+    width: 100%;
+  }
