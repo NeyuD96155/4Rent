@@ -1,45 +1,46 @@
-import React, { useEffect, useState } from 'react';
-import api from '../config/axios';
-import { toast } from "react-toastify";
-import { Card, Col, Row } from 'antd'; // Sử dụng các thành phần Ant Design cho bố cục
+import React, { useState, useEffect } from 'react';
+import api from "../config/axios";
+import { format } from 'date-fns';
+import { useNavigate } from 'react-router-dom'; 
+import '../styles/Estate.css';
 
-const EstateListings = () => {
-  const [estates, setEstates] = useState([]);
+const TimesharePosts = () => {
+  const [posts, setPosts] = useState([]);
+  const navigate = useNavigate(); 
 
   useEffect(() => {
-    const fetchEstates = async () => {
+    const fetchPosts = async () => {
       try {
-        const response = await api.get('/estate'); // Điều chỉnh endpoint nếu cần
-        setEstates(response.data);
+        const response = await api.get('/post/show');
+        setPosts(response.data);
       } catch (error) {
-        toast.error(`Lỗi khi lấy thông tin bất động sản: ${error.response?.data?.message || error.message}`);
+        console.error('Error fetching timeshare posts:', error);
       }
     };
 
-    fetchEstates();
+    fetchPosts();
   }, []);
 
+
+  const handlePostClick = (postId) => {
+    navigate(`/post/detail/${postId}`); 
+  };
+
   return (
-    <div style={{ padding: '20px' }}>
-      <Row gutter={16}>
-        {estates.map((estate) => (
-          <Col span={8} key={estate.id}>
-            <Card
-              title={estate.name} // Sử dụng name thay vì title
-              bordered={false}
-              cover={estate.resources.length > 0 ? <img alt="estate" src={estate.resources[0].url} /> : null} // Sử dụng ảnh đầu tiên từ resources nếu có
-            >
-              <p><strong>Mô tả:</strong> {estate.description}</p> {/* Sử dụng description thay vì content */}
-              <p><strong>Địa điểm:</strong> {estate.location}</p>
-              <p><strong>Loại:</strong> {estate.type}</p>
-              <p><strong>Ngày đăng:</strong> {new Date(estate.postDate).toLocaleDateString()}</p> {/* Giả sử postDate là một trường */}
-              {/* Thêm thông tin bất động sản khác ở đây nếu cần */}
-            </Card>
-          </Col>
+    <div className="timeshare-posts-container">
+      <h1>Timeshare Posts</h1>
+      <div className="posts">
+        {posts.map((post, index) => (
+          <div key={index} className="post-card" onClick={() => handlePostClick(post.id)}>
+            <h2>{post.title}</h2>
+            <p>{post.content}</p>
+            <p>Price: ${post.price}</p>
+            <p>Date Posted: {format(new Date(post.postDate), 'PPP')}</p>
+          </div>
         ))}
-      </Row>
+      </div>
     </div>
   );
 };
 
-export default EstateListings;
+export default TimesharePosts;

@@ -6,23 +6,23 @@
     /* Đặt đường dẫn đến ảnh background */
     background-size: cover;
     background-position: center;
-    color: #fff;
-    /* Màu chữ trắng để đảm bảo đọc được trên ảnh */
+    color: #000;
+    /* Màu chữ đen để đảm bảo đọc được trên ảnh */
     text-align: center;
     padding: 100px 0;
     /* Khoảng cách giữa phần header và nội dung phía sau */
   }
   
   .background-section h2 {
-    color: #000;
-    /* Màu đen cho tiêu đề "New Arrival" */
+    color: #fff;
+    /* Màu trắng cho tiêu đề "New Arrival" */
     margin-top: 0;
     /* Loại bỏ margin trên đỉnh */
   }
   
   .background-section p {
-    color: #ffcc00;
-    /* Màu vàng cho đoạn văn bản "Discover Our New Collection" */
+    color: #ccc;
+    /* Màu xám cho đoạn văn bản "Discover Our New Collection" */
     font-size: 1.5em;
     /* Font size lớn hơn */
     margin-top: -10px;
@@ -34,8 +34,8 @@
   }
   
   .buy-now-button {
-    background-color: #aa920c;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #000000;
     padding: 15px 30px;
     font-size: 1.2em;
     text-decoration: none;
@@ -44,7 +44,7 @@
   }
   
   .buy-now-button:hover {
-    background-color: #9fa114;
+    background-color: #f0f0f0;
   }
   
   
@@ -57,6 +57,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    background-color: #ddd;
   }
   
   .card-link {
@@ -126,4 +127,3 @@
         margin: 10px;
     }
 }
-  
