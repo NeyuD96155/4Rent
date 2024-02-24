@@ -22,6 +22,8 @@ import Faq from "../components/Faq";
 import Privacy from "../components/Privacy";
 import Rules from "../components/Rules";
 import Blog from "../components/Blog";
+import ReportError from "../components/ReportError";
+import Insurance from "../components/Insurance";
 function Homepage() {
     return (
         <Router>
@@ -50,6 +52,8 @@ function Homepage() {
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/rules" element={<Rules />} />
                 <Route path="/blog" element={<Blog />} />
+                <Route path="/reporterror" element={<ReportError />} />
+                <Route path="/insurance" element={<Insurance />} />
             </Routes>
             <Footer />
         </Router>

@@ -1,0 +1,32 @@
+/* Post.css */
+
+/* Form Container */
+.post-form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Form Items */
+  .post-form-item {
+    margin-bottom: 15px;
+  }
+  
+  /* Form Labels */
+  .post-form-label {
+    font-weight: bold;
+  }
+  
+  /* Submit Button */
+  .post-submit-button {
+    width: 100%;
+  }
+  .post-form-wrapper {
+    background-image: url('https://images.cenhomes.vn/2020/03/1585033156-can-ho-mau-lovera-garden.jpg');
+    background-size: cover; 
+    background-position: center; 
+    padding: 20px; 
+  }

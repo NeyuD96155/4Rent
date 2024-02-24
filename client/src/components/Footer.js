@@ -52,13 +52,13 @@ const Footer = () => {
                 <h4>Dịch Vụ</h4>
                 <ul>
                     <li>
-                        <a href="#report-error">Báo Lỗi</a>
+                        <Link to="/ReportError">Báo Lỗi</Link>
                     </li>
                     <li>
                         <a href="#ask-online">Hỏi Trực Tuyến</a>
                     </li>
                     <li>
-                        <a href="#insurance">Bảo Hiểm Du Lịch</a>
+                        <Link to="/Insurance">Bảo Hiểm Du Lịch</Link>
                     </li>
                 </ul>
             </div>
