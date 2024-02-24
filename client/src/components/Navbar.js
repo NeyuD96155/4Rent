@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Avatar, Menu, Dropdown } from "antd";
 import {
@@ -7,42 +7,45 @@ import {
     LogoutOutlined,
 } from "@ant-design/icons";
 import "../styles/Navbar.css";
+import { useAuth } from "../context/AuthContext ";
+import { toast } from "react-toastify";
 
 const NavigationBar = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const { isLoggedIn, logout } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Check if the user is logged in by looking for a token in local storage
-        const token = localStorage.getItem("token");
-        setIsLoggedIn(!!token);
-    }, []);
-
+        // Kiểm tra và hiển thị thông báo chào mừng
+        const welcomeMessage = sessionStorage.getItem("welcomeMessage");
+        if (isLoggedIn && welcomeMessage) {
+            toast.success(welcomeMessage);
+            // Xóa thông báo sau khi hiển thị để không hiển thị lại khi reload trang
+            sessionStorage.removeItem("welcomeMessage");
+        }
+    }, [isLoggedIn]);
     const handleLogout = () => {
-        // Remove the token from local storage to log the user out
-        localStorage.removeItem("token");
-        setIsLoggedIn(false);
-        navigate("/signin"); // Redirect the user to the sign-in page
+        logout(); // Sử dụng phương thức logout từ context để xử lý việc đăng xuất
+        navigate("/signin");
     };
 
-    // Define the menu for Dropdown using 'menu' prop
-    const userDropdownMenu = (
+    // Định nghĩa menu và phần còn lại của component như trước
+    const menu = (
         <Menu
             items={[
                 {
                     key: "profile",
                     icon: <UserOutlined />,
-                    label: <Link to="/profile">View Profile</Link>,
+                    label: <Link to="/profile">Xem Thông Tin Cá Nhân</Link>,
                 },
                 {
                     key: "history",
                     icon: <HistoryOutlined />,
-                    label: <Link to="/history">History</Link>,
+                    label: <Link to="/history">Xem Lịch Sử Giao Dịch</Link>,
                 },
                 {
                     key: "logout",
                     icon: <LogoutOutlined />,
-                    label: "Logout",
+                    label: "Đăng Xuất",
                     onClick: handleLogout,
                 },
             ]}
@@ -55,32 +58,25 @@ const NavigationBar = () => {
                 <Link to="/">4Rent</Link>
             </div>
             <div className="navbar-links">
-                <Link to="/news" className="navbar-link">
-                    Tin Tức
-                </Link>
-                <Link to="/guides" className="navbar-link">
-                    Hướng Dẫn
-                </Link>
-                <Link to="/contact" className="navbar-link">
-                    Liên Hệ
-                </Link>
-                <Link to="/about" className="navbar-link">
-                    Về Chúng Tôi
-                </Link>
                 <Link to="/post" className="navbar-link">
-                   Đăng căn hộ
-                </Link>
-                <Link to="/profile" className="navbar-link">
-                   Profile
+                    Đăng căn hộ
                 </Link>
                 {isLoggedIn ? (
-                    <Dropdown menu={userDropdownMenu}>
-                        <a onClick={(e) => e.preventDefault()}>
+                    <Dropdown overlay={menu}>
+                        <button
+                            onClick={(e) => e.preventDefault()}
+                            style={{
+                                background: "none",
+                                border: "none",
+                                cursor: "pointer",
+                                padding: 0,
+                            }}
+                        >
                             <Avatar
                                 style={{ backgroundColor: "#87d068" }}
                                 icon={<UserOutlined />}
                             />
-                        </a>
+                        </button>
                     </Dropdown>
                 ) : (
                     <>
