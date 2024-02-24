@@ -115,8 +115,6 @@ const ProfilePage = () => {
                                 <Input placeholder="Nhập số điện thoại" />
                             </Form.Item>
 
-                            {/* Hiển thị token */}
-
                             <Form.Item>
                                 <Button type="primary" htmlType="submit">
                                     Cập nhật hồ sơ

@@ -7,9 +7,9 @@ const HeroSection = () => {
       
       <h1>CUỘC PHIÊU LƯU ĐANG CHỜ ĐỢI</h1>
       <p> Bạn còn chờ gì nữa ? </p>
-      <div className="hero-btn">
-      <Link to="/guides" className="navbar-link">HƯỚNG DẪN</Link>
-        <Link to="/estate" className="navbar-link">THUÊ NGAY</Link>
+      <div className="hero-button">
+      <Link to="/guides" className="hero-btn">HƯỚNG DẪN</Link>
+        <Link to="/estate" className="hero-btn">THUÊ NGAY</Link>
       </div>
     </div>
   );
