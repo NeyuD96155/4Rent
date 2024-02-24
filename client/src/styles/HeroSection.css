@@ -1,8 +1,8 @@
 .hero-container {
     position: relative;
     text-align: center;
-    color: black; /* Thay đổi màu chữ thành đen */
-    background-image: url('https://wallpapercave.com/wp/wp4110653.jpg');
+    color: black; 
+    background: linear-gradient(rgba(0, 0, 0, 0.501), rgba(0, 0, 0, 0.507)), url('https://wallpapercave.com/wp/wp4110653.jpg');
     background-size: cover;
     height: 100vh;
     display: flex;
@@ -16,14 +16,14 @@
     font-weight: bold;
     margin-bottom: 20px;
     animation: fadeInUp 1s ease;
-    color: rgb(255, 255, 255); /* Thay đổi màu chữ thành đen */
+    color: rgb(255, 255, 255); 
 }
 
 .hero-container p {
     font-size: 1.5rem;
     margin-bottom: 30px;
     animation: fadeInUp 1s ease;
-    color: black; /* Thay đổi màu chữ thành đen */
+    color: rgb(255, 255, 255);
 }
 
 .hero-btn {
@@ -32,11 +32,11 @@
     margin: 20px;
     font-size: 16px;
     font-weight: 700;
-    color: rgb(0, 0, 0); /* Thay đổi màu chữ thành đen */
-    border: 2px solid rgb(128, 139, 171); /* Thay đổi màu viền thành xám nhạt */
+    color: rgb(0, 0, 0); 
+    border: 2px solid rgb(128, 139, 171); 
     cursor: pointer;
     position: relative;
-    background-color: rgba(255, 255, 255, 0.607); /* Thay đổi màu nền thành trắng */
+    background-color: rgba(255, 255, 255, 0.607);
     text-decoration: none;
     overflow: hidden;
     z-index: 1;
