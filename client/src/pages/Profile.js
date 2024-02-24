@@ -12,9 +12,8 @@ const ProfilePage = () => {
     const [token] = useState(localStorage.getItem("token"));
     const [form] = useForm();
 
-    useEffect(() => {
-        fetchProfile();
-    }, []);
+    useEffect(() => { fetchProfile()// eslint-disable-next-line react-hooks/exhaustive-deps
+    ; }, []);
 
     const fetchProfile = async () => {
         try {
@@ -42,15 +41,15 @@ const ProfilePage = () => {
 
     const onFinish = async (values) => {
         const payload = {
-                        id: values.id,
-                        role: values.role,
-                        fullname: values.fullName,
-                        phoneNumber: values.phone,
-                        dateOfBirth: values.dob,
-                        gender: values.gender,
-                        address: values.address,
-                        email: values.email,
-                    };
+            id: values.id,
+            role: values.role,
+            fullname: values.fullName,
+            phoneNumber: values.phone,
+            dateOfBirth: values.dob,
+            gender: values.gender,
+            address: values.address,
+            email: values.email,
+        };
 
         try {
             const response = await api.put("/api/update", payload, {
@@ -92,133 +91,133 @@ const ProfilePage = () => {
     const renderProfileForm = () => (
         <Card title="Thông tin cá nhân">
             <Form layout="vertical" onFinish={onFinish} form={form}>
-            <Form.Item
-                                label="Họ và tên"
-                                name="fullName"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Vui lòng nhập họ và tên!",
-                                    },
-                                ]}
-                            >
-                                <Input placeholder="Nhập họ và tên của bạn" />
-                            </Form.Item>
-                            <Form.Item
-                                label="Số điện thoại"
-                                name="phone"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Vui lòng nhập họ và tên!",
-                                    },
-                                ]}
-                            >
-                                <Input placeholder="Nhập họ và tên của bạn" />
-                            </Form.Item>
-                            <Form.Item label="Năm sinh" name="dob">
-                                <Input placeholder="Nhập năm sinh" />
-                            </Form.Item>
-                            <Form.Item
-                                label="Giới tính"
-                                name="gender"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Vui lòng nhập giới tính!",
-                                    },
-                                ]}
-                            >
-                                <Input placeholder="Nhập số điện thoại" />
-                            </Form.Item>
-                            <Form.Item
-                                label="Địa chỉ"
-                                name="address"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Vui lòng nhập địa chỉ!",
-                                    },
-                                ]}
-                            >
-                                <Input placeholder="Nhập số điện thoại" />
-                            </Form.Item>
-                            <Form.Item
-                                label="Email"
-                                name="email"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Vui lòng nhập địa chỉ Email!",
-                                    },
-                                ]}
-                            >
-                                <Input placeholder="Nhập số điện thoại" />
-                            </Form.Item>
+                <Form.Item
+                    label="Họ và tên"
+                    name="fullName"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Vui lòng nhập họ và tên!",
+                        },
+                    ]}
+                >
+                    <Input placeholder="Nhập họ và tên của bạn" />
+                </Form.Item>
+                <Form.Item
+                    label="Số điện thoại"
+                    name="phone"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Vui lòng nhập họ và tên!",
+                        },
+                    ]}
+                >
+                    <Input placeholder="Nhập họ và tên của bạn" />
+                </Form.Item>
+                <Form.Item label="Năm sinh" name="dob">
+                    <Input placeholder="Nhập năm sinh" />
+                </Form.Item>
+                <Form.Item
+                    label="Giới tính"
+                    name="gender"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Vui lòng nhập giới tính!",
+                        },
+                    ]}
+                >
+                    <Input placeholder="Nhập số điện thoại" />
+                </Form.Item>
+                <Form.Item
+                    label="Địa chỉ"
+                    name="address"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Vui lòng nhập địa chỉ!",
+                        },
+                    ]}
+                >
+                    <Input placeholder="Nhập số điện thoại" />
+                </Form.Item>
+                <Form.Item
+                    label="Email"
+                    name="email"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Vui lòng nhập địa chỉ Email!",
+                        },
+                    ]}
+                >
+                    <Input placeholder="Nhập số điện thoại" />
+                </Form.Item>
 
-                            <Form.Item>
-                                <Button type="primary" htmlType="submit">
-                                    Cập nhật hồ sơ
-                                </Button>
-                            </Form.Item>
+                <Form.Item>
+                    <Button type="primary" htmlType="submit">
+                        Cập nhật hồ sơ
+                    </Button>
+                </Form.Item>
             </Form>
         </Card>
     );
 
     const renderSecurityForm = () => (
         <Card title="Bảo mật">
-             <Form layout="vertical" onFinish={onFinish}>
-                            <Form.Item
-                                label="Mật khẩu hiện tại"
-                                name="currentPassword"
-                                rules={[{ required: true }]}
-                            >
-                                <Input.Password placeholder="Nhập mật khẩu hiện tại" />
-                            </Form.Item>
-                            <Form.Item
-                                label="Mật khẩu mới"
-                                name="newPassword"
-                                rules={[{ required: true }]}
-                            >
-                                <Input.Password placeholder="Nhập mật khẩu mới" />
-                            </Form.Item>
-                            <Form.Item
-                                label="Xác nhận mật khẩu mới"
-                                name="confirmNewPassword"
-                                rules={[{ required: true }]}
-                            >
-                                <Input.Password placeholder="Xác nhận mật khẩu mới" />
-                            </Form.Item>
-                            <Form.Item>
-                                <Button type="primary" htmlType="submit">
-                                    Đổi mật khẩu
-                                </Button>
-                            </Form.Item>
-                        </Form>
+            <Form layout="vertical" onFinish={onFinish}>
+                <Form.Item
+                    label="Mật khẩu hiện tại"
+                    name="currentPassword"
+                    rules={[{ required: true }]}
+                >
+                    <Input.Password placeholder="Nhập mật khẩu hiện tại" />
+                </Form.Item>
+                <Form.Item
+                    label="Mật khẩu mới"
+                    name="newPassword"
+                    rules={[{ required: true }]}
+                >
+                    <Input.Password placeholder="Nhập mật khẩu mới" />
+                </Form.Item>
+                <Form.Item
+                    label="Xác nhận mật khẩu mới"
+                    name="confirmNewPassword"
+                    rules={[{ required: true }]}
+                >
+                    <Input.Password placeholder="Xác nhận mật khẩu mới" />
+                </Form.Item>
+                <Form.Item>
+                    <Button type="primary" htmlType="submit">
+                        Đổi mật khẩu
+                    </Button>
+                </Form.Item>
+            </Form>
         </Card>
     );
 
     const renderNotificationSettings = () => (
         <Card title="Cài đặt thông báo">
             <Form layout="vertical" onFinish={onFinish}>
-                            <Form.Item
-                                label="Thông báo email"
-                                name="emailNotifications"
-                                valuePropName="checked"
-                            >
-                                <Select defaultValue="subscribed">
-                                    <Option value="subscribed">Đăng kí</Option>
-                                    <Option value="unsubscribed">
-                                        Hủy đăng kí
-                                    </Option>
-                                </Select>
-                            </Form.Item>
-                            <Form.Item>
-                                <Button type="primary" htmlType="submit">
-                                    Cập nhật thông báo
-                                </Button>
-                            </Form.Item>
-                        </Form>
+                <Form.Item
+                    label="Thông báo email"
+                    name="emailNotifications"
+                    valuePropName="checked"
+                >
+                    <Select defaultValue="subscribed">
+                        <Option value="subscribed">Đăng kí</Option>
+                        <Option value="unsubscribed">
+                            Hủy đăng kí
+                        </Option>
+                    </Select>
+                </Form.Item>
+                <Form.Item>
+                    <Button type="primary" htmlType="submit">
+                        Cập nhật thông báo
+                    </Button>
+                </Form.Item>
+            </Form>
         </Card>
     );
 
@@ -231,7 +230,7 @@ const ProfilePage = () => {
                     onClick={handleMenuClick}
                     style={{ height: "100%", borderRight: 0 }}
                 >
-                     <Menu.Item key="profile" icon={<UserOutlined />}>
+                    <Menu.Item key="profile" icon={<UserOutlined />}>
                         Hồ sơ
                     </Menu.Item>
                     <Menu.Item key="security" icon={<LockOutlined />}>

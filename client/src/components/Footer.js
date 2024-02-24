@@ -6,27 +6,27 @@ const Footer = () => {
     return (
         <footer className="footer">
             <div className="footer-section">
-                <h4>Về chúng tôi</h4>
+                <h4>Về Chúng Tôi</h4>
                 <ul>
                     <li>
-                        <Link to="/about">Câu chuyện của 4Rent</Link>
+                        <Link to="/about">Câu Chuyện Của 4Rent</Link>
                     </li>
                     <li>
                         <Link to="/contact">Liên Hệ</Link>
                     </li>
                     <li>
-                        <Link to="/FAQ">FAQ</Link>
+                        <Link to="/Faq">FAQ</Link>
                     </li>
                 </ul>
             </div>
             <div className="footer-section">
-                <h4>Chúng tôi cung cấp</h4>
+                <h4>Chúng Tôi Cung Cấp</h4>
                 <ul>
                     <li>
-                        <Link to="/Policy">Chính sách & Bảo mật</Link>
+                        <Link to="/Policy">Chính Sách & Bảo Mật</Link>
                     </li>
                     <li>
-                        <Link to="/Privacy">Quyền riêng tư</Link>
+                        <Link to="/Privacy">Quyền Riêng Tư</Link>
                     </li>
                     <li>
                         <Link to="/Rules">Điều Khoản</Link>
@@ -35,30 +35,30 @@ const Footer = () => {
             </div>
 
             <div className="footer-section">
-                <h4>Blog du lịch</h4>
+                <h4>Du Lịch</h4>
                 <ul>
                     <li>
-                        <a href="#bali">Hướng dẫn du lịch Nha Trang</a>
+                        <Link to="/Blog">4Rent Blog</Link>
                     </li>
                     <li>
-                        <a href="#sri">Hướng dẫn du lịch Đà Nẵng</a>
+                        <Link to="/News">Tin Tức</Link>
                     </li>
                     <li>
-                        <a href="#peru">Hướng dẫn du lịch Hạ Long</a>
+                        <Link to="/Guides">Guides</Link>
                     </li>
                 </ul>
             </div>
             <div className="footer-section">
-                <h4>Dịch vụ</h4>
+                <h4>Dịch Vụ</h4>
                 <ul>
                     <li>
-                        <a href="#report-error">Báo lỗi</a>
+                        <Link to="/ReportError">Báo Lỗi</Link>
                     </li>
                     <li>
-                        <a href="#ask-online">Hỏi trực tuyến</a>
+                        <a href="#ask-online">Hỏi Trực Tuyến</a>
                     </li>
                     <li>
-                        <a href="#insurance">Bảo hiểm du lịch</a>
+                        <Link to="/Insurance">Bảo Hiểm Du Lịch</Link>
                     </li>
                 </ul>
             </div>
