@@ -19,16 +19,14 @@ const NavigationBar = () => {
         const welcomeMessage = sessionStorage.getItem("welcomeMessage");
         if (isLoggedIn && welcomeMessage) {
             toast.success(welcomeMessage);
-            // Xóa thông báo sau khi hiển thị để không hiển thị lại khi reload trang
             sessionStorage.removeItem("welcomeMessage");
         }
     }, [isLoggedIn]);
     const handleLogout = () => {
-        logout(); // Sử dụng phương thức logout từ context để xử lý việc đăng xuất
+        logout();
         navigate("/signin");
     };
 
-    // Định nghĩa menu và phần còn lại của component như trước
     const menu = (
         <Menu
             items={[

@@ -2,7 +2,6 @@
 
 /* Styling cho phần background */
 .background-section {
-    background-image: url('https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?cs=srgb&dl=pexels-alex-staudinger-1732414.jpg&fm=jpg');
     /* Đặt đường dẫn đến ảnh background */
     background-size: cover;
     background-position: center;
