@@ -2,13 +2,14 @@
 
 /* Form Container */
 .post-form-container {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: rgba(249, 249, 249, 0.8);
+}
+
   
   /* Form Items */
   .post-form-item {
