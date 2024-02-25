@@ -22,8 +22,8 @@ const TimesharePosts = () => {
     fetchPosts();
   }, []);
 
-  const handlePostClick = (post) => {
-    navigate(`/post/detail/${post.id}`, { state: { post } });
+  const handlePostClick = (postId) => {
+    navigate(`/post/detail/${postId}`); 
   };
 
   return (
@@ -31,8 +31,12 @@ const TimesharePosts = () => {
       <h1>Timeshare Posts</h1>
       <div className="posts">
         {posts.map((post, index) => (
-          <div key={index} className="post-card" onClick={() => handlePostClick(post)}>
-            {post.resources.length > 0 ? <img src={post.resources[0].url} alt="Post" /> : <img src='https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg' alt="Placeholder" />}
+          <div key={index} className="post-card" onClick={() => handlePostClick(post.id)}>
+            <img 
+              className="post-image"
+              src={post.resources.length > 0 ? post.resources[0].url : 'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg'}
+              alt="Post"
+            />
             <h2>{post.title}</h2>
             <p>{post.content}</p>
             <p>Price: ${post.price}</p>
