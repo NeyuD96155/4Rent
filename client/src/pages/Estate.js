@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import api from "../config/axios";
 import { format } from 'date-fns';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import '../styles/Estate.css';
 
 const TimesharePosts = () => {
   const [posts, setPosts] = useState([]);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -25,7 +25,7 @@ const TimesharePosts = () => {
   const handlePostClick = (postId) => {
     navigate(`/post/detail/${postId}`, { state: { post: posts.find(p => p.id === postId) } });
   };
-  
+
 
   return (
     <div className="timeshare-posts-container">
@@ -34,12 +34,16 @@ const TimesharePosts = () => {
         {posts.map((post, index) => {
           console.log(post.resources);
           return <div key={index} className="post-card" onClick={() => handlePostClick(post.id)}>
-            {post.resources.length > 0 ? <img  src={post.resources[0].url}/> : <img src='https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg'/>}
-          <h2>{post.title}</h2>
-          <p>{post.content}</p>
-          <p>Price: ${post.price}</p>
-          <p>Date Posted: {format(new Date(post.postDate), 'PPP')}</p>
-        </div>
+            {post.resources.length > 0
+              ? <img className="post-image" src={post.resources[0].url} alt="Post" />
+              : <img className="post-image" src='https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg' alt="Placeholder" />
+            }
+
+            <h2>{post.title}</h2>
+            <p>{post.content}</p>
+            <p>Price: ${post.price}</p>
+            <p>Date Posted: {format(new Date(post.postDate), 'PPP')}</p>
+          </div>
         })}
       </div>
     </div>
