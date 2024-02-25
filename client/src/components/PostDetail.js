@@ -57,31 +57,39 @@ const PostDetail = () => {
                 {/* Phần 3: Box Đặt Phòng */}
                 <div className={styles.bookingBoxContainer}>
                     <div className={styles.bookingForm}>
+                        <label htmlFor="checkIn" className={styles.bookingFormLabel}>Check-in:</label>
                         <input
+                            id="checkIn"
                             className={styles.bookingFormItem}
                             type="date"
                             value={checkInDate}
                             onChange={(e) => setCheckInDate(e.target.value)}
                             placeholder="Check-in"
                         />
+                        <label htmlFor="checkOut" className={styles.bookingFormLabel}>Check-out:</label>
                         <input
+                            id="checkOut"
                             className={styles.bookingFormItem}
                             type="date"
                             value={checkOutDate}
                             onChange={(e) => setCheckOutDate(e.target.value)}
                             placeholder="Check-out"
                         />
+                        <label htmlFor="guests" className={styles.bookingFormLabel}>Guests:</label>
                         <input
+                            id="guests"
                             className={styles.bookingFormItem}
                             type="number"
                             value={guests}
                             onChange={(e) => setGuests(e.target.value)}
                             placeholder="Guests"
+                            min="1" // Đảm bảo số khách không thấp hơn 1
                         />
                         {totalFee > 0 && <p className={styles.totalFee}>Total Fee: ${totalFee}</p>}
                         <button type="button" onClick={handleBookRoom}>Book Room</button>
                     </div>
                 </div>
+
 
                 {/* Phần 4: Tiện Nghi */}
                 <div className={styles.amenitiesContainer}>
