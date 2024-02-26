@@ -1,16 +1,16 @@
-/* Base styles */
+
 .container {
     max-width: 1170px;
     margin: 2em auto;
     padding: 1em;
     border-radius: 10px;
     background-color:#cfd3d8;
-    box-sizing: border-box; /* Ensure padding does not affect the container's width */
+    box-sizing: border-box; 
 }
 
 .row {
     display: flex;
-    flex-wrap: wrap; /* Allow rows to wrap in smaller screens */
+    flex-wrap: wrap; 
     align-items: center;
     justify-content: space-between;
     margin: 2em 0;
@@ -22,7 +22,7 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.559);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-bottom: 1em; /* Add space between columns when wrapped */
+    margin-bottom: 1em; 
 }
 
 .col:hover, .col-md-6:hover {
@@ -47,7 +47,7 @@ p {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 992px) {
     .container {
         padding: 0.5em;
@@ -58,20 +58,20 @@ p {
     }
 
     .col, .col-md-6 {
-        /* Adjust column padding for medium devices */
+
         padding: 15px;
     }
 }
 
 @media (max-width: 768px) {
     .row {
-        flex-direction: column; /* Stack columns vertically in smaller devices */
+        flex-direction: column; 
     }
 
     .col, .col-md-6 {
-        /* Ensure full width on small devices */
+
         width: 100%;
-        max-width: 100%; /* Prevents exceeding the parent's width */
+        max-width: 100%;
     }
 }
 
