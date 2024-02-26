@@ -29,10 +29,13 @@ const SignIn = () => {
   };
 
   return (
-    <div className="signup-container">
-      <h1 className="signup-title">Đăng nhập</h1>
+    <div className="login-page">
+         <div className="container">
+    <div className="login-image-section"></div>
+    <div className="login-form-section">
+      <h1 className="login-title">Đăng nhập</h1>
       <Form
-        className="signup-form"
+        className="login-form"
         labelCol={{ span: 24 }}
         onFinish={handleSubmit}
       >
@@ -53,18 +56,16 @@ const SignIn = () => {
         </Form.Item>
 
         <div className="form-actions">
-          <button type="submit" className="signup-submit">Đăng nhập</button>
+          <button type="submit" className="login-submit">Đăng nhập</button>
         </div>
-        <div className="signup-footer">
+        <div className="login-footer">
           Chưa có tài khoản? <Link to="/signup">Đăng kí</Link>
         </div>
       </Form>
-
-      <p className="signup-copy">
-        Copyright © 4Rent Website {new Date().getFullYear()}.
-      </p>
     </div>
-  );
+  </div>
+  </div>
+);
 };
 
 export default SignIn;
