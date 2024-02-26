@@ -103,7 +103,7 @@ const Post = () => {
       </Upload>
         </Form.Item>
         <Form.Item className="post-form-item">
-          <Button type="primary" htmlType="post-submit" className="post-submit-button">
+          <Button type="primary" htmlType="submit" className="post-submit-button">
             Đăng ký
           </Button>
         </Form.Item>

@@ -156,7 +156,7 @@ const ProfilePage = () => {
                 </Form.Item>
 
                 <Form.Item>
-                    <Button type="primary" htmlType="profile-submit">
+                    <Button type="primary" htmlType="submit">
                         Cập nhật hồ sơ
                     </Button>
                 </Form.Item>
@@ -189,7 +189,7 @@ const ProfilePage = () => {
                     <Input.Password placeholder="Xác nhận mật khẩu mới" />
                 </Form.Item>
                 <Form.Item>
-                    <Button type="primary" htmlType="profile-submit">
+                    <Button type="primary" htmlType="submit">
                         Đổi mật khẩu
                     </Button>
                 </Form.Item>
@@ -213,7 +213,7 @@ const ProfilePage = () => {
                     </Select>
                 </Form.Item>
                 <Form.Item>
-                    <Button type="primary" htmlType="profile-submit">
+                    <Button type="primary" htmlType="submit">
                         Cập nhật thông báo
                     </Button>
                 </Form.Item>
