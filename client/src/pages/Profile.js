@@ -156,7 +156,7 @@ const ProfilePage = () => {
                 </Form.Item>
 
                 <Form.Item>
-                    <Button type="primary" htmlType="submit">
+                    <Button type="primary" htmlType="profile-submit">
                         Cập nhật hồ sơ
                     </Button>
                 </Form.Item>
