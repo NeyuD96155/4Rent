@@ -9,10 +9,9 @@ export const AuthProvider = ({ children }) => {
 
     const login = (token, username) => {
         localStorage.setItem('token', token);
-        localStorage.setItem('username', username); // Đảm bảo lưu tên người dùng
+        localStorage.setItem('username', username); 
         setIsLoggedIn(true);
     
-        // Đặt thông báo chào mừng trong sessionStorage
         if (!localStorage.getItem('hasLoggedInBefore')) {
             sessionStorage.setItem('welcomeMessage', `Chào mừng ${username} đã đến với trang web`);
             localStorage.setItem('hasLoggedInBefore', 'true');
@@ -26,7 +25,6 @@ export const AuthProvider = ({ children }) => {
         setIsLoggedIn(false);
     };
 
-    // Cập nhật trạng thái isLoggedIn dựa vào sự thay đổi của localStorage
     useEffect(() => {
         const syncLogout = (event) => {
             if (event.key === 'logout') {
