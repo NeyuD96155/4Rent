@@ -9,16 +9,16 @@ import { useAuth } from '../context/AuthContext ';
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const { login } = useAuth(); // Sử dụng hàm login từ AuthContext
+  const { login } = useAuth(); 
 
   const handleSubmit = async (values) => {
     try {
       const response = await api.post("/login", values);
       if (response.status === 200 && response.data) { 
-        // Sử dụng hàm login từ AuthContext để cập nhật trạng thái đăng nhập
+       
         login(response.data.token, response.data.username);
         toast.success("Đăng nhập thành công!");
-        navigate("/"); // Chuyển hướng người dùng tới trang chính
+        navigate("/"); 
       } else {
         toast.error("Account not enabled or missing data.");
       }
