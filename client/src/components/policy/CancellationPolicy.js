@@ -2,7 +2,7 @@ import React from "react";
 
 const CancellationPolicy = () => {
     return (
-        <div className="cancellation-policy-container">
+        <div className="container">
             <h1>Chính Sách Hủy Phòng</h1>
             <p>
                 Tại 4Rent, chúng tôi hiểu rằng kế hoạch của bạn có thể thay đổi.

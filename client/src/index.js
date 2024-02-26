@@ -5,14 +5,11 @@ import "./App.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ToastContainer } from "react-toastify";
-import { AuthProvider } from "./context/AuthContext ";
+import { AuthProvider } from "./context/AuthContext";
 import { store } from './redux/store';
 import { Provider } from 'react-redux';
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-    
-
-    
     <React.StrictMode>
         <AuthProvider>
             <ToastContainer

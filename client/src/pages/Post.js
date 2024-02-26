@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, DatePicker, InputNumber, Upload } from 'antd';
-import api from '../config/axios'; // Ensure axios is correctly configured
+import api from '../config/axios'; 
 import { toast } from "react-toastify";
 import { PlusOutlined } from '@ant-design/icons';
 import uploadFile from '../utils/upload';
@@ -23,12 +23,12 @@ const Post = () => {
     const formattedValues = {
       ...values,
       postDate: values.postDate.format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
-      price: parseInt(values.price, 10), // Ensure the value is an integer
+      price: parseInt(values.price, 10), 
       resources
     };
 
     try {
-      await api.post('/post', formattedValues); // Remove 'response' since it's not being used
+      await api.post('/post', formattedValues); 
       toast.success("Căn hộ đã được đăng ký thành công!");
       form.resetFields();
     } catch (error) {
@@ -76,7 +76,7 @@ const Post = () => {
     </button>
   );
   return (
-    <div className="post-form-wrapper">
+    <div className="form-container">
       <Form form={form} layout="vertical" onFinish={handleSubmit} autoComplete="off" className="post-form-container">
         <Form.Item name="title" label="Tiêu đề" rules={[{ required: true, message: 'Vui lòng nhập tiêu đề!' }]} className="post-form-item">
           <Input />

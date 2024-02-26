@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import api from "../config/axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -37,7 +36,7 @@ const SignUp = () => {
     };
 
     return (
-        <div className="signup-container">
+        <div className="sign-container">
             <h1 className="signup-title">Đăng kí</h1>
             <Form
                 form={form}
@@ -175,7 +174,7 @@ const SignUp = () => {
                     ]}
                 >
                     <Checkbox>
-                        Tôi đã đọc và đồng ý với  {" "}
+                        Tôi đã đọc và đồng ý với{" "}
                         <span
                             style={{ color: "#1890ff", cursor: "pointer" }}
                             onClick={showTermsModal}

@@ -1,10 +1,7 @@
-// Card.js
 import React from "react";
 import PropTypes from "prop-types";
 
-
 const Card = ({ title, description, imageUrl, price }) => {
-    
     return (
         <div className="card">
             <h2 className="card-title">{title}</h2>

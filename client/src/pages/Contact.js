@@ -10,7 +10,7 @@ const ContactPage = () => {
 
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
-    // Tùy thuộc vào loại yêu cầu, hãy gửi thông tin liên lạc đến backend hoặc dịch vụ email
+
   };
 
   const handleMenuClick = (e) => {
