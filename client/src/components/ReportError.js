@@ -1,6 +1,6 @@
 // ReportError.js
 import React, { useState } from 'react';
-import '../styles/ReportError.css';
+
 
 const ReportError = () => {
   const [errorMessage, setErrorMessage] = useState('');

@@ -6,7 +6,6 @@ import {
     HistoryOutlined,
     LogoutOutlined,
 } from "@ant-design/icons";
-import "../styles/Navbar.css";
 import { useAuth } from "../context/AuthContext ";
 import { toast } from "react-toastify";
 

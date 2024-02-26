@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Form, Input, Button, DatePicker, InputNumber, Upload } from 'antd';
 import api from '../config/axios'; // Ensure axios is correctly configured
 import { toast } from "react-toastify";
-import "../styles/Post.css";
 import { PlusOutlined } from '@ant-design/icons';
 import uploadFile from '../utils/upload';
 import { v4 as uuidv4 } from 'uuid';

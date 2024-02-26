@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-import '../styles/Policy.css';
 
 const Policy = () => {
   return (

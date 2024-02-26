@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/Faq.css';
+
 
 const Faq = () => {
   const [faqs, setFaqs] = useState([

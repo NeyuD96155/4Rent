@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/HeroSection.css';
+
 import { Link } from "react-router-dom";
 
 const HeroSection = () => {
