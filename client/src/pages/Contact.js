@@ -33,7 +33,7 @@ const ContactPage = () => {
                 <TextArea rows={4} placeholder="Tin nhắn của bạn ở đây" />
               </Form.Item>
               <Form.Item>
-                <Button type="primary" htmlType="submit">Gửi tin nhắn</Button>
+                <Button type="primary" htmlType="contact-submit">Gửi tin nhắn</Button>
               </Form.Item>
             </Form>
           </Card>
@@ -49,7 +49,7 @@ const ContactPage = () => {
                 <Rate />
               </Form.Item>
               <Form.Item>
-                <Button type="primary" htmlType="submit">Gửi đóng góp</Button>
+                <Button type="primary" htmlType="contact-submit">Gửi đóng góp</Button>
               </Form.Item>
             </Form>
           </Card>
@@ -65,7 +65,7 @@ const ContactPage = () => {
                 <Input placeholder="Email của bạn" />
               </Form.Item>
               <Form.Item>
-                <Button type="primary" htmlType="submit">Gửi yêu cầu hỗ trợ</Button>
+                <Button type="primary" htmlType="contact-submit">Gửi yêu cầu hỗ trợ</Button>
               </Form.Item>
             </Form>
           </Card>
