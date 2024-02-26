@@ -10,7 +10,7 @@ import SignIn from "../pages/SignIn";
 import {GettingStarted,ExchangeTimeshares,MaximizeVacation,} from "../components/guide/GettingStarted";
 import Payment from "./Payment";
 import CancellationPolicy from "../components/policy/CancellationPolicy";
-import PostDetail from "../components/PostDetail";
+// import PostDetail from "../components/PostDetail";
 import News from "../pages/News";
 import Landing from "../pages/Landing";
 import Post from "../pages/Post"
@@ -42,7 +42,7 @@ function Homepage() {
                 <Route path="/exchange-timeshares" element={<ExchangeTimeshares />}/>
                 <Route path="/" element={<Landing />} />
                 <Route path="/maximize-vacation" element={<MaximizeVacation />}/>
-                <Route path="/post/detail/:postId" element={<PostDetail />} />
+                {/* <Route path="/post/detail/:postId" element={<PostDetail />} /> */}
                 <Route path="/post" element={<Post />} />
                 <Route path="/estate" element={<Estate />} />
                 <Route path="/booking" element={<Booking />} />

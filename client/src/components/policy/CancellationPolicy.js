@@ -1,5 +1,4 @@
 import React from "react";
-import "../../styles/CancellationPolicy.css"; // Assuming you have a CSS file for this component
 
 const CancellationPolicy = () => {
     return (

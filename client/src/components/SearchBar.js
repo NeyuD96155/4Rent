@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/SearchBar.css"; // Đảm bảo link đến file CSS của bạn
+
 
 const SearchBar = () => {
     return (

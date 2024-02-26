@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import api from "../config/axios";
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
-import '../styles/Estate.css';
 
 const TimesharePosts = () => {
   const [posts, setPosts] = useState([]);
