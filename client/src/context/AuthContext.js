@@ -1,34 +1,39 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-const AuthContext = createContext(null); // Changed to null for a more explicit initial value
+const AuthContext = createContext(null);
 
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
-    const [isAuthenticated, setAuthenticated] = useState(Boolean(localStorage.getItem('token'))); // Changed variable name for clarity
+    const [isAuthenticated, setAuthenticated] = useState(Boolean(localStorage.getItem('token')));
+    const [user, setUser] = useState({ name: localStorage.getItem('username') });
 
-    const signIn = (token, username) => { // Changed method name to signIn for consistency
+    const signIn = (token, username) => {
         localStorage.setItem('token', token);
-        localStorage.setItem('username', username); 
+        localStorage.setItem('username', username);
         setAuthenticated(true);
-    
+        setUser({ name: username });
+
         const welcomeMessage = !localStorage.getItem('hasLoggedInBefore')
-            ? `Welcome ${username} to our site` // Changed message to English for consistency
+            ? `Welcome ${username} to our site`
             : `Welcome back, ${username}`;
-        
+
         sessionStorage.setItem('welcomeMessage', welcomeMessage);
         localStorage.setItem('hasLoggedInBefore', 'true');
     };
 
-    const signOut = () => { // Changed method name to signOut for consistency
+    const signOut = () => {
         localStorage.removeItem('token');
+        localStorage.removeItem('username');
         setAuthenticated(false);
+        setUser(null);
     };
 
     useEffect(() => {
-        const handleStorageEvent = event => { // Renamed for clarity
+        const handleStorageEvent = event => {
             if (event.key === 'logout') {
                 setAuthenticated(false);
+                setUser(null);
             }
         };
 
@@ -37,7 +42,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, signIn, signOut }}>
+        <AuthContext.Provider value={{ isAuthenticated, signIn, signOut, user }}>
             {children}
         </AuthContext.Provider>
     );

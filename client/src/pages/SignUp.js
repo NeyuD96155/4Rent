@@ -12,10 +12,12 @@ const SignUp = () => {
     const [form] = Form.useForm();
     const navigate = useNavigate();
 
+    // Show modal with terms and conditions
     const showTermsModal = () => setIsTermsModalVisible(true);
     const handleTermsModalOk = () => setIsTermsModalVisible(false);
     const handleTermsModalCancel = () => setIsTermsModalVisible(false);
 
+    // Handle form submission
     const handleSubmit = async (values) => {
         try {
             const response = await api.post("/register", values);
@@ -30,12 +32,12 @@ const SignUp = () => {
     };
 
     return (
-        <div className="signup-container">
-            <h1 className="signup-title">Sign Up</h1>
+        <div className="sign-up">
+            <h1 className="sign-up__title">Sign Up</h1>
             <Form
                 form={form}
-                name="signup-form"
-                className="signup-form"
+                name="sign-up-form"
+                className="sign-up__form"
                 onFinish={handleSubmit}
                 layout="vertical"
                 autoComplete="off"
@@ -44,8 +46,9 @@ const SignUp = () => {
                     name="role"
                     label="Role"
                     rules={[{ required: true, message: "Please select your role!" }]}
+                    className="sign-up__form-item"
                 >
-                    <Select placeholder="Select a role">
+                    <Select placeholder="Select a role" className="sign-up__select">
                         <Option value="MEMBER">Member</Option>
                         <Option value="RENTER">Renter</Option>
                     </Select>
@@ -58,16 +61,18 @@ const SignUp = () => {
                         { type: "email", message: "The input is not valid E-mail!" },
                         { required: true, message: "Please input your E-mail!" },
                     ]}
+                    className="sign-up__form-item"
                 >
-                    <Input />
+                    <Input className="sign-up__input" />
                 </Form.Item>
 
                 <Form.Item
                     name="username"
                     label="Username"
                     rules={[{ required: true, message: "Please input your username!" }]}
+                    className="sign-up__form-item"
                 >
-                    <Input />
+                    <Input className="sign-up__input" />
                 </Form.Item>
 
                 <Form.Item
@@ -86,8 +91,9 @@ const SignUp = () => {
                         }),
                     ]}
                     hasFeedback
+                    className="sign-up__form-item"
                 >
-                    <Input.Password />
+                    <Input.Password className="sign-up__input-password" />
                 </Form.Item>
 
                 <Form.Item
@@ -106,8 +112,9 @@ const SignUp = () => {
                             },
                         }),
                     ]}
+                    className="sign-up__form-item"
                 >
-                    <Input.Password />
+                    <Input.Password className="sign-up__input-password" />
                 </Form.Item>
 
                 <Form.Item
@@ -118,20 +125,21 @@ const SignUp = () => {
                             validator: (_, value) => value ? Promise.resolve() : Promise.reject(new Error("You must agree to the terms and conditions!")),
                         },
                     ]}
+                    className="sign-up__form-item"
                 >
-                    <Checkbox>
-                        I have read and agree to the <a onClick={showTermsModal}>terms and conditions</a>.
+                    <Checkbox className="sign-up__checkbox">
+                        I have read and agree to the <a onClick={showTermsModal} className="sign-up__terms-link">terms and conditions</a>.
                     </Checkbox>
                 </Form.Item>
 
-                <Form.Item>
-                    <Button type="primary" htmlType="submit" className="signup-submit-button">
+                <Form.Item className="sign-up__form-item">
+                    <Button type="primary" htmlType="submit" className="sign-up__submit-button">
                         Sign Up
                     </Button>
                 </Form.Item>
 
-                <div className="signup-footer">
-                    Already have an account? <Link to="/signin">Sign In</Link>
+                <div className="sign-up__footer">
+                    Already have an account? <Link to="/signin" className="sign-up__sign-in-link">Sign In</Link>
                 </div>
             </Form>
 
@@ -141,18 +149,17 @@ const SignUp = () => {
                 onOk={handleTermsModalOk}
                 onCancel={handleTermsModalCancel}
                 footer={[
-                    <Button key="back" onClick={handleTermsModalCancel}>
+                    <Button key="back" onClick={handleTermsModalCancel} className="sign-up__modal-button">
                         Return
                     </Button>,
-                    <Button key="submit" type="primary" onClick={handleTermsModalOk}>
+                    <Button key="submit" type="primary" onClick={handleTermsModalOk} className="sign-up__modal-button">
                         Agree
                     </Button>,
                 ]}
+                className="sign-up__modal"
             >
                 <p>Your terms and conditions content goes here.</p>
             </Modal>
-
-            <p className="signup-footer">Copyright © Your Website {new Date().getFullYear()}.</p>
         </div>
     );
 };

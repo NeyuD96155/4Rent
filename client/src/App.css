@@ -1,0 +1,480 @@
+/* SIGN IN */
+.sign-in {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+
+.sign-in__container {
+    width: 90%;
+    max-width: 400px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sign-in__form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sign-in__title {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sign-in__form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sign-in__submit-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.sign-in__submit-button:hover {
+    background-color: #0056b3;
+}
+
+.sign-in__footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+.sign-in__signup-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+/* SIGN UP  */
+.sign-up {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #eaeaea;
+}
+
+.sign-up__title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.sign-up__form {
+    width: 100%;
+    max-width: 450px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.sign-up__form-item {
+    margin-bottom: 15px;
+}
+
+.sign-up__input, .sign-up__select, .sign-up__input-password {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.sign-up__submit-button {
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.sign-up__submit-button:hover {
+    background-color: #45a049;
+}
+
+.sign-up__footer {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+.sign-up__sign-in-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.sign-up__modal, .sign-up__modal-button {
+    display: none; /* Assuming modal is hidden by default */
+}
+
+.sign-up__checkbox {
+    margin-right: 10px;
+}
+
+.sign-up__terms-link {
+    color: #007bff;
+    text-decoration: none;
+}
+/* PROFILE  */
+.profile-page {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+.profile-page__sider {
+    background-color: #f0f2f5;
+}
+
+.profile-page__menu {
+    height: 100%;
+    border-right: 0;
+}
+
+.profile-page__layout {
+    padding: 24px;
+}
+
+.profile-page__content {
+    background: #fff;
+    padding: 24px;
+    margin: 0;
+    min-height: 280px;
+}
+
+.profile-page__card {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+}
+
+.profile-form, .security-form, .notification-settings-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile-form__item, .security-form__item, .notification-settings-form__item {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-form__input, .security-form__input {
+    height: 40px;
+    padding: 0 15px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+}
+
+.profile-form__select, .notification-settings-form__select {
+    width: 100%;
+    height: 40px;
+}
+
+.profile-form__submit-button, .security-form__submit-button, .notification-settings-form__submit-button {
+    height: 40px;
+    background-color: #1890ff;
+    border-color: #1890ff;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.profile-form__submit-button:hover, .security-form__submit-button:hover, .notification-settings-form__submit-button:hover {
+    background-color: #40a9ff;
+    border-color: #40a9ff;
+}
+/* FOOTER  */
+.footer {
+    background-color: #f2f2f2;
+    color: #333;
+    font-size: 14px;
+    padding: 40px 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.footer__sections {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.footer__section {
+    flex: 1;
+}
+
+.footer__section h4 {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.footer__section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer__section ul li {
+    margin-bottom: 10px;
+}
+
+.footer__section ul li a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer__section ul li a:hover {
+    color: #007bff;
+}
+
+.footer__payment {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.footer__payment img {
+    height: 40px;
+    width: auto;
+}
+
+.footer__bottom p {
+    text-align: center;
+    margin: 5px 0;
+}
+/* NAVBAR  */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar__logo a {
+    display: flex;
+    align-items: center;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.navbar__logo a .anticon {
+    margin-right: 8px;
+}
+
+.navbar__links {
+    display: flex;
+    align-items: center;
+}
+
+.navbar__link {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.navbar__link .anticon {
+    margin-right: 5px;
+}
+
+.navbar__link:hover {
+    color: #007bff;
+}
+
+.navbar__user-dropdown {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.navbar__username {
+    margin-left: 8px;
+    color: #333;
+}
+
+.navbar__user-dropdown:hover {
+    color: #007bff;
+}
+
+.ant-dropdown-link {
+    display: flex;
+    align-items: center;
+}
+
+.ant-dropdown-menu-item {
+    display: flex;
+    align-items: center;
+}
+
+.ant-dropdown-menu-item a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.ant-dropdown-menu-item-icon {
+    margin-right: 8px;
+}
+/* HEROSECTION  */
+.hero-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://www.timesharescam.com/static/65f5bc9c4e4db131603d2bdfca67f03d/16310/timeshare-properties-354.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 90vh;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero-section__content {
+    max-width: 600px;
+}
+
+.hero-section__title {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero-section__subtitle {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.hero-section__buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.hero-section__button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.hero-section__button--guides {
+    background-color: #007bff;
+}
+
+.hero-section__button--guides:hover {
+    background-color: #0056b3;
+}
+
+.hero-section__button--rent {
+    background-color: #28a745;
+}
+
+.hero-section__button--rent:hover {
+    background-color: #218838;
+}
+/* ESTATE  */
+.timeshare-posts-container {
+    padding: 20px;
+    text-align: center;
+}
+
+.timeshare-posts-title {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    justify-content: center;
+}
+
+.post-card {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.post-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.post-card__image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.post-card__content {
+    padding: 15px;
+}
+
+.post-card__title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.post-card__description {
+    font-size: 16px;
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.post-card__price {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.post-card__date {
+    font-size: 14px;
+    color: #999;
+    margin-top: 5px;
+}
