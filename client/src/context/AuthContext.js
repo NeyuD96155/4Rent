@@ -1,45 +1,43 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-const AuthContext = createContext();
+const AuthContext = createContext(null); // Changed to null for a more explicit initial value
 
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
+    const [isAuthenticated, setAuthenticated] = useState(Boolean(localStorage.getItem('token'))); // Changed variable name for clarity
 
-    const login = (token, username) => {
+    const signIn = (token, username) => { // Changed method name to signIn for consistency
         localStorage.setItem('token', token);
         localStorage.setItem('username', username); 
-        setIsLoggedIn(true);
+        setAuthenticated(true);
     
-        if (!localStorage.getItem('hasLoggedInBefore')) {
-            sessionStorage.setItem('welcomeMessage', `Chào mừng ${username} đã đến với trang web`);
-            localStorage.setItem('hasLoggedInBefore', 'true');
-        } else {
-            sessionStorage.setItem('welcomeMessage', `Chào mừng ${username} đã quay trở lại`);
-        }
+        const welcomeMessage = !localStorage.getItem('hasLoggedInBefore')
+            ? `Welcome ${username} to our site` // Changed message to English for consistency
+            : `Welcome back, ${username}`;
+        
+        sessionStorage.setItem('welcomeMessage', welcomeMessage);
+        localStorage.setItem('hasLoggedInBefore', 'true');
     };
 
-    const logout = () => {
+    const signOut = () => { // Changed method name to signOut for consistency
         localStorage.removeItem('token');
-        setIsLoggedIn(false);
+        setAuthenticated(false);
     };
 
     useEffect(() => {
-        const syncLogout = (event) => {
+        const handleStorageEvent = event => { // Renamed for clarity
             if (event.key === 'logout') {
-                setIsLoggedIn(false);
+                setAuthenticated(false);
             }
         };
 
-        window.addEventListener('storage', syncLogout);
-        return () => {
-            window.removeEventListener('storage', syncLogout);
-        };
+        window.addEventListener('storage', handleStorageEvent);
+        return () => window.removeEventListener('storage', handleStorageEvent);
     }, []);
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+        <AuthContext.Provider value={{ isAuthenticated, signIn, signOut }}>
             {children}
         </AuthContext.Provider>
     );

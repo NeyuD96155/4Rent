@@ -6,19 +6,19 @@ import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-toastify';
 
 const NavigationBar = () => {
-  const { isLoggedIn, logout } = useAuth();
+  const { isAuthenticated, signOut } = useAuth(); // Adjusted to use isAuthenticated and signOut
   const navigate = useNavigate();
 
   useEffect(() => {
     const welcomeMessage = sessionStorage.getItem('welcomeMessage');
-    if (isLoggedIn && welcomeMessage) {
+    if (isAuthenticated && welcomeMessage) { // Adjusted to use isAuthenticated
       toast.success(welcomeMessage);
       sessionStorage.removeItem('welcomeMessage');
     }
-  }, [isLoggedIn]);
+  }, [isAuthenticated]); // Adjusted to use isAuthenticated
 
   const handleLogout = () => {
-    logout();
+    signOut(); // Adjusted to use signOut
     navigate('/signin');
   };
 
@@ -28,17 +28,17 @@ const NavigationBar = () => {
         {
           key: 'profile',
           icon: <UserOutlined />,
-          label: <Link to="/profile">Profile</Link>, // Changed text for consistency
+          label: <Link to="/profile">Profile</Link>,
         },
         {
           key: 'history',
           icon: <HistoryOutlined />,
-          label: <Link to="/history">Transaction History</Link>, // Changed text for consistency
+          label: <Link to="/history">Transaction History</Link>,
         },
         {
           key: 'logout',
           icon: <LogoutOutlined />,
-          label: 'Logout', // Changed text for consistency
+          label: 'Logout',
           onClick: handleLogout,
         },
       ]}
@@ -50,11 +50,11 @@ const NavigationBar = () => {
       <div className="logo">
         <Link to="/">4Rent</Link>
       </div>
-      <div className="links">
-        <Link to="/post" className="link">Post Apartment</Link> // Changed text for consistency
-        <Link to="/estate" className="link">Apartments</Link> // Changed text for consistency
-        {isLoggedIn ? (
-          <Dropdown overlay={menu}>
+      <div className="navigation-links">
+        <Link to="/post" className="nav-link">Post Apartment</Link>
+        <Link to="/estate" className="nav-link">Apartments</Link>
+        {isAuthenticated ? ( // Adjusted to use isAuthenticated
+          <Dropdown overlay={menu} className="user-dropdown">
             <Avatar
               style={{ backgroundColor: '#87d068', cursor: 'pointer' }}
               icon={<UserOutlined />}
@@ -62,8 +62,8 @@ const NavigationBar = () => {
           </Dropdown>
         ) : (
           <>
-            <Link to="/signin" className="link">Sign In</Link>
-            <Link to="/signup" className="link">Sign Up</Link>
+            <Link to="/signin" className="nav-link">Sign In</Link>
+            <Link to="/signup" className="nav-link">Sign Up</Link>
           </>
         )}
       </div>
