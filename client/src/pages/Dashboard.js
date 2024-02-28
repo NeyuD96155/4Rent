@@ -91,6 +91,11 @@ const AccountsComponent = () => {
       </div>
     ),
     filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+    onFilter: (value, record) =>
+      record[dataIndex]
+        .toLowerCase()
+        .split('@')[0] // Chia địa chỉ email thành phần trước và sau dấu '@' và lấy phần trước
+        .includes(value.toLowerCase()),
   });
 
   const columns = [
@@ -111,8 +116,9 @@ const AccountsComponent = () => {
       dataIndex: 'role',
       key: 'role',
       filters: [
-        { text: 'Admin', value: 'admin' },
-        { text: 'User', value: 'user' },
+        { text: 'Admin', value: 'ADMIN' },
+        { text: 'Member', value: 'MEMBER' },
+        { text: 'Renter', value: 'RENTER' },
       ],
       onFilter: (value, record) => record.role.indexOf(value) === 0,
     },
@@ -160,7 +166,6 @@ const AccountsComponent = () => {
 
   return (
     <div>
-      <h2>Accounts List</h2>
       <Table
         columns={columns}
         dataSource={items}
