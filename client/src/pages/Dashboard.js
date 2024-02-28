@@ -40,7 +40,7 @@ import { fetchAccounts } from '../redux/features/accountsSlice';
 import { Table, Input, Button, Space, Highlighter, message,Modal } from 'antd';
 import { SearchOutlined, EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 
-const AccountsComponent = () => {
+const DashBoard = () => {
   const dispatch = useDispatch();
   const { items, status, error } = useSelector((state) => state.accounts);
   const [searchText, setSearchText] = useState('');
@@ -107,7 +107,7 @@ const AccountsComponent = () => {
     },
     {
       title: 'Name',
-      dataIndex: 'name',
+      dataIndex: 'fullname',
       key: 'name',
       ...getColumnSearchProps('name'),
     },
@@ -195,4 +195,4 @@ const AccountsComponent = () => {
   );
 };
 
-export default AccountsComponent;
+export default DashBoard;

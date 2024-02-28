@@ -18,7 +18,6 @@ import moment from "moment";
 const { Content, Sider } = Layout;
 const { Option } = Select;
 
-
 const ProfilePage = () => {
     const [selectedKey, setSelectedKey] = useState("profile");
     const [token] = useState(localStorage.getItem("token"));
@@ -36,12 +35,14 @@ const ProfilePage = () => {
                 },
             });
             form.setFieldsValue({
-                fullName: response.data.fullname,
-                phone: response.data.phoneNumber,
-                dob: moment(response.data.dateOfBirth),
-                address: response.data.address,
-                gender: response.data.gender,
-                email: response.data.email,
+                fullName: response.data.fullname ?? "",
+                phone: response.data.phoneNumber ?? "",
+                dob: response.data.dateOfBirth
+                    ? moment(response.data.dateOfBirth)
+                    : null,
+                address: response.data.address ?? "",
+                gender: response.data.gender ?? "",
+                email: response.data.email ?? "",
             });
         } catch (error) {
             console.error(
@@ -62,7 +63,7 @@ const ProfilePage = () => {
             role: values.role,
             fullname: values.fullName,
             phoneNumber: values.phone,
-            dateOfBirth: values.dob,
+            dateOfBirth: moment(values.dob),
             gender: values.gender,
             address: values.address,
             email: values.email,
@@ -117,7 +118,7 @@ const ProfilePage = () => {
                     name="fullName"
                     rules={[
                         {
-                            
+                            required: true,
                             message: "Vui lòng nhập họ và tên!",
                         },
                     ]}
@@ -129,7 +130,6 @@ const ProfilePage = () => {
                     name="phone"
                     rules={[
                         {
-                            
                             message: "Vui lòng nhập họ và tên!",
                         },
                     ]}
@@ -137,31 +137,38 @@ const ProfilePage = () => {
                     <Input placeholder="Nhập họ và tên của bạn" />
                 </Form.Item>
                 <Form.Item label="Ngày sinh" name="dob">
-                <DatePicker defaultValue={moment('01-01-2000', 'DD-MM-YYYY')} format="DD-MM-YYYY" />
-
+                    <DatePicker
+                        defaultValue={moment("01-01-2000", "DD-MM-YYYY")}
+                        format="DD-MM-YYYY"
+                    />
                 </Form.Item>
 
                 <Form.Item
                     label="Giới tính"
                     name="gender"
-                    rules={[
-                        {
-                            
-                            message: "Vui lòng chọn giới tính!",
-                        },
-                    ]}
+                    rules={[{ message: "Vui lòng chọn giới tính!" }]}
                 >
-                    <Select placeholder="Chọn giới tính">
+                    <Select
+                        placeholder="Chọn giới tính"
+                        dropdownRender={(menu) => (
+                            <>
+                                <Option disabled value="">
+                                    Chọn giới tính
+                                </Option>
+                                {menu}
+                            </>
+                        )}
+                    >
                         <Option value="male">Nam</Option>
                         <Option value="female">Nữ</Option>
                     </Select>
                 </Form.Item>
+
                 <Form.Item
                     label="Địa chỉ"
                     name="address"
                     rules={[
                         {
-                            
                             message: "Vui lòng nhập địa chỉ!",
                         },
                     ]}
@@ -173,7 +180,6 @@ const ProfilePage = () => {
                     name="email"
                     rules={[
                         {
-                            
                             message: "Vui lòng nhập địa chỉ Email!",
                         },
                     ]}

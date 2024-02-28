@@ -8,7 +8,7 @@ import uploadFile from "../utils/upload";
 import { v4 as uuidv4 } from "uuid";
 const Post = () => {
     const [form] = Form.useForm();
-
+const [price,setPrice]= useState();
     const handleSubmit = async (values) => {
         const images = values.resource.fileList;
         console.log(values);
@@ -119,11 +119,12 @@ const Post = () => {
                     className="post-form-item"
                 >
                     <InputNumber
-                        
                         style={{ width: "100%" }}
+                        value={price}
+                        onChange={setPrice}
                         formatter={(value) =>
                             `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
-                            "VND"
+                            (price ? " VND" : "")
                         }
                         parser={(value) => value.replace(/\D/g, "")}
                     />
