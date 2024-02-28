@@ -42,7 +42,7 @@ const TimesharePosts = () => {
 
             <h2>{post.title}</h2>
             <p>{post.content}</p>
-            <p>Price: ${post.price}</p>
+            <p>Price: {post.price} vnđ</p>
             <p>Date Posted: {format(new Date(post.postDate), 'PPP')}</p>
           </div>
         })}
