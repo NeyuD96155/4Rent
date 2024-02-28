@@ -1,114 +1,109 @@
 import React, { useState } from 'react';
-import { Form, Input, Button, DatePicker, InputNumber, Upload } from 'antd';
-import api from '../config/axios'; // Ensure axios is correctly configured
-import { toast } from "react-toastify";
+import { Form, Input, Button, DatePicker, InputNumber, Upload, Modal } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
+import api from '../config/axios';
+import { toast } from "react-toastify";
 import uploadFile from '../utils/upload';
 import { v4 as uuidv4 } from 'uuid';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Post = () => {
   const [form] = Form.useForm();
+  const [fileList, setFileList] = useState([]);
 
   const handleSubmit = async (values) => {
-    const images = values.resource.fileList;
-    console.log(values);
-    console.log();
-    const resources = await Promise.all(images.map(async(item)=>{
-      const url = await uploadFile(item.originFileObj, uuidv4())
-      return {
-        resourceType: "IMAGE",
-        url: url
-      }
-    }))
-    console.log(resources);
-    const formattedValues = {
-      ...values,
-      postDate: values.postDate.format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
-      price: parseInt(values.price, 10), // Ensure the value is an integer
-      resources
-    };
-
+    // Filter out fileList to ensure it only contains file info
+    const images = fileList.map(file => file.originFileObj ? file.originFileObj : file);
+    
     try {
-      await api.post('/post', formattedValues); // Remove 'response' since it's not being used
+      const resources = await Promise.all(images.map(async (file) => {
+        const url = await uploadFile(file, uuidv4());
+        return { resourceType: "IMAGE", url };
+      }));
+
+      const formattedValues = {
+        ...values,
+        postDate: values.postDate.format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
+        price: values.price, // No need to parseInt, InputNumber handles that
+        resources,
+      };
+
+      await api.post('/posts', formattedValues);
       toast.success("Căn hộ đã được đăng ký thành công!");
       form.resetFields();
+      setFileList([]);
     } catch (error) {
-      toast.error(`Đăng ký thất bại: ${error.response?.data || error.message}`);
+      toast.error(`Đăng ký thất bại: ${error.response?.data.message || error.message}`);
     }
   };
-  const [previewOpen, setPreviewOpen] = useState(false);
-  const [previewImage, setPreviewImage] = useState('');
-  const [previewTitle, setPreviewTitle] = useState('');
-  const [fileList, setFileList] = useState([]);
-  const getBase64 = (file) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = (error) => reject(error);
-  });
 
-  const handleCancel = () => setPreviewOpen(false);
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);
     }
-    setPreviewImage(file.url || file.preview);
-    setPreviewOpen(true);
-    setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
+
+    Modal.info({
+      title: file.name || file.url.substring(file.url.lastIndexOf('/') + 1),
+      content: <img alt="example" style={{ width: '100%' }} src={file.url || file.preview} />,
+    });
   };
+
   const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
+
   const uploadButton = (
-    <button
-      style={{
-        border: 0,
-        background: 'none',
-      }}
-      type="button"
-    >
+    <div>
       <PlusOutlined />
-      <div
-        style={{
-          marginTop: 8,
-        }}
-      >
-        Upload
-      </div>
-    </button>
+      <div style={{ marginTop: 8 }}>Upload</div>
+    </div>
   );
+
   return (
     <div className="post-form-wrapper">
-      <Form form={form} layout="vertical" onFinish={handleSubmit} autoComplete="off" className="post-form-container">
-        <Form.Item name="title" label="Tiêu đề" rules={[{ required: true, message: 'Vui lòng nhập tiêu đề!' }]} className="post-form-item">
+      <Form form={form} layout="vertical" onFinish={handleSubmit} autoComplete="off">
+        <Form.Item name="title" label="Tiêu đề" rules={[{ required: true, message: 'Vui lòng nhập tiêu đề!' }]}>
           <Input />
         </Form.Item>
-        <Form.Item name="content" label="Nội dung" rules={[{ required: true, message: 'Vui lòng nhập nội dung!' }]} className="post-form-item">
+        <Form.Item name="content" label="Nội dung" rules={[{ required: true, message: 'Vui lòng nhập nội dung!' }]}>
           <Input.TextArea rows={4} />
         </Form.Item>
-        <Form.Item name="price" label="Giá" rules={[{ required: true, message: 'Vui lòng nhập giá!' }]} className="post-form-item">
+        <Form.Item name="price" label="Giá" rules={[{ required: true, message: 'Vui lòng nhập giá!' }]}>
           <InputNumber style={{ width: '100%' }} />
         </Form.Item>
-        <Form.Item name="postDate" label="Ngày đăng" rules={[{ required: true, message: 'Vui lòng chọn ngày đăng!' }]} className="post-form-item">
+        <Form.Item name="postDate" label="Ngày đăng" rules={[{ required: true, message: 'Vui lòng chọn ngày đăng!' }]}>
           <DatePicker style={{ width: '100%' }} format="YYYY-MM-DD" />
         </Form.Item>
-        <Form.Item name="resource" label="Hình ảnh" className="post-form-item">
-        <Upload
-        action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
-        listType="picture-card"
-        fileList={fileList}
-        onPreview={handlePreview}
-        onChange={handleChange}
-      >
-        {uploadButton}
-      </Upload>
+        <Form.Item name="resource" label="Hình ảnh" valuePropName="fileList" getValueFromEvent={normFile}>
+          <Upload
+            listType="picture-card"
+            fileList={fileList}
+            onPreview={handlePreview}
+            onChange={handleChange}
+            beforeUpload={() => false} // Prevent automatic upload
+          >
+            {fileList.length >= 8 ? null : uploadButton}
+          </Upload>
         </Form.Item>
-        <Form.Item className="post-form-item">
-          <Button type="primary" htmlType="submit" className="post-submit-button">
-            Đăng ký
-          </Button>
-        </Form.Item>
+        <Button type="primary" htmlType="submit">
+          Đăng ký
+        </Button>
       </Form>
     </div>
   );
+};
+
+const getBase64 = (file) => new Promise((resolve, reject) => {
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => resolve(reader.result);
+  reader.onerror = error => reject(error);
+});
+
+// Helper function to normalize the event structure for fileList
+const normFile = (e) => {
+  if (Array.isArray(e)) {
+    return e;
+  }
+  return e && e.fileList;
 };
 
 export default Post;

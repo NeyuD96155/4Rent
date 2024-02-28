@@ -49,6 +49,7 @@ const ProfilePage = () => {
                     Authorization: `Bearer ${token}`,
                 },
             });
+            console.log(response.data.role)
             notification.success({
                 message: "Profile Updated",
                 description: "Your profile was successfully updated.",
@@ -81,26 +82,26 @@ const ProfilePage = () => {
     const renderProfileForm = () => (
         <Card title="Thông tin cá nhân">
             <Form layout="vertical" onFinish={onFinish} form={form}>
-                <Form.Item label="Họ và tên" name="fullname">
+                <Form.Item label="Họ và tên" name="fullname" style={{width:'25.96%'}}>
                     <Input />
                 </Form.Item>
-                <Form.Item label="Số điện thoại" name="phoneNumber">
+                <Form.Item label="Số điện thoại" name="phoneNumber" style={{width:'25.96%'}}>
                     <Input />
                 </Form.Item>
-                <Form.Item label="Ngày tháng năm sinh" name="dateOfBirth">
+                <Form.Item label="Ngày tháng năm sinh" name="dateOfBirth" >
                     <DatePicker format="DD-MMM-YYYY" />
                 </Form.Item>
-                <Form.Item label="Giới tính" name="gender">
+                <Form.Item label="Giới tính" name="gender" style={{width:'25.96%'}}>
                     <Select>
                         <Option value="male">Nam</Option>
                         <Option value="female">Nữ</Option>
                         <Option value="other">Khác</Option>
                     </Select>
                 </Form.Item>
-                <Form.Item label="Địa chỉ" name="address">
+                <Form.Item label="Địa chỉ" name="address" style={{width:'25.96%'}}>
                     <Input />
                 </Form.Item>
-                <Form.Item label="Email" name="email">
+                <Form.Item label="Email" name="email" style={{width:'25.96%'}}>
                     <Input disabled />
                 </Form.Item>
                 <Button type="primary" htmlType="submit">
