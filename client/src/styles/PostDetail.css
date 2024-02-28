@@ -1,0 +1,108 @@
+/*BackGround*/
+.bodyOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.bodyWithBackground {
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/*PostDetail*/
+.notFound {
+    margin: 20px;
+    font-size: 18px;
+    color: #333;
+}
+
+.cardContainer {
+    margin: 20px auto;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    padding: 20px;
+}
+
+.imageContainer {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.postImage {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.infoContainer {
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.infoContainer h1 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.bookingContainer {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.amenitiesContainer,
+.feedbackContainer {
+    margin-bottom: 20px;
+}
+
+.listItem {
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.feedbackCard {
+    width: 100%;
+}
+
+/* Add more styles for buttons, headings, etc., as needed */
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #45a049;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+
+    .container,
+    .cardContainer {
+        width: 95%;
+        margin: 10px auto;
+    }
+
+    .postImage {
+        height: auto;
+    }
+}
