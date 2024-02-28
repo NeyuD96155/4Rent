@@ -37,7 +37,7 @@ const Booking = ({ userId, estateId }) => {
       </Form.Item>
       <Form.Item name="status" label="Xác nhận ngay lập tức" valuePropName="checked">
         <Switch />
-      </Form.Item>
+      </Form.Item>  
       <Form.Item>
         <Button type="primary" htmlType="submit">
           Đặt phòng

@@ -59,6 +59,9 @@ const NavigationBar = () => {
                 <Link to="/post" className="navbar-link">
                     Đăng căn hộ
                 </Link>
+                <Link to="/dash-board" className="navbar-link">
+                    ADMIN
+                </Link>
                 <Link to="/estate" className="navbar-link">
                     Căn hộ
                 </Link>

@@ -1,19 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { Layout, Form, Input, Button, Menu, Card, Select, notification } from "antd";
+import {
+    Layout,
+    Form,
+    Input,
+    Button,
+    Menu,
+    Card,
+    Select,
+    notification,
+    DatePicker,
+} from "antd";
 import { UserOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
 import api from "../config/axios";
 import { useForm } from "antd/es/form/Form";
+import moment from "moment";
 
 const { Content, Sider } = Layout;
 const { Option } = Select;
+
 
 const ProfilePage = () => {
     const [selectedKey, setSelectedKey] = useState("profile");
     const [token] = useState(localStorage.getItem("token"));
     const [form] = useForm();
 
-    useEffect(() => { fetchProfile()// eslint-disable-next-line react-hooks/exhaustive-deps
-    ; }, []);
+    useEffect(() => {
+        fetchProfile(); // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const fetchProfile = async () => {
         try {
@@ -25,16 +38,20 @@ const ProfilePage = () => {
             form.setFieldsValue({
                 fullName: response.data.fullname,
                 phone: response.data.phoneNumber,
-                dob: response.data.dateOfBirth,
+                dob: moment(response.data.dateOfBirth),
                 address: response.data.address,
                 gender: response.data.gender,
                 email: response.data.email,
             });
         } catch (error) {
-            console.error("Failed to fetch profile:", error.response ? error.response.data : error.message);
+            console.error(
+                "Failed to fetch profile:",
+                error.response ? error.response.data : error.message
+            );
             notification.error({
-                message: 'Failed to fetch profile',
-                description: 'There was a problem retrieving your profile information. Please try again later.',
+                message: "Failed to fetch profile",
+                description:
+                    "There was a problem retrieving your profile information. Please try again later.",
             });
         }
     };
@@ -59,14 +76,18 @@ const ProfilePage = () => {
             });
             console.log("Update response:", response.data);
             notification.success({
-                message: 'Profile Updated',
-                description: 'Your profile was successfully updated.',
+                message: "Profile Updated",
+                description: "Your profile was successfully updated.",
             });
         } catch (error) {
-            console.error("Failed to update profile:", error.response ? error.response.data : error.message);
+            console.error(
+                "Failed to update profile:",
+                error.response ? error.response.data : error.message
+            );
             notification.error({
-                message: 'Profile Update Failed',
-                description: 'There was a problem updating your profile. Please try again.',
+                message: "Profile Update Failed",
+                description:
+                    "There was a problem updating your profile. Please try again.",
             });
         }
     };
@@ -96,7 +117,7 @@ const ProfilePage = () => {
                     name="fullName"
                     rules={[
                         {
-                            required: true,
+                            
                             message: "Vui lòng nhập họ và tên!",
                         },
                     ]}
@@ -108,34 +129,39 @@ const ProfilePage = () => {
                     name="phone"
                     rules={[
                         {
-                            required: true,
+                            
                             message: "Vui lòng nhập họ và tên!",
                         },
                     ]}
                 >
                     <Input placeholder="Nhập họ và tên của bạn" />
                 </Form.Item>
-                <Form.Item label="Năm sinh" name="dob">
-                    <Input placeholder="Nhập năm sinh" />
+                <Form.Item label="Ngày sinh" name="dob">
+                <DatePicker defaultValue={moment('01-01-2000', 'DD-MM-YYYY')} format="DD-MM-YYYY" />
+
                 </Form.Item>
+
                 <Form.Item
                     label="Giới tính"
                     name="gender"
                     rules={[
                         {
-                            required: true,
-                            message: "Vui lòng nhập giới tính!",
+                            
+                            message: "Vui lòng chọn giới tính!",
                         },
                     ]}
                 >
-                    <Input placeholder="Nhập số điện thoại" />
+                    <Select placeholder="Chọn giới tính">
+                        <Option value="male">Nam</Option>
+                        <Option value="female">Nữ</Option>
+                    </Select>
                 </Form.Item>
                 <Form.Item
                     label="Địa chỉ"
                     name="address"
                     rules={[
                         {
-                            required: true,
+                            
                             message: "Vui lòng nhập địa chỉ!",
                         },
                     ]}
@@ -147,7 +173,7 @@ const ProfilePage = () => {
                     name="email"
                     rules={[
                         {
-                            required: true,
+                            
                             message: "Vui lòng nhập địa chỉ Email!",
                         },
                     ]}
@@ -207,9 +233,7 @@ const ProfilePage = () => {
                 >
                     <Select defaultValue="subscribed">
                         <Option value="subscribed">Đăng kí</Option>
-                        <Option value="unsubscribed">
-                            Hủy đăng kí
-                        </Option>
+                        <Option value="unsubscribed">Hủy đăng kí</Option>
                     </Select>
                 </Form.Item>
                 <Form.Item>
