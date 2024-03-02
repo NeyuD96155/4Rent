@@ -13,6 +13,11 @@ const Booking = ({ userId, estateId }) => {
   const post = location.state ? location.state.post : null;
   const navigate = useNavigate();
   const [totalPrice, setTotalPrice] = useState(0);
+  const onFormValuesChange = (_, allValues) => {
+    const pricePerDay = post ? post.price : 0;
+    const totalPrice = calculateTotalPrice(allValues.checkIn, allValues.checkOut, pricePerDay);
+    setTotalPrice(totalPrice);
+  };
 
   useEffect(() => {
     const values = form.getFieldsValue(['checkIn', 'checkOut', 'guests']);
@@ -45,7 +50,7 @@ const Booking = ({ userId, estateId }) => {
     };
   }, [post]);
 
-  
+
 
   const handleSubmit = async (values) => {
     const checkInDate = values.checkIn ? moment(values.checkIn).format('YYYY-MM-DDTHH:mm:ss') : null;
@@ -96,7 +101,7 @@ const Booking = ({ userId, estateId }) => {
               <p>Thông tin bài viết:</p>
               <ul>
                 <li>Tiêu đề: {post.title}</li>
-                <li>Giá: ${post.price}</li>
+                <li>Giá: {post.price} ₫</li>
                 <li>Ngày đăng: {format(new Date(post.postDate), 'PPP')}</li>
                 <li>Mô tả: {post.content}</li>
               </ul>
@@ -108,7 +113,7 @@ const Booking = ({ userId, estateId }) => {
       </div>
       <div className="booking-form-container">
         <Card title="Đặt Phòng" bordered={false} className="booking-card">
-          <Form form={form} onFinish={handleSubmit} layout="vertical">
+          <Form form={form} onFinish={handleSubmit} onValuesChange={onFormValuesChange} layout="vertical">
             <Form.Item name="checkIn" label="Ngày nhận phòng" rules={[{ required: true }]}>
               <DatePicker showTime format="YYYY-MM-DD HH:mm" />
             </Form.Item>
