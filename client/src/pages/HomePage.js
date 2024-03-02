@@ -26,6 +26,7 @@ import ReportError from "../components/ReportError";
 import Insurance from "../components/Insurance";
 import Dashboard from "./Dashboard";
 import BookingHistory from '../pages/BookingHistory'
+import ShowEstate from "./EstateDetail";
 function Homepage() {
     return (
         <Router>
@@ -58,6 +59,7 @@ function Homepage() {
                 <Route path="/reporterror" element={<ReportError />} />
                 <Route path="/insurance" element={<Insurance />} />
                 <Route path="/dash-board" element={<Dashboard />} />
+                <Route path="/ShowEstate" element={<ShowEstate />} />
             </Routes>
             <Footer />
         </Router>
