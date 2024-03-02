@@ -107,10 +107,10 @@ const Post = () => {
         </button>
     );
 
-    const fetchCategories = async () => {
+    /*const fetchCategories = async () => {
         const response = await api.get('/category/show');
         setCategory(response.data);
-    }
+    }*/
     return (
         <div className="post-form-wrapper">
             <Form
