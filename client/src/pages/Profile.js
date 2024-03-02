@@ -100,6 +100,7 @@ const ProfilePage = () => {
     const renderProfileContent = () => {
         switch (selectedKey) {
             case "profile":
+                fetchProfile();
                 return renderProfileForm();
             case "security":
                 return renderSecurityForm();
@@ -128,25 +129,20 @@ const ProfilePage = () => {
                 <Form.Item
                     label="Số điện thoại"
                     name="phone"
-                    rules={[
-                        {
-                            message: "Vui lòng nhập họ và tên!",
-                        },
-                    ]}
                 >
-                    <Input placeholder="Nhập họ và tên của bạn" />
+                    <Input placeholder="Nhập số điện thoại của bạn" />
                 </Form.Item>
                 <Form.Item label="Ngày sinh" name="dob">
                     <DatePicker
                         defaultValue={moment("01-01-2000", "DD-MM-YYYY")}
                         format="DD-MM-YYYY"
+                        placeholder="Nhập ngày sinh của bạn"
                     />
                 </Form.Item>
 
                 <Form.Item
                     label="Giới tính"
                     name="gender"
-                    rules={[{ message: "Vui lòng chọn giới tính!" }]}
                 >
                     <Select
                         placeholder="Chọn giới tính"
@@ -167,24 +163,14 @@ const ProfilePage = () => {
                 <Form.Item
                     label="Địa chỉ"
                     name="address"
-                    rules={[
-                        {
-                            message: "Vui lòng nhập địa chỉ!",
-                        },
-                    ]}
                 >
                     <Input placeholder="Nhập số điện thoại" />
                 </Form.Item>
                 <Form.Item
                     label="Email"
                     name="email"
-                    rules={[
-                        {
-                            message: "Vui lòng nhập địa chỉ Email!",
-                        },
-                    ]}
                 >
-                    <Input placeholder="Nhập số điện thoại" />
+                    <Input placeholder="Nhập số điện thoại" disabled />
                 </Form.Item>
 
                 <Form.Item>
@@ -203,27 +189,30 @@ const ProfilePage = () => {
                     label="Mật khẩu hiện tại"
                     name="currentPassword"
                     rules={[{ required: true }]}
+                 
                 >
-                    <Input.Password placeholder="Nhập mật khẩu hiện tại" />
+                    <Input.Password placeholder="khong the nhap vi ban da den" disabled />
                 </Form.Item>
                 <Form.Item
                     label="Mật khẩu mới"
                     name="newPassword"
                     rules={[{ required: true }]}
+                
                 >
-                    <Input.Password placeholder="Nhập mật khẩu mới" />
+                    <Input.Password placeholder="khong the nhap vi ban da den" disabled />
                 </Form.Item>
                 <Form.Item
                     label="Xác nhận mật khẩu mới"
                     name="confirmNewPassword"
                     rules={[{ required: true }]}
+                 
                 >
-                    <Input.Password placeholder="Xác nhận mật khẩu mới" />
+                    <Input.Password placeholder="khong the nhap vi ban da den" disabled/>
                 </Form.Item>
                 <Form.Item>
-                    <Button type="primary" htmlType="submit">
-                        Đổi mật khẩu
-                    </Button>
+                    <Button type="primary" htmlType="submit" >
+                        Đổi mật khẩu 
+                    </Button >
                 </Form.Item>
             </Form>
         </Card>

@@ -40,7 +40,7 @@ const NavigationBar = () => {
             {
                 key: "history",
                 icon: <HistoryOutlined />,
-                label: <Link to="/history">Xem Lịch Sử Giao Dịch</Link>,
+                label: <Link to="/booking-history">Xem Lịch Sử Giao Dịch</Link>,
             },
             {
                 key: "logout",
