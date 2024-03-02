@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Form, Input, Button, DatePicker, InputNumber, Upload } from "antd";
+import {
+    Form,
+    Input,
+    Button,
+    DatePicker,
+    InputNumber,
+    Upload,
+    Select,
+} from "antd";
 import api from "../config/axios"; // Ensure axios is correctly configured
 import { toast } from "react-toastify";
 import "../styles/Post.css";
@@ -8,7 +16,20 @@ import uploadFile from "../utils/upload";
 import { v4 as uuidv4 } from "uuid";
 const Post = () => {
     const [form] = Form.useForm();
-const [price,setPrice]= useState();
+    const [price, setPrice] = useState();
+    const formatCurrency = (value) => {
+        if (!value) return "";
+        const formatter = new Intl.NumberFormat("vi-VN", {
+            style: "currency",
+            currency: "VND",
+            minimumFractionDigits: 0,
+        });
+        return formatter.format(value).replace(/\u200B/g, "");
+    };
+
+    const parseCurrency = (value) => {
+        return value.replace(/\D/g, "");
+    };
     const handleSubmit = async (values) => {
         const images = values.resource.fileList;
         console.log(values);
@@ -25,7 +46,7 @@ const [price,setPrice]= useState();
         console.log(resources);
         const formattedValues = {
             ...values,
-            postDate: values.postDate.format("YYYY-MM-DDTHH:mm:ss.SSSZ"),
+            // postDate: values.postDate.format("YYYY-MM-DDTHH:mm:ss.SSSZ"),
             price: parseInt(values.price, 10), // Ensure the value is an integer
             resources,
         };
@@ -40,10 +61,12 @@ const [price,setPrice]= useState();
             );
         }
     };
+
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewImage, setPreviewImage] = useState("");
     const [previewTitle, setPreviewTitle] = useState("");
     const [fileList, setFileList] = useState([]);
+
     const getBase64 = (file) =>
         new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -83,6 +106,11 @@ const [price,setPrice]= useState();
             </div>
         </button>
     );
+
+    const fetchCategories = async () => {
+        const response = await api.get('/category/show');
+        setCategory(response.data);
+    }
     return (
         <div className="post-form-wrapper">
             <Form
@@ -122,22 +150,19 @@ const [price,setPrice]= useState();
                         style={{ width: "100%" }}
                         value={price}
                         onChange={setPrice}
-                        formatter={(value) =>
-                            `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
-                            (price ? " VND" : "")
-                        }
-                        parser={(value) => value.replace(/\D/g, "")}
+                        formatter={formatCurrency}
+                        parser={parseCurrency}
                     />
                 </Form.Item>
                 <Form.Item
-                    name="postDate"
-                    label="Ngày đăng"
+                    name="categoryId"
+                    label="Thể loại"
                     rules={[
-                        { required: true, message: "Vui lòng chọn ngày đăng!" },
+                        { required: true, message: "Vui lòng chọn thể loại!" },
                     ]}
                     className="post-form-item"
                 >
-                    <DatePicker style={{ width: "100%" }} format="YYYY-MM-DD" />
+                    <Select options={[{ value: 1, label: "Cate 1" }]} />
                 </Form.Item>
                 <Form.Item
                     name="resource"

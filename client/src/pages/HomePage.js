@@ -10,7 +10,7 @@ import SignIn from "../pages/SignIn";
 import {GettingStarted,ExchangeTimeshares,MaximizeVacation,} from "../components/guide/GettingStarted";
 import Payment from "./Payment";
 import CancellationPolicy from "../components/policy/CancellationPolicy";
-import PostDetail from "../components/PostDetail";
+import PostDetail from "../pages/PostDetail";
 import News from "../pages/News";
 import Landing from "../pages/Landing";
 import Post from "../pages/Post"
@@ -25,6 +25,7 @@ import Blog from "../components/Blog";
 import ReportError from "../components/ReportError";
 import Insurance from "../components/Insurance";
 import Dashboard from "./Dashboard";
+import BookingHistory from '../pages/BookingHistory'
 function Homepage() {
     return (
         <Router>
@@ -49,6 +50,7 @@ function Homepage() {
                 <Route path="/booking" element={<Booking />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/policy" element={<Policy />} />
+                <Route path="/booking-history" element={<BookingHistory />} />
                 <Route path="/faq" element={<Faq />} />
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/rules" element={<Rules />} />

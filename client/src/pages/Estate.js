@@ -32,7 +32,7 @@ const TimesharePosts = () => {
     <div className="timeshare-posts-container">
       <h1>Timeshare Posts</h1>
       <div className="posts">
-        {posts.map((post, index) => {
+        {posts?.map((post, index) => {
           console.log(post.resources);
           return <div key={index} className="post-card" onClick={() => handlePostClick(post.id)}>
             {post.resources.length > 0
