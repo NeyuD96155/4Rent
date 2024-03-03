@@ -24,11 +24,12 @@
     flex-direction: column;
   }
   
-  .news-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+  .news-image  {
+    width: 100%; /* Đặt chiều rộng cố định */
+    height: 300px; /* Đặt chiều cao cố định */
+   
   }
+  
   
   .news-body {
     padding: 15px;
