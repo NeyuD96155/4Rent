@@ -6,42 +6,47 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
+    const [userRole, setUserRole] = useState(localStorage.getItem('userRole'));
 
-    const login = (token, username) => {
+
+    const login = (token, username, role) => {
         localStorage.setItem('token', token);
-        localStorage.setItem('username', username); // Đảm bảo lưu tên người dùng
+        localStorage.setItem('username', username);
+        localStorage.setItem('userRole', role); 
+        setUserRole(role);
         setIsLoggedIn(true);
-    
-        // Đặt thông báo chào mừng trong sessionStorage
-        if (!localStorage.getItem('hasLoggedInBefore')) {
-            sessionStorage.setItem('welcomeMessage', `Chào mừng ${username} đã đến với trang web`);
-            localStorage.setItem('hasLoggedInBefore', 'true');
-        } else {
-            sessionStorage.setItem('welcomeMessage', `Chào mừng ${username} đã quay trở lại`);
-        }
+
+        const welcomeMessage = !localStorage.getItem('hasLoggedInBefore') ?
+            `Chào mừng ${username} đã đến với trang web` :
+            `Chào mừng ${username} đã quay trở lại`;
+        sessionStorage.setItem('welcomeMessage', welcomeMessage);
+        localStorage.setItem('hasLoggedInBefore', 'true');
     };
 
     const logout = () => {
         localStorage.removeItem('token');
+        localStorage.removeItem('userRole');
+        localStorage.removeItem('username'); 
         setIsLoggedIn(false);
+        setUserRole(null);
     };
 
-    // Cập nhật trạng thái isLoggedIn dựa vào sự thay đổi của localStorage
     useEffect(() => {
         const syncLogout = (event) => {
             if (event.key === 'logout') {
+   
                 setIsLoggedIn(false);
+                setUserRole(null);
+                localStorage.removeItem('username');
             }
         };
 
         window.addEventListener('storage', syncLogout);
-        return () => {
-            window.removeEventListener('storage', syncLogout);
-        };
+        return () => window.removeEventListener('storage', syncLogout);
     }, []);
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+        <AuthContext.Provider value={{ isLoggedIn, login, logout, userRole }}>
             {children}
         </AuthContext.Provider>
     );

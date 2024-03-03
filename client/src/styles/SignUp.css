@@ -3,50 +3,50 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: auto; /* Adjusted for better flexibility on different screens */
-    min-height: 100vh; /* Ensure it takes at least the full viewport height */
-    background: linear-gradient(135deg, #ff6e7f 0%, #bfe9ff 100%);
+    height: auto;
+    min-height: 100vh;
+    background: linear-gradient(50deg, #ffffff 0%, #f2f2f2 100%);
     padding: 20px;
     margin: 2em auto;
     border-radius: 10px;
     max-width: 1170px;
-    box-sizing: border-box; /* Ensure padding doesn't affect the overall width */
+    box-sizing: border-box;
 }
 
 .signup-grid select {
-    width: 100%; /* Đảm bảo rằng thẻ select chiếm đủ không gian */
-    padding: 8px 12px; /* Thêm padding để tăng kích thước clickable và cải thiện vẻ ngoài */
-    border: 1px solid #ccc; /* Đường viền màu xám nhạt */
-    border-radius: 4px; /* Bo góc để thẻ select mềm mại và hiện đại hơn */
-    background-color: white; /* Màu nền cho thẻ select */
-    font-size: 16px; /* Kích thước chữ phù hợp để dễ đọc */
-    color: #495057; /* Màu chữ tối để tăng độ tương phản */
-    margin-bottom: 10px; /* Khoảng cách với các phần tử xung quanh */
-    appearance: none; /* Loại bỏ style mặc định của trình duyệt */
-    -webkit-appearance: none; /* Loại bỏ style mặc định của trình duyệt cho Chrome và Safari */
-    -moz-appearance: none; /* Loại bỏ style mặc định của trình duyệt cho Firefox */
-    background-image: url('https://th.bing.com/th/id/OIP.oO5xqBC2Q69_HMxV84AW4AAAAA?rs=1&pid=ImgDetMain'); /* Thêm một biểu tượng mũi tên để chỉ ra đây là một dropdown */
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    background-color: #ffffff;
+    font-size: 16px;
+    color: #495057;
+    margin-bottom: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('https://th.bing.com/th/id/OIP.oO5xqBC2Q69_HMxV84AW4AAAAA?rs=1&pid=ImgDetMain');
     background-repeat: no-repeat;
-    background-position: right 10px center; /* Đặt biểu tượng mũi tên ở bên phải, giữa thẻ select */
-    background-size: 12px; /* Kích thước của biểu tượng mũi tên */
-  }
-  
-  select:focus {
-    border-color: #80bdff; /* Màu viền khi thẻ select được focus */
-    outline: none; /* Loại bỏ đường viền mặc định khi focus */
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Thêm bóng để nhấn mạnh thẻ select khi được chọn */
-  }
-  
+    background-position: right 10px center;
+    background-size: 12px;
+}
+
+select:focus {
+    border-color: #80bdff;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
 .signup-title {
     margin-bottom: 1em;
-    font-size: 2em; /* Consider scaling down on smaller screens */
-    color: #495057;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    font-size: 2em;
+    color: #343a40;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.1);
 }
 
 .signup-form {
-    width: 100%; /* Flexibility for smaller screens */
-    max-width: 320px; /* Max width to maintain form size */
+    width: 100%;
+    max-width: 320px;
     padding: 2em;
     background: rgba(255, 255, 255, 0.95);
     box-shadow: 0 12px 20px 0 rgba(0, 0, 0, 0.25);
@@ -61,7 +61,7 @@
     border: 1px solid #a0a4a9;
     border-radius: 4px;
     font-size: 1em;
-    background-color: #fff;
+    background-color: #ffffff;
     color: #495057;
 }
 
@@ -85,8 +85,8 @@
     padding: 0.5em;
     border: none;
     border-radius: 4px;
-    background-color: #28a745;
-    color: #fff;
+    background-color: #343a40;
+    color: #ffffff;
     font-size: 1em;
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.2s ease;
@@ -95,7 +95,7 @@
 }
 
 .signup-submit:hover {
-    background-color: #218838;
+    background-color: #23272b;
     transform: translateY(-3px);
 }
 
@@ -112,7 +112,7 @@
 
 .signup-footer a:hover {
     color: #0056b3;
-    text-decoration: underline; /* Added for better visual feedback */
+    text-decoration: underline;
 }
 
 .signup-copy {
@@ -124,22 +124,22 @@
 
 @media (max-width: 768px) {
     .signup-container {
-        margin: 1em; /* Reduced margin for smaller screens */
+        margin: 1em;
     }
     .signup-form {
-        padding: 1em; /* Reduced padding for a more compact layout */
-        margin: 0 20px; /* Ensure some spacing on very small screens */
+        padding: 1em;
+        margin: 0 20px;
     }
     .signup-title {
-        font-size: 1.5em; /* Scaled down title for smaller screens */
+        font-size: 1.5em;
     }
 }
 
 @media (max-width: 480px) {
     .signup-form {
-        margin: 0 10px; /* Further reduce margin for very small screens */
+        margin: 0 10px;
     }
     .signup-title, .signup-footer, .signup-copy {
-        text-align: center; /* Center align text for a cohesive look on small screens */
+        text-align: center;
     }
 }

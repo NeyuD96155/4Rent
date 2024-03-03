@@ -28,13 +28,15 @@ const SignUp = () => {
     const handleSubmit = async (values) => {
         try {
             await api.post("/register", values);
-            toast.success("Đăng kí thành công!");
+            // Thêm thông báo khuyến khích người dùng kiểm tra email
+            toast.success("Đăng kí thành công! Vui lòng kiểm tra email của bạn để xác thực tài khoản.");
             navigate("/signin");
         } catch (error) {
             console.log(error);
             toast.error("Đăng kí thất bại: " + error.response.data);
         }
     };
+    
 
     return (
         <div className="signup-container">

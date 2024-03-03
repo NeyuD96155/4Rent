@@ -11,7 +11,7 @@ import { useAuth } from "../context/AuthContext ";
 import { toast } from "react-toastify";
 
 const NavigationBar = () => {
-    const { isLoggedIn, logout } = useAuth();
+    const { isLoggedIn, userRole, logout } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -19,37 +19,36 @@ const NavigationBar = () => {
         const welcomeMessage = sessionStorage.getItem("welcomeMessage");
         if (isLoggedIn && welcomeMessage) {
             toast.success(welcomeMessage);
-            // Xóa thông báo sau khi hiển thị để không hiển thị lại khi reload trang
             sessionStorage.removeItem("welcomeMessage");
         }
     }, [isLoggedIn]);
+
     const handleLogout = () => {
-        logout(); // Sử dụng phương thức logout từ context để xử lý việc đăng xuất
+        logout();
+        // Gửi sự kiện logout đến các tab khác
+        localStorage.setItem('logout', Date.now());
         navigate("/signin");
     };
 
-    // Định nghĩa menu và phần còn lại của component như trước
     const menu = (
-        <Menu
-            items={[
-                {
-                    key: "profile",
-                    icon: <UserOutlined />,
-                    label: <Link to="/profile">Xem Thông Tin Cá Nhân</Link>,
-                },
-                {
-                    key: "history",
-                    icon: <HistoryOutlined />,
-                    label: <Link to="/history">Xem Lịch Sử Giao Dịch</Link>,
-                },
-                {
-                    key: "logout",
-                    icon: <LogoutOutlined />,
-                    label: "Đăng Xuất",
-                    onClick: handleLogout,
-                },
-            ]}
-        />
+        <Menu items={[
+            {
+                key: "profile",
+                icon: <UserOutlined />,
+                label: <Link to="/profile">Xem Thông Tin Cá Nhân</Link>,
+            },
+            {
+                key: "history",
+                icon: <HistoryOutlined />,
+                label: <Link to="/booking-history">Xem Lịch Sử Giao Dịch</Link>,
+            },
+            {
+                key: "logout",
+                icon: <LogoutOutlined />,
+                label: "Đăng Xuất",
+                onClick: handleLogout,
+            },
+        ]} />
     );
 
     return (
@@ -58,34 +57,23 @@ const NavigationBar = () => {
                 <Link to="/">4Rent</Link>
             </div>
             <div className="navbar-links">
-                <Link to="/post" className="navbar-link">
-                    Đăng căn hộ
-                </Link>
+                <Link to="/estate" className="navbar-link">Căn hộ</Link>
+                {isLoggedIn && userRole === 'ADMIN' && (
+                    <Link to="/dash-board" className="navbar-link">DashBoard</Link>
+                )}
+                {isLoggedIn && (userRole === 'MEMBER' || userRole === 'ADMIN') && (
+                    <Link to="/post" className="navbar-link">Đăng căn hộ</Link>
+                )}
                 {isLoggedIn ? (
                     <Dropdown overlay={menu}>
-                        <button
-                            onClick={(e) => e.preventDefault()}
-                            style={{
-                                background: "none",
-                                border: "none",
-                                cursor: "pointer",
-                                padding: 0,
-                            }}
-                        >
-                            <Avatar
-                                style={{ backgroundColor: "#87d068" }}
-                                icon={<UserOutlined />}
-                            />
-                        </button>
+                        <a onClick={e => e.preventDefault()} className="avatar-link">
+                            <Avatar style={{ backgroundColor: "#87d068" }} icon={<UserOutlined />} />
+                        </a>
                     </Dropdown>
                 ) : (
                     <>
-                        <Link to="/signin" className="navbar-link">
-                            Đăng Nhập
-                        </Link>
-                        <Link to="/signup" className="navbar-link">
-                            Đăng Kí
-                        </Link>
+                        <Link to="/signin" className="navbar-link">Đăng Nhập</Link>
+                        <Link to="/signup" className="navbar-link">Đăng Kí</Link>
                     </>
                 )}
             </div>

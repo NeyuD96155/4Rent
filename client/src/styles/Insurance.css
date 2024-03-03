@@ -1,0 +1,45 @@
+/* Insurance.css */
+
+/* Container */
+.insurance-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Header */
+  .insurance-container h2 {
+    margin-bottom: 20px;
+  }
+  
+  /* Paragraph */
+  .insurance-container p {
+    margin-bottom: 20px;
+  }
+  
+  /* Insurance Details */
+  .insurance-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+  }
+  
+  /* Insurance Item */
+  .insurance-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  .insurance-item h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .insurance-item p {
+    font-size: 14px;
+  }
+  

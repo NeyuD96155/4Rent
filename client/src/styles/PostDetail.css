@@ -1,73 +1,108 @@
-.detail-page-container {
-    max-width: 1170px;
-    margin: 2em auto;
-    padding: 2em;
+/*BackGround*/
+.bodyOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+    pointer-events: none;
+}
 
+.bodyWithBackground {
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/*PostDetail*/
+.notFound {
+    margin: 20px;
+    font-size: 18px;
+    color: #333;
+}
+
+.cardContainer {
+    margin: 20px auto;
+    max-width: 800px;
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    background: linear-gradient(135deg, #ff6e7f 0%, #bfe9ff 100%);
 }
 
-.detail-page-container h2 {
-    color: #007bff;
-    margin-bottom: 1em;
+.container {
+    padding: 20px;
 }
 
-.detail-page-image {
-    width: 100%;
+.imageContainer {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.postImage {
+    width: auto;
+    max-width: 100%;
     height: auto;
-    border-radius: 10px;
-    margin-bottom: 1em;
+    border-radius: 8px;
 }
 
-.detail-page-container p,
-.detail-page-container h3 {
-    color: #495057;
+.infoContainer {
+    margin-bottom: 20px;
+    color: #555;
 }
 
-.detail-page-price,
-.detail-page-rating,
-.detail-page-location,
-.detail-page-available-dates,
-.detail-page-max-guests {
-    font-weight: bold;
-    margin-bottom: 0.5em;
+.infoContainer h1 {
+    color: #333;
+    margin-bottom: 10px;
 }
 
-.detail-page-amenities h3 {
-    margin-top: 1em;
+.bookingContainer {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.detail-page-amenities ul {
-    list-style-type: circle;
-    padding-left: 20px;
+.amenitiesContainer,
+.feedbackContainer {
+    margin-bottom: 20px;
 }
 
-.detail-page-amenities li {
-    margin-bottom: 0.5em;
+.listItem {
+    padding: 10px;
+    background-color: #f9f9f9;
 }
 
-.detail-page-book-now-btn {
-    display: block;
+.feedbackCard {
     width: 100%;
-    padding: 0.75em;
-    background-color: #007bff;
-    color: white;
+}
+
+/* Add more styles for buttons, headings, etc., as needed */
+.button {
+    background-color: #4CAF50;
     border: none;
-    border-radius: 5px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
     cursor: pointer;
-    margin-top: 1em;
-    font-size: 1em;
 }
 
-.detail-page-book-now-btn:hover {
-    background-color: #0056b3;
+.button:hover {
+    background-color: #45a049;
 }
 
+/* Responsive design */
 @media (max-width: 768px) {
-    .detail-page-container {
-        padding: 1em;
-        box-shadow: none;
-        border-radius: 0;
+
+    .container,
+    .cardContainer {
+        width: 95%;
+        margin: 10px auto;
+    }
+
+    .postImage {
+        height: auto;
     }
 }
