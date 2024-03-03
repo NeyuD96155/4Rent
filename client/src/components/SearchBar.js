@@ -1,4 +1,4 @@
-// SearchBar.js
+
 import React, { useState } from 'react';
 import { Button, DatePicker, Select } from 'antd';
 import axios from 'axios';

@@ -28,10 +28,13 @@ import Rules from "../components/Rules";
 import Blog from "../components/Blog";
 import ReportError from "../components/ReportError";
 import Insurance from "../components/Insurance";
-import Dashboard from "./Dashboard";
+
 import BookingHistory from "../pages/BookingHistory";
 import ShowEstate from "./EstateDetail";
 import SearchBar from "../components/SearchBar";
+import PrivateRoute from "../components/PrivateRoute";
+import DashBoard from "./Dashboard";
+import AccessDeniedPage from "./AccessDenied";
 
 function Homepage() {
     return (
@@ -73,11 +76,21 @@ function Homepage() {
                 <Route path="/reporterror" element={<ReportError />} />
                 <Route path="/insurance" element={<Insurance />} />
                 <Route path="/search" element={<SearchBar />} />
-                <Route path="/dash-board" element={<Dashboard />} />
+                <Route path="/access-denied" element={<AccessDeniedPage />} />
+                <Route
+                    path="/dash-board"
+                    element={
+                        <PrivateRoute>
+                            <DashBoard />
+                        </PrivateRoute>
+                    }
+                />
                 <Route path="/ShowEstate" element={<ShowEstate />} />
             </Routes>
             <Footer />
+
         </Router>
+        
     );
 }
 
