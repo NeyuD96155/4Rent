@@ -65,7 +65,15 @@ function Homepage() {
                 <Route path="/post/detail/:postId" element={<PostDetail />} />
                 <Route path="/post" element={<Post />} />
                 <Route path="/estate" element={<Estate />} />
-                <Route path="/booking" element={<Booking />} />
+             
+                <Route
+                    path="/booking"
+                    element={
+                        <PrivateRoute>
+                            <Booking />
+                        </PrivateRoute>
+                    }
+                />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/policy" element={<Policy />} />
                 <Route path="/booking-history" element={<BookingHistory />} />

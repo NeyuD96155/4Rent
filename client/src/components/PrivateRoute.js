@@ -1,30 +1,35 @@
 // PrivateRoute.js
 
 import React, { useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext ';
+import { Navigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext '; // Đảm bảo đường dẫn import đúng
 import { toast } from 'react-toastify';
 
 const PrivateRoute = ({ children }) => {
     const { isLoggedIn, userRole } = useAuth();
+    const location = useLocation();
 
+    // Kiểm tra quyền truy cập dựa vào đường dẫn và vai trò của người dùng
     useEffect(() => {
-        if (!isLoggedIn) {
-            toast.error("Bạn cần đăng nhập để truy cập trang này.");
-        } else if (userRole !== 'ADMIN') {
-            toast.warn("Bạn không có quyền truy cập vào trang này.");
+     
+        if (location.pathname === '/dash-board' && userRole !== 'ADMIN') {
+            toast.warn("Chỉ ADMIN mới có quyền truy cập vào trang này.");
         }
-    }, [isLoggedIn, userRole]);
+    
+        if (!isLoggedIn) {
+            
+            if (location.pathname === '/booking') {
+                toast.info("Bạn cần đăng nhập để có thể booking.");
+            } 
+        }  
+    }, [isLoggedIn, userRole, location.pathname]);
 
     if (!isLoggedIn) {
-        // Nếu người dùng chưa đăng nhập, chuyển hướng đến trang đăng nhập
-        return <Navigate to="/login" replace />;
-    } else if (userRole !== 'ADMIN') {
-        // Nếu người dùng không phải là admin, chuyển hướng đến trang AccessDeniedPage
+        return <Navigate to="/signin" replace />;
+    } else if (location.pathname === '/dash-board' && userRole !== 'ADMIN') {
         return <Navigate to="/access-denied" replace />;
     }
 
-    // Nếu người dùng đã đăng nhập và là admin, render component children
     return children;
 };
 
