@@ -116,7 +116,7 @@ const Booking = ({ userId, estateId }) => {
                                             : "https://via.placeholder.com/400"
                                     }
                                     alt="Post"
-                                    className="postImage"
+                                    className="booking-postImage"
                                 />
                             </div>
                             <p>Thông tin bài viết:</p>
