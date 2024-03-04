@@ -1,108 +1,101 @@
-/*BackGround*/
-.bodyOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: -1;
-    pointer-events: none;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
-.bodyWithBackground {
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
-/*PostDetail*/
+@keyframes zoomIn {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 .notFound {
-    margin: 20px;
-    font-size: 18px;
-    color: #333;
-}
-
-.cardContainer {
-    margin: 20px auto;
-    max-width: 800px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.container {
-    padding: 20px;
+    animation: fadeIn 1s ease-out;
+    font-size: 24px;
+    color: #ff4d4f;
+    text-align: center;
+    margin-top: 50px;
 }
 
 .imageContainer {
+    animation: slideUp 1s ease-out;
     text-align: center;
     margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
 }
 
 .postImage {
-    width: auto;
-    max-width: 100%;
+    animation: zoomIn 1s ease-out;
+    max-width: calc(33.333% - 10px);
+    /* Three images per row with spacing */
     height: auto;
     border-radius: 8px;
 }
 
-.infoContainer {
-    margin-bottom: 20px;
-    color: #555;
-}
-
-.infoContainer h1 {
-    color: #333;
-    margin-bottom: 10px;
-}
-
-.bookingContainer {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
+.infoContainer,
+.bookingContainer,
 .amenitiesContainer,
 .feedbackContainer {
+    animation: fadeIn 1s ease-out;
     margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1,
+h2 {
+    color: #1890ff;
 }
 
 .listItem {
-    padding: 10px;
-    background-color: #f9f9f9;
+    background-color: #f0f2f5;
+    margin-bottom: 8px;
+    border-radius: 4px;
 }
 
 .feedbackCard {
-    width: 100%;
+    background-color: #e6f7ff;
+    border: 1px solid #91d5ff;
 }
 
-/* Add more styles for buttons, headings, etc., as needed */
-.button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-}
-
-.button:hover {
-    background-color: #45a049;
-}
-
-/* Responsive design */
 @media (max-width: 768px) {
-
-    .container,
-    .cardContainer {
-        width: 95%;
-        margin: 10px auto;
-    }
-
     .postImage {
-        height: auto;
+        max-width: calc(50% - 10px);
+        /* Two images per row on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .postImage {
+        max-width: 100%;
+        /* Full width for very small screens */
     }
 }
