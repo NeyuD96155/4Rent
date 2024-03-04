@@ -28,15 +28,15 @@ const SignUp = () => {
     const handleSubmit = async (values) => {
         try {
             await api.post("/register", values);
-            // Thêm thông báo khuyến khích người dùng kiểm tra email
-            toast.success("Đăng kí thành công! Vui lòng kiểm tra email của bạn để xác thực tài khoản.");
+            toast.success(
+                "Đăng kí thành công! Vui lòng kiểm tra email của bạn để xác thực tài khoản."
+            );
             navigate("/signin");
         } catch (error) {
             console.log(error);
             toast.error("Đăng kí thất bại: " + error.response.data);
         }
     };
-    
 
     return (
         <div className="signup-container">
@@ -53,12 +53,15 @@ const SignUp = () => {
                     name="role"
                     label="Role"
                     rules={[
-                        { required: true, message: "Please select your role!" },
+                        {
+                            required: true,
+                            message: "Hãy chọn vai trò của bạn!",
+                        },
                     ]}
                 >
                     <Select placeholder="Select a role">
-                        <Option value="MEMBER">Member</Option>
-                        <Option value="RENTER">Renter</Option>
+                        <Option value="MEMBER">Chủ sở hữu</Option>
+                        <Option value="RENTER">Người thuê</Option>
                     </Select>
                 </Form.Item>
 
@@ -68,11 +71,12 @@ const SignUp = () => {
                     rules={[
                         {
                             type: "email",
-                            message: "The input is not valid E-mail!",
+                            message:
+                                "Định dạng email không đúng, vui lòng thử lại!",
                         },
                         {
                             required: true,
-                            message: "Please input your E-mail!",
+                            message: "Hãy nhập email của bạn!",
                         },
                     ]}
                 >
@@ -85,7 +89,7 @@ const SignUp = () => {
                     rules={[
                         {
                             required: true,
-                            message: "Please input your username!",
+                            message: "Hãy nhập tên đăng nhập của bạn!",
                         },
                     ]}
                 >
@@ -98,11 +102,11 @@ const SignUp = () => {
                     rules={[
                         {
                             required: true,
-                            message: "Please input your password!",
+                            message: "Hãy nhập mật khẩu !",
                         },
                         {
                             min: 8,
-                            message: "Password must be at least 8 characters!",
+                            message: "Mật khẩu phải có ít nhất 8 kí tự!",
                         },
                         () => ({
                             validator(_, value) {
@@ -115,7 +119,7 @@ const SignUp = () => {
                                 }
                                 return Promise.reject(
                                     new Error(
-                                        "Password must include at least one special character and one number!"
+                                        "Mật khẩu phải chứa ít nhất 1 kí tự đặc biệt và một chữ số!"
                                     )
                                 );
                             },
@@ -139,7 +143,7 @@ const SignUp = () => {
                     rules={[
                         {
                             required: true,
-                            message: "Please confirm your password!",
+                            message: "Vui lòng xác nhận mật khẩu!",
                         },
                         ({ getFieldValue }) => ({
                             validator(_, value) {
@@ -151,7 +155,7 @@ const SignUp = () => {
                                 }
                                 return Promise.reject(
                                     new Error(
-                                        "The two passwords that you entered do not match!"
+                                        "Mật khẩu xác nhận không khớp"
                                     )
                                 );
                             },
@@ -177,7 +181,7 @@ const SignUp = () => {
                     ]}
                 >
                     <Checkbox>
-                        Tôi đã đọc và đồng ý với  {" "}
+                        Tôi đã đọc và đồng ý với{" "}
                         <span
                             style={{ color: "#1890ff", cursor: "pointer" }}
                             onClick={showTermsModal}
