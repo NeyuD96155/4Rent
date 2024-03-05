@@ -3,12 +3,15 @@
         "antd",
         "DDTHH",
         "fullname",
+        "noreferrer",
         "reduxjs",
+        "reporterror",
         "Sider",
         "signin",
         "signup",
         "SSSZ",
         "toastify",
+        "uuidv",
         "webfonts"
     ]
 }
