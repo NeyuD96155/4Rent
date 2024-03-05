@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import { Button, List, Card } from "antd";
@@ -12,7 +12,7 @@ const PostDetail = () => {
     if (!post) {
         return (
             <div className="notFound">
-                Post not found. Please go back to the posts list.
+                Không tìm thấy bài đăng ! Vui lòng trở lại danh sách bài đăng.
             </div>
         );
     }
@@ -26,38 +26,37 @@ const PostDetail = () => {
         : "N/A";
 
     return (
-    <>
-           <div className="imageContainer">
-  {post.resources && post.resources.length > 0 ? (
-    post.resources.map((resource, index) => (
-      <img
-        key={index}
-        src={resource.url}
-        alt={`Post ${index}`}
-        className="postImage"
-      />
-    ))
-  ) : (
-    <img
-      src="https://via.placeholder.com/400"
-      alt="Post"
-      className="postImage"
-    />
-  )}
-</div>
-
+        <>
+            <div className="imageContainer">
+                {post.resources && post.resources.length > 0 ? (
+                    post.resources.map((resource, index) => (
+                        <img
+                            key={index}
+                            src={resource.url}
+                            alt={`Post ${index}`}
+                            className="postImage"
+                        />
+                    ))
+                ) : (
+                    <img
+                        src="https://via.placeholder.com/400"
+                        alt="Post"
+                        className="postImage"
+                    />
+                )}
+            </div>
 
             <div>
                 <div className="infoContainer">
                     <h1>
-                        Post ID: {post.id} - {post.title}
+                        Mã bài đăng: {post.id} - {post.title}
                     </h1>
                     <p>{post.content}</p>
                     <p>
-                        <strong>Price:</strong> ${post.price}
+                        <strong>Giá/ ngày:</strong> ${post.price}
                     </p>
                     <p>
-                        <strong>Date Posted:</strong> {formattedDate}
+                        <strong>Ngày đăng:</strong> {formattedDate}
                     </p>
                 </div>
 
@@ -83,7 +82,7 @@ const PostDetail = () => {
                 </div>
 
                 <div className="feedbackContainer">
-                    <h2>Feedback của Khách Hàng</h2>
+                    <h2>Ý kiến của Khách Hàng</h2>
                     <List
                         size="small"
                         bordered
@@ -101,7 +100,7 @@ const PostDetail = () => {
                     />
                 </div>
             </div>
-            </>
+        </>
     );
 };
 

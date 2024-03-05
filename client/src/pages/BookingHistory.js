@@ -10,7 +10,7 @@ function BookingHistory({ userId }) {
                 const response = await axios.get(`/bookings/history/${userId}`);
                 setBookings(response.data);
             } catch (error) {
-                console.error("Error fetching bookings", error);
+                console.error("Xảy ra lỗi khi lấy dữ liệu", error);
             }
         };
 

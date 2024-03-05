@@ -20,10 +20,10 @@ const PaymentPage = () => {
       {bookingDetails && (
         <div className="booking-details">
           <h2>Thông tin đặt phòng:</h2>
-          <p><strong>Check-in:</strong> {safeFormatDate(bookingDetails.checkIn)}</p>
-          <p><strong>Check-out:</strong> {safeFormatDate(bookingDetails.checkOut)}</p>
-          <p><strong>Người dùng ID:</strong> {bookingDetails.userId}</p>
-          <p><strong>Căn hộ ID:</strong> {bookingDetails.estateId}</p>
+          <p><strong>Ngày nhận phòng:</strong> {safeFormatDate(bookingDetails.checkIn)}</p>
+          <p><strong>Ngày trả phòng:</strong> {safeFormatDate(bookingDetails.checkOut)}</p>
+          <p><strong>Mã người dùng:</strong> {bookingDetails.userId}</p>
+          <p><strong>Mã căn hộ:</strong> {bookingDetails.estateId}</p>
           <p><strong>Trạng thái:</strong> {bookingDetails.status ? 'Đã xác nhận' : 'Chưa xác nhận'}</p>
         </div>
       )}

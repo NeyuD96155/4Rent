@@ -122,7 +122,7 @@ const Booking = ({ userId, estateId }) => {
                             <p>Thông tin bài viết:</p>
                             <ul>
                                 <li>Tiêu đề: {post.title}</li>
-                                <li>Giá: {post.price} ₫</li>
+                                <li>Giá/ ngày: {post.price} ₫</li>
                                 <li>
                                     Ngày đăng:{" "}
                                     {format(new Date(post.postDate), "PPP")}
