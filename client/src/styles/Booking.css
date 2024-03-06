@@ -18,16 +18,13 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    /* Allows items to wrap as needed */
     padding: 20px;
 }
 
 .content-container,
 .booking-form-container {
     flex-basis: 48%;
-    /* Sets the default size of an element before the remaining space is distributed. */
     max-width: 48%;
-    /* Ensures the maximum width does not exceed 48% of the container's width. */
     margin-bottom: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
@@ -36,7 +33,6 @@
 .info-card,
 .booking-card {
     width: 100%;
-    /* Ensures card takes the full width of the container. */
     border-radius: 8px;
 }
 
@@ -83,7 +79,6 @@
     .content-container,
     .booking-form-container {
         flex-basis: 100%;
-        /* Each container will take the full width of its parent container on smaller screens. */
         max-width: 100%;
     }
 }

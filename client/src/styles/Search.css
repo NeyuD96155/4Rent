@@ -1,6 +1,5 @@
 .search-container {
     max-width: 1000px;
-    /* Tùy chỉnh chiều rộng tối đa của container */
     margin: auto;
     padding: 30px;
 }
@@ -9,23 +8,18 @@
 .search-form .ant-picker,
 .search-form .ant-btn {
     font-size: 16px;
-    /* Tăng kích thước font */
     height: 45px;
-    /* Tăng độ cao của các trường và nút */
 }
 
 .search-form .ant-select-selector,
 .search-form .ant-picker-input input {
     height: 45px !important;
-    /* Đảm bảo các trường nhập liệu có độ cao tương tự */
 }
 
 .search-form .ant-btn {
     padding: 6px 30px;
-    /* Tăng kích thước padding của nút để nó to hơn */
 }
 
-/* Tùy chỉnh khoảng cách giữa các thành phần */
 .search-form>*:not(:last-child) {
     margin-right: 10px;
 }

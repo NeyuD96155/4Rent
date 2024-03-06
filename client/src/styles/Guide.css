@@ -1,5 +1,5 @@
 .guide-container {
-    background-color:#aab0b6;
+    background-color: #aab0b6;
     padding: 2em 0;
     margin: 2em auto;
     max-width: 1170px;
@@ -19,7 +19,6 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    /* Spacing between cards */
 }
 
 .guide-card {

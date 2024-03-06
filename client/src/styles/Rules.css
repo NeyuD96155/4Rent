@@ -21,17 +21,14 @@
     margin-bottom: 10px;
 }
 
-/* Điều khoản pháp lý */
 .rules-heading:nth-of-type(1) {
     color: #000000;
 }
 
-/* Điều khoản dịch vụ */
 .rules-heading:nth-of-type(2) {
     color: #000000;
 }
 
-/* Dòng được đánh số */
 .rules-content {
     list-style-type: decimal;
 }
@@ -39,5 +36,4 @@
 .rules-content {
     list-style-type: decimal;
     padding-left: 20px;
-    /* Để tạo khoảng cách giữa số và nội dung */
 }

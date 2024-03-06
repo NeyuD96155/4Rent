@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import axios from '../config/axios';
+import React, { useEffect, useState } from "react";
+import axios from "../config/axios";
 
 function BookingHistory({ userId }) {
     const [bookings, setBookings] = useState([]);
@@ -20,7 +20,6 @@ function BookingHistory({ userId }) {
     return (
         <div>
             <h2>Lịch Sử Booking</h2>
-            {/* Render bookings here */}
         </div>
     );
 }

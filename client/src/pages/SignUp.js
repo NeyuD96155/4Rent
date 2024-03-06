@@ -130,11 +130,6 @@ const SignUp = () => {
                     <Input.Password placeholder="Mật khẩu" />
                 </Form.Item>
 
-                {/* Example of checkbox implementation in antd, uncomment if needed
-      <Form.Item name="allowExtraEmails" valuePropName="checked">
-        <Checkbox>I agree to receive marketing emails.</Checkbox>
-      </Form.Item>
-      */}
                 <Form.Item
                     name="confirm"
                     label="Xác nhận mật khẩu"
@@ -154,9 +149,7 @@ const SignUp = () => {
                                     return Promise.resolve();
                                 }
                                 return Promise.reject(
-                                    new Error(
-                                        "Mật khẩu xác nhận không khớp"
-                                    )
+                                    new Error("Mật khẩu xác nhận không khớp")
                                 );
                             },
                         }),
@@ -219,7 +212,6 @@ const SignUp = () => {
                         </button>,
                     ]}
                 >
-                    {/* Your Terms and Conditions content */}
                     <p>
                         Xin chào và hoan nghênh bạn đến với trang web cho thuê
                         căn hộ của chúng tôi. Trước khi bạn bắt đầu sử dụng dịch

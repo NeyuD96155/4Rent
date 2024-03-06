@@ -1,6 +1,3 @@
-/* ReportError.css */
-
-/* Container */
 .report-error-container {
     max-width: 500px;
     margin: 0 auto;
@@ -8,21 +5,18 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f9f9f9;
-  }
-  
-  /* Header */
-  .report-error-container h2 {
+}
+
+.report-error-container h2 {
     margin-bottom: 20px;
-  }
-  
-  /* Error Message */
-  .error-message {
+}
+
+.error-message {
     color: #ff0000;
     margin-bottom: 10px;
-  }
-  
-  /* Textarea */
-  .report-error-textarea {
+}
+
+.report-error-textarea {
     width: 100%;
     height: 150px;
     padding: 10px;
@@ -30,19 +24,17 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     resize: vertical;
-  }
-  
-  /* Submit Button */
-  .report-error-button {
+}
+
+.report-error-button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     background-color: #007bff;
     color: #fff;
     cursor: pointer;
-  }
-  
-  .report-error-button:hover {
+}
+
+.report-error-button:hover {
     background-color: #0056b3;
-  }
-  
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/CancellationPolicy.css"; // Assuming you have a CSS file for this component
+import "../../styles/CancellationPolicy.css"; 
 
 const CancellationPolicy = () => {
     return (
@@ -77,8 +77,6 @@ const CancellationPolicy = () => {
                 điều kiện, đặc biệt là về chính sách hủy phòng của địa điểm bạn
                 lựa chọn.
             </p>
-
-            {/* Add any additional information or sections as needed */}
         </div>
     );
 };

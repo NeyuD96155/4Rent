@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Form, Input, Button, InputNumber, Upload, Select, } from "antd";
-import api from "../config/axios"; // Ensure axios is correctly configured
+import { Form, Input, Button, InputNumber, Upload, Select } from "antd";
+import api from "../config/axios";
 import { toast } from "react-toastify";
 import "../styles/Post.css";
 import { PlusOutlined } from "@ant-design/icons";
@@ -39,12 +39,12 @@ const Post = () => {
         const formattedValues = {
             ...values,
             // postDate: values.postDate.format("YYYY-MM-DDTHH:mm:ss.SSSZ"),
-            price: parseInt(values.price, 10), // Ensure the value is an integer
+            price: parseInt(values.price, 10),
             resources,
         };
 
         try {
-            await api.post("/post", formattedValues); // Remove 'response' since it's not being used
+            await api.post("/post", formattedValues);
             toast.success("Căn hộ đã được đăng ký thành công!");
             form.resetFields();
         } catch (error) {

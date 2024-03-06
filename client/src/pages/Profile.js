@@ -126,10 +126,7 @@ const ProfilePage = () => {
                 >
                     <Input placeholder="Nhập họ và tên của bạn" />
                 </Form.Item>
-                <Form.Item
-                    label="Số điện thoại"
-                    name="phone"
-                >
+                <Form.Item label="Số điện thoại" name="phone">
                     <Input placeholder="Nhập số điện thoại của bạn" />
                 </Form.Item>
                 <Form.Item label="Ngày sinh" name="dob">
@@ -140,10 +137,7 @@ const ProfilePage = () => {
                     />
                 </Form.Item>
 
-                <Form.Item
-                    label="Giới tính"
-                    name="gender"
-                >
+                <Form.Item label="Giới tính" name="gender">
                     <Select
                         placeholder="Chọn giới tính"
                         dropdownRender={(menu) => (
@@ -160,16 +154,10 @@ const ProfilePage = () => {
                     </Select>
                 </Form.Item>
 
-                <Form.Item
-                    label="Địa chỉ"
-                    name="address"
-                >
+                <Form.Item label="Địa chỉ" name="address">
                     <Input placeholder="Nhập số điện thoại" />
                 </Form.Item>
-                <Form.Item
-                    label="Email"
-                    name="email"
-                >
+                <Form.Item label="Email" name="email">
                     <Input placeholder="Nhập số điện thoại" disabled />
                 </Form.Item>
 
@@ -189,30 +177,36 @@ const ProfilePage = () => {
                     label="Mật khẩu hiện tại"
                     name="currentPassword"
                     rules={[{ required: true }]}
-                 
                 >
-                    <Input.Password placeholder="khong the nhap vi ban da den" disabled />
+                    <Input.Password
+                        placeholder="khong the nhap vi ban da den"
+                        disabled
+                    />
                 </Form.Item>
                 <Form.Item
                     label="Mật khẩu mới"
                     name="newPassword"
                     rules={[{ required: true }]}
-                
                 >
-                    <Input.Password placeholder="khong the nhap vi ban da den" disabled />
+                    <Input.Password
+                        placeholder="khong the nhap vi ban da den"
+                        disabled
+                    />
                 </Form.Item>
                 <Form.Item
                     label="Xác nhận mật khẩu mới"
                     name="confirmNewPassword"
                     rules={[{ required: true }]}
-                 
                 >
-                    <Input.Password placeholder="khong the nhap vi ban da den" disabled/>
+                    <Input.Password
+                        placeholder="khong the nhap vi ban da den"
+                        disabled
+                    />
                 </Form.Item>
                 <Form.Item>
-                    <Button type="primary" htmlType="submit" >
-                        Đổi mật khẩu 
-                    </Button >
+                    <Button type="primary" htmlType="submit">
+                        Đổi mật khẩu
+                    </Button>
                 </Form.Item>
             </Form>
         </Card>

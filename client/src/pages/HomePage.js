@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Route, Routes,useLocation  } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Route,
+    Routes,
+    useLocation,
+} from "react-router-dom";
 import NavigationBar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Guides from "../pages/Guides";
@@ -37,13 +42,13 @@ import AccessDeniedPage from "./AccessDenied";
 import PaymentSuccess from "./PaymentSuccess";
 function LayoutWrapper() {
     const location = useLocation();
-    const isDashboard = location.pathname.startsWith('/dash-board');
-  
+    const isDashboard = location.pathname.startsWith("/dash-board");
+
     return (
-      <>
-        {!isDashboard && <NavigationBar />}
-        <Routes>
-        <Route path="/payment" element={<Payment />} />
+        <>
+            {!isDashboard && <NavigationBar />}
+            <Routes>
+                <Route path="/payment" element={<Payment />} />
                 <Route
                     path="/cancellation-policy"
                     element={<CancellationPolicy />}
@@ -67,7 +72,7 @@ function LayoutWrapper() {
                 <Route path="/post/detail/:postId" element={<PostDetail />} />
                 <Route path="/post" element={<Post />} />
                 <Route path="/estate" element={<Estate />} />
-             
+
                 <Route
                     path="/booking"
                     element={
@@ -88,7 +93,6 @@ function LayoutWrapper() {
                 <Route path="/search" element={<SearchBar />} />
                 <Route path="/success" element={<PaymentSuccess />} />
                 <Route path="/access-denied" element={<AccessDeniedPage />} />
-               
 
                 <Route
                     path="/dash-board"
@@ -99,19 +103,17 @@ function LayoutWrapper() {
                     }
                 />
                 <Route path="/ShowEstate" element={<ShowEstate />} />
-        </Routes>
-        {!isDashboard && <Footer />}
-      </>
+            </Routes>
+            {!isDashboard && <Footer />}
+        </>
     );
-  }
+}
 function Homepage() {
-
     return (
         <Router>
             <LayoutWrapper />
         </Router>
     );
-
 }
 
 export default Homepage;

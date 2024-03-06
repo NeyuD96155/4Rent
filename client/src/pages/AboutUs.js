@@ -3,7 +3,6 @@ import React from "react";
 import "../styles/About.css";
 const AboutUs = () => {
     return (
-        
         <div className="container">
             <div className="row my-5">
                 <div className="col">
@@ -32,7 +31,7 @@ const AboutUs = () => {
                         cho phép họ khám phá các điểm đến mới một cách dễ dàng
                         và thoải mái.
                     </p>
-                    </div>
+                </div>
                 <div className="col-md-6">
                     <img
                         src="./assets/img/i2.jpg"
@@ -40,28 +39,27 @@ const AboutUs = () => {
                         className="img-fluid"
                     />
                 </div>
-           
 
-            <div className="row">
-                <div className="col-md-6">
-                    <img
-                        src="./assets/img/i1.jpg"
-                        alt="Mission Image"
-                        className="img-fluid"
-                    />
+                <div className="row">
+                    <div className="col-md-6">
+                        <img
+                            src="./assets/img/i1.jpg"
+                            alt="Mission Image"
+                            className="img-fluid"
+                        />
                     </div>
-                <div className="col-md-6">
-                    <h2>Nhiệm vụ của chúng tôi</h2>
-                    <p>
-                        Sứ mệnh của chúng tôi là trao quyền cho chủ sở hữu
-                        timeshare bằng cách cung cấp cho họ nhiều tùy chọn trao
-                        đổi đa dạng, dịch vụ khách hàng hàng đầu và các nguồn
-                        lực vô giá để nâng cao trải nghiệm kỳ nghỉ của họ.
-                        
-                    </p>
+                    <div className="col-md-6">
+                        <h2>Nhiệm vụ của chúng tôi</h2>
+                        <p>
+                            Sứ mệnh của chúng tôi là trao quyền cho chủ sở hữu
+                            timeshare bằng cách cung cấp cho họ nhiều tùy chọn
+                            trao đổi đa dạng, dịch vụ khách hàng hàng đầu và các
+                            nguồn lực vô giá để nâng cao trải nghiệm kỳ nghỉ của
+                            họ.
+                        </p>
+                    </div>
                 </div>
             </div>
-</div>
             <div className="row my-4">
                 <div className="col">
                     <h2>Các thành viên</h2>
