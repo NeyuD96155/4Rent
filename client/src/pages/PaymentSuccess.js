@@ -1,32 +1,33 @@
-import React from "react";
 import { useLocation } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useEffect } from "react";
+import React from "react";
 
-const PaymentSuccess = () => {
+const PaymentSuccessPage = () => {
     const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
-    const paymentStatus = queryParams.get("status");
 
-    React.useEffect(() => {
-        if (paymentStatus === "success") {
-            toast.success(
-                "Thanh toán thành công! Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi."
-            );
-        } else if (paymentStatus === "failed") {
-            toast.error("Thanh toán không thành công. Vui lòng thử lại.");
-        }
-    }, [paymentStatus]);
+    useEffect(() => {
+        // Phân tích các tham số từ URL
+        const searchParams = new URLSearchParams(location.search);
+        const vnp_Amount = searchParams.get("vnp_Amount");
+        const vnp_BankCode = searchParams.get("vnp_BankCode");
+        // Lấy các thông tin khác tương tự
+
+        // Thực hiện hành động tương ứng với dữ liệu nhận được từ URL
+        console.log("Thông tin thanh toán thành công:");
+        console.log("Số tiền thanh toán:", vnp_Amount);
+        console.log("Ngân hàng:", vnp_BankCode);
+        // Thực hiện các hành động khác tùy theo yêu cầu của ứng dụng
+
+        // Ví dụ: Chuyển hướng đến trang /payment
+        // navigate("/payment");
+    }, [location]);
 
     return (
         <div>
-            <h1>Trạng Thái Thanh Toán</h1>
-            <p>
-                {paymentStatus === "success"
-                    ? "Thanh toán đã được xử lý thành công."
-                    : "Có lỗi xảy ra trong quá trình thanh toán."}
-            </p>
+            <h1>Thanh toán thành công!</h1>
+            {/* Hiển thị thông tin khác tùy theo yêu cầu của ứng dụng */}
         </div>
     );
 };
 
-export default PaymentSuccess;
+export default PaymentSuccessPage;
