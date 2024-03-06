@@ -18,11 +18,18 @@ const Post = () => {
         });
         return formatter.format(value).replace(/\u200B/g, "");
     };
-
+    const [previewOpen, setPreviewOpen] = useState(false);
+    const [previewImage, setPreviewImage] = useState("");
+    const [previewTitle, setPreviewTitle] = useState("");
+    const [fileList, setFileList] = useState([]);
     const parseCurrency = (value) => {
         return value.replace(/\D/g, "");
     };
     const handleSubmit = async (values) => {
+        if (fileList.length < 5) {
+            toast.info("Vui lòng tải lên ít nhất 5 ảnh.");
+            return;
+        }
         const images = values.resource.fileList;
         console.log(values);
         console.log();
@@ -54,10 +61,7 @@ const Post = () => {
         }
     };
 
-    const [previewOpen, setPreviewOpen] = useState(false);
-    const [previewImage, setPreviewImage] = useState("");
-    const [previewTitle, setPreviewTitle] = useState("");
-    const [fileList, setFileList] = useState([]);
+
 
     const getBase64 = (file) =>
         new Promise((resolve, reject) => {
