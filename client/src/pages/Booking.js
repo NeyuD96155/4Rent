@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Form, Button, DatePicker, Switch, Card, InputNumber } from "antd";
+import {
+    Form,
+    Button,
+    DatePicker,
+    Switch,
+    Card,
+    InputNumber,
+    Checkbox,
+    Modal,
+} from "antd";
 import api from "../config/axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { format } from "date-fns";
@@ -12,6 +21,7 @@ const Booking = ({ userId, estateId }) => {
     const location = useLocation();
     const post = location.state ? location.state.post : null;
     const navigate = useNavigate();
+    const [modalVisible, setModalVisible] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0);
     const onFormValuesChange = (_, allValues) => {
         const pricePerDay = post ? post.price : 0;
@@ -61,6 +71,13 @@ const Booking = ({ userId, estateId }) => {
         };
     }, [post]);
 
+    const handleCheckboxChange = (e) => {
+        if (e.target.checked) {
+            setModalVisible(true);
+        } else {
+            setModalVisible(false);
+        }
+    };
     const handleSubmit = async (values) => {
         const checkInDate = values.checkIn
             ? moment(values.checkIn).format("YYYY-MM-DDTHH:mm:ss")
@@ -179,13 +196,91 @@ const Booking = ({ userId, estateId }) => {
                                 })}
                             </span>
                         </Form.Item>
+
                         <Form.Item
                             name="status"
-                            label="Xác nhận ngay lập tức"
                             valuePropName="checked"
+                            rules={[
+                                {
+                                    validator: (_, value) => {
+                                        if (!value) {
+                                            return Promise.reject(
+                                                new Error(
+                                                    "Vui lòng đồng ý với điều khoản và chính sách."
+                                                )
+                                            );
+                                        }
+                                        return Promise.resolve();
+                                    },
+                                },
+                            ]}
                         >
-                            <Switch />
+                            <Checkbox onChange={handleCheckboxChange}>
+                                Bằng cách tích vào hộp, bạn đồng ý với{" "}
+                                <a
+                                    className="blue-link"
+                                    onClick={() => setModalVisible(true)}
+                                >
+                                    điều khoản và chính sách
+                                </a>{" "}
+                                của 4rent
+                            </Checkbox>
                         </Form.Item>
+
+                        <Modal
+                            title="ĐIỀU KHOẢN VÀ CHÍNH SÁCH CỦA 4RENT"
+                            visible={modalVisible}
+                            onCancel={() => setModalVisible(false)}
+                            footer={null}
+                        >
+                            {/* Nội dung điều khoản và chính sách của bạn ở đây */}
+
+                            <p>
+                                <b>1.Phạm vi của dịch vụ: </b>
+                                Trang web này cung cấp dịch vụ cho thuê
+                                timeshare, giúp người dùng tìm kiếm và đặt chỗ
+                                cho những kỳ nghỉ lưu trú timeshare. Dịch vụ này
+                                chỉ dành cho người dùng trưởng thành. <br />
+                                <b>
+                                    2.Quyền và trách nhiệm của người dùng:
+                                </b>{" "}
+                                Người dùng đồng ý sử dụng trang web này cho mục
+                                đích hợp pháp và không vi phạm bất kỳ luật pháp
+                                nào. <br />
+                                <b>3.Quyền sở hữu trí tuệ: </b> Mọi quyền sở hữu
+                                trí tuệ của dữ liệu, nội dung và thiết kế của
+                                trang web này đều thuộc sở hữu của chúng tôi
+                                hoặc các bên cấp phép.
+                                <br />
+                                <b>
+                                    4. Quyền và trách nhiệm của chúng tôi:{" "}
+                                </b>{" "}
+                                Chúng tôi cam kết cung cấp thông tin chính xác
+                                và dịch vụ chất lượng nhất có thể. Tuy nhiên,
+                                chúng tôi không chịu trách nhiệm về bất kỳ thiệt
+                                hại nào phát sinh từ việc sử dụng trang web này
+                                hoặc thông tin được cung cấp trên đó. <br />{" "}
+                                <b>5. Bảo mật: </b>
+                                Chúng tôi cam kết bảo vệ thông tin cá nhân của
+                                người dùng và không chia sẻ thông tin này với
+                                bất kỳ bên thứ ba nào mà không có sự đồng ý của
+                                người dùng. <br />
+                                <b>6. Thay đổi và hủy bỏ: </b> Chúng tôi có
+                                quyền thay đổi hoặc hủy bỏ bất kỳ phần nào của
+                                Chính sách và Điều khoản này vào bất kỳ thời
+                                điểm nào mà không cần thông báo trước. <br />
+                                <b>7.Liên hệ: </b>
+                                Nếu có bất kỳ câu hỏi hoặc ý kiến nào về Chính
+                                sách và Điều khoản này, vui lòng liên hệ với
+                                chúng tôi qua{" "}
+                                <a
+                                    href="https://mail.google.com/mail/u/0/#inbox?compose=DmwnWrRlQzCVVVSGFdbwBBnbTSqwqsTkqnbXNMnpbRNrbSfxMcfWzKcVxJQJNmRjcvVczQpvRRNV"
+                                    target="_blank"
+                                >
+                                    4RENT
+                                </a>
+                            </p>
+                        </Modal>
                         <Form.Item>
                             <Button
                                 type="primary"
