@@ -103,3 +103,13 @@
 .booking-container {
     animation: fadeIn 0.5s ease-out;
 }
+
+.blue-link {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.blue-link:hover {
+    color: darkblue;
+}
