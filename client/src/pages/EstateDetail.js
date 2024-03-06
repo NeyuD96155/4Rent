@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import api from "../config/axios";
 
 function ShowEstate() {
@@ -7,11 +7,11 @@ function ShowEstate() {
     useEffect(() => {
         const fetchEstates = async () => {
             try {
-                const response = await api.get('/showEstate'); 
+                const response = await api.get("/showEstate");
                 console.log(response.data);
                 setEstates(response.data);
             } catch (error) {
-                console.error('Error fetching data: ', error);
+                console.error("Error fetching data: ", error);
             }
         };
 
@@ -20,7 +20,7 @@ function ShowEstate() {
 
     return (
         <div>
-            {estates.map(estate => (
+            {estates.map((estate) => (
                 <div key={estate.id}>
                     <h2>{estate.title}</h2>
                     <p>{estate.description}</p>
@@ -29,8 +29,13 @@ function ShowEstate() {
                     <p>Category ID: {estate.categoryId}</p>
                     <p>Location ID: {estate.locationId}</p>
                     <div>
-                        {estate.resources.map(resource => (
-                            <img key={resource.id} src={resource.url} alt="Estate" style={{ width: '100px', height: '100px' }} />
+                        {estate.resources.map((resource) => (
+                            <img
+                                key={resource.id}
+                                src={resource.url}
+                                alt="Estate"
+                                style={{ width: "100px", height: "100px" }}
+                            />
                         ))}
                     </div>
                 </div>

@@ -15,7 +15,6 @@ const NavigationBar = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Kiểm tra và hiển thị thông báo chào mừng
         const welcomeMessage = sessionStorage.getItem("welcomeMessage");
         if (isLoggedIn && welcomeMessage) {
             toast.success(welcomeMessage);
@@ -25,30 +24,33 @@ const NavigationBar = () => {
 
     const handleLogout = () => {
         logout();
-        // Gửi sự kiện logout đến các tab khác
-        localStorage.setItem('logout', Date.now());
+        localStorage.setItem("logout", Date.now());
         navigate("/signin");
     };
 
     const menu = (
-        <Menu items={[
-            {
-                key: "profile",
-                icon: <UserOutlined />,
-                label: <Link to="/profile">Xem Thông Tin Cá Nhân</Link>,
-            },
-            {
-                key: "history",
-                icon: <HistoryOutlined />,
-                label: <Link to="/booking-history">Xem Lịch Sử Giao Dịch</Link>,
-            },
-            {
-                key: "logout",
-                icon: <LogoutOutlined />,
-                label: "Đăng Xuất",
-                onClick: handleLogout,
-            },
-        ]} />
+        <Menu
+            items={[
+                {
+                    key: "profile",
+                    icon: <UserOutlined />,
+                    label: <Link to="/profile">Xem Thông Tin Cá Nhân</Link>,
+                },
+                {
+                    key: "history",
+                    icon: <HistoryOutlined />,
+                    label: (
+                        <Link to="/booking-history">Xem Lịch Sử Giao Dịch</Link>
+                    ),
+                },
+                {
+                    key: "logout",
+                    icon: <LogoutOutlined />,
+                    label: "Đăng Xuất",
+                    onClick: handleLogout,
+                },
+            ]}
+        />
     );
 
     return (
@@ -57,23 +59,40 @@ const NavigationBar = () => {
                 <Link to="/">4Rent</Link>
             </div>
             <div className="navbar-links">
-                <Link to="/estate" className="navbar-link">Căn hộ</Link>
-                {isLoggedIn && userRole === 'ADMIN' && (
-                    <Link to="/dash-board" className="navbar-link">DashBoard</Link>
+                <Link to="/estate" className="navbar-link">
+                    Căn hộ
+                </Link>
+                {isLoggedIn && userRole === "ADMIN" && (
+                    <Link to="/dash-board" className="navbar-link">
+                        DashBoard
+                    </Link>
                 )}
-                {isLoggedIn && (userRole === 'MEMBER' || userRole === 'ADMIN') && (
-                    <Link to="/post" className="navbar-link">Đăng căn hộ</Link>
-                )}
+                {isLoggedIn &&
+                    (userRole === "MEMBER" || userRole === "ADMIN") && (
+                        <Link to="/post" className="navbar-link">
+                            Đăng căn hộ
+                        </Link>
+                    )}
                 {isLoggedIn ? (
                     <Dropdown overlay={menu}>
-                        <a onClick={e => e.preventDefault()} className="avatar-link">
-                            <Avatar style={{ backgroundColor: "#87d068" }} icon={<UserOutlined />} />
+                        <a
+                            onClick={(e) => e.preventDefault()}
+                            className="avatar-link"
+                        >
+                            <Avatar
+                                style={{ backgroundColor: "#87d068" }}
+                                icon={<UserOutlined />}
+                            />
                         </a>
                     </Dropdown>
                 ) : (
                     <>
-                        <Link to="/signin" className="navbar-link">Đăng Nhập</Link>
-                        <Link to="/signup" className="navbar-link">Đăng Kí</Link>
+                        <Link to="/signin" className="navbar-link">
+                            Đăng Nhập
+                        </Link>
+                        <Link to="/signup" className="navbar-link">
+                            Đăng Kí
+                        </Link>
                     </>
                 )}
             </div>

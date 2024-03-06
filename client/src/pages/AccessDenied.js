@@ -1,5 +1,3 @@
-// AccessDeniedPage.js
-
 import React from 'react';
 
 const AccessDeniedPage = () => {

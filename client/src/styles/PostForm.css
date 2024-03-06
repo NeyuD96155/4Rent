@@ -5,34 +5,34 @@
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 5px;
-  }
-  
-  .post-form-container h2 {
+}
+
+.post-form-container h2 {
     font-size: 24px;
     margin-bottom: 20px;
     color: #333;
-  }
-  
-  .post-form-container form {
+}
+
+.post-form-container form {
     display: flex;
     flex-direction: column;
-  }
-  
-  .post-form-container input[type="text"],
-  .post-form-container input[type="number"],
-  .post-form-container textarea {
+}
+
+.post-form-container input[type="text"],
+.post-form-container input[type="number"],
+.post-form-container textarea {
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-  }
-  
-  .post-form-container textarea {
+}
+
+.post-form-container textarea {
     min-height: 100px;
-  }
-  
-  .post-form-container button {
+}
+
+.post-form-container button {
     padding: 10px 20px;
     background-color: #007bff;
     color: #fff;
@@ -40,31 +40,32 @@
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-  }
-  
-  .post-form-container button:hover {
-    background-color: #0056b3;
-  }
+}
 
-  .post-form-wrapper {
+.post-form-container button:hover {
+    background-color: #0056b3;
+}
+
+.post-form-wrapper {
     background-image: url('https://images.cenhomes.vn/2020/03/1585033156-can-ho-mau-lovera-garden.jpg');
-    background-size: cover; 
-    background-position: center; 
-    padding: 20px; 
-  }
-  
-  .post-form-container {
-    background-color: rgba(255, 255, 255, 0.8); 
-    padding: 20px; 
-    border-radius: 10px; 
-  }
-  .post-form-container div {
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+}
+
+.post-form-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.post-form-container div {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
-  }
-  
-  .post-form-container div button {
+}
+
+.post-form-container div button {
     padding: 5px 10px;
     font-size: 16px;
     background-color: #007bff;
@@ -72,13 +73,12 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
-  
-  .post-form-container div button:hover {
+}
+
+.post-form-container div button:hover {
     background-color: #0056b3;
-  }
-  
-  .post-form-container div span {
+}
+
+.post-form-container div span {
     margin: 0 10px;
-  }
-  
+}

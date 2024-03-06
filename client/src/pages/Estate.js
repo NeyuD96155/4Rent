@@ -12,7 +12,7 @@ const TimesharePosts = () => {
         const fetchPosts = async () => {
             try {
                 const response = await api.get("/post/show");
-                console.log(response.data); // Kiểm tra dữ liệu trả về
+                console.log(response.data);
                 setPosts(response.data);
             } catch (error) {
                 console.error("Error fetching timeshare posts:", error);
