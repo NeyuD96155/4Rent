@@ -107,18 +107,20 @@ const Booking = ({ userId, estateId }) => {
                         className="info-card"
                     >
                         <div className="post-info">
-                            <div className="imageContainer">
-                                <img
-                                    src={
-                                        post.resources &&
-                                        post.resources.length > 0
-                                            ? post.resources[0].url
-                                            : "https://via.placeholder.com/400"
-                                    }
-                                    alt="Post"
-                                    className="booking-postImage"
-                                />
-                            </div>
+                            
+                                <div className="imageContainer">
+                                    <img
+                                        src={
+                                            post.resources &&
+                                                post.resources.length > 0
+                                                ? post.resources[0].url
+                                                : "https://via.placeholder.com/400"
+                                        }
+                                        alt="Post"
+                                        className="booking-postImage"
+                                    />
+                                </div>
+
                             <p>Thông tin bài viết:</p>
                             <ul>
                                 <li>Tiêu đề: {post.title}</li>
@@ -155,14 +157,14 @@ const Booking = ({ userId, estateId }) => {
                             label="Ngày nhận phòng"
                             rules={[{ required: true }]}
                         >
-                            <DatePicker showTime format="YYYY-MM-DD HH:mm" />
+                            <DatePicker showTime format="DD-MM-YYYY HH:mm" />
                         </Form.Item>
                         <Form.Item
                             name="checkOut"
                             label="Ngày trả phòng"
                             rules={[{ required: true }]}
                         >
-                            <DatePicker showTime format="YYYY-MM-DD HH:mm" />
+                            <DatePicker showTime format="DD-MM-YYYY HH:mm" />
                         </Form.Item>
                         <Form.Item
                             name="guests"
