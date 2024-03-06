@@ -33,6 +33,8 @@ import SearchBar from "../components/SearchBar";
 import PrivateRoute from "../components/PrivateRoute";
 import DashBoard from "./Dashboard";
 import AccessDeniedPage from "./AccessDenied";
+
+import PaymentSuccess from "./PaymentSuccess";
 function LayoutWrapper() {
     const location = useLocation();
     const isDashboard = location.pathname.startsWith('/dash-board');
@@ -84,6 +86,7 @@ function LayoutWrapper() {
                 <Route path="/reporterror" element={<ReportError />} />
                 <Route path="/insurance" element={<Insurance />} />
                 <Route path="/search" element={<SearchBar />} />
+                <Route path="/success" element={<PaymentSuccess />} />
                 <Route path="/access-denied" element={<AccessDeniedPage />} />
                
 
