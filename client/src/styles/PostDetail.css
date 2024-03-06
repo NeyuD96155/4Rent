@@ -194,6 +194,8 @@ h2 {
     transform: scale(1.02); /* Phóng to ảnh khi hover */
 }
 
+/* File ImageDetailModal.css */
+
 .imageDetailModal {
     position: fixed;
     top: 0;
@@ -204,18 +206,25 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 9999; 
   }
   
   .modalContent {
     background-color: white;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Đổ bóng cho modal */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Đổ bóng cho modal */
+    max-width: 80%; /* Giới hạn chiều rộng của modal */
+    max-height: 80%; /* Giới hạn chiều cao của modal */
+    overflow: auto; /* Cho phép cuộn nếu nội dung quá dài */
+    position: relative;
   }
   
   .expandedImage {
-    max-width: 90%; /* Đảm bảo ảnh không quá rộng */
-    max-height: 90vh; /* Giới hạn chiều cao của ảnh */
+    max-width: 100%; /* Đảm bảo ảnh không quá rộng */
+    max-height: 100%; /* Đảm bảo ảnh không quá cao */
+    display: block; /* Đảm bảo ảnh hiển thị đúng cách */
+    margin: 0 auto; /* Căn giữa ảnh */
   }
   
   .closeModal {
@@ -227,7 +236,10 @@ h2 {
     cursor: pointer;
     font-size: 18px;
     color: #333;
+    background-color: #ffffff;
+    border: 2px solid transparent;
   }
+
   
 
 

@@ -170,7 +170,6 @@ const PostDetail = () => {
                                         src={resource.url}
                                         alt={`Post Image ${index}`}
                                         className="imageModalStyle"
-                                        onClick={() => handleImageClick(resource.url)}
                                     />
                                 ))}
                         </div>
