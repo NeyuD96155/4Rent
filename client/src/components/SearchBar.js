@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, DatePicker, Select } from "antd";
-import axios from "axios";
+import api from "../config/axios";
 import "../styles/Search.css";
 
 const { RangePicker } = DatePicker;
@@ -10,7 +10,7 @@ function SearchBar() {
     const [location, setLocation] = useState("");
     const [dateRange, setDateRange] = useState([]);
     const [guests, setGuests] = useState("");
-
+    const [category, setCategory] = useState("");
     const provinces = [
         "An Giang",
         "Bà Rịa - Vũng Tàu",
@@ -76,21 +76,28 @@ function SearchBar() {
         "Vĩnh Phúc",
         "Yên Bái",
     ];
+    const categories = [
+        { id: 1, name: "Hotel" },
+        { id: 2, name: "Apartment" },
+        { id: 3, name: "House" },
+    ];
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const searchData = {
+        const params = {
             location,
-            dateRange,
+            from: dateRange[0],
+            to: dateRange[1],
             guests,
+            categoryId: category,
         };
 
         try {
-            const response = await axios.post("/post/search", searchData);
+            const response = await api.get("/search", { params });
             console.log(response.data);
         } catch (error) {
-            console.error("Error when posting search data:", error);
+            console.error("Error when getting search data:", error);
         }
     };
 
@@ -98,7 +105,7 @@ function SearchBar() {
         <div className="search-container">
             <form onSubmit={handleSubmit} className="search-form">
                 <Select
-                    aria-label="Location"
+                    showSearch
                     placeholder="Chọn địa điểm"
                     allowClear
                     onChange={setLocation}
@@ -110,21 +117,33 @@ function SearchBar() {
                     ))}
                 </Select>
                 <RangePicker
-                    aria-label="Check-in and check-out date"
                     onChange={(_, dateString) => setDateRange(dateString)}
                 />
                 <Select
-                    aria-label="Guests"
+                    placeholder="Chọn loại"
+                    allowClear
+                    onChange={(value) => setCategory(value)}
+                >
+                    {categories.map((cat) => (
+                        <Option key={cat.id} value={cat.id}>
+                            {cat.name}
+                        </Option>
+                    ))}
+                </Select>
+
+                <Select
                     placeholder="Chọn số lượng người"
                     allowClear
-                    onChange={(value) => setGuests(value)}
+                    onChange={setGuests}
                 >
-                    <Option value="0.5">Nửa người</Option>
                     <Option value="1">1 người</Option>
                     <Option value="2">2 người</Option>
+                    <Option value="3">3 người</Option>
+                    <Option value="4">4 người</Option>
+                    <Option value="5">5 người</Option>
                 </Select>
                 <Button type="primary" htmlType="submit" className="search-btn">
-                    Search
+                    Tìm kiếm
                 </Button>
             </form>
         </div>
