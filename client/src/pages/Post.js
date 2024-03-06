@@ -27,7 +27,7 @@ const Post = () => {
     };
     const handleSubmit = async (values) => {
         if (fileList.length < 5) {
-            alert("Vui lòng tải lên ít nhất 5 ảnh.");
+            toast.info("Vui lòng tải lên ít nhất 5 ảnh.");
             return;
         }
         const images = values.resource.fileList;
