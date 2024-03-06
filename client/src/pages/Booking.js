@@ -23,6 +23,7 @@ const Booking = ({ userId, estateId }) => {
     const navigate = useNavigate();
     const [modalVisible, setModalVisible] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0);
+
     const onFormValuesChange = (_, allValues) => {
         const pricePerDay = post ? post.price : 0;
         const totalPrice = calculateTotalPrice(
@@ -219,7 +220,11 @@ const Booking = ({ userId, estateId }) => {
                                 Bằng cách tích vào hộp, bạn đồng ý với{" "}
                                 <a
                                     className="blue-link"
-                                    onClick={() => setModalVisible(true)}
+                                    href="#" // Thêm để thẻ a trông như liên kết
+                                    onClick={(e) => {
+                                        e.preventDefault(); // Ngăn chặn hành vi mặc định
+                                        setModalVisible(true); // Mở modal
+                                    }}
                                 >
                                     điều khoản và chính sách
                                 </a>{" "}
