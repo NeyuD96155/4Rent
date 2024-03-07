@@ -23,7 +23,7 @@ const Booking = ({ userId, estateId }) => {
     const navigate = useNavigate();
     const [modalVisible, setModalVisible] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0);
-
+    const [amount,setAmount] = useState(0);
     const onFormValuesChange = (_, allValues) => {
         const pricePerDay = post ? post.price : 0;
         const totalPrice = calculateTotalPrice(
@@ -33,6 +33,11 @@ const Booking = ({ userId, estateId }) => {
         );
         setTotalPrice(totalPrice);
     };
+
+    // Cuộn đầu trang khi component được render
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     useEffect(() => {
         const values = form.getFieldsValue(["checkIn", "checkOut", "guests"]);
@@ -99,6 +104,8 @@ const Booking = ({ userId, estateId }) => {
         };
 
         try {
+    console.log(totalPrice)
+
             //   const response = await api.post('/vn-pay', formattedValues);
             //   toast.success("Đặt phòng thành công! Vui lòng thanh toán.");
             //   form.resetFields();
@@ -106,16 +113,16 @@ const Booking = ({ userId, estateId }) => {
             const response = await api.post("/vn-pay", {
                 date: "2024-03-02T09:55:22.304Z",
                 estateId: 1,
-                amount: 10,
+                amount: totalPrice,
             });
             console.log(response.data);
             window.open(response.data, "_blank", "noreferrer");
         } catch (error) {
             const errorMessage = error.response?.data?.message || error.message;
             toast.error(`Đặt phòng thất bại: ${errorMessage}`);
+            console.log(error)
         }
     };
-
     return (
         <div className="booking-container">
             <div className="content-container">
@@ -125,19 +132,19 @@ const Booking = ({ userId, estateId }) => {
                         className="info-card"
                     >
                         <div className="post-info">
-                            
-                                <div className="imageContainer">
-                                    <img
-                                        src={
-                                            post.resources &&
-                                                post.resources.length > 0
-                                                ? post.resources[0].url
-                                                : "https://via.placeholder.com/400"
-                                        }
-                                        alt="Post"
-                                        className="booking-postImage"
-                                    />
-                                </div>
+
+                            <div className="imageContainer">
+                                <img
+                                    src={
+                                        post.resources &&
+                                            post.resources.length > 0
+                                            ? post.resources[0].url
+                                            : "https://via.placeholder.com/400"
+                                    }
+                                    alt="Post"
+                                    className="booking-postImage"
+                                />
+                            </div>
 
                             <p>Thông tin bài viết:</p>
                             <ul>
@@ -222,9 +229,9 @@ const Booking = ({ userId, estateId }) => {
                                 Bằng cách tích vào hộp, bạn đồng ý với{" "}
                                 <a
                                     className="blue-link"
-                                    href="#" 
+                                    href="#"
                                     onClick={(e) => {
-                                        e.preventDefault(); 
+                                        e.preventDefault();
                                         setModalVisible(true);
                                     }}
                                 >
