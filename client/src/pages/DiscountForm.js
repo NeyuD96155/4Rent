@@ -61,8 +61,6 @@ const DiscountForm = () => {
         }
     };
 
-
-
     const getBase64 = (file) =>
         new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -137,9 +135,11 @@ const DiscountForm = () => {
                     <Input.TextArea rows={4} />
                 </Form.Item>
                 <Form.Item
-                    name="price"
-                    label="Giá"
-                    rules={[{ required: true, message: "Vui lòng nhập giá!" }]}
+                    name="discount"
+                    label="Ưu đãi (%)"
+                    rules={[
+                        { required: true, message: "Vui lòng nhập ưu đãi!" },
+                    ]}
                     className="discount-form-item"
                 >
                     <InputNumber
@@ -150,16 +150,7 @@ const DiscountForm = () => {
                         parser={parseCurrency}
                     />
                 </Form.Item>
-                <Form.Item
-                    name="categoryId"
-                    label="Thể loại"
-                    rules={[
-                        { required: true, message: "Vui lòng chọn thể loại!" },
-                    ]}
-                    className="discount-form-item"
-                >
-                    <Select options={[{ value: 1, label: "Cate 1" }]} />
-                </Form.Item>
+
                 <Form.Item
                     name="resource"
                     label="Hình ảnh"
@@ -181,7 +172,7 @@ const DiscountForm = () => {
                         htmlType="submit"
                         className="discount-submit-button"
                     >
-                        Đăng ký
+                        Đăng bài
                     </Button>
                 </Form.Item>
             </Form>

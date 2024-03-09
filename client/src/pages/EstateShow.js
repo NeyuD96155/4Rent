@@ -31,7 +31,7 @@ const EstateShow = () => {
     }, []);
 
     const handleEstateClick = async (estateId) => {
-        navigate(`/detail-estate/${estateId}`);
+        navigate(`/showEstateDetail/${estateId}`);
     };
 
     if (isLoading) return <div aria-live="polite">Loading...</div>;
@@ -42,24 +42,33 @@ const EstateShow = () => {
             <h1>Timeshare Estates</h1>
             <div className="estates">
                 {estates.map((estate) => (
-                  <div key={estate.id} className="estate-card">
-                  <button
-                      style={{ all: 'unset', cursor: 'pointer' }} 
-                      onClick={() => handleEstateClick(estate.id)}
-                  >
-                      <img
-                          className="estate-image"
-                          src={estate.resources?.[0]?.url || "placeholder_image_url"}
-                          alt={estate.title || "Estate"}
-                      />
-                      <h2>{estate.title}</h2>
-                      <p>Giá: {estate.amount}</p>
-                      <p>Vị trí: {estate.location}</p>
-                      <p>Thể loại: {estate.category}</p>
-                      <p>Thời gian nhận phòng: {estate.checkIn || "Not specified"}</p>
-                      <p>Thời gian trả phòng: {estate.checkOut || "Not specified"}</p>
-                  </button>
-              </div>
+                    <div key={estate.id} className="estate-card">
+                        <button
+                            style={{ all: "unset", cursor: "pointer" }}
+                            onClick={() => handleEstateClick(estate.id)}
+                        >
+                            <img
+                                className="estate-image"
+                                src={
+                                    estate.resources?.[0]?.url ||
+                                    "placeholder_image_url"
+                                }
+                                alt={estate.title || "Estate"}
+                            />
+                            <h2>{estate.title}</h2>
+                            <p>Giá: {estate.price}</p>
+                            <p>Vị trí: {estate.location}</p>
+                            <p>Thể loại: {estate.category}</p>
+                            <p>
+                                Thời gian nhận phòng:{" "}
+                                {estate.checkIn || "Not specified"}
+                            </p>
+                            <p>
+                                Thời gian trả phòng:{" "}
+                                {estate.checkOut || "Not specified"}
+                            </p>
+                        </button>
+                    </div>
                 ))}
             </div>
         </div>

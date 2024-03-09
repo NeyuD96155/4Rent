@@ -33,14 +33,11 @@ import Blog from "../components/Blog";
 import ReportError from "../components/ReportError";
 import Insurance from "../components/Insurance";
 import BookingHistory from "../pages/BookingHistory";
-import ShowEstate from "./EstateDetail";
 import SearchBar from "../components/SearchBar";
 import PrivateRoute from "../components/PrivateRoute";
 import DashBoard from "./Dashboard";
 import AccessDeniedPage from "./AccessDenied";
 import Success from "./Success";
-import Rilestate from "./EstateForm";
-import TimeshareEstates from "./EstateShow";
 import DetailDiscount from "./DiscountDetail";
 import FormDiscount from "./DiscountForm";
 import EstateShow from "./EstateShow";
@@ -116,7 +113,7 @@ function LayoutWrapper() {
                 <Route path="/show-estate" element={<EstateShow />} />
                 <Route path="/form-estate" element={<EstateForm />} />
                 <Route
-                    path="/detail-estate/:estateId"
+                    path="/showEstateDetail/:id"
                     element={<EstateDetail />}
                 />
             </Routes>

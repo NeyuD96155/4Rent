@@ -47,3 +47,69 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* EstateDetail CSS */
+.estate-detail-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.estate-detail-container h1 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 24px;
+    text-transform: uppercase;
+}
+
+.booking-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+.booking-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.image-gallery-thumbnail {
+    border: 2px solid #ddd;
+    transition: border 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.image-gallery-thumbnail.active,
+.image-gallery-thumbnail:hover,
+.image-gallery-thumbnail:focus {
+    border: 2px solid #007bff;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .estate-detail-container {
+        padding: 10px;
+    }
+
+    .estate-detail-container h1 {
+        font-size: 20px;
+    }
+
+    .booking-button {
+        width: 100%;
+        padding: 15px 0;
+    }
+}

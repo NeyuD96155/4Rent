@@ -1,92 +1,31 @@
-.bodyOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: -10;
-}
-
-.bodyWithBackground {
-    background-size: cover;
-    background-position: center;
-    transition: background-image 0.5s ease-in-out;
+body {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
 }
 
 .booking-container {
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    padding: 20px;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
-.content-container,
-.booking-form-container {
-    flex-basis: 48%;
-    max-width: 48%;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
-.info-card,
+.estate-container,
 .booking-card {
-    width: 100%;
+    flex: 1;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f0f2f5;
     border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.notFound {
-    color: #ff4d4f;
-    font-size: 18px;
-    text-align: center;
-    margin-top: 50px;
-}
 
-.booking-postImage {
-    width: 300%;
-    height: 100%;
-    border-radius: 8px;
-    margin-bottom: 15px;
-}
-
-.imageContainer {
-    text-align: center;
-}
-
-.submit-button {
-    width: 100%;
-    background-color: #4CAF50;
-    border-color: #4CAF50;
-    color: #ffffff;
-    font-weight: bold;
-    text-transform: uppercase;
-    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
-    height: 40px;
-    font-size: 16px;
-}
-
-.submit-button:hover {
-    background-color: #45a049;
-    border-color: #45a049;
-}
-
-@media (max-width: 768px) {
-    .booking-container {
-        flex-direction: column;
-    }
-
-    .content-container,
-    .booking-form-container {
-        flex-basis: 100%;
-        max-width: 100%;
-    }
-}
 
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(10px);
     }
 
     to {
@@ -95,16 +34,28 @@
     }
 }
 
-.booking-container {
+body,
+.booking-container,
+.estate-container,
+.booking-card {
     animation: fadeIn 0.5s ease-out;
 }
 
-.blue-link {
-    color: blue;
-    text-decoration: underline;
-    cursor: pointer;
-}
+@media (max-width: 768px) {
+    body {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
 
-.blue-link:hover {
-    color: darkblue;
+    .booking-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .estate-container,
+    .booking-card {
+        margin: 15px 0;
+        width: 90%;
+    }
 }

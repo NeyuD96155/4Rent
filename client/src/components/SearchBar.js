@@ -78,9 +78,9 @@ function SearchBar() {
                     allowClear
                     onChange={(value) => setGuests(value)}
                 >
-                    <Option value="0.5">Nửa người</Option>
                     <Option value="1">1 người</Option>
                     <Option value="2">2 người</Option>
+                    <Option value="3">3 người</Option>
                 </Select>
                 <Button type="primary" htmlType="submit" className="search-btn">
                     Search
