@@ -1,32 +1,33 @@
-// import { useLocation } from "react-router-dom";
-import React from "react";
+import React, { useEffect, useState } from 'react';
+import { useLocation, Link } from 'react-router-dom'; // Import Link
+import '../styles/Success.css'; // Import CSS file
 
 const Success = () => {
-    // const location = useLocation();
+  const location = useLocation();
+  const [queryParams, setQueryParams] = useState(null);
 
-    // useEffect(() => {
-    //     // Phân tích các tham số từ URL
-    //     const searchParams = new URLSearchParams(location.search);
-    //     const vnp_Amount = searchParams.get("vnp_Amount");
-    //     const vnp_BankCode = searchParams.get("vnp_BankCode");
-    //     // Lấy các thông tin khác tương tự
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const params = {};
+    for (let param of searchParams.entries()) {
+      params[param[0]] = param[1];
+    }
+    setQueryParams(params);
+  }, [location.search]);
 
-    //     // Thực hiện hành động tương ứng với dữ liệu nhận được từ URL
-    //     console.log("Thông tin thanh toán thành công:");
-    //     console.log("Số tiền thanh toán:", vnp_Amount);
-    //     console.log("Ngân hàng:", vnp_BankCode);
-    //     // Thực hiện các hành động khác tùy theo yêu cầu của ứng dụng
-
-    //     // Ví dụ: Chuyển hướng đến trang /payment
-    //     // navigate("/payment");
-    // }, [location]);
-
-    return (
-        <div>
-            <h1>Thanh toán thành công!</h1>
-            {/* Hiển thị thông tin khác tùy theo yêu cầu của ứng dụng */}
+  return (
+    <div className="success-container">
+      <h1>Thanh toán thành công!</h1>
+      {queryParams && (
+        <div className="payment-info">
+          <h2>Thông tin thanh toán:</h2>
+          <p className="transaction-id">Mã GD: {queryParams.vnp_TxnRef}</p> 
+          <p className="amount">Số tiền: {queryParams.vnp_Amount}</p> 
         </div>
-    );
+      )}
+      <Link to="/booking-history" className="booking-history-link">Xem lịch sử đặt phòng</Link> {/* Add Link */}
+    </div>
+  );
 };
 
 export default Success;
