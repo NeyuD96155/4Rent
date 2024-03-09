@@ -1,0 +1,103 @@
+@import 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css';
+@import 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css';
+
+/* Images Component CSS */
+
+.grid-container {
+  text-align: center;
+  margin: auto;
+  width: 100%;
+  padding: 10px;
+}
+
+.container {
+  padding-left: 0;
+  padding-right: 0;
+  width: 100% !important;
+}
+
+.container *{
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.col-md-4 {
+  width: 33.33333333%;
+}
+
+.border {
+  border: 2px solid white;
+  border-radius: 6px;
+}
+
+.background {
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.height-one {
+  width: 100%;
+  padding-top: 100%;
+}
+
+.height-two {
+  width: 50%;
+  padding-top: 50%;
+}
+
+.height-three {
+  width: 33.3333%;
+  padding-top: 33.3333%;
+}
+
+.cover {
+  background-color: #222;
+  opacity: 0.8;
+  position: absolute;
+  right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  border-radius: 6px;
+}
+
+.cover-text {
+  right: 0;
+  left: 0;
+  bottom: 0;
+  color: white;
+  font-size: 7%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(0%, -50%);
+  -ms-transform: translate(0%, -50%);
+  transform: translate(0%, -50%);
+  text-align: center;
+}
+
+.cover-text > p {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.slide {
+  height: 0;
+  bottom: 100%;
+  transition: .5s ease;
+  overflow: hidden;
+  font-size: 3%;
+}
+
+.border:hover .slide  {
+  bottom: 0;
+  height: auto;
+}
+
+.border:hover .animate-text  {
+  top: 62%
+}

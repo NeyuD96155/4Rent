@@ -14,7 +14,6 @@ import "../styles/Post.css";
 import { PlusOutlined } from "@ant-design/icons";
 import uploadFile from "../utils/upload";
 import { v4 as uuidv4 } from "uuid";
-import moment from "moment";
 import dayjs from "dayjs";
 
 const EstateForm = () => {
@@ -120,19 +119,16 @@ const EstateForm = () => {
             reader.onerror = (error) => reject(error);
         });
 
-    const handleCancel = () => setPreviewOpen(false);
-    const handlePreview = async (file) => {
+        const handleCancel = () => setPreviewVisible(false);
+    const handlePreview = async file => {
         if (!file.url && !file.preview) {
             file.preview = await getBase64(file.originFileObj);
         }
         setPreviewImage(file.url || file.preview);
-        setPreviewOpen(true);
-        setPreviewTitle(
-            file.name || file.url.substring(file.url.lastIndexOf("/") + 1)
-        );
+        setPreviewVisible(true);
+        setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
     };
-    const handleChange = ({ fileList: newFileList }) =>
-        setFileList(newFileList);
+    const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
     const uploadButton = (
         <button
             style={{

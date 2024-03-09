@@ -46,6 +46,7 @@ import FormDiscount from "./DiscountForm";
 import EstateShow from "./EstateShow";
 import EstateForm from "./EstateForm";
 import EstateDetail from "./EstateDetail";
+import { DiscountShow } from "./DiscountShow";
 function LayoutWrapper() {
     const location = useLocation();
     const isDashboard = location.pathname.startsWith("/dash-board");
@@ -75,6 +76,7 @@ function LayoutWrapper() {
                     path="/maximize-vacation"
                     element={<MaximizeVacation />}
                 />
+                <Route path="discount" element={<DiscountShow />}></Route>
                 <Route
                     path="/discount/detail/:discountId"
                     element={<DetailDiscount />}
@@ -113,7 +115,10 @@ function LayoutWrapper() {
                 />
                 <Route path="/show-estate" element={<EstateShow />} />
                 <Route path="/form-estate" element={<EstateForm />} />
-                <Route path="/detail-estate/:estateId" element={<EstateDetail />} />
+                <Route
+                    path="/detail-estate/:estateId"
+                    element={<EstateDetail />}
+                />
             </Routes>
             {!isDashboard && <Footer />}
         </>
