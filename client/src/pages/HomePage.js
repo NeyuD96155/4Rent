@@ -75,14 +75,14 @@ function LayoutWrapper() {
                 />
                 <Route path="discount" element={<DiscountShow />}></Route>
                 <Route
-                    path="/discount/detail/:discountId"
+                    path="/show-discount/detail/:discountId"
                     element={<DetailDiscount />}
                 />
                 <Route path="/form-discount" element={<FormDiscount />} />
                 <Route path="/estate" element={<Estate />} />
 
                 <Route
-                    path="/booking"
+                    path="/booking/:id"
                     element={
                         <PrivateRoute>
                             <Booking />

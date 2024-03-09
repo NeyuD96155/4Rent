@@ -35,12 +35,10 @@ const EstateDetail = () => {
     if (error) return <div>Error: {error}</div>;
     if (!estate) return <div>No estate details available.</div>;
     const handleBooking = () => {
-        navigate('/booking', { state: { estate: estate } });
+        navigate(`/booking/${id}`);
     };
     return (
         <div className="estate-detail-container">
-            
-            <h1>{estate?.title}</h1>
             {estate?.resources?.length > 0 && (
                 <ImageGallery
                     items={estate?.resources?.map((item) => {
@@ -51,13 +49,37 @@ const EstateDetail = () => {
                     })}
                 />
             )}
-
-            <p>Giá: {estate.price} vnd</p>
-            <p>Vị trí: {estate.location}</p>
-            <p>Thể loại: {estate.category}</p>
-            <p>Số người tối đa: {estate.amount}</p>
-            <p>Thời gian nhận phòng: {estate.checkIn || "Not specified"}</p>
-            <p>Thời gian trả phòng: {estate.checkOut || "Not specified"}</p>
+            <p>
+                <strong>Tiêu đề: </strong> {estate.title}
+            </p>
+            <p>
+                <strong>Giá/ngày: </strong> {estate.price} vnd
+            </p>
+            <p>
+                {" "}
+                <strong>Địa điểm: </strong>
+                {estate.location}
+            </p>
+            <p>
+                {" "}
+                <strong>Thể loại: </strong> {estate.category}
+            </p>
+            <p>
+                {" "}
+                <strong>Mô tả: </strong> {estate.description}
+            </p>
+            <p>
+                <strong>Số người tối đa: </strong> {estate.amount}
+            </p>
+            <p>
+                <strong>Thời gian nhận phòng: </strong>{" "}
+                {estate.checkIn || "Not specified"}
+            </p>
+            <p>
+                {" "}
+                <strong>Thời gian trả phòng: </strong>{" "}
+                {estate.checkOut || "Not specified"}
+            </p>
             <button onClick={handleBooking} className="booking-button">
                 Đặt ngay
             </button>
