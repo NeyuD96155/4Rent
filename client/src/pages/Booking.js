@@ -52,7 +52,7 @@ const Booking = ({ userId, estateId }) => {
     };
 
     useEffect(() => {
-        const values = form.getFieldsValue(["checkIn", "checkOut", "guests"]);
+        const values = form.getFieldsValue(["checkIn", "checkOut", "amount"]);
         const pricePerDay = estate ? estate.price : 0; // Giả sử giá mỗi ngày lấy từ đối tượng estate
         const totalPrice = calculateTotalPrice(
             values.checkIn,
@@ -61,11 +61,11 @@ const Booking = ({ userId, estateId }) => {
         );
         setTotalPrice(totalPrice);
     }, [form, estate]); // Chỉ chạy khi form hoặc estate thay đổi
-    const calculateTotalPrice = (checkIn, checkOut, pricePerDay) => {
+    const calculateTotalPrice = (checkIn, checkOut, pricePerDay, ) => {
         if (checkIn && checkOut && pricePerDay) {
             const diffTime = Math.abs(checkOut - checkIn);
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
-            return (diffDays + 1) * pricePerDay; // Thêm 1 ngày vì ngày nhận và trả phòng tính cả hai
+            return ((diffDays + 1) * pricePerDay); // Thêm 1 ngày vì ngày nhận và trả phòng tính cả hai
         }
         return 0; // Trả về 0 nếu thiếu thông tin
     };
@@ -123,7 +123,8 @@ const Booking = ({ userId, estateId }) => {
             const response = await api.post("/vn-pay", {
                 date: "2024-03-02T09:55:22.304Z",
                 estateId: estate.id,
-                price: estate.price,
+                price: totalPrice,
+                amount: estate.amount,
             });
             console.log(response.data);
             window.open(response.data, "_blank", "noreferrer");
@@ -223,7 +224,7 @@ const Booking = ({ userId, estateId }) => {
                             <DatePicker showTime format="DD-MM-YYYY HH:mm" />
                         </Form.Item>
                         <Form.Item
-                            name="guests"
+                            name="amount"
                             label="Số lượng khách"
                             rules={[{ required: true }]}
                         >

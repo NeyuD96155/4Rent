@@ -119,13 +119,13 @@ const EstateForm = () => {
             reader.onerror = (error) => reject(error);
         });
 
-        const handleCancel = () => setPreviewVisible(false);
+
     const handlePreview = async file => {
         if (!file.url && !file.preview) {
             file.preview = await getBase64(file.originFileObj);
         }
         setPreviewImage(file.url || file.preview);
-        setPreviewVisible(true);
+
         setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
     };
     const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
