@@ -1,93 +1,56 @@
-import React, { useState } from "react";
-import { Button, DatePicker, Select } from "antd";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Button, DatePicker, Select, Form } from "antd";
+import api from "../config/axios";
 import "../styles/Search.css";
 
 const { RangePicker } = DatePicker;
 const { Option } = Select;
 
 function SearchBar() {
-    const [location, setLocation] = useState("");
+    const [categories, setCategories] = useState([]);
+    const [locations, setLocations] = useState([]);
     const [dateRange, setDateRange] = useState([]);
     const [guests, setGuests] = useState("");
 
-    const provinces = [
-        "An Giang",
-        "Bà Rịa - Vũng Tàu",
-        "Bắc Giang",
-        "Bắc Kạn",
-        "Bạc Liêu",
-        "Bắc Ninh",
-        "Bến Tre",
-        "Bình Định",
-        "Bình Dương",
-        "Bình Phước",
-        "Bình Thuận",
-        "Cà Mau",
-        "Cần Thơ",
-        "Cao Bằng",
-        "Đà Nẵng",
-        "Đắk Lắk",
-        "Đắk Nông",
-        "Điện Biên",
-        "Đồng Nai",
-        "Đồng Tháp",
-        "Gia Lai",
-        "Hà Giang",
-        "Hà Nam",
-        "Hà Nội",
-        "Hà Tĩnh",
-        "Hải Dương",
-        "Hải Phòng",
-        "Hậu Giang",
-        "Hòa Bình",
-        "Hưng Yên",
-        "Khánh Hòa",
-        "Kiên Giang",
-        "Kon Tum",
-        "Lai Châu",
-        "Lâm Đồng",
-        "Lạng Sơn",
-        "Lào Cai",
-        "Long An",
-        "Nam Định",
-        "Nghệ An",
-        "Ninh Bình",
-        "Ninh Thuận",
-        "Phú Thọ",
-        "Phú Yên",
-        "Quảng Bình",
-        "Quảng Nam",
-        "Quảng Ngãi",
-        "Quảng Ninh",
-        "Quảng Trị",
-        "Sóc Trăng",
-        "Sơn La",
-        "Tây Ninh",
-        "Thái Bình",
-        "Thái Nguyên",
-        "Thanh Hóa",
-        "Thừa Thiên Huế",
-        "Tiền Giang",
-        "TP Hồ Chí Minh",
-        "Trà Vinh",
-        "Tuyên Quang",
-        "Vĩnh Long",
-        "Vĩnh Phúc",
-        "Yên Bái",
-    ];
+    // fetch category
+    const fetchCategories = async () => {
+        const response = await api.get("/showCate");
+        setCategories(
+            response.data.map((item) => {
+                return {
+                    label: item.categoryname,
+                };
+            })
+        );
+    };
+    // fetch location
+    const fetchLocations = async () => {
+        const response = await api.get("/showLocation");
+        setLocations(
+            response.data.map((item) => {
+                return {
+                    label: item.location,
+                };
+            })
+        );
+    };
+
+    useEffect(() => {
+        fetchCategories();
+        fetchLocations();
+    }, []);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         const searchData = {
-            location,
+            locations,
             dateRange,
             guests,
         };
 
         try {
-            const response = await axios.post("/post/search", searchData);
+            const response = await api.get("/search", searchData);
             console.log(response.data);
         } catch (error) {
             console.error("Error when posting search data:", error);
@@ -98,17 +61,13 @@ function SearchBar() {
         <div className="search-container">
             <form onSubmit={handleSubmit} className="search-form">
                 <Select
-                    aria-label="Location"
-                    placeholder="Chọn địa điểm"
-                    allowClear
-                    onChange={setLocation}
-                >
-                    {provinces.map((province) => (
-                        <Option key={province} value={province}>
-                            {province}
-                        </Option>
-                    ))}
-                </Select>
+                    name="categoryId"
+                    label="Thể loại"
+                    options={categories}
+                />
+
+                <Select name="locationId" label="Vị trí" options={locations} />
+
                 <RangePicker
                     aria-label="Check-in and check-out date"
                     onChange={(_, dateString) => setDateRange(dateString)}

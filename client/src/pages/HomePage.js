@@ -18,11 +18,11 @@ import {
 } from "../components/guide/GettingStarted";
 import Payment from "./Payment";
 import CancellationPolicy from "../components/policy/CancellationPolicy";
-import PostDetail from "../pages/PostDetail";
+import DiscountDetail from "./DiscountDetail";
 import News from "../pages/News";
 import Landing from "../pages/Landing";
-import Post from "../pages/Post";
-import Estate from "../pages/Estate";
+import Discount from "./DiscountForm";
+import Estate from "./EstateShow";
 import Booking from "../pages/Booking";
 import Profile from "../pages/Profile";
 import Policy from "../components/Policy";
@@ -38,8 +38,14 @@ import SearchBar from "../components/SearchBar";
 import PrivateRoute from "../components/PrivateRoute";
 import DashBoard from "./Dashboard";
 import AccessDeniedPage from "./AccessDenied";
-
 import Success from "./Success";
+import Rilestate from "./EstateForm";
+import TimeshareEstates from "./EstateShow";
+import DetailDiscount from "./DiscountDetail";
+import FormDiscount from "./DiscountForm";
+import EstateShow from "./EstateShow";
+import EstateForm from "./EstateForm";
+import EstateDetail from "./EstateDetail";
 function LayoutWrapper() {
     const location = useLocation();
     const isDashboard = location.pathname.startsWith("/dash-board");
@@ -69,8 +75,11 @@ function LayoutWrapper() {
                     path="/maximize-vacation"
                     element={<MaximizeVacation />}
                 />
-                <Route path="/post/detail/:postId" element={<PostDetail />} />
-                <Route path="/post" element={<Post />} />
+                <Route
+                    path="/discount/detail/:discountId"
+                    element={<DetailDiscount />}
+                />
+                <Route path="/form-discount" element={<FormDiscount />} />
                 <Route path="/estate" element={<Estate />} />
 
                 <Route
@@ -102,7 +111,9 @@ function LayoutWrapper() {
                         </PrivateRoute>
                     }
                 />
-                <Route path="/ShowEstate" element={<ShowEstate />} />
+                <Route path="/show-estate" element={<EstateShow />} />
+                <Route path="/form-estate" element={<EstateForm />} />
+                <Route path="/detail-estate/:estateId" element={<EstateDetail />} />
             </Routes>
             {!isDashboard && <Footer />}
         </>

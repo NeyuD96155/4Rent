@@ -59,8 +59,14 @@ const NavigationBar = () => {
                 <Link to="/">4Rent</Link>
             </div>
             <div className="navbar-links">
-                <Link to="/estate" className="navbar-link">
-                    Căn hộ
+                <Link to="/show-discount" className="navbar-link">
+                    Xem mã giảm giá
+                </Link>
+                <Link to="/show-estate" className="navbar-link">
+                    Xem căn hộ
+                </Link>
+                <Link to="/form-estate" className="navbar-link">
+                    Đăng căn hộ
                 </Link>
                 {isLoggedIn && userRole === "ADMIN" && (
                     <Link to="/dash-board" className="navbar-link">
@@ -69,8 +75,8 @@ const NavigationBar = () => {
                 )}
                 {isLoggedIn &&
                     (userRole === "MEMBER" || userRole === "ADMIN") && (
-                        <Link to="/post" className="navbar-link">
-                            Đăng căn hộ
+                        <Link to="/form-discount" className="navbar-link">
+                            Mã giảm giá
                         </Link>
                     )}
                 {isLoggedIn ? (

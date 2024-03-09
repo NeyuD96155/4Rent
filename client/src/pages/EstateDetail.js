@@ -1,47 +1,57 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import api from "../config/axios";
+import "../styles/Estate.css"; // Assume you have or will create appropriate CSS
 
-function ShowEstate() {
-    const [estates, setEstates] = useState([]);
+const EstateDetail = () => {
+    const [estate, setEstate] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState("");
+
+    // Retrieve the estateId from the URL
+    const { estateId } = useParams();
 
     useEffect(() => {
-        const fetchEstates = async () => {
+        const fetchEstateDetail = async () => {
             try {
-                const response = await api.get("/showEstate");
-                console.log(response.data);
-                setEstates(response.data);
+                const response = await api.get(`/showEstate`);
+                setEstate(response.data);
             } catch (error) {
-                console.error("Error fetching data: ", error);
+                console.error("Error fetching estate details:", error);
+                setError(
+                    "Failed to load estate details. Please try again later."
+                );
+            } finally {
+                setIsLoading(false);
             }
         };
 
-        fetchEstates();
-    }, []);
+        fetchEstateDetail();
+    }, [estateId]); // Re-fetch when estateId changes
+
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
+    if (!estate) return <div>No estate details available.</div>;
 
     return (
-        <div>
-            {estates.map((estate) => (
-                <div key={estate.id}>
-                    <h2>{estate.title}</h2>
-                    <p>{estate.description}</p>
-                    <p>Date: {new Date(estate.date).toLocaleDateString()}</p>
-                    <p>Amount: {estate.amount}</p>
-                    <p>Category ID: {estate.categoryId}</p>
-                    <p>Location ID: {estate.locationId}</p>
-                    <div>
-                        {estate.resources.map((resource) => (
-                            <img
-                                key={resource.id}
-                                src={resource.url}
-                                alt="Estate"
-                                style={{ width: "100px", height: "100px" }}
-                            />
-                        ))}
-                    </div>
-                </div>
-            ))}
+        <div className="estate-detail-container">
+            <h1>{estate.title}</h1>
+            {estate && estate.resources && estate.resources.length > 0 && (
+                <img
+                    src={estate.resources[0].url}
+                    alt="Estate"
+                    className="estate-detail-image"
+                />
+            )}
+
+            <p>Giá: {estate.price}</p>
+            <p>Vị trí: {estate.location}</p>
+            <p>Thể loại: {estate.category}</p>
+            <p>Thời gian nhận phòng: {estate.checkIn}</p>
+            <p>Thời gian trả phòng: {estate.checkOut}</p>
+            {/* Include other details you wish to display */}
         </div>
     );
-}
+};
 
-export default ShowEstate;
+export default EstateDetail;
