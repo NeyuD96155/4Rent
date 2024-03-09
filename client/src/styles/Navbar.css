@@ -1,3 +1,25 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 .navbar-container {
     display: flex;
     justify-content: space-between;
@@ -5,19 +27,22 @@
     background-color: #000000;
     padding: 0 20px;
     color: #fff;
+    animation: fadeIn 0.3s ease-out;
 
 }
 
 .navbar-logo a {
-    color: #fff;
+    color: #c8c8c8;
     text-decoration: none;
     font-size: 24px;
     font-weight: bold;
+
 }
 
 .navbar-links {
     display: flex;
     align-items: center;
+    animation: fadeIn 0.5s ease-out;
 }
 
 .navbar-link {
@@ -25,11 +50,17 @@
 }
 
 .navbar-link {
-    color: #fff;
+    color: #d7bebe;
     text-decoration: none;
     margin-left: 20px;
     position: relative;
     padding: 10px 0;
+    transition: color 0.5s, transform 0.5s;
+}
+
+.navbar-link:hover {
+    color: #ffffff;
+
 }
 
 .navbar-link::after {
@@ -52,14 +83,27 @@
     margin-left: 20px;
     color: #fff;
     cursor: pointer;
+    animation: slideIn 0.5s ease-out;
 }
 
 @media (max-width: 768px) {
     .navbar-container {
         flex-direction: column;
+        animation: none;
+    }
+
+    .navbar-links,
+    .navbar-logo a {
+        animation: none;
     }
 
     .navbar-links {
         margin-top: 10px;
+        display: block;
+    }
+
+    .navbar-link {
+        display: block;
+        margin: 10px 0;
     }
 }

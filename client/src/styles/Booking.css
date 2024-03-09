@@ -1,6 +1,5 @@
 body {
-    margin-top: 30px;
-    margin-bottom: 30px;
+
     transition: all 0.3s ease;
 }
 
@@ -42,10 +41,7 @@ body,
 }
 
 @media (max-width: 768px) {
-    body {
-        margin-top: 15px;
-        margin-bottom: 15px;
-    }
+
 
     .booking-container {
         flex-direction: column;

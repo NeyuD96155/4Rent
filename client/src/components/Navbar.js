@@ -29,28 +29,17 @@ const NavigationBar = () => {
     };
 
     const menu = (
-        <Menu
-            items={[
-                {
-                    key: "profile",
-                    icon: <UserOutlined />,
-                    label: <Link to="/profile">Xem Thông Tin Cá Nhân</Link>,
-                },
-                {
-                    key: "history",
-                    icon: <HistoryOutlined />,
-                    label: (
-                        <Link to="/booking-history">Xem Lịch Sử Giao Dịch</Link>
-                    ),
-                },
-                {
-                    key: "logout",
-                    icon: <LogoutOutlined />,
-                    label: "Đăng Xuất",
-                    onClick: handleLogout,
-                },
-            ]}
-        />
+        <Menu>
+            <Menu.Item key="profile" icon={<UserOutlined />}>
+                <Link to="/profile">Xem Thông Tin Cá Nhân</Link>
+            </Menu.Item>
+            <Menu.Item key="history" icon={<HistoryOutlined />}>
+                <Link to="/booking-history">Xem Lịch Sử Giao Dịch</Link>
+            </Menu.Item>
+            <Menu.Item key="logout" icon={<LogoutOutlined />} onClick={handleLogout}>
+                Đăng Xuất
+            </Menu.Item>
+        </Menu>
     );
 
     return (

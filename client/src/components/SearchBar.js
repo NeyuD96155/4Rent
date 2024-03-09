@@ -1,38 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { Button, DatePicker, Select, Form } from "antd";
-import api from "../config/axios";
+import { Button, DatePicker, Select } from "antd";
+import axios from "../config/axios";
 import "../styles/Search.css";
 
 const { RangePicker } = DatePicker;
-const { Option } = Select;
 
 function SearchBar() {
     const [categories, setCategories] = useState([]);
     const [locations, setLocations] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [selectedLocation, setSelectedLocation] = useState(null);
     const [dateRange, setDateRange] = useState([]);
-    const [guests, setGuests] = useState("");
+    const [amount, setAmount] = useState(0);
 
-    // fetch category
+    // Fetch categories
     const fetchCategories = async () => {
-        const response = await api.get("/showCate");
-        setCategories(
-            response.data.map((item) => {
-                return {
-                    label: item.categoryname,
-                };
-            })
-        );
+        const response = await axios.get("/showCate");
+        setCategories(response.data.map(item => ({ label: item.categoryname, value: item.id })));
     };
-    // fetch location
+
+    // Fetch locations
     const fetchLocations = async () => {
-        const response = await api.get("/showLocation");
-        setLocations(
-            response.data.map((item) => {
-                return {
-                    label: item.location,
-                };
-            })
-        );
+        const response = await axios.get("/showLocation");
+        setLocations(response.data.map(item => ({ label: item.location, value: item.id })));
     };
 
     useEffect(() => {
@@ -42,18 +32,19 @@ function SearchBar() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
-        const searchData = {
-            locations,
-            dateRange,
-            guests,
+        const params = {
+            categoryId: selectedCategory,
+            locationId: selectedLocation,
+            amount: amount,
+            from: dateRange[0],
+            to: dateRange[1],
         };
 
         try {
-            const response = await api.get("/search", searchData);
+            const response = await axios.get("/search", { params });
             console.log(response.data);
         } catch (error) {
-            console.error("Error when posting search data:", error);
+            console.error("Error when fetching search data:", error);
         }
     };
 
@@ -61,26 +52,27 @@ function SearchBar() {
         <div className="search-container">
             <form onSubmit={handleSubmit} className="search-form">
                 <Select
-                    name="categoryId"
-                    label="Thể loại"
+                    placeholder="Select a category"
+                    onChange={setSelectedCategory}
                     options={categories}
                 />
-
-                <Select name="locationId" label="Vị trí" options={locations} />
-
+                <Select
+                    placeholder="Select a location"
+                    onChange={setSelectedLocation}
+                    options={locations}
+                />
                 <RangePicker
-                    aria-label="Check-in and check-out date"
-                    onChange={(_, dateString) => setDateRange(dateString)}
+                    onChange={(dates, dateStrings) => setDateRange(dateStrings)}
                 />
                 <Select
-                    aria-label="Guests"
-                    placeholder="Chọn số lượng người"
-                    allowClear
-                    onChange={(value) => setGuests(value)}
+                    placeholder="Select number of people"
+                    onChange={setAmount}
                 >
-                    <Option value="1">1 người</Option>
-                    <Option value="2">2 người</Option>
-                    <Option value="3">3 người</Option>
+                    {/* Update with appropriate options based on your backend's expectations */}
+                    <Select.Option value={1}>1 person</Select.Option>
+                    <Select.Option value={2}>2 people</Select.Option>
+                    <Select.Option value={3}>3 people</Select.Option>
+                    {/* ... */}
                 </Select>
                 <Button type="primary" htmlType="submit" className="search-btn">
                     Search
