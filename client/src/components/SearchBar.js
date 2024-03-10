@@ -87,7 +87,6 @@ function SearchBar() {
                 </Select>
                 <Button type="primary" htmlType="submit" className="search-btn">
                     Tìm kiếm
-                    Tìm kiếm
                 </Button>
             </form>
         </div>

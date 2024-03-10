@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "../styles/DiscountShow.css";
-import FbImageLibrary from "react-fb-image-grid";
 import api from "../config/axios";
 export const DiscountShow = () => {
     const [posts, setPosts] = useState([]);
@@ -39,11 +38,11 @@ const Post = ({ data }) => {
 
             <p>{data.content}</p>
 
-            <FbImageLibrary
+            {/* <FbImageLibrary
                 countFrom={5}
                 images={data.resources?.map((item) => item.url) || []}
                 hideOverlay
-            />
+            /> */}
         </div>
     );
 };
