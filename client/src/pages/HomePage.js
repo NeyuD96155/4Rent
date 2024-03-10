@@ -73,7 +73,7 @@ function LayoutWrapper() {
                     path="/maximize-vacation"
                     element={<MaximizeVacation />}
                 />
-                <Route path="discount" element={<DiscountShow />}></Route>
+                <Route path="show-discount" element={<DiscountShow />}></Route>
                 <Route
                     path="/show-discount/detail/:discountId"
                     element={<DetailDiscount />}

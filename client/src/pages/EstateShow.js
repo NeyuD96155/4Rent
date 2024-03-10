@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import api from "../config/axios";
 import { useNavigate } from "react-router-dom";
 import "../styles/Estate.css";
+import SearchBar from "../components/SearchBar";
 
 const EstateShow = () => {
     const [estates, setEstates] = useState([]);
@@ -39,7 +40,7 @@ const EstateShow = () => {
 
     return (
         <div className="timeshare-estates-container">
-            <h1>Timeshare Estates</h1>
+            <SearchBar/>
             <div className="estates">
                 {estates.map((estate) => (
                     <div key={estate.id} className="estate-card">

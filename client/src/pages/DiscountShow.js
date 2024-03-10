@@ -41,7 +41,7 @@ const Post = ({ data }) => {
 
             <FbImageLibrary
                 countFrom={5}
-                images={data.resources.map((item) => item.url)}
+                images={data.resources?.map((item) => item.url) || []}
                 hideOverlay
             />
         </div>

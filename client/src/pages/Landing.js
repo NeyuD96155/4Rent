@@ -2,16 +2,16 @@
 import React from "react";
 import "../styles/Landing.css";
 import HeroSection from "../components/HeroSection";
-
+import api from "../config/axios"
 import "../styles/Estate.css";
-import TimeshareEstates from "./EstateShow";
+import EstateShow from "./EstateShow";
 
 const Landing = () => {
     return (
         <div className="landing-page">
             <HeroSection />
             <div className="landing-card-container">
-                <TimeshareEstates />
+                <EstateShow />
             </div>
         </div>
     );
