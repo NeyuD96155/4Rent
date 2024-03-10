@@ -1,4 +1,12 @@
-/* show estate  */
+/* ========== GLOBAL==========  */
+body,
+.estate-info p,
+.estate-info h5 {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+/* ========== SHOW ESTATE==========   */
 .timeshare-estates-container {
     display: flex;
     flex-direction: column;
@@ -10,45 +18,65 @@
 .estates {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
+    gap: 25px;
     width: 100%;
     max-width: 1200px;
+    margin-top: 20px;
 }
 
 .estate-card {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    overflow: hidden;
 }
 
 .estate-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .estate-image {
     width: 100%;
-    height: 200px;
+    height: 180px;
     object-fit: cover;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+    border-radius: 5px;
 }
 
-.estate-card h2,
-.estate-card p {
-    margin: 10px;
+.estate-info {
+    padding: 15px;
 }
+
+.estate-info h5 {
+    margin: 10px 0;
+    font-size: 1.1rem;
+
+}
+
+.estate-info p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+
+}
+
 
 @media (max-width: 768px) {
     .estates {
         grid-template-columns: 1fr;
+
     }
 }
 
-/* EstateDetail CSS */
+button:focus {
+    outline: none;
+}
+
+/* ==========  ESTATE DETAIL ==========  */
 .estate-detail-container {
     max-width: 1200px;
     margin: 0 auto;

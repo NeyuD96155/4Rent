@@ -34,13 +34,21 @@ const EstateShow = () => {
     const handleEstateClick = async (estateId) => {
         navigate(`/showEstateDetail/${estateId}`);
     };
-
+    const formatCurrency = (amount) => {
+        return new Intl.NumberFormat("vi-VN", {
+            style: "currency",
+            currency: "VND",
+            minimumFractionDigits: 0, 
+        })
+            .format(amount)
+            .replace("₫","đ");
+    };
     if (isLoading) return <div aria-live="polite">Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
     return (
         <div className="timeshare-estates-container">
-            <SearchBar/>
+            <SearchBar />
             <div className="estates">
                 {estates.map((estate) => (
                     <div key={estate.id} className="estate-card">
@@ -56,18 +64,24 @@ const EstateShow = () => {
                                 }
                                 alt={estate.title || "Estate"}
                             />
-                            <h2>{estate.title}</h2>
-                            <p>Giá: {estate.price}</p>
-                            <p>Vị trí: {estate.location}</p>
-                            <p>Thể loại: {estate.category}</p>
-                            <p>
-                                Thời gian nhận phòng:{" "}
-                                {estate.checkIn || "Not specified"}
-                            </p>
-                            <p>
-                                Thời gian trả phòng:{" "}
-                                {estate.checkOut || "Not specified"}
-                            </p>
+                            <div className="estate-info">
+                                <h5>
+                                    <strong>{estate.title}</strong> |{" "}
+                                    {estate.location}
+                                </h5>
+                                <p>
+                                    <strong>Giá:</strong>{" "}
+                                    {formatCurrency(estate.price)}
+                                </p>
+                                <p>
+                                    <strong>Thời gian nhận phòng: </strong>
+                                    {estate.checkIn || "Not specified"}
+                                </p>
+                                <p>
+                                    <strong>Thời gian trả phòng: </strong>
+                                    {estate.checkOut || "Not specified"}
+                                </p>
+                            </div>
                         </button>
                     </div>
                 ))}
