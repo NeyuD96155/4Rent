@@ -1,17 +1,12 @@
 @import "~react-image-gallery/styles/css/image-gallery.css";
 
+html {
+    font-size: 15px;
 
-
-
-
-
-/* important  */
-.container * {
-    cursor: default !important;
 }
 
-a {
-    text-decoration: none !important;
+body {
+    zoom: 1.3;
 }
 
 .scroll-to-top {
@@ -19,7 +14,6 @@ a {
     bottom: 20px;
     right: 20px;
     background-color: rgba(0, 0, 0, 0.7);
-    /* Màu nền với độ trong suốt 70% */
     color: white;
     border: none;
     border-radius: 50%;
@@ -35,7 +29,6 @@ a {
 
 .scroll-to-top:hover {
     background-color: rgba(0, 0, 0, 0.049);
-    /* Màu nền với độ trong suốt 90% khi di chuột qua */
 }
 
 .scroll-to-top:active {

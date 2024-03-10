@@ -76,10 +76,6 @@
     transition: width 0.5s;
 }
 
-.navbar-link:hover {
-    background-color: #484848;
-    border-radius: 5px;
-}
 
 .navbar-link:hover::after {
     width: 100%;
