@@ -1,0 +1,39 @@
+/* Success.css */
+
+.success-container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .payment-info {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .payment-info h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .transaction-id, .amount {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .booking-history-link {
+    display: block;
+    margin-top: 20px;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+  }
+  
+  .booking-history-link:hover {
+    color: #0056b3;
+  }
+  

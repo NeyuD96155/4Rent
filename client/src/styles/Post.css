@@ -2,29 +2,30 @@
 
 /* Form Container */
 .post-form-container {
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: rgba(249, 249, 249, 0.8);
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgba(249, 249, 249, 0.8);
 }
 
-  .post-form-item {
+.post-form-item {
     margin-bottom: 15px;
-  }
-  
-  .post-form-label {
-    font-weight: bold;
-  }
-  
+}
 
-  .post-submit-button {
+.post-form-label {
+    font-weight: bold;
+}
+
+
+.post-submit-button {
     width: 100%;
-  }
-  .post-form-wrapper {
-    background-image: url('https://images.cenhomes.vn/2020/03/1585033156-can-ho-mau-lovera-garden.jpg');
-    background-size: cover; 
-    background-position: center; 
-    padding: 20px; 
-  }
+}
+
+.post-form-wrapper {
+    background-image: url('https://th.bing.com/th/id/R.c653cb55d64302871cb915984f0622ae?rik=xRsHmXbQBsptxw&riu=http%3a%2f%2fpublicdomainpictures.net%2fpictures%2f30000%2fvelka%2ftropical-resort-in-the-morning.jpg&ehk=iTTUPLQVLkqWDNNnihCwWCcU%2f%2bW5z3cwfMpHvK8zj1Y%3d&risl=&pid=ImgRaw&r=0');
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+}

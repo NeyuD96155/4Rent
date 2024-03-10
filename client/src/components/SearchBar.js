@@ -1,103 +1,60 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, DatePicker, Select } from "antd";
-import api from "../config/axios";
+import axios from "../config/axios";
 import "../styles/Search.css";
 
 const { RangePicker } = DatePicker;
-const { Option } = Select;
 
 function SearchBar() {
-    const [location, setLocation] = useState("");
+    const [categories, setCategories] = useState([]);
+    const [locations, setLocations] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [selectedLocation, setSelectedLocation] = useState(null);
     const [dateRange, setDateRange] = useState([]);
-    const [guests, setGuests] = useState("");
-    const [category, setCategory] = useState("");
-    const provinces = [
-        "An Giang",
-        "Bà Rịa - Vũng Tàu",
-        "Bắc Giang",
-        "Bắc Kạn",
-        "Bạc Liêu",
-        "Bắc Ninh",
-        "Bến Tre",
-        "Bình Định",
-        "Bình Dương",
-        "Bình Phước",
-        "Bình Thuận",
-        "Cà Mau",
-        "Cần Thơ",
-        "Cao Bằng",
-        "Đà Nẵng",
-        "Đắk Lắk",
-        "Đắk Nông",
-        "Điện Biên",
-        "Đồng Nai",
-        "Đồng Tháp",
-        "Gia Lai",
-        "Hà Giang",
-        "Hà Nam",
-        "Hà Nội",
-        "Hà Tĩnh",
-        "Hải Dương",
-        "Hải Phòng",
-        "Hậu Giang",
-        "Hòa Bình",
-        "Hưng Yên",
-        "Khánh Hòa",
-        "Kiên Giang",
-        "Kon Tum",
-        "Lai Châu",
-        "Lâm Đồng",
-        "Lạng Sơn",
-        "Lào Cai",
-        "Long An",
-        "Nam Định",
-        "Nghệ An",
-        "Ninh Bình",
-        "Ninh Thuận",
-        "Phú Thọ",
-        "Phú Yên",
-        "Quảng Bình",
-        "Quảng Nam",
-        "Quảng Ngãi",
-        "Quảng Ninh",
-        "Quảng Trị",
-        "Sóc Trăng",
-        "Sơn La",
-        "Tây Ninh",
-        "Thái Bình",
-        "Thái Nguyên",
-        "Thanh Hóa",
-        "Thừa Thiên Huế",
-        "Tiền Giang",
-        "TP Hồ Chí Minh",
-        "Trà Vinh",
-        "Tuyên Quang",
-        "Vĩnh Long",
-        "Vĩnh Phúc",
-        "Yên Bái",
-    ];
-    const categories = [
-        { id: 1, name: "Hotel" },
-        { id: 2, name: "Apartment" },
-        { id: 3, name: "House" },
-    ];
+    const [amount, setAmount] = useState(0);
+
+    // Fetch categories
+    const fetchCategories = async () => {
+        const response = await axios.get("/showCate");
+        setCategories(
+            response.data.map((item) => ({
+                label: item.categoryname,
+                value: item.id,
+            }))
+        );
+    };
+
+    // Fetch locations
+    const fetchLocations = async () => {
+        const response = await axios.get("/showLocation");
+        setLocations(
+            response.data.map((item) => ({
+                label: item.location,
+                value: item.id,
+            }))
+        );
+    };
+
+    useEffect(() => {
+        fetchCategories();
+        fetchLocations();
+    }, []);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
         const params = {
-            location,
+            categoryId: selectedCategory,
+            locationId: selectedLocation,
+            amount: amount,
             from: dateRange[0],
             to: dateRange[1],
-            guests,
-            categoryId: category,
         };
 
         try {
-            const response = await api.get("/search", { params });
+            const response = await axios.get("/search", { params });
             console.log(response.data);
         } catch (error) {
-            console.error("Error when getting search data:", error);
+            console.error("Có lỗi khi tìm kiếm :", error);
         }
     };
 
@@ -105,44 +62,31 @@ function SearchBar() {
         <div className="search-container">
             <form onSubmit={handleSubmit} className="search-form">
                 <Select
-                    showSearch
-                    placeholder="Chọn địa điểm"
-                    allowClear
-                    onChange={setLocation}
-                >
-                    {provinces.map((province) => (
-                        <Option key={province} value={province}>
-                            {province}
-                        </Option>
-                    ))}
-                </Select>
-                <RangePicker
-                    onChange={(_, dateString) => setDateRange(dateString)}
+                    placeholder="Chọn loại hình"
+                    onChange={setSelectedCategory}
+                    options={categories}
                 />
                 <Select
-                    placeholder="Chọn loại"
-                    allowClear
-                    onChange={(value) => setCategory(value)}
-                >
-                    {categories.map((cat) => (
-                        <Option key={cat.id} value={cat.id}>
-                            {cat.name}
-                        </Option>
-                    ))}
-                </Select>
+                    placeholder="Chọn địa điểm"
+                    onChange={setSelectedLocation}
+                    options={locations}
+                />
+                <RangePicker
+                    placeholder={["Ngày nhận phòng", "Ngày trả phòng"]}
+                    onChange={(dates, dateStrings) => setDateRange(dateStrings)}
+                    style={{ width: "40%" }}
+                />
 
                 <Select
-                    placeholder="Chọn số lượng người"
-                    allowClear
-                    onChange={setGuests}
+                    placeholder="Chọn số người tham gia"
+                    onChange={setAmount}
                 >
-                    <Option value="1">1 người</Option>
-                    <Option value="2">2 người</Option>
-                    <Option value="3">3 người</Option>
-                    <Option value="4">4 người</Option>
-                    <Option value="5">5 người</Option>
+                    <Select.Option value={1}>1 người</Select.Option>
+                    <Select.Option value={2}>2 người</Select.Option>
+                    <Select.Option value={3}>3 người</Select.Option>
                 </Select>
                 <Button type="primary" htmlType="submit" className="search-btn">
+                    Tìm kiếm
                     Tìm kiếm
                 </Button>
             </form>

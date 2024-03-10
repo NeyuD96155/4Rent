@@ -1,20 +1,27 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ToastContainer } from "react-toastify";
 import { AuthProvider } from "./context/AuthContext ";
-import { store } from './redux/store';
-import { Provider } from 'react-redux';
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-    
+import { store } from "./redux/store";
+import { Provider } from "react-redux";
+import ScrollToTop from "react-scroll-to-top";
 
-    
+const root = ReactDOM.createRoot(document.getElementById("root"));
+function ScrollToTopOnMount() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    return null;
+}
+root.render(
     <React.StrictMode>
         <AuthProvider>
+            <ScrollToTop smooth color="#000" top={100} height={50} width={50} />
             <ToastContainer
                 position="top-right"
                 autoClose={2000}
@@ -27,9 +34,10 @@ root.render(
                 pauseOnHover
             />
             <Provider store={store}>
-            <App />
+                <App />
             </Provider>
         </AuthProvider>
+        <ScrollToTopOnMount />
     </React.StrictMode>
 );
 

@@ -50,7 +50,7 @@ const CancellationPolicy = () => {
                         Hủy trong vòng 24 giờ trước ngày nhận phòng:
                     </strong>{" "}
                     Nếu bạn hủy trong vòng 24 giờ trước ngày nhận phòng, một
-                    khoản phí hủy bằng 50% giá trị đặt phòng sẽ được áp dụng và
+                    khoản phí hủy bằng 70% giá trị đặt phòng sẽ được áp dụng và
                     số tiền còn lại sẽ được hoàn lại cho bạn.
                 </li>
             </ul>

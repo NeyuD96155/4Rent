@@ -1,27 +1,36 @@
-import React, { useEffect, useState } from "react";
-import axios from "../config/axios";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-function BookingHistory({ userId }) {
-    const [bookings, setBookings] = useState([]);
+const BookingHistory = () => {
+  const [bookingHistory, setBookingHistory] = useState([]);
 
-    useEffect(() => {
-        const fetchBookings = async () => {
-            try {
-                const response = await axios.get(`/bookings/history/${userId}`);
-                setBookings(response.data);
-            } catch (error) {
-                console.error("Xảy ra lỗi khi lấy dữ liệu", error);
-            }
-        };
+  useEffect(() => {
+    // Gọi API endpoint để lấy dữ liệu lịch sử đặt phòng
+    axios.get('/success')
+      .then(response => {
+        setBookingHistory(response.data);
+      })
+      .catch(error => {
+        console.error('Lỗi khi lấy dữ liệu lịch sử đặt phòng:', error);
+      });
+  }, []);
 
-        fetchBookings();
-    }, [userId]);
-
-    return (
-        <div>
-            <h2>Lịch Sử Booking</h2>
-        </div>
-    );
-}
+  return (
+    <div>
+      <h1>Lịch sử đặt phòng</h1>
+      <ul>
+        {bookingHistory.map((booking, index) => (
+          <li key={index}>
+            <p>Ngày đặt phòng: {new Date(booking.bookingDate).toLocaleDateString()}</p>
+            <p>Ngày check-in: {new Date(booking.checkIn).toLocaleDateString()}</p>
+            <p>Ngày check-out: {new Date(booking.checkOut).toLocaleDateString()}</p>
+            <p>Số tiền: {booking.amount}</p>
+            {/* Hiển thị các thông tin khác của giao dịch */}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 export default BookingHistory;

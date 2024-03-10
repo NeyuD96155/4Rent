@@ -10,22 +10,39 @@ import {
     Modal,
 } from "antd";
 import api from "../config/axios";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { format } from "date-fns";
 import moment from "moment";
 import { toast } from "react-toastify";
 import "../styles/Booking.css";
-
+import ImageGallery from "react-image-gallery";
 const Booking = ({ userId, estateId }) => {
     const [form] = Form.useForm();
-    const location = useLocation();
-    const post = location.state ? location.state.post : null;
+    // const location = useLocation();
+    // const estate = location.state ? location.state.estate : null;
+    const { id } = useParams();
+    const [estate, setEstate] = useState(null);
     const navigate = useNavigate();
     const [modalVisible, setModalVisible] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0);
 
+    useEffect(() => {
+        const fetchEstateDetail = async () => {
+            try {
+                const response = await api.get(`/showEstateDetail/${id}`);
+                setEstate(response.data);
+            } catch (error) {
+                console.error("Error fetching estate details:", error);
+            }
+        };
+
+        if (id) {
+            fetchEstateDetail();
+        }
+    }, [id]);
+
     const onFormValuesChange = (_, allValues) => {
-        const pricePerDay = post ? post.price : 0;
+        const pricePerDay = estate ? estate.price : 0;
         const totalPrice = calculateTotalPrice(
             allValues.checkIn,
             allValues.checkOut,
@@ -35,20 +52,20 @@ const Booking = ({ userId, estateId }) => {
     };
 
     useEffect(() => {
-        const values = form.getFieldsValue(["checkIn", "checkOut", "guests"]);
-        const pricePerDay = post ? post.price : 0; // Giả sử giá mỗi ngày lấy từ đối tượng post
+        const values = form.getFieldsValue(["checkIn", "checkOut", "amount"]);
+        const pricePerDay = estate ? estate.price : 0; // Giả sử giá mỗi ngày lấy từ đối tượng estate
         const totalPrice = calculateTotalPrice(
             values.checkIn,
             values.checkOut,
             pricePerDay
         );
         setTotalPrice(totalPrice);
-    }, [form, post]); // Chỉ chạy khi form hoặc post thay đổi
-    const calculateTotalPrice = (checkIn, checkOut, pricePerDay) => {
+    }, [form, estate]); // Chỉ chạy khi form hoặc estate thay đổi
+    const calculateTotalPrice = (checkIn, checkOut, pricePerDay, ) => {
         if (checkIn && checkOut && pricePerDay) {
             const diffTime = Math.abs(checkOut - checkIn);
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
-            return (diffDays + 1) * pricePerDay; // Thêm 1 ngày vì ngày nhận và trả phòng tính cả hai
+            return ((diffDays + 1) * pricePerDay); // Thêm 1 ngày vì ngày nhận và trả phòng tính cả hai
         }
         return 0; // Trả về 0 nếu thiếu thông tin
     };
@@ -59,8 +76,8 @@ const Booking = ({ userId, estateId }) => {
         overlay.className = "bodyOverlay";
         document.body.appendChild(overlay);
         const backgroundImageUrl =
-            post && post.resources && post.resources.length > 0
-                ? post.resources[0].url
+            estate && estate.resources && estate.resources.length > 0
+                ? estate.resources[0].url
                 : "https://via.placeholder.com/400";
         document.body.style.backgroundImage = `url('${backgroundImageUrl}')`;
         document.body.classList.add("bodyWithBackground");
@@ -70,7 +87,7 @@ const Booking = ({ userId, estateId }) => {
             document.body.style.backgroundImage = "";
             document.body.classList.remove("bodyWithBackground");
         };
-    }, [post]);
+    }, [estate]);
 
     const handleCheckboxChange = (e) => {
         if (e.target.checked) {
@@ -99,14 +116,15 @@ const Booking = ({ userId, estateId }) => {
         };
 
         try {
-            //   const response = await api.post('/vn-pay', formattedValues);
+            //   const response = await api.estate('/vn-pay', formattedValues);
             //   toast.success("Đặt phòng thành công! Vui lòng thanh toán.");
             //   form.resetFields();
-            //   navigate('/payment', { state: { bookingDetails: formattedValues, bookingResponse: response.data, postDetails: post } });
+            //   navigate('/payment', { state: { bookingDetails: formattedValues, bookingResponse: response.data, estateDetails: estate } });
             const response = await api.post("/vn-pay", {
                 date: "2024-03-02T09:55:22.304Z",
-                estateId: 1,
-                amount: 10,
+                estateId: estate.id,
+                price: totalPrice,
+                amount: estate.amount,
             });
             console.log(response.data);
             window.open(response.data, "_blank", "noreferrer");
@@ -119,33 +137,56 @@ const Booking = ({ userId, estateId }) => {
     return (
         <div className="booking-container">
             <div className="content-container">
-                {post ? (
+                {estate ? (
                     <Card
-                        title={`Bạn Đang Đặt Phòng Tại Căn Hộ: ${post.title}`}
+                        title={`Bạn Đang Đặt Phòng Tại Căn Hộ: ${estate.title}`}
                         className="info-card"
                     >
-                        <div className="post-info">
+                        <div className="estate-info">
                             <div className="imageContainer">
-                                <img
-                                    src={
-                                        post.resources &&
-                                        post.resources.length > 0
-                                            ? post.resources[0].url
-                                            : "https://via.placeholder.com/400"
-                                    }
-                                    alt="Post"
-                                    className="booking-postImage"
-                                />
+                                {estate?.resources?.length > 0 && (
+                                    <ImageGallery
+                                        items={estate?.resources?.map(
+                                            (item) => {
+                                                return {
+                                                    original: item.url,
+                                                    thumbnail: item.url,
+                                                };
+                                            }
+                                        )}
+                                    />
+                                )}
                             </div>
-                            <p>Thông tin bài viết:</p>
+
+                            <h3>Thông tin timeshare</h3>
                             <ul>
-                                <li>Tiêu đề: {post.title}</li>
-                                <li>Giá/ ngày: {post.price} ₫</li>
                                 <li>
-                                    Ngày đăng:{" "}
-                                    {format(new Date(post.postDate), "PPP")}
+                                    <strong>Tiêu đề: </strong> {estate.title}
                                 </li>
-                                <li>Mô tả: {post.content}</li>
+                                <li>
+                                    <strong>Địa điểm: </strong>
+                                    {estate.location}
+                                </li>
+                                <li>
+                                    <strong>Thể loại: </strong>{" "}
+                                    {estate.category}
+                                </li>
+                                <li>
+                                    <strong>Mô tả: </strong>
+                                    {estate.description}
+                                </li>
+                                <li>
+                                    <strong>Giá/ngày: </strong> {estate.price}{" "}
+                                    ₫/ngày
+                                </li>
+                                <li>
+                                    <strong>Thời gian nhận phòng: </strong>{" "}
+                                    {estate.checkIn}
+                                </li>
+                                <li>
+                                    <strong>Thời gian trả phòng: </strong>{" "}
+                                    {estate.checkOut}
+                                </li>
                             </ul>
                         </div>
                     </Card>
@@ -173,21 +214,21 @@ const Booking = ({ userId, estateId }) => {
                             label="Ngày nhận phòng"
                             rules={[{ required: true }]}
                         >
-                            <DatePicker showTime format="YYYY-MM-DD HH:mm" />
+                            <DatePicker showTime format="DD-MM-YYYY HH:mm" />
                         </Form.Item>
                         <Form.Item
                             name="checkOut"
                             label="Ngày trả phòng"
                             rules={[{ required: true }]}
                         >
-                            <DatePicker showTime format="YYYY-MM-DD HH:mm" />
+                            <DatePicker showTime format="DD-MM-YYYY HH:mm" />
                         </Form.Item>
                         <Form.Item
-                            name="guests"
+                            name="amount"
                             label="Số lượng khách"
                             rules={[{ required: true }]}
                         >
-                            <InputNumber min={1} max={10} />
+                            <InputNumber min={1} max={estate?.amount} />
                         </Form.Item>
                         <Form.Item label="Tổng số tiền">
                             <span>
@@ -220,9 +261,9 @@ const Booking = ({ userId, estateId }) => {
                                 Bằng cách tích vào hộp, bạn đồng ý với{" "}
                                 <a
                                     className="blue-link"
-                                    href="#" 
+                                    href="#"
                                     onClick={(e) => {
-                                        e.preventDefault(); 
+                                        e.preventDefault();
                                         setModalVisible(true);
                                     }}
                                 >

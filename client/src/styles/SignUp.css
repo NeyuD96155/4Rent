@@ -6,6 +6,10 @@
     height: auto;
     min-height: 100vh;
     background: linear-gradient(50deg, #ffffff 0%, #f2f2f2 100%);
+    background-image: url('https://img6.thuthuatphanmem.vn/uploads/2022/03/04/anh-background-nha-dep-cho-teams_013005584.png'); /* Đường dẫn đến ảnh nền */
+    background-size: cover; /* Đảm bảo ảnh nền sẽ được hiển thị đầy đủ trên màn hình */
+    background-position: center; /* Canh giữa ảnh nền */
+    background-repeat: no-repeat; /* Không lặp lại ảnh nền */
     padding: 20px;
     margin: 2em auto;
     border-radius: 10px;
@@ -40,7 +44,7 @@ select:focus {
 .signup-title {
     margin-bottom: 1em;
     font-size: 2em;
-    color: #343a40;
+    color: #ffffff;
     text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.1);
 }
 

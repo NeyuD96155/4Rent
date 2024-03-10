@@ -29,28 +29,17 @@ const NavigationBar = () => {
     };
 
     const menu = (
-        <Menu
-            items={[
-                {
-                    key: "profile",
-                    icon: <UserOutlined />,
-                    label: <Link to="/profile">Xem Thông Tin Cá Nhân</Link>,
-                },
-                {
-                    key: "history",
-                    icon: <HistoryOutlined />,
-                    label: (
-                        <Link to="/booking-history">Xem Lịch Sử Giao Dịch</Link>
-                    ),
-                },
-                {
-                    key: "logout",
-                    icon: <LogoutOutlined />,
-                    label: "Đăng Xuất",
-                    onClick: handleLogout,
-                },
-            ]}
-        />
+        <Menu>
+            <Menu.Item key="profile" icon={<UserOutlined />}>
+                <Link to="/profile">Xem Thông Tin Cá Nhân</Link>
+            </Menu.Item>
+            <Menu.Item key="history" icon={<HistoryOutlined />}>
+                <Link to="/booking-history">Xem Lịch Sử Giao Dịch</Link>
+            </Menu.Item>
+            <Menu.Item key="logout" icon={<LogoutOutlined />} onClick={handleLogout}>
+                Đăng Xuất
+            </Menu.Item>
+        </Menu>
     );
 
     return (
@@ -59,8 +48,14 @@ const NavigationBar = () => {
                 <Link to="/">4Rent</Link>
             </div>
             <div className="navbar-links">
-                <Link to="/estate" className="navbar-link">
-                    Căn hộ
+                <Link to="/show-discount" className="navbar-link">
+                    Xem mã giảm giá
+                </Link>
+                <Link to="/show-estate" className="navbar-link">
+                    Xem căn hộ
+                </Link>
+                <Link to="/form-estate" className="navbar-link">
+                    Đăng căn hộ
                 </Link>
                 {isLoggedIn && userRole === "ADMIN" && (
                     <Link to="/dash-board" className="navbar-link">
@@ -69,8 +64,8 @@ const NavigationBar = () => {
                 )}
                 {isLoggedIn &&
                     (userRole === "MEMBER" || userRole === "ADMIN") && (
-                        <Link to="/post" className="navbar-link">
-                            Đăng căn hộ
+                        <Link to="/form-discount" className="navbar-link">
+                            Mã giảm giá
                         </Link>
                     )}
                 {isLoggedIn ? (
