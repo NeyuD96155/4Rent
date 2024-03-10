@@ -53,6 +53,8 @@
     color: #d7bebe;
     text-decoration: none;
     margin-left: 20px;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
     position: relative;
     padding: 10px 0;
     transition: color 0.5s, transform 0.5s;
@@ -72,6 +74,11 @@
     height: 2.5px;
     background-color: #ffffff;
     transition: width 0.5s;
+}
+
+.navbar-link:hover {
+    background-color: #484848;
+    border-radius: 5px;
 }
 
 .navbar-link:hover::after {
@@ -97,7 +104,8 @@
         animation: none;
     }
 
-    .navbar-links {
+    .navbar-links,
+    .navbar-link {
         margin-top: 10px;
         display: block;
     }
