@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, Link } from "react-router-dom"; // Import Link
-import "../styles/Success.css"; // Import CSS file
+import { Link } from "react-router-dom"; 
+import "../styles/Success.css"; 
 import api from "../config/axios";
 const Success = () => {
     const [order, setOrder] = useState();
@@ -27,7 +27,6 @@ const Success = () => {
             <Link to="/booking-history" className="booking-history-link">
                 Xem lịch sử đặt phòng
             </Link>
-
         </div>
     );
 };
