@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from "react";
 import {
     Form,
@@ -139,7 +140,7 @@ const Booking = ({ userId, estateId }) => {
             <div className="content-container">
                 {estate ? (
                     <Card
-                        title={`Bạn Đang Đặt Phòng Tại Căn Hộ: ${estate.title}`}
+                        title={`Bạn Đang Đặt: ${estate.title}`}
                         className="info-card"
                     >
                         <div className="estate-info">
@@ -257,8 +258,11 @@ const Booking = ({ userId, estateId }) => {
                                 },
                             ]}
                         >
+                            
                             <Checkbox onChange={handleCheckboxChange}>
                                 Bằng cách tích vào hộp, bạn đồng ý với{" "}
+                               
+                                
                                 <a
                                     className="blue-link"
                                     href="#"
