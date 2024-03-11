@@ -5,19 +5,94 @@ body {
 
 .booking-container {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
 }
 
-.estate-container,
-.booking-card {
-    flex: 1;
+.booking-container .ant-card {
     margin: 20px;
     padding: 20px;
     background-color: #f0f2f5;
     border-radius: 8px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+@media (max-width: 768px) {
+
+    .content-container,
+    .booking-form-container {
+        width: 100%;
+    }
+}
+
+booking-form-container {
+    width: calc(50% - 10px);
+    min-height: 100vh;
+}
+
+.content-container {
+    width: calc(50% - 10px);
+    min-height: 100vh;
+}
+
+.ant-card-head-title {
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Tùy chỉnh thân bài của card */
+.ant-card-body {
+    background-color: #f0f2f5;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Tùy chỉnh thông tin timeshare */
+.info-card ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.info-card ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.info-card ul li strong {
+    color: #333;
+}
+
+/* Tùy chỉnh hình ảnh */
+.image-gallery-image {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Tùy chỉnh nút điều hướng */
+.image-gallery-icon {
+    color: #333;
+    background-color: transparent;
+    border: none;
+}
+
+/* Tạo hiệu ứng hover cho nút điều hướng */
+.image-gallery-icon:hover {
+    color: #007bff;
+}
+
+.estate-container,
+.booking-card {
+    flex: 4;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f0f2f5;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
 
 
 
