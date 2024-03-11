@@ -69,17 +69,11 @@ const NavigationBar = () => {
                         </Link>
                     )}
                 {isLoggedIn ? (
-                    <Dropdown overlay={menu}>
-                        <a
-                            onClick={(e) => e.preventDefault()}
-                            className="avatar-link"
-                        >
-                            <Avatar
-                                style={{ backgroundColor: "#87d068" }}
-                                icon={<UserOutlined />}
-                            />
-                        </a>
-                    </Dropdown>
+                   <Dropdown overlay={menu} placement="bottomRight">
+                   <a onClick={(e) => e.preventDefault()} className="avatar-link">
+                       <Avatar style={{ backgroundColor: "#87d068" }} icon={<UserOutlined />} />
+                   </a>
+               </Dropdown>
                 ) : (
                     <>
                         <Link to="/signin" className="navbar-link">

@@ -13,7 +13,7 @@ import {
 
 const { Header, Content, Footer, Sider } = Layout;
 
-const App = () => {
+const DashBoard = () => {
     const dispatch = useDispatch();
     const accounts = useSelector((state) => state.accounts.items); // Adjust based on your state structure
     const [collapsed, setCollapsed] = useState(false);
@@ -136,4 +136,4 @@ const App = () => {
     );
 };
 
-export default App;
+export default DashBoard;
