@@ -14,7 +14,11 @@ import Privacy from "./components/Privacy";
 import ReportError from "./components/ReportError";
 import Rules from "./components/Rules";
 import SearchBar from "./components/SearchBar";
-import { ExchangeTimeshares, GettingStarted, MaximizeVacation } from "./components/guide/GettingStarted";
+import {
+    ExchangeTimeshares,
+    GettingStarted,
+    MaximizeVacation,
+} from "./components/guide/GettingStarted";
 import CancellationPolicy from "./components/policy/CancellationPolicy";
 import { AuthProvider } from "./context/AuthContext ";
 import AboutUs from "./pages/AboutUs";
@@ -38,6 +42,8 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Success from "./pages/Success";
 import PrivateRoute from "./components/PrivateRoute";
+import UserEstate from "./pages/UsersEstate";
+import Search from "./pages/Search";
 function LayoutWrapper() {
     const location = useLocation();
     const isDashboard = location.pathname.startsWith("/dash-board");
@@ -73,7 +79,6 @@ function LayoutWrapper() {
                 />
                 <Route path="/form-discount" element={<DiscountForm />} />
 
-
                 <Route
                     path="/booking/:id"
                     element={
@@ -105,6 +110,8 @@ function LayoutWrapper() {
                 />
                 <Route path="/show-estate" element={<EstateShow />} />
                 <Route path="/form-estate" element={<EstateForm />} />
+                <Route path="/users-estate" element={<UserEstate />} />
+                <Route path="/search-page" element={<Search />} />
                 <Route
                     path="/showEstateDetail/:id"
                     element={<EstateDetail />}
@@ -118,8 +125,8 @@ function App() {
     return (
         <AuthProvider>
             <Router>
-            <LayoutWrapper />
-        </Router>
+                <LayoutWrapper />
+            </Router>
         </AuthProvider>
     );
 }
