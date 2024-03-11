@@ -1,0 +1,56 @@
+.estates-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .estate-item {
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 300px; /* Bạn có thể điều chỉnh chiều rộng này để phù hợp với layout của mình */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  
+  .estate-item h2 {
+    margin-top: 0;
+    color: #333;
+    font-size: 20px;
+  }
+  
+  .estate-item img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+    border-radius: 5px;
+  }
+  
+  .estate-item p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
+  }
+  
+  .estate-item div {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .link {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  .link:hover {
+    background-color: #0056b3;
+  }
+  

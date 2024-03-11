@@ -18,10 +18,8 @@ import {
 } from "../components/guide/GettingStarted";
 import Payment from "./Payment";
 import CancellationPolicy from "../components/policy/CancellationPolicy";
-import DiscountDetail from "./DiscountDetail";
 import News from "../pages/News";
 import Landing from "../pages/Landing";
-import Discount from "./DiscountForm";
 import Estate from "./EstateShow";
 import Booking from "../pages/Booking";
 import Profile from "../pages/Profile";

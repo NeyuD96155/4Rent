@@ -9,46 +9,52 @@ const EstateShow = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
 
+
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchEstates = async () => {
-            setIsLoading(true);
-            try {
-                const response = await api.get("/showEstate");
-                setEstates(response.data);
-            } catch (err) {
-                console.error("Error fetching estates:", err);
-                setError(
-                    err.response?.data?.message ||
-                        "Failed to load estates. Please try again later."
-                );
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
         fetchEstates();
     }, []);
+    const handleSearchResults = (results) => {
+        setEstates(results);
+    };
+    const fetchEstates = async (search = "") => {
+        setIsLoading(true);
+        try {
+            const response = await api.get(`/search?query=${search}`);
+            setEstates(response.data);
+        } catch (err) {
+            console.error("Error fetching estates:", err);
+            setError(
+                err.response?.data?.message ||
+                    "Failed to load estates. Please try again later."
+            );
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     const handleEstateClick = async (estateId) => {
         navigate(`/showEstateDetail/${estateId}`);
     };
+
+  
     const formatCurrency = (amount) => {
         return new Intl.NumberFormat("vi-VN", {
             style: "currency",
             currency: "VND",
-            minimumFractionDigits: 0, 
+            minimumFractionDigits: 0,
         })
             .format(amount)
-            .replace("₫","đ");
+            .replace("₫", "đ");
     };
+
     if (isLoading) return <div aria-live="polite">Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
     return (
         <div className="timeshare-estates-container">
-            <SearchBar />
+            <SearchBar onSearch={handleSearchResults} />
             <div className="estates">
                 {estates.map((estate) => (
                     <div key={estate.id} className="estate-card">
@@ -74,11 +80,11 @@ const EstateShow = () => {
                                     {formatCurrency(estate.price)}
                                 </p>
                                 <p>
-                                    <strong>Thời gian nhận phòng: </strong>
+                                    <strong>Thời gian nhận phòng:</strong>{" "}
                                     {estate.checkIn || "Not specified"}
                                 </p>
                                 <p>
-                                    <strong>Thời gian trả phòng: </strong>
+                                    <strong>Thời gian trả phòng:</strong>{" "}
                                     {estate.checkOut || "Not specified"}
                                 </p>
                             </div>

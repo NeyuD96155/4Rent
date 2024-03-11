@@ -25,13 +25,19 @@ export const AuthProvider = ({ children }) => {
     };
 
     const logout = () => {
+        // Đặt một item vào localStorage để trigger sự kiện storage trên các tab khác
+        localStorage.setItem("logout", Date.now().toString());
+        
+        // xóa thông tin người dùng từ local storage
         localStorage.removeItem("token");
         localStorage.removeItem("userRole");
         localStorage.removeItem("username");
+    
+        // Cập nhật trạng thái đăng nhập và vai trò người dùng
         setIsLoggedIn(false);
         setUserRole(null);
     };
-
+    
     useEffect(() => {
         const syncLogout = (event) => {
             if (event.key === "logout") {

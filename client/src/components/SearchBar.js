@@ -5,7 +5,7 @@ import "../styles/Search.css";
 
 const { RangePicker } = DatePicker;
 
-function SearchBar() {
+function SearchBar({ onSearch }) {
     const [categories, setCategories] = useState([]);
     const [locations, setLocations] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(null);
@@ -52,7 +52,7 @@ function SearchBar() {
 
         try {
             const response = await axios.get("/search", { params });
-            console.log(response.data);
+            onSearch(response.data); // Gọi callback thay vì console.log
         } catch (error) {
             console.error("Có lỗi khi tìm kiếm :", error);
         }
