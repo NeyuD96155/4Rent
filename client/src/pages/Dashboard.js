@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAccounts } from "../redux/features/accountsSlice";
+import { fetchAccounts, deleteAccount } from "../redux/features/accountsSlice"; // Thêm hàm deleteAccount từ Redux action
 import { useNavigate } from "react-router-dom";
-import { Layout, Menu, Breadcrumb, Table, Modal } from "antd";
+import { Layout, Menu, Breadcrumb, Table, Modal, Button, message } from "antd";
 import {
     PieChartOutlined,
     DesktopOutlined,
@@ -15,15 +15,17 @@ const { Header, Content, Footer, Sider } = Layout;
 
 const App = () => {
     const dispatch = useDispatch();
-    const accounts = useSelector((state) => state.accounts.items); // Adjust based on your state structure
+    const accounts = useSelector((state) => state.accounts.items);
     const [collapsed, setCollapsed] = useState(false);
     const [isDetailModalVisible, setIsDetailModalVisible] = useState(false);
     const [detailAccount, setDetailAccount] = useState({});
     const [showUserTable, setShowUserTable] = useState(false);
     const navigate = useNavigate();
+
     useEffect(() => {
         dispatch(fetchAccounts());
     }, [dispatch]);
+
     const handleMenuClick = (e) => {
         if (e.key === "2") {
             setShowUserTable(true);
@@ -35,6 +37,17 @@ const App = () => {
             navigate("/");
         }
     };
+
+    const handleDeleteAccount = async (record) => {
+        try {
+            await dispatch(deleteAccount(record.id));
+            message.success('Account deleted successfully');
+        } catch (error) {
+            console.error('Error deleting account:', error);
+            message.error('Failed to delete account');
+        }
+    };
+
     const columns = [
         {
             title: "Email",
@@ -60,17 +73,22 @@ const App = () => {
             title: "Action",
             key: "action",
             render: (_, record) => (
-                <span
-                    onClick={() => {
-                        setIsDetailModalVisible(true);
-                        setDetailAccount(record);
-                    }}
-                >
-                    View Details
+                <span>
+                    <span style={{ marginRight: 8, color: 'blue', cursor: 'pointer' }}
+                        onClick={() => {
+                            setIsDetailModalVisible(true);
+                            setDetailAccount(record);
+                        }}
+                    >
+                        View Details
+                    </span>
+
+                    <Button type="link" danger onClick={() => handleDeleteAccount(record)}>Delete</Button>
                 </span>
             ),
         },
     ];
+
     const items = [
         { key: "1", icon: <PieChartOutlined />, label: "Profit Statistic" },
         { key: "2", icon: <DesktopOutlined />, label: "Manage Account" },
