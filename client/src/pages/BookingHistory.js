@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import api from "../config/axios";
 import "../styles/BookingHistory.css";
 
-// Custom Hook
 const useFetchBookingHistory = () => {
     const [bookingHistory, setBookingHistory] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -28,27 +27,35 @@ const useFetchBookingHistory = () => {
         fetchBookingHistory();
     }, []);
 
-    return { bookingHistory, isLoading, error };
+    return { bookingHistory, isLoading, error, setBookingHistory };
 };
 
-// Utility for date formatting
 const formatDate = (date) => new Date(date).toLocaleString();
 
-// Loading Component
 const Loading = () => <div className="loading">Loading booking history...</div>;
 
-// Error Component
 const Error = ({ message }) => <div className="error">Error: {message}</div>;
 
 const BookingHistory = () => {
-    const { bookingHistory, isLoading, error } = useFetchBookingHistory();
+    const { bookingHistory, isLoading, error, setBookingHistory } = useFetchBookingHistory();
+
+    const cancelBooking = async (bookingId) => {
+        try {
+            await api.put(`/cancelBooking/${bookingId}`);
+            const updatedBookingHistory = bookingHistory.filter(booking => booking.id !== bookingId);
+            setBookingHistory(updatedBookingHistory);
+        } catch (err) {
+            console.error("Error canceling the booking:", err);
+            alert("Failed to cancel the booking. Please try again later.");
+        }
+    };
 
     if (isLoading) return <Loading />;
     if (error) return <Error message={error} />;
 
     return (
         <div className="booking-history-container">
-            <h1>Lịch Sử Giao Dịch</h1>
+            <h1 className="history-title">Lịch Sử Giao Dịch</h1>
             {bookingHistory.length > 0 ? (
                 <div className="booking-history">
                     {bookingHistory.map(
@@ -63,8 +70,8 @@ const BookingHistory = () => {
                             realEstate,
                         }) => (
                             <div key={id} className="booking-history-entry">
-                                <h3>Mã đặt phòng: {id}</h3>
-                                <h4>
+                                <h3 className="booking-id">Mã đặt phòng: {id}</h3>
+                                <h4 className="real-estate-title">
                                     <strong>{realEstate.title} | </strong>
                                 </h4>
                                 <p>
@@ -88,7 +95,7 @@ const BookingHistory = () => {
                                 <p>
                                     <strong>Booked by:</strong> {users.fullname}
                                 </p>
-                                <button>Hủy đặt phòng</button>
+                                <button className="cancel-button" onClick={() => cancelBooking(id)}>Hủy đặt phòng</button>
                             </div>
                         )
                     )}

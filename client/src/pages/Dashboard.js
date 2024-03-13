@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAccounts } from "../redux/features/accountsSlice";
 import { useNavigate } from "react-router-dom";
-import { Layout, Menu, Breadcrumb, Table, Modal } from "antd";
+import { Layout, Menu, Breadcrumb, Table, Modal, Button } from "antd";
 import {
     PieChartOutlined,
     DesktopOutlined,
@@ -15,15 +15,17 @@ const { Header, Content, Footer, Sider } = Layout;
 
 const DashBoard = () => {
     const dispatch = useDispatch();
-    const accounts = useSelector((state) => state.accounts.items); // Adjust based on your state structure
+    const accounts = useSelector((state) => state.accounts.items);
     const [collapsed, setCollapsed] = useState(false);
     const [isDetailModalVisible, setIsDetailModalVisible] = useState(false);
     const [detailAccount, setDetailAccount] = useState({});
     const [showUserTable, setShowUserTable] = useState(false);
     const navigate = useNavigate();
+
     useEffect(() => {
         dispatch(fetchAccounts());
     }, [dispatch]);
+
     const handleMenuClick = (e) => {
         if (e.key === "2") {
             setShowUserTable(true);
@@ -35,6 +37,7 @@ const DashBoard = () => {
             navigate("/");
         }
     };
+
     const columns = [
         {
             title: "Email",
@@ -60,27 +63,19 @@ const DashBoard = () => {
             title: "Action",
             key: "action",
             render: (_, record) => (
-                <span
+                <Button
+                    type="primary"
                     onClick={() => {
                         setIsDetailModalVisible(true);
                         setDetailAccount(record);
                     }}
-                    style={{
-                        backgroundColor: "#007bff",
-                        color: "white",
-                        padding: "8px 16px",
-                        borderRadius: "4px",
-                        cursor: "pointer",
-                        display: "inline-block",
-                        textDecoration: "none",
-                    }}
                 >
                     Xem Chi Tiết
-                </span>
-
+                </Button>
             ),
         },
     ];
+
     const items = [
         { key: "1", icon: <PieChartOutlined />, label: "Thống Kê Lợi Nhuận" },
         { key: "2", icon: <DesktopOutlined />, label: "Quản Lý Tài Khoản" },
