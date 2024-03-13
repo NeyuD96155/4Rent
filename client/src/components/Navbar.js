@@ -57,6 +57,9 @@ const NavigationBar = () => {
                 <Link to="/form-estate" className="navbar-link">
                     Đăng căn hộ
                 </Link>
+                <Link to="/users-estate" className="navbar-link">
+                    Căn Hộ của bạn
+                </Link>
                 {isLoggedIn && userRole === "ADMIN" && (
                     <Link to="/dash-board" className="navbar-link">
                         DashBoard
@@ -69,17 +72,11 @@ const NavigationBar = () => {
                         </Link>
                     )}
                 {isLoggedIn ? (
-                    <Dropdown overlay={menu}>
-                        <a
-                            onClick={(e) => e.preventDefault()}
-                            className="avatar-link"
-                        >
-                            <Avatar
-                                style={{ backgroundColor: "#87d068" }}
-                                icon={<UserOutlined />}
-                            />
-                        </a>
-                    </Dropdown>
+                   <Dropdown overlay={menu} placement="bottomRight">
+                   <a onClick={(e) => e.preventDefault()} className="avatar-link">
+                       <Avatar style={{ backgroundColor: "#87d068" }} icon={<UserOutlined />} />
+                   </a>
+               </Dropdown>
                 ) : (
                     <>
                         <Link to="/signin" className="navbar-link">

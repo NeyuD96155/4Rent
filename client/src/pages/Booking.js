@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from "react";
 import {
     Form,
@@ -22,6 +23,7 @@ const Booking = ({ userId, estateId }) => {
     // const estate = location.state ? location.state.estate : null;
     const { id } = useParams();
     const [estate, setEstate] = useState(null);
+    const [amounts, setAmount] = useState(null);
     const navigate = useNavigate();
     const [modalVisible, setModalVisible] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0);
@@ -61,11 +63,11 @@ const Booking = ({ userId, estateId }) => {
         );
         setTotalPrice(totalPrice);
     }, [form, estate]); // Chỉ chạy khi form hoặc estate thay đổi
-    const calculateTotalPrice = (checkIn, checkOut, pricePerDay, ) => {
+    const calculateTotalPrice = (checkIn, checkOut, pricePerDay) => {
         if (checkIn && checkOut && pricePerDay) {
             const diffTime = Math.abs(checkOut - checkIn);
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
-            return ((diffDays + 1) * pricePerDay); // Thêm 1 ngày vì ngày nhận và trả phòng tính cả hai
+            return (diffDays + 1) * pricePerDay; // Thêm 1 ngày vì ngày nhận và trả phòng tính cả hai
         }
         return 0; // Trả về 0 nếu thiếu thông tin
     };
@@ -124,7 +126,7 @@ const Booking = ({ userId, estateId }) => {
                 date: "2024-03-02T09:55:22.304Z",
                 estateId: estate.id,
                 price: totalPrice,
-                amount: estate.amount,
+                amount: amounts,
             });
             console.log(response.data);
             window.open(response.data, "_blank", "noreferrer");
@@ -139,7 +141,7 @@ const Booking = ({ userId, estateId }) => {
             <div className="content-container">
                 {estate ? (
                     <Card
-                        title={`Bạn Đang Đặt Phòng Tại Căn Hộ: ${estate.title}`}
+                        title={`Bạn Đang Đặt: ${estate.title}`}
                         className="info-card"
                     >
                         <div className="estate-info">
@@ -228,7 +230,13 @@ const Booking = ({ userId, estateId }) => {
                             label="Số lượng khách"
                             rules={[{ required: true }]}
                         >
-                            <InputNumber min={1} max={estate?.amount} />
+                            <InputNumber
+                                min={1}
+                                max={estate?.amount}
+                                onChange={(value) => {
+                                    setAmount(value);
+                                }}
+                            />
                         </Form.Item>
                         <Form.Item label="Tổng số tiền">
                             <span>

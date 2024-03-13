@@ -2,36 +2,51 @@ import React, { useState, useEffect } from "react";
 import api from "../config/axios";
 import { useNavigate } from "react-router-dom";
 import "../styles/Estate.css";
+import SearchBar from "../components/SearchBar";
 
 const EstateShow = () => {
     const [estates, setEstates] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
 
+
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchEstates = async () => {
-            setIsLoading(true);
-            try {
-                const response = await api.get("/showEstate");
-                setEstates(response.data);
-            } catch (err) {
-                console.error("Error fetching estates:", err);
-                setError(
-                    err.response?.data?.message ||
-                        "Failed to load estates. Please try again later."
-                );
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
         fetchEstates();
     }, []);
+    const handleSearchResults = (results) => {
+        setEstates(results);
+    };
+    const fetchEstates = async (search = "") => {
+        setIsLoading(true);
+        try {
+            const response = await api.get(`/search?query=${search}`);
+            setEstates(response.data);
+        } catch (err) {
+            console.error("Error fetching estates:", err);
+            setError(
+                err.response?.data?.message ||
+                    "Failed to load estates. Please try again later."
+            );
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     const handleEstateClick = async (estateId) => {
         navigate(`/showEstateDetail/${estateId}`);
+    };
+
+  
+    const formatCurrency = (amount) => {
+        return new Intl.NumberFormat("vi-VN", {
+            style: "currency",
+            currency: "VND",
+            minimumFractionDigits: 0,
+        })
+            .format(amount)
+            .replace("₫", "đ");
     };
 
     if (isLoading) return <div aria-live="polite">Loading...</div>;
@@ -39,7 +54,7 @@ const EstateShow = () => {
 
     return (
         <div className="timeshare-estates-container">
-            <h1>Timeshare Estates</h1>
+            <SearchBar onSearch={handleSearchResults} />
             <div className="estates">
                 {estates.map((estate) => (
                     <div key={estate.id} className="estate-card">
@@ -55,18 +70,24 @@ const EstateShow = () => {
                                 }
                                 alt={estate.title || "Estate"}
                             />
-                            <h2>{estate.title}</h2>
-                            <p>Giá: {estate.price}</p>
-                            <p>Vị trí: {estate.location}</p>
-                            <p>Thể loại: {estate.category}</p>
-                            <p>
-                                Thời gian nhận phòng:{" "}
-                                {estate.checkIn || "Not specified"}
-                            </p>
-                            <p>
-                                Thời gian trả phòng:{" "}
-                                {estate.checkOut || "Not specified"}
-                            </p>
+                            <div className="estate-info">
+                                <h5>
+                                    <strong>{estate.title}</strong> |{" "}
+                                    {estate.location}
+                                </h5>
+                                <p>
+                                    <strong>Giá:</strong>{" "}
+                                    {formatCurrency(estate.price)}
+                                </p>
+                                <p>
+                                    <strong>Thời gian nhận phòng:</strong>{" "}
+                                    {estate.checkIn || "Not specified"}
+                                </p>
+                                <p>
+                                    <strong>Thời gian trả phòng:</strong>{" "}
+                                    {estate.checkOut || "Not specified"}
+                                </p>
+                            </div>
                         </button>
                     </div>
                 ))}

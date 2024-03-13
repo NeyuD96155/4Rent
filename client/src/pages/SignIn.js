@@ -44,7 +44,7 @@ const SignIn = () => {
             >
                 <Form.Item
                     name="username"
-                    label="Username"
+                    label="Tài khoản"
                     rules={[
                         {
                             required: true,
@@ -57,7 +57,7 @@ const SignIn = () => {
 
                 <Form.Item
                     name="password"
-                    label="Password"
+                    label="Mật khẩu"
                     rules={[
                         {
                             required: true,

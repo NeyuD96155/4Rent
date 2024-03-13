@@ -5,7 +5,7 @@ import "../styles/Search.css";
 
 const { RangePicker } = DatePicker;
 
-function SearchBar() {
+function SearchBar({ onSearch }) {
     const [categories, setCategories] = useState([]);
     const [locations, setLocations] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(null);
@@ -16,13 +16,23 @@ function SearchBar() {
     // Fetch categories
     const fetchCategories = async () => {
         const response = await axios.get("/showCate");
-        setCategories(response.data.map(item => ({ label: item.categoryname, value: item.id })));
+        setCategories(
+            response.data.map((item) => ({
+                label: item.categoryname,
+                value: item.id,
+            }))
+        );
     };
 
     // Fetch locations
     const fetchLocations = async () => {
         const response = await axios.get("/showLocation");
-        setLocations(response.data.map(item => ({ label: item.location, value: item.id })));
+        setLocations(
+            response.data.map((item) => ({
+                label: item.location,
+                value: item.id,
+            }))
+        );
     };
 
     useEffect(() => {
@@ -42,9 +52,9 @@ function SearchBar() {
 
         try {
             const response = await axios.get("/search", { params });
-            console.log(response.data);
+            onSearch(response.data); // Gọi callback 
         } catch (error) {
-            console.error("Error when fetching search data:", error);
+            console.error("Có lỗi khi tìm kiếm :", error);
         }
     };
 
@@ -52,30 +62,33 @@ function SearchBar() {
         <div className="search-container">
             <form onSubmit={handleSubmit} className="search-form">
                 <Select
-                    placeholder="Select a category"
+                    placeholder="Chọn loại hình"
                     onChange={setSelectedCategory}
                     options={categories}
                 />
                 <Select
-                    placeholder="Select a location"
+                    placeholder="Chọn địa điểm"
                     onChange={setSelectedLocation}
                     options={locations}
+                    
                 />
                 <RangePicker
+                    placeholder={["Ngày nhận phòng", "Ngày trả phòng"]}
                     onChange={(dates, dateStrings) => setDateRange(dateStrings)}
+                    style={{ width: "40%" }}
+                    
                 />
                 <Select
-                    placeholder="Select number of people"
+                    placeholder="Chọn số người tham gia"
                     onChange={setAmount}
                 >
-                    {/* Update with appropriate options based on your backend's expectations */}
-                    <Select.Option value={1}>1 person</Select.Option>
-                    <Select.Option value={2}>2 people</Select.Option>
-                    <Select.Option value={3}>3 people</Select.Option>
-                    {/* ... */}
+                    <Select.Option value={1}>1 người</Select.Option>
+                    <Select.Option value={2}>2 người</Select.Option>
+                    <Select.Option value={3}>3 người</Select.Option>
+                
                 </Select>
                 <Button type="primary" htmlType="submit" className="search-btn">
-                    Search
+                    Tìm kiếm
                 </Button>
             </form>
         </div>

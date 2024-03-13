@@ -1,58 +1,102 @@
-import React, { useState, useEffect } from 'react';
-import api from '../config/axios'; 
-import '../styles/BookingHistory.css'; 
+import React, { useState, useEffect } from "react";
+import api from "../config/axios";
+import "../styles/BookingHistory.css";
+
+// Custom Hook
+const useFetchBookingHistory = () => {
+    const [bookingHistory, setBookingHistory] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState("");
+
+    useEffect(() => {
+        const fetchBookingHistory = async () => {
+            setIsLoading(true);
+            try {
+                const response = await api.get("/showBookingHistory");
+                setBookingHistory(response.data);
+            } catch (err) {
+                console.error("Error fetching booking history:", err);
+                setError(
+                    err.response?.data?.message ||
+                        "Failed to load booking history. Please try again later."
+                );
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchBookingHistory();
+    }, []);
+
+    return { bookingHistory, isLoading, error };
+};
+
+// Utility for date formatting
+const formatDate = (date) => new Date(date).toLocaleString();
+
+// Loading Component
+const Loading = () => <div className="loading">Loading booking history...</div>;
+
+// Error Component
+const Error = ({ message }) => <div className="error">Error: {message}</div>;
 
 const BookingHistory = () => {
-  const [bookingHistory, setBookingHistory] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+    const { bookingHistory, isLoading, error } = useFetchBookingHistory();
 
-  useEffect(() => {
-    const fetchBookingHistory = async () => {
-      setIsLoading(true);
-      try {
-        const response = await api.get('/showBookingHistory');
-        setBookingHistory(response.data);
-      } catch (err) {
-        console.error('Error fetching booking history:', err);
-        setError(
-          err.response?.data?.message ||
-            'Failed to load booking history. Please try again later.'
-        );
-      } finally {
-        setIsLoading(false);
-      }
-    };
+    if (isLoading) return <Loading />;
+    if (error) return <Error message={error} />;
 
-    fetchBookingHistory();
-  }, []);
-
-  if (isLoading) return <div className="loading">Loading booking history...</div>;
-  if (error) return <div className="error">Error: {error}</div>;
-
-  return (
-    <div className="booking-history-container">
-      <h1>Lịch Sử Giao Dịch</h1>
-      {bookingHistory.length > 0 ? (
-        <div className="booking-history">
-          {bookingHistory.map((booking) => (
-            <div key={booking.id} className="booking-history-entry">
-              <h3>Booking ID: {booking.id}</h3>
-              <p><strong>Check-in:</strong> {new Date(booking.checkIn).toLocaleString()}</p>
-              <p><strong>Check-out:</strong> {new Date(booking.checkOut).toLocaleString()}</p>
-              <p><strong>Booking Date:</strong> {new Date(booking.bookingDate).toLocaleString()}</p>
-              <p><strong>Price:</strong> {booking.price}</p>
-              <p><strong>Amount:</strong> {booking.amount}</p>
-              <p><strong>Booked by:</strong> {booking.users.fullname}</p>
-              <p><strong>Estate:</strong> {booking.realEstate.title}</p>
-            </div>
-          ))}
+    return (
+        <div className="booking-history-container">
+            <h1>Lịch Sử Giao Dịch</h1>
+            {bookingHistory.length > 0 ? (
+                <div className="booking-history">
+                    {bookingHistory.map(
+                        ({
+                            id,
+                            checkIn,
+                            checkOut,
+                            bookingDate,
+                            price,
+                            amount,
+                            users,
+                            realEstate,
+                        }) => (
+                            <div key={id} className="booking-history-entry">
+                                <h3>Mã đặt phòng: {id}</h3>
+                                <h4>
+                                    <strong>{realEstate.title} | </strong>
+                                </h4>
+                                <p>
+                                    <strong>Ngày nhận phòng:</strong>{" "}
+                                    {formatDate(checkIn)}
+                                </p>
+                                <p>
+                                    <strong>Ngày trả phòng:</strong>{" "}
+                                    {formatDate(checkOut)}
+                                </p>
+                                <p>
+                                    <strong>Ngày đặt phòng:</strong>{" "}
+                                    {formatDate(bookingDate)}
+                                </p>
+                                <p>
+                                    <strong>Price:</strong> {price}
+                                </p>
+                                <p>
+                                    <strong>Amount:</strong> {amount}
+                                </p>
+                                <p>
+                                    <strong>Booked by:</strong> {users.fullname}
+                                </p>
+                            </div>
+                        )
+                    )}
+                </div>
+            ) : (
+                <p>No booking history found.</p>
+            )}
         </div>
-      ) : (
-        <p>No booking history found.</p>
-      )}
-    </div>
-  );
+    );
 };
 
 export default BookingHistory;

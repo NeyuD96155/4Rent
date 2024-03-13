@@ -51,7 +51,7 @@ const SignUp = () => {
             >
                 <Form.Item
                     name="role"
-                    label="Role"
+                    label="Vai trò"
                     rules={[
                         {
                             required: true,
@@ -59,7 +59,7 @@ const SignUp = () => {
                         },
                     ]}
                 >
-                    <Select placeholder="Select a role">
+                    <Select placeholder="Chọn 1 vai trò">
                         <Option value="MEMBER">Chủ sở hữu</Option>
                         <Option value="RENTER">Người thuê</Option>
                     </Select>
