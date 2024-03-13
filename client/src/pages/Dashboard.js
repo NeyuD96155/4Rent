@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAccounts, deleteAccount } from "../redux/features/accountsSlice"; // Thêm hàm deleteAccount từ Redux action
+import { fetchAccounts } from "../redux/features/accountsSlice";
 import { useNavigate } from "react-router-dom";
-import { Layout, Menu, Breadcrumb, Table, Modal, Button, message } from "antd";
+import { Layout, Menu, Breadcrumb, Table, Modal } from "antd";
 import {
     PieChartOutlined,
     DesktopOutlined,
@@ -15,17 +15,15 @@ const { Header, Content, Footer, Sider } = Layout;
 
 const DashBoard = () => {
     const dispatch = useDispatch();
-    const accounts = useSelector((state) => state.accounts.items);
+    const accounts = useSelector((state) => state.accounts.items); // Adjust based on your state structure
     const [collapsed, setCollapsed] = useState(false);
     const [isDetailModalVisible, setIsDetailModalVisible] = useState(false);
     const [detailAccount, setDetailAccount] = useState({});
     const [showUserTable, setShowUserTable] = useState(false);
     const navigate = useNavigate();
-
     useEffect(() => {
         dispatch(fetchAccounts());
     }, [dispatch]);
-
     const handleMenuClick = (e) => {
         if (e.key === "2") {
             setShowUserTable(true);
@@ -37,17 +35,6 @@ const DashBoard = () => {
             navigate("/");
         }
     };
-
-    const handleDeleteAccount = async (record) => {
-        try {
-            await dispatch(deleteAccount(record.id));
-            message.success('Account deleted successfully');
-        } catch (error) {
-            console.error('Error deleting account:', error);
-            message.error('Failed to delete account');
-        }
-    };
-
     const columns = [
         {
             title: "Email",
@@ -55,17 +42,17 @@ const DashBoard = () => {
             key: "email",
         },
         {
-            title: "Full Name",
+            title: "Họ và Tên",
             dataIndex: "fullname",
             key: "fullname",
         },
         {
-            title: "Phone",
+            title: "Số Điện Thoại",
             dataIndex: "phoneNumber",
             key: "phoneNumber",
         },
         {
-            title: "Role",
+            title: "Vai Trò",
             dataIndex: "role",
             key: "role",
         },
@@ -73,41 +60,35 @@ const DashBoard = () => {
             title: "Action",
             key: "action",
             render: (_, record) => (
-                <span>
-                    <span style={{ marginRight: 8, color: 'blue', cursor: 'pointer' }}
-                        onClick={() => {
-                            setIsDetailModalVisible(true);
-                            setDetailAccount(record);
-                        }}
-                    >
-                        View Details
-                    </span>
-
-                    <Button type="link" danger onClick={() => handleDeleteAccount(record)}>Delete</Button>
+                <span
+                    onClick={() => {
+                        setIsDetailModalVisible(true);
+                        setDetailAccount(record);
+                    }}
+                    style={{
+                        backgroundColor: "#007bff",
+                        color: "white",
+                        padding: "8px 16px",
+                        borderRadius: "4px",
+                        cursor: "pointer",
+                        display: "inline-block",
+                        textDecoration: "none",
+                    }}
+                >
+                    Xem Chi Tiết
                 </span>
+
             ),
         },
     ];
-
     const items = [
-        { key: "1", icon: <PieChartOutlined />, label: "Profit Statistic" },
-        { key: "2", icon: <DesktopOutlined />, label: "Manage Account" },
-        {
-            key: "sub1",
-            icon: <UserOutlined />,
-            label: "User",
-            children: [
-                { key: "3", label: "Tom" },
-                { key: "4", label: "Bill" },
-                { key: "5", label: "Alex" },
-            ],
-        },
-        { key: "9", icon: <FileOutlined />, label: "Files" },
-        { key: "10", icon: <FileOutlined />, label: "Manage Post" },
+        { key: "1", icon: <PieChartOutlined />, label: "Thống Kê Lợi Nhuận" },
+        { key: "2", icon: <DesktopOutlined />, label: "Quản Lý Tài Khoản" },
+        { key: "10", icon: <FileOutlined />, label: "Duyệt Bài Đăng" },
         {
             key: "sub2",
             icon: <TeamOutlined />,
-            label: "Back to Homepage",
+            label: "Trở về Trang Chính",
             onClick: () => navigate("/"),
         },
     ];
