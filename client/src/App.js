@@ -43,6 +43,7 @@ import SignUp from "./pages/SignUp";
 import Success from "./pages/Success";
 import PrivateRoute from "./components/PrivateRoute";
 import UserEstate from "./pages/UsersEstate";
+import { NonAuthorize } from "./pages/NonAuthorize";
 
 function LayoutWrapper() {
     const location = useLocation();
@@ -109,8 +110,23 @@ function LayoutWrapper() {
                     }
                 />
                 <Route path="/show-estate" element={<EstateShow />} />
-                <Route path="/form-estate" element={<EstateForm />} />
-                <Route path="/users-estate" element={<UserEstate />} />
+                <Route
+                    path="/estate-form"
+                    element={
+                        <PrivateRoute>
+                            <EstateForm />
+                        </PrivateRoute>
+                    }
+                />
+                <Route
+                    path="/users-estate"
+                    element={
+                        <PrivateRoute>
+                            <UserEstate />
+                        </PrivateRoute>
+                    }
+                />
+                <Route path="/non-authorize" element={<NonAuthorize />} />
                 <Route
                     path="/showEstateDetail/:id"
                     element={<EstateDetail />}
