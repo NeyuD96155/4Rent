@@ -5,6 +5,7 @@ import {
     UserOutlined,
     HistoryOutlined,
     LogoutOutlined,
+    WalletOutlined,
 } from "@ant-design/icons";
 import "../styles/Navbar.css";
 import { useAuth } from "../context/AuthContext ";
@@ -32,6 +33,9 @@ const NavigationBar = () => {
         <Menu>
             <Menu.Item key="profile" icon={<UserOutlined />}>
                 <Link to="/profile">Xem Thông Tin Cá Nhân</Link>
+            </Menu.Item>
+            <Menu.Item key="wallet" icon={<WalletOutlined />}>
+                <Link to="/wallet">Ví Của Bạn</Link>
             </Menu.Item>
             <Menu.Item key="history" icon={<HistoryOutlined />}>
                 <Link to="/booking-history">Xem Lịch Sử Giao Dịch</Link>

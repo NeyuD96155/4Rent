@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAccounts } from "../redux/features/accountsSlice";
+import { fetchAccounts, deleteAccount } from "../redux/features/accountsSlice"; // Import action deleteAccount
 import { useNavigate } from "react-router-dom";
 import { Layout, Menu, Breadcrumb, Table, Modal, Button } from "antd";
 import {
@@ -38,6 +38,15 @@ const DashBoard = () => {
         }
     };
 
+    // Thay thế phần xóa tài khoản bằng action deleteAccount
+    const handleDeleteAccount = async (accountId) => {
+        try {
+            await dispatch(deleteAccount(accountId)); // Dispatch action deleteAccount
+        } catch (error) {
+            console.error("Error deleting account:", error);
+        }
+    };
+
     const columns = [
         {
             title: "Email",
@@ -71,6 +80,19 @@ const DashBoard = () => {
                     }}
                 >
                     Xem Chi Tiết
+                </Button>
+            ),
+        },
+        {
+            title: "Xóa",
+            key: "delete",
+            render: (_, record) => (
+                <Button
+                    type="primary"
+                    danger
+                    onClick={() => handleDeleteAccount(record.id)}
+                >
+                    Xóa
                 </Button>
             ),
         },
