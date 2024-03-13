@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAccounts, deleteAccount } from "../redux/features/accountsSlice"; // Import action deleteAccount
+import { fetchTransactions } from "../redux/features/transactionsSlice";
 import { useNavigate } from "react-router-dom";
 import { Layout, Menu, Breadcrumb, Table, Modal, Button } from "antd";
 import {
@@ -16,21 +17,31 @@ const { Header, Content, Footer, Sider } = Layout;
 const DashBoard = () => {
     const dispatch = useDispatch();
     const accounts = useSelector((state) => state.accounts.items);
+    const transactions = useSelector((state) => state.transactions.items);
     const [collapsed, setCollapsed] = useState(false);
     const [isDetailModalVisible, setIsDetailModalVisible] = useState(false);
+    const [showTransactionsTable, setShowTransactionsTable] = useState(false);
     const [detailAccount, setDetailAccount] = useState({});
     const [showUserTable, setShowUserTable] = useState(false);
+    const [estates, setEstates] = useState([]);
+
     const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(fetchAccounts());
+        dispatch(fetchTransactions());
     }, [dispatch]);
 
     const handleMenuClick = (e) => {
         if (e.key === "2") {
             setShowUserTable(true);
+            setShowTransactionsTable(false); // Hide transaction table when switching to user table
+        } else if (e.key === "1") {
+            setShowUserTable(false);
+            setShowTransactionsTable(true); // Show transaction table when clicking on "Thống kê lợi nhuận"
         } else {
             setShowUserTable(false);
+            setShowTransactionsTable(false);
         }
 
         if (e.key === "sub2") {
@@ -98,6 +109,52 @@ const DashBoard = () => {
         },
     ];
 
+    const transactionColumns = [
+        {
+            title: "Giá Trị",
+            dataIndex: "value",
+            key: "value",
+        },
+        {
+            title: "ID Tài Khoản Gửi",
+            dataIndex: "id",
+            key: "id",
+        },
+        {
+            title: "Vai Trò Người Gửi",
+            dataIndex: "user.role",
+            key: "user.role",
+        },
+        {
+            title: "Ngày Tạo",
+            dataIndex: "createAt",
+            key: "createAt",
+            render: (text) => {
+                // Format the date here if needed
+                return <span>{text}</span>;
+            },
+        },
+        // Add other columns as needed
+    ];
+    const estateColumns = [
+        {
+            title: "Title",
+            dataIndex: "title",
+            key: "title",
+        },
+        {
+            title: "Description",
+            dataIndex: "description",
+            key: "description",
+        },
+        {
+            title: "Amount",
+            dataIndex: "amount",
+            key: "amount",
+        },
+        // Add more columns based on your data structure
+    ];
+
     const items = [
         { key: "1", icon: <PieChartOutlined />, label: "Thống Kê Lợi Nhuận" },
         { key: "2", icon: <DesktopOutlined />, label: "Quản Lý Tài Khoản" },
@@ -131,6 +188,12 @@ const DashBoard = () => {
                     </Breadcrumb>
                     {showUserTable && (
                         <Table dataSource={accounts} columns={columns} />
+                    )}
+                    {showTransactionsTable && (
+                        <Table
+                            dataSource={transactions}
+                            columns={transactionColumns}
+                        /> // Render transactions table when showTransactionsTable is true
                     )}
                 </Content>
                 <Footer style={{ textAlign: "center" }}>

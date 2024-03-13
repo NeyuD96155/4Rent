@@ -1,10 +1,15 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit";
 
-import accountReducer from './features/accountsSlice';
-import authReducer from './features/authSlice';
+import accountReducer from "./features/accountsSlice";
+import transactionsReducer from "./features/transactionsSlice";
+import authReducer from "./features/authSlice";
+import estatesReducer from "./features/EstatesSlice";
+
 export const store = configureStore({
-  reducer: {
-    accounts: accountReducer,
-    auth: authReducer,
-  },
-})
+    reducer: {
+        accounts: accountReducer,
+        transactions: transactionsReducer,
+        auth: authReducer,
+        estates: estatesReducer,
+    },
+});

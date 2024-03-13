@@ -17,6 +17,7 @@ import moment from "moment";
 import { toast } from "react-toastify";
 import "../styles/Booking.css";
 import ImageGallery from "react-image-gallery";
+import dayjs from "dayjs";
 const Booking = ({ userId, estateId }) => {
     const [form] = Form.useForm();
     // const location = useLocation();
@@ -67,7 +68,7 @@ const Booking = ({ userId, estateId }) => {
         if (checkIn && checkOut && pricePerDay) {
             const diffTime = Math.abs(checkOut - checkIn);
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
-            return (diffDays + 1) * pricePerDay; // Thêm 1 ngày vì ngày nhận và trả phòng tính cả hai
+            return diffDays * pricePerDay; // Thêm 1 ngày vì ngày nhận và trả phòng tính cả hai
         }
         return 0; // Trả về 0 nếu thiếu thông tin
     };
@@ -107,6 +108,9 @@ const Booking = ({ userId, estateId }) => {
             : null;
         const bookingDate = moment().format("YYYY-MM-DDTHH:mm:ss");
 
+        const diffTime = Math.abs(values.checkIn - values.checkOut);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
         const formattedValues = {
             ...values,
             userId,
@@ -123,13 +127,14 @@ const Booking = ({ userId, estateId }) => {
             //   form.resetFields();
             //   navigate('/payment', { state: { bookingDetails: formattedValues, bookingResponse: response.data, estateDetails: estate } });
             const response = await api.post("/vn-pay", {
-                date: "2024-03-02T09:55:22.304Z",
+                date: dayjs(values.checkIn).toDate(),
+                numberOfDate: diffDays,
                 estateId: estate.id,
                 price: totalPrice,
                 amount: amounts,
             });
             console.log(response.data);
-            window.open(response.data, "_blank", "noreferrer");
+            window.open(response.data, "_self", "noreferrer");
         } catch (error) {
             const errorMessage = error.response?.data?.message || error.message;
             toast.error(`Đặt phòng thất bại: ${errorMessage}`);
