@@ -88,12 +88,13 @@ const BookingHistory = () => {
                                 <p>
                                     <strong>Booked by:</strong> {users.fullname}
                                 </p>
+                                <button>Hủy đặt phòng</button>
                             </div>
                         )
                     )}
                 </div>
             ) : (
-                <p>No booking history found.</p>
+                <p>Bạn chưa đặt timeshare nào.</p>
             )}
         </div>
     );
