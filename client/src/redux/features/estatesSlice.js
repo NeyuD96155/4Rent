@@ -10,6 +10,15 @@ export const fetchEstates = createAsyncThunk(
     }
 );
 
+// Async thunk to delete estate by ID
+export const deleteEstate = createAsyncThunk(
+    "estates/deleteEstate",
+    async (estateId) => {
+        await api.delete(`/deletedEstate/${estateId}`);
+        return estateId;
+    }
+);
+
 // Initial state for the estates slice
 const initialState = {
     estates: [],
@@ -35,6 +44,11 @@ const estatesSlice = createSlice({
             .addCase(fetchEstates.rejected, (state, action) => {
                 state.status = "error";
                 state.error = action.error.message;
+            })
+            .addCase(deleteEstate.fulfilled, (state, action) => {
+                state.estates = state.estates.filter(
+                    (estate) => estate.id !== action.payload
+                );
             });
     },
 });

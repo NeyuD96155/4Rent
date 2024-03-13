@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAccounts, deleteAccount } from "../redux/features/accountsSlice"; // Import action deleteAccount
 import { fetchTransactions } from "../redux/features/transactionsSlice";
+import { fetchEstates, deleteEstate } from "../redux/features/EstatesSlice"; // Import action deleteEstate
 import { useNavigate } from "react-router-dom";
 import { Layout, Menu, Breadcrumb, Table, Modal, Button } from "antd";
+import { formatDistance } from "date-fns";
 import {
     PieChartOutlined,
     DesktopOutlined,
@@ -18,30 +20,40 @@ const DashBoard = () => {
     const dispatch = useDispatch();
     const accounts = useSelector((state) => state.accounts.items);
     const transactions = useSelector((state) => state.transactions.items);
+    const estates = useSelector((state) => state.estates.estates);
     const [collapsed, setCollapsed] = useState(false);
     const [isDetailModalVisible, setIsDetailModalVisible] = useState(false);
     const [showTransactionsTable, setShowTransactionsTable] = useState(false);
     const [detailAccount, setDetailAccount] = useState({});
     const [showUserTable, setShowUserTable] = useState(false);
-    const [estates, setEstates] = useState([]);
+    const [showWalletPage, setShowWalletPage] = useState(false); // Add state for showing WalletPage
 
     const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(fetchAccounts());
         dispatch(fetchTransactions());
+        dispatch(fetchEstates());
     }, [dispatch]);
 
     const handleMenuClick = (e) => {
         if (e.key === "2") {
             setShowUserTable(true);
-            setShowTransactionsTable(false); // Hide transaction table when switching to user table
+            setShowTransactionsTable(false);
+            setShowWalletPage(false); // Hide WalletPage when switching to user table
         } else if (e.key === "1") {
             setShowUserTable(false);
-            setShowTransactionsTable(true); // Show transaction table when clicking on "Thống kê lợi nhuận"
+            setShowTransactionsTable(true);
+            setShowWalletPage(false); // Hide WalletPage when clicking on "Thống kê lợi nhuận"
+        } else if (e.key === "10") {
+            // Show WalletPage when clicking on "Duyệt Bài Đăng"
+            setShowUserTable(false);
+            setShowTransactionsTable(false);
+            setShowWalletPage(true);
         } else {
             setShowUserTable(false);
             setShowTransactionsTable(false);
+            setShowWalletPage(false);
         }
 
         if (e.key === "sub2") {
@@ -55,6 +67,15 @@ const DashBoard = () => {
             await dispatch(deleteAccount(accountId)); // Dispatch action deleteAccount
         } catch (error) {
             console.error("Error deleting account:", error);
+        }
+    };
+
+    // Xóa Estate
+    const handleDeleteEstate = async (estateId) => {
+        try {
+            await dispatch(deleteEstate(estateId)); // Dispatch action deleteEstate
+        } catch (error) {
+            console.error("Error deleting estate:", error);
         }
     };
 
@@ -111,30 +132,24 @@ const DashBoard = () => {
 
     const transactionColumns = [
         {
-            title: "Giá Trị",
-            dataIndex: "value",
-            key: "value",
-        },
-        {
-            title: "ID Tài Khoản Gửi",
+            title: "Id",
             dataIndex: "id",
             key: "id",
         },
         {
-            title: "Vai Trò Người Gửi",
-            dataIndex: "user.role",
-            key: "user.role",
+            title: "Value",
+            dataIndex: "value",
+            key: "value",
         },
         {
-            title: "Ngày Tạo",
+            title: "Create At",
             dataIndex: "createAt",
             key: "createAt",
-            render: (text) => {
-                // Format the date here if needed
-                return <span>{text}</span>;
-            },
+            render: (value) =>
+                formatDistance(new Date(value), new Date(), {
+                    addSuffix: true,
+                }),
         },
-        // Add other columns as needed
     ];
     const estateColumns = [
         {
@@ -152,7 +167,47 @@ const DashBoard = () => {
             dataIndex: "amount",
             key: "amount",
         },
-        // Add more columns based on your data structure
+        {
+            title: "Duyệt",
+            key: "action",
+            render: (_, record) => (
+                <Button
+                    type="primary"
+                    onClick={() => {
+                        setIsDetailModalVisible(true);
+                        setDetailAccount(record);
+                    }}
+                >
+                    Duyệt
+                </Button>
+            ),
+        },
+        {
+            title: "Từ Chối",
+            key: "reject",
+            render: (_, record) => (
+                <Button
+                    type="primary"
+                    danger
+                    onClick={() => handleDeleteEstate(record.id)}
+                >
+                    Từ Chối
+                </Button>
+            ),
+        },
+        {
+            title: "Xóa",
+            key: "delete",
+            render: (_, record) => (
+                <Button
+                    type="primary"
+                    danger
+                    onClick={() => handleDeleteEstate(record.id)}
+                >
+                    Xóa
+                </Button>
+            ),
+        },
     ];
 
     const items = [
@@ -193,7 +248,11 @@ const DashBoard = () => {
                         <Table
                             dataSource={transactions}
                             columns={transactionColumns}
-                        /> // Render transactions table when showTransactionsTable is true
+                        />
+                    )}
+
+                    {showWalletPage && ( // Render estates table when showWalletPage is true
+                        <Table dataSource={estates} columns={estateColumns} />
                     )}
                 </Content>
                 <Footer style={{ textAlign: "center" }}>
