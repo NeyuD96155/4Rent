@@ -5,6 +5,9 @@ A Timeshare Platform using React and Spring Boot
 <a href="https://drive.google.com/file/d/1qnYwMWYv2cvK9hUdAgq-Q59NFbDsuUPe/view?usp=sharing" target="_blank">ERD Diagram</a>  
 <a href="https://www.canva.com/design/DAF_SNkX0OQ/bp9jPn4MWDYD7r33jt5-cw/edit">Presentation's Slide</a>  
 <a href="https://docs.google.com/document/d/1qCSdSrHDWz2gbt7GAqNUL7ZeMjxM8dX2/edit#heading=h.gjdgxs">SRS Source</a>  
+<a href="https://fptmint.atlassian.net/jira/software/projects/RT/boards/3/timeline">Jira Timeline</a>  
+<a href="https://fptmint.atlassian.net/jira/core/projects/PAGE/board">Jira Task</a>  
+
 
 
 
