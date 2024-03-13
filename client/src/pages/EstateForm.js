@@ -119,16 +119,18 @@ const EstateForm = () => {
             reader.onerror = (error) => reject(error);
         });
 
-
-    const handlePreview = async file => {
+    const handlePreview = async (file) => {
         if (!file.url && !file.preview) {
             file.preview = await getBase64(file.originFileObj);
         }
         setPreviewImage(file.url || file.preview);
 
-        setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
+        setPreviewTitle(
+            file.name || file.url.substring(file.url.lastIndexOf("/") + 1)
+        );
     };
-    const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
+    const handleChange = ({ fileList: newFileList }) =>
+        setFileList(newFileList);
     const uploadButton = (
         <button
             style={{
@@ -192,7 +194,19 @@ const EstateForm = () => {
                 <Form.Item
                     name="price"
                     label="Giá"
-                    rules={[{ required: true, message: "Vui lòng nhập giá!" }]}
+                    rules={[
+                        { required: true, message: "Vui lòng nhập giá!" },
+                        {
+                            validator: (_, value) =>
+                                value && value >= 300000
+                                    ? Promise.resolve()
+                                    : Promise.reject(
+                                          new Error(
+                                              "Giá trị nhập vào phải tối thiểu là 300.000 VND!"
+                                          )
+                                      ),
+                        },
+                    ]}
                     className="post-form-item"
                 >
                     <InputNumber

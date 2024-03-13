@@ -13,6 +13,7 @@ body,
     align-items: center;
     margin: 0 auto;
     padding: 20px;
+    background-color: #969696ab;
 }
 
 .estates {
@@ -86,7 +87,8 @@ button:focus {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.estate-detail-container h1, .estate-detail-container p {
+.estate-detail-container h1,
+.estate-detail-container p {
     margin: 10px 0;
 }
 
