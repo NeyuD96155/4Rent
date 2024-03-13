@@ -52,7 +52,7 @@ function SearchBar({ onSearch }) {
 
         try {
             const response = await axios.get("/search", { params });
-            onSearch(response.data); // Gọi callback thay vì console.log
+            onSearch(response.data); // Gọi callback 
         } catch (error) {
             console.error("Có lỗi khi tìm kiếm :", error);
         }
@@ -70,13 +70,14 @@ function SearchBar({ onSearch }) {
                     placeholder="Chọn địa điểm"
                     onChange={setSelectedLocation}
                     options={locations}
+                    
                 />
                 <RangePicker
                     placeholder={["Ngày nhận phòng", "Ngày trả phòng"]}
                     onChange={(dates, dateStrings) => setDateRange(dateStrings)}
                     style={{ width: "40%" }}
+                    
                 />
-
                 <Select
                     placeholder="Chọn số người tham gia"
                     onChange={setAmount}
@@ -84,6 +85,7 @@ function SearchBar({ onSearch }) {
                     <Select.Option value={1}>1 người</Select.Option>
                     <Select.Option value={2}>2 người</Select.Option>
                     <Select.Option value={3}>3 người</Select.Option>
+                
                 </Select>
                 <Button type="primary" htmlType="submit" className="search-btn">
                     Tìm kiếm

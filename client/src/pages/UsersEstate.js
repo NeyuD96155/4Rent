@@ -26,7 +26,7 @@ const UserEstate = () => {
 
     return (
         <div>
-            <h1>My Estates</h1>
+            <h1>Timeshare của bạn</h1>
             <div className="estates-list">
                 {estates.length > 0 ? (
                     estates.map((estate) => (
@@ -42,14 +42,8 @@ const UserEstate = () => {
                             <div>Location: {estate.location}</div>
                             <div>Amount: {estate.amount}</div>
                             <div>Price: {estate.price}</div>
-                            <div>
-                                Check-in:{" "}
-                            {estate.checkIn}
-                            </div>
-                            <div>
-                                Check-out:{" "}
-                                {estate.checkOut}
-                            </div>
+                            <div>Check-in: {estate.checkIn}</div>
+                            <div>Check-out: {estate.checkOut}</div>
                             <Link to={`/showEstateDetail/${estate.id}`}>
                                 View Details
                             </Link>
