@@ -36,7 +36,11 @@ const NavigationBar = () => {
             <Menu.Item key="history" icon={<HistoryOutlined />}>
                 <Link to="/booking-history">Xem Lịch Sử Giao Dịch</Link>
             </Menu.Item>
-            <Menu.Item key="logout" icon={<LogoutOutlined />} onClick={handleLogout}>
+            <Menu.Item
+                key="logout"
+                icon={<LogoutOutlined />}
+                onClick={handleLogout}
+            >
                 Đăng Xuất
             </Menu.Item>
         </Menu>
@@ -48,35 +52,34 @@ const NavigationBar = () => {
                 <Link to="/">4Rent</Link>
             </div>
             <div className="navbar-links">
-                <Link to="/show-discount" className="navbar-link">
-                    Xem mã giảm giá
-                </Link>
                 <Link to="/show-estate" className="navbar-link">
                     Xem căn hộ
                 </Link>
-                <Link to="/form-estate" className="navbar-link">
-                    Đăng căn hộ
-                </Link>
+
                 <Link to="/users-estate" className="navbar-link">
                     Căn Hộ của bạn
+                </Link>
+                <Link to="/estate-form" className="navbar-link">
+                    Đăng căn hộ
                 </Link>
                 {isLoggedIn && userRole === "ADMIN" && (
                     <Link to="/dash-board" className="navbar-link">
                         DashBoard
                     </Link>
                 )}
-                {isLoggedIn &&
-                    (userRole === "MEMBER" || userRole === "ADMIN") && (
-                        <Link to="/form-discount" className="navbar-link">
-                            Mã giảm giá
-                        </Link>
-                    )}
+
                 {isLoggedIn ? (
-                   <Dropdown overlay={menu} placement="bottomRight">
-                   <a onClick={(e) => e.preventDefault()} className="avatar-link">
-                       <Avatar style={{ backgroundColor: "#87d068" }} icon={<UserOutlined />} />
-                   </a>
-               </Dropdown>
+                    <Dropdown overlay={menu} placement="bottomRight">
+                        <a
+                            onClick={(e) => e.preventDefault()}
+                            className="avatar-link"
+                        >
+                            <Avatar
+                                style={{ backgroundColor: "#87d068" }}
+                                icon={<UserOutlined />}
+                            />
+                        </a>
+                    </Dropdown>
                 ) : (
                     <>
                         <Link to="/signin" className="navbar-link">

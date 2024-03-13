@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import api from "../config/axios";
 import { Link } from "react-router-dom";
 import "../styles/UsersEstate.css";
-
+import { useNavigate } from "react-router-dom";
 const UserEstate = () => {
     const [estates, setEstates] = useState([]);
+    const navigate = useNavigate();
     useEffect(() => {
         const fetchEstates = async () => {
             try {
@@ -45,12 +46,21 @@ const UserEstate = () => {
                             <div>Check-in: {estate.checkIn}</div>
                             <div>Check-out: {estate.checkOut}</div>
                             <Link to={`/showEstateDetail/${estate.id}`}>
-                                View Details
+                                Xem chi tiết
                             </Link>
                         </div>
                     ))
                 ) : (
-                    <p>You have not listed any estates yet.</p>
+                    <p>
+                        Bạn chưa đăng timeshare nào !<br />
+                        <button onClick={() => navigate("/estate-form")}>
+                            Đăng ngay
+                        </button>
+                        <br />
+                        <button onClick={() => navigate("/signup")}>
+                            Đăng kí member để có thể trở thành chủ sở hữu
+                        </button>
+                    </p>
                 )}
             </div>
         </div>
