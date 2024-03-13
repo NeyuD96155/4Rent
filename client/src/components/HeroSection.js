@@ -10,7 +10,7 @@ const HeroSection = () => {
                 <Link to="/guides" className="hero-btn">
                     HƯỚNG DẪN
                 </Link>
-                <Link to="/estate" className="hero-btn">
+                <Link to="/show-estate" className="hero-btn">
                     THUÊ NGAY
                 </Link>
             </div>
