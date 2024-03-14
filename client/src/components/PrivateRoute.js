@@ -25,7 +25,7 @@ const PrivateRoute = ({ children }) => {
         }
         if (
             (location.pathname === "/estate-form" ||
-                location.pathname === "/user-estate") &&
+                location.pathname === "/users-estate") &&
             userRole !== "MEMBER" &&
             userRole !== "ADMIN"
         ) {
@@ -39,9 +39,9 @@ const PrivateRoute = ({ children }) => {
         return <Navigate to="/access-denied" replace />;
     } else if (
         (location.pathname === "/estate-form" ||
-            location.pathname === "/user-estate") &&
-        userRole !== "MEMBER" &&
-        userRole !== "ADMIN"
+            location.pathname === "/users-estate") &&
+        (userRole !== "MEMBER" &&
+        userRole !== "ADMIN")
     ) {
         return <Navigate to="/non-authorize" replace />;
     } else if (

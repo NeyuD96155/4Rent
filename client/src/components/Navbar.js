@@ -57,7 +57,7 @@ const NavigationBar = () => {
                 </Link>
 
                 <Link to="/users-estate" className="navbar-link">
-                    Căn Hộ của bạn
+                    Căn hộ của bạn
                 </Link>
                 <Link to="/estate-form" className="navbar-link">
                     Đăng căn hộ
