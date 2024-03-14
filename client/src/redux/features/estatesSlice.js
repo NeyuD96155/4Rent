@@ -5,7 +5,7 @@ import api from "../../config/axios";
 export const fetchEstates = createAsyncThunk(
     "estates/fetchEstates",
     async () => {
-        const response = await api.get("/showEstate"); // Use the correct endpoint
+        const response = await api.get("/showEstate");
         return response.data;
     }
 );
@@ -14,8 +14,27 @@ export const fetchEstates = createAsyncThunk(
 export const deleteEstate = createAsyncThunk(
     "estates/deleteEstate",
     async (estateId) => {
-        await api.delete(`/deletedEstate/${estateId}`);
-        return estateId;
+        await api.put(`/deletedEstate/${estateId}`);
+        return { estateId, estateStatus: "DELETED" };
+    }
+);
+
+// Async thunk to reject estate by ID
+export const rejectEstate = createAsyncThunk(
+    "estates/rejectEstate",
+    async (estateId) => {
+        await api.put(`/authorizeReject/${estateId}`);
+        return { estateId, estateStatus: "REJECTED" };
+    }
+);
+
+// Async thunk to approve estate by ID
+export const approveEstate = createAsyncThunk(
+    "estates/approveEstate",
+    async (estateId) => {
+        await api.put(`/authorizeApprove/${estateId}`);
+        // Update estateStatus to "APPROVED" locally
+        return { estateId, estateStatus: "APPROVED" };
     }
 );
 
@@ -38,7 +57,6 @@ const estatesSlice = createSlice({
             })
             .addCase(fetchEstates.fulfilled, (state, action) => {
                 state.status = "success";
-                // Assuming the API returns an array of estates
                 state.estates = action.payload;
             })
             .addCase(fetchEstates.rejected, (state, action) => {
@@ -49,6 +67,12 @@ const estatesSlice = createSlice({
                 state.estates = state.estates.filter(
                     (estate) => estate.id !== action.payload
                 );
+            })
+            .addCase(rejectEstate.fulfilled, (state, action) => {
+                // Handle the state update for rejecting an estate
+            })
+            .addCase(approveEstate.fulfilled, (state, action) => {
+                // Handle the state update for approving an estate
             });
     },
 });

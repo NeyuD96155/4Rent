@@ -2,7 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAccounts, deleteAccount } from "../redux/features/accountsSlice"; // Import action deleteAccount
 import { fetchTransactions } from "../redux/features/transactionsSlice";
-import { fetchEstates, deleteEstate } from "../redux/features/EstatesSlice"; // Import action deleteEstate
+import {
+    fetchEstates,
+    deleteEstate,
+    approveEstate,
+    rejectEstate,
+} from "../redux/features/EstatesSlice"; // Import action deleteEstate
 import { useNavigate } from "react-router-dom";
 import { Layout, Menu, Breadcrumb, Table, Modal, Button } from "antd";
 import { formatDistance } from "date-fns";
@@ -70,6 +75,21 @@ const DashBoard = () => {
         }
     };
 
+    const handleApproveEstate = async (estateId) => {
+        try {
+            await dispatch(approveEstate(estateId)); // Dispatch action to approve estate
+        } catch (error) {
+            console.error("Error approving estate:", error);
+        }
+    };
+
+    const handleRejectEstate = async (estateId) => {
+        try {
+            await dispatch(rejectEstate(estateId)); // Dispatch action to reject estate
+        } catch (error) {
+            console.error("Error rejecting estate:", error);
+        }
+    };
     // Xóa Estate
     const handleDeleteEstate = async (estateId) => {
         try {
@@ -169,14 +189,11 @@ const DashBoard = () => {
         },
         {
             title: "Duyệt",
-            key: "action",
+            key: "approve",
             render: (_, record) => (
                 <Button
                     type="primary"
-                    onClick={() => {
-                        setIsDetailModalVisible(true);
-                        setDetailAccount(record);
-                    }}
+                    onClick={() => handleApproveEstate(record.id)}
                 >
                     Duyệt
                 </Button>
@@ -189,7 +206,7 @@ const DashBoard = () => {
                 <Button
                     type="primary"
                     danger
-                    onClick={() => handleDeleteEstate(record.id)}
+                    onClick={() => handleRejectEstate(record.id)}
                 >
                     Từ Chối
                 </Button>
