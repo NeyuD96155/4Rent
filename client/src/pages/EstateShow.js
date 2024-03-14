@@ -9,7 +9,6 @@ const EstateShow = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
 
-
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -22,7 +21,10 @@ const EstateShow = () => {
         setIsLoading(true);
         try {
             const response = await api.get(`/search?query=${search}`);
-            setEstates(response.data);
+            const approvedEstates = response.data.filter(
+                (estate) => estate.estateStatus === "APPROVED"
+            );
+            setEstates(approvedEstates);
         } catch (err) {
             console.error("Error fetching estates:", err);
             setError(
@@ -38,7 +40,6 @@ const EstateShow = () => {
         navigate(`/showEstateDetail/${estateId}`);
     };
 
-  
     const formatCurrency = (amount) => {
         return new Intl.NumberFormat("vi-VN", {
             style: "currency",

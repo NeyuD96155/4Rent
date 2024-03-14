@@ -44,6 +44,7 @@ import Success from "./pages/Success";
 import PrivateRoute from "./components/PrivateRoute";
 import UserEstate from "./pages/UsersEstate";
 import { NonAuthorize } from "./pages/NonAuthorize";
+import WalletPage from "./pages/Wallet";
 
 function LayoutWrapper() {
     const location = useLocation();
@@ -89,6 +90,7 @@ function LayoutWrapper() {
                     }
                 />
                 <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/wallet" element={<WalletPage />} />
                 <Route path="/policy" element={<Policy />} />
                 <Route path="/booking-history" element={<BookingHistory />} />
                 <Route path="/faq" element={<Faq />} />

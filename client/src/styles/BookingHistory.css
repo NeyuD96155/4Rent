@@ -1,60 +1,52 @@
-/* Booking History Container Styles */
+/* General Container */
 .booking-history-container {
     max-width: 800px;
-    margin: 0 auto;
+    margin: auto;
     padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.loading,
-.error {
-    text-align: center;
-    font-size: 18px;
-    padding: 20px;
-}
-
-/* Header Styles */
-h1 {
+/* Titles and Text */
+.history-title {
     color: #333;
-    text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
-/* Booking History Entry Styles */
+.booking-id, .real-estate-title, p {
+    margin: 5px 0;
+}
+
+/* Loading and Error messages */
+.booking-loading, .booking-error {
+    font-size: 18px;
+    text-align: center;
+    color: #d9534f;
+}
+
+/* Booking Entries */
 .booking-history {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 0;
+    margin-top: 20px;
 }
 
 .booking-history-entry {
-    background-color: #f9f9f9;
-    border: 1px solid #e7e7e7;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e3e3e3;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
-.booking-history-entry h3 {
-    color: #007bff;
-    margin-top: 0;
+/* Button */
+.cancel-button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.booking-history-entry p {
-    margin: 10px 0;
-    line-height: 1.6;
-}
-
-.booking-history-entry strong {
-    color: #333;
-}
-
-/* Enhancements for better readability */
-p {
-    color: #666;
-}
-
-.no-booking-history {
-    text-align: center;
-    font-style: italic;
+.cancel-button:hover {
+    background-color: #c9302c;
 }
