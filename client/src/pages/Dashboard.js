@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAccounts, deleteAccount } from "../redux/features/accountsSlice"; // Import action deleteAccount
 import { fetchTransactions } from "../redux/features/transactionsSlice";
+
 import {
     fetchEstates,
     deleteEstate,
     approveEstate,
     rejectEstate,
 } from "../redux/features/EstatesSlice"; // Import action deleteEstate
+
 import { useNavigate } from "react-router-dom";
 import { Layout, Menu, Breadcrumb, Table, Modal, Button } from "antd";
 import { formatDistance } from "date-fns";
@@ -252,7 +254,6 @@ const DashBoard = () => {
                 />
             </Sider>
             <Layout>
-                <Header style={{ padding: 0 }} />
                 <Content style={{ margin: "0 16px" }}>
                     <Breadcrumb style={{ margin: "16px 0" }}>
                         <Breadcrumb.Item>User</Breadcrumb.Item>
@@ -273,7 +274,7 @@ const DashBoard = () => {
                     )}
                 </Content>
                 <Footer style={{ textAlign: "center" }}>
-                    Ant Design ©{new Date().getFullYear()} Created by Ant UED
+                    4Rent ©{new Date().getFullYear()} Created by 4Rent
                 </Footer>
             </Layout>
             <Modal

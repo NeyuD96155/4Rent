@@ -3,13 +3,14 @@ import api from "../config/axios";
 import "../styles/Wallet.css"; // Import CSS file for styling
 import { Table } from "antd";
 import { formatDistance } from "date-fns";
+import { useNavigate } from "react-router-dom";
 
 const WalletPage = () => {
     const [walletData, setWalletData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [transactions, setTransactions] = useState([]);
-
+    const navigate = useNavigate();
     const columns = [
         {
             title: "Id",
@@ -59,7 +60,21 @@ const WalletPage = () => {
 
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
-    if (!walletData) return null;
+    if (!walletData)
+        return (
+            <div>
+                <p>
+                    Bạn chưa thuê timeshare nào !<br />
+                    <button onClick={() => navigate("/show-estate")}>
+                        Thuê ngay
+                    </button>
+                    <br />
+                    <button onClick={() => navigate("/")}>
+                        Trở về trang chủ
+                    </button>
+                </p>
+            </div>
+        );
 
     return (
         <center>
