@@ -32,15 +32,25 @@ const useFetchBookingHistory = () => {
 
 const formatDate = (date) => new Date(date).toLocaleString();
 
-const Loading = () => <div className="loading">Loading booking history...</div>;
+const Loading = () => (
+    <div className="booking-loading">Loading booking history...</div>
+);
 
-const Error = ({ message }) => <div className="error">Error: {message}</div>;
+const Error = ({ message }) => (
+    <div className="booking-error">Error: {message}</div>
+);
 
 const BookingHistory = () => {
     const { bookingHistory, isLoading, error, setBookingHistory } =
         useFetchBookingHistory();
 
     const cancelBooking = async (bookingId) => {
+        const isConfirmed = window.confirm(
+            "Bạn có chắc muốn hủy đặt phòng không?"
+        );
+        if (!isConfirmed) {
+            return;
+        }
         try {
             await api.put(`/cancelBooking/${bookingId}`);
             const updatedBookingHistory = bookingHistory.filter(

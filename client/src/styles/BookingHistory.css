@@ -1,41 +1,52 @@
+/* General Container */
 .booking-history-container {
-    font-family: Arial, sans-serif;
     max-width: 800px;
-    margin: 0 auto;
+    margin: auto;
     padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+/* Titles and Text */
 .history-title {
-    font-size: 24px;
+    color: #333;
     margin-bottom: 20px;
+}
+
+.booking-id, .real-estate-title, p {
+    margin: 5px 0;
+}
+
+/* Loading and Error messages */
+.booking-loading, .booking-error {
+    font-size: 18px;
+    text-align: center;
+    color: #d9534f;
+}
+
+/* Booking Entries */
+.booking-history {
+    margin-top: 20px;
 }
 
 .booking-history-entry {
-    border: 1px solid #ccc;
+    border: 1px solid #e3e3e3;
+    padding: 15px;
     border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 20px;
-}
-
-.booking-id {
-    font-size: 18px;
     margin-bottom: 10px;
 }
 
-.real-estate-title {
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
+/* Button */
 .cancel-button {
-    background-color: #ff0000;
-    color: #fff;
+    background-color: #d9534f;
+    color: white;
     border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
+    padding: 10px 20px;
+    border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .cancel-button:hover {
-    background-color: #cc0000;
+    background-color: #c9302c;
 }
