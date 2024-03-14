@@ -1,8 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAccounts } from "../redux/features/accountsSlice";
+import { fetchAccounts, deleteAccount } from "../redux/features/accountsSlice"; // Import action deleteAccount
+import { fetchTransactions } from "../redux/features/transactionsSlice";
+
+import {
+    fetchEstates,
+    deleteEstate,
+    approveEstate,
+    rejectEstate,
+} from "../redux/features/EstatesSlice"; // Import action deleteEstate
+
 import { useNavigate } from "react-router-dom";
-import { Layout, Menu, Breadcrumb, Table, Modal } from "antd";
+import { Layout, Menu, Breadcrumb, Table, Modal, Button } from "antd";
+import { formatDistance } from "date-fns";
 import {
     PieChartOutlined,
     DesktopOutlined,
@@ -15,26 +25,82 @@ const { Header, Content, Footer, Sider } = Layout;
 
 const DashBoard = () => {
     const dispatch = useDispatch();
-    const accounts = useSelector((state) => state.accounts.items); // Adjust based on your state structure
+    const accounts = useSelector((state) => state.accounts.items);
+    const transactions = useSelector((state) => state.transactions.items);
+    const estates = useSelector((state) => state.estates.estates);
     const [collapsed, setCollapsed] = useState(false);
     const [isDetailModalVisible, setIsDetailModalVisible] = useState(false);
+    const [showTransactionsTable, setShowTransactionsTable] = useState(false);
     const [detailAccount, setDetailAccount] = useState({});
     const [showUserTable, setShowUserTable] = useState(false);
+    const [showWalletPage, setShowWalletPage] = useState(false); // Add state for showing WalletPage
+
     const navigate = useNavigate();
+
     useEffect(() => {
         dispatch(fetchAccounts());
+        dispatch(fetchTransactions());
+        dispatch(fetchEstates());
     }, [dispatch]);
+
     const handleMenuClick = (e) => {
         if (e.key === "2") {
             setShowUserTable(true);
+            setShowTransactionsTable(false);
+            setShowWalletPage(false); // Hide WalletPage when switching to user table
+        } else if (e.key === "1") {
+            setShowUserTable(false);
+            setShowTransactionsTable(true);
+            setShowWalletPage(false); // Hide WalletPage when clicking on "Thống kê lợi nhuận"
+        } else if (e.key === "10") {
+            // Show WalletPage when clicking on "Duyệt Bài Đăng"
+            setShowUserTable(false);
+            setShowTransactionsTable(false);
+            setShowWalletPage(true);
         } else {
             setShowUserTable(false);
+            setShowTransactionsTable(false);
+            setShowWalletPage(false);
         }
 
         if (e.key === "sub2") {
             navigate("/");
         }
     };
+
+    // Thay thế phần xóa tài khoản bằng action deleteAccount
+    const handleDeleteAccount = async (accountId) => {
+        try {
+            await dispatch(deleteAccount(accountId)); // Dispatch action deleteAccount
+        } catch (error) {
+            console.error("Error deleting account:", error);
+        }
+    };
+
+    const handleApproveEstate = async (estateId) => {
+        try {
+            await dispatch(approveEstate(estateId)); // Dispatch action to approve estate
+        } catch (error) {
+            console.error("Error approving estate:", error);
+        }
+    };
+
+    const handleRejectEstate = async (estateId) => {
+        try {
+            await dispatch(rejectEstate(estateId)); // Dispatch action to reject estate
+        } catch (error) {
+            console.error("Error rejecting estate:", error);
+        }
+    };
+    // Xóa Estate
+    const handleDeleteEstate = async (estateId) => {
+        try {
+            await dispatch(deleteEstate(estateId)); // Dispatch action deleteEstate
+        } catch (error) {
+            console.error("Error deleting estate:", error);
+        }
+    };
+
     const columns = [
         {
             title: "Email",
@@ -42,17 +108,17 @@ const DashBoard = () => {
             key: "email",
         },
         {
-            title: "Full Name",
+            title: "Họ và Tên",
             dataIndex: "fullname",
             key: "fullname",
         },
         {
-            title: "Phone",
+            title: "Số Điện Thoại",
             dataIndex: "phoneNumber",
             key: "phoneNumber",
         },
         {
-            title: "Role",
+            title: "Vai Trò",
             dataIndex: "role",
             key: "role",
         },
@@ -60,36 +126,117 @@ const DashBoard = () => {
             title: "Action",
             key: "action",
             render: (_, record) => (
-                <span
+                <Button
+                    type="primary"
                     onClick={() => {
                         setIsDetailModalVisible(true);
                         setDetailAccount(record);
                     }}
                 >
-                    View Details
-                </span>
+                    Xem Chi Tiết
+                </Button>
+            ),
+        },
+        {
+            title: "Xóa",
+            key: "delete",
+            render: (_, record) => (
+                <Button
+                    type="primary"
+                    danger
+                    onClick={() => handleDeleteAccount(record.id)}
+                >
+                    Xóa
+                </Button>
             ),
         },
     ];
-    const items = [
-        { key: "1", icon: <PieChartOutlined />, label: "Profit Statistic" },
-        { key: "2", icon: <DesktopOutlined />, label: "Manage Account" },
+
+    const transactionColumns = [
         {
-            key: "sub1",
-            icon: <UserOutlined />,
-            label: "User",
-            children: [
-                { key: "3", label: "Tom" },
-                { key: "4", label: "Bill" },
-                { key: "5", label: "Alex" },
-            ],
+            title: "Id",
+            dataIndex: "id",
+            key: "id",
         },
-        { key: "9", icon: <FileOutlined />, label: "Files" },
-        { key: "10", icon: <FileOutlined />, label: "Manage Post" },
+        {
+            title: "Value",
+            dataIndex: "value",
+            key: "value",
+        },
+        {
+            title: "Create At",
+            dataIndex: "createAt",
+            key: "createAt",
+            render: (value) =>
+                formatDistance(new Date(value), new Date(), {
+                    addSuffix: true,
+                }),
+        },
+    ];
+    const estateColumns = [
+        {
+            title: "Title",
+            dataIndex: "title",
+            key: "title",
+        },
+        {
+            title: "Description",
+            dataIndex: "description",
+            key: "description",
+        },
+        {
+            title: "Amount",
+            dataIndex: "amount",
+            key: "amount",
+        },
+        {
+            title: "Duyệt",
+            key: "approve",
+            render: (_, record) => (
+                <Button
+                    type="primary"
+                    onClick={() => handleApproveEstate(record.id)}
+                >
+                    Duyệt
+                </Button>
+            ),
+        },
+        {
+            title: "Từ Chối",
+            key: "reject",
+            render: (_, record) => (
+                <Button
+                    type="primary"
+                    danger
+                    onClick={() => handleRejectEstate(record.id)}
+                >
+                    Từ Chối
+                </Button>
+            ),
+        },
+        {
+            title: "Xóa",
+            key: "delete",
+            render: (_, record) => (
+                <Button
+                    type="primary"
+                    danger
+                    onClick={() => handleDeleteEstate(record.id)}
+                >
+                    Xóa
+                </Button>
+            ),
+        },
+    ];
+
+    const items = [
+        { key: "1", icon: <PieChartOutlined />, label: "Thống Kê Lợi Nhuận" },
+        { key: "2", icon: <DesktopOutlined />, label: "Quản Lý Tài Khoản" },
+        { key: "10", icon: <FileOutlined />, label: "Duyệt Bài Đăng" },
         {
             key: "sub2",
             icon: <TeamOutlined />,
-            label: "Back to Homepage",
+            label: "Trở về Trang Chính",
             onClick: () => navigate("/"),
         },
     ];
@@ -107,7 +254,6 @@ const DashBoard = () => {
                 />
             </Sider>
             <Layout>
-                <Header style={{ padding: 0 }} />
                 <Content style={{ margin: "0 16px" }}>
                     <Breadcrumb style={{ margin: "16px 0" }}>
                         <Breadcrumb.Item>User</Breadcrumb.Item>
@@ -116,9 +262,19 @@ const DashBoard = () => {
                     {showUserTable && (
                         <Table dataSource={accounts} columns={columns} />
                     )}
+                    {showTransactionsTable && (
+                        <Table
+                            dataSource={transactions}
+                            columns={transactionColumns}
+                        />
+                    )}
+
+                    {showWalletPage && ( // Render estates table when showWalletPage is true
+                        <Table dataSource={estates} columns={estateColumns} />
+                    )}
                 </Content>
                 <Footer style={{ textAlign: "center" }}>
-                    Ant Design ©{new Date().getFullYear()} Created by Ant UED
+                    4Rent ©{new Date().getFullYear()} Created by 4Rent
                 </Footer>
             </Layout>
             <Modal
