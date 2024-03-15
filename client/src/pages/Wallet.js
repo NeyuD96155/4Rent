@@ -13,17 +13,17 @@ const WalletPage = () => {
     const navigate = useNavigate();
     const columns = [
         {
-            title: "Id",
+            title: "Mã giao dịch",
             dataIndex: "id",
             key: "id",
         },
         {
-            title: "Value",
+            title: "Thành tiền",
             dataIndex: "value",
             key: "value",
         },
         {
-            title: "Create At",
+            title: "Thời gian tạo",
             dataIndex: "createAt",
             key: "createAt",
             render: (value) =>
@@ -45,10 +45,10 @@ const WalletPage = () => {
                 setWalletData(response.data);
                 setIsLoading(false);
             } catch (error) {
-                console.error("Error fetching wallet data:", error);
+                console.error("Có lỗi xảy ra:", error);
                 setError(
                     error.response?.data?.message ||
-                        "Failed to load wallet data. Please try again later."
+                        "Lấy dữ liệu ví thất bại ! Vui lòng thử lại sau!"
                 );
                 setIsLoading(false);
             }
@@ -58,8 +58,8 @@ const WalletPage = () => {
         fetchTransaction();
     }, []);
 
-    if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error}</div>;
+    if (isLoading) return <div>Đang tải...</div>;
+    if (error) return <div>Lỗi: {error}</div>;
     if (!walletData)
         return (
             <div>
@@ -79,13 +79,14 @@ const WalletPage = () => {
     return (
         <center>
             <div className="wallet-container">
-                <h1 className="wallet-title">Wallet Details</h1>
+                <h1 className="wallet-title">Ví của bạn</h1>
                 <div className="wallet-info">
                     <p>
-                        <span className="info-label">ID:</span> {walletData.id}
+                        <span className="info-label">Mã số ví:</span>{" "}
+                        {walletData.id}
                     </p>
                     <p>
-                        <span className="info-label">Balance:</span>{" "}
+                        <span className="info-label">Số dư:</span>{" "}
                         {walletData.balance}
                     </p>
                     {/* <p><span className="info-label">User ID:</span> {walletData.users.id}</p>

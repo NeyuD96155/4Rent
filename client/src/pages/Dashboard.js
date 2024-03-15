@@ -16,8 +16,7 @@ import { formatDistance } from "date-fns";
 import {
     PieChartOutlined,
     DesktopOutlined,
-    UserOutlined,
-    TeamOutlined,
+    HomeOutlined,
     FileOutlined,
 } from "@ant-design/icons";
 
@@ -38,6 +37,7 @@ const DashBoard = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        setShowTransactionsTable(true);
         dispatch(fetchAccounts());
         dispatch(fetchTransactions());
         dispatch(fetchEstates());
@@ -235,7 +235,7 @@ const DashBoard = () => {
         { key: "10", icon: <FileOutlined />, label: "Duyệt Bài Đăng" },
         {
             key: "sub2",
-            icon: <TeamOutlined />,
+            icon: <HomeOutlined />,
             label: "Trở về Trang Chính",
             onClick: () => navigate("/"),
         },
@@ -248,7 +248,7 @@ const DashBoard = () => {
                 <Menu
                     theme="dark"
                     defaultSelectedKeys={["1"]}
-                    mode="inline"
+                    mode="vertical"
                     items={items}
                     onClick={handleMenuClick}
                 />

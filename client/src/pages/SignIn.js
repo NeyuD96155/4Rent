@@ -21,7 +21,11 @@ const SignIn = () => {
                     response.data.role
                 );
                 toast.success("Đăng nhập thành công!");
-                navigate("/");
+                if (response.data.role === "ADMIN") {
+                    navigate("/dash-board");
+                } else if (response.data.role !== "ADMIN") {
+                    navigate("/");
+                }
             } else {
                 toast.error("Account not enabled or missing data.");
             }

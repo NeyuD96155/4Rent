@@ -152,7 +152,7 @@ const EstateDetail = () => {
                     }}
                     className="booking-button"
                 >
-                    Danh sach dat phong
+                    Thông tin/ trạng thái
                 </button>
             ) : (
                 <button onClick={handleBooking} className="booking-button">

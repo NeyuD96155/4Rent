@@ -15,7 +15,7 @@ const Footer = () => {
                         <Link to="/contact">Liên Hệ</Link>
                     </li>
                     <li>
-                        <Link to="/Faq">FAQ</Link>
+                        <Link to="/Faq">Câu hỏi thường gặp</Link>
                     </li>
                 </ul>
             </div>
@@ -38,13 +38,13 @@ const Footer = () => {
                 <h4>Du Lịch</h4>
                 <ul>
                     <li>
-                        <Link to="/Blog">4Rent Blog</Link>
+                        <Link to="/Blog">Các bài viết</Link>
                     </li>
                     <li>
                         <Link to="/News">Tin Tức</Link>
                     </li>
                     <li>
-                        <Link to="/Guides">Guides</Link>
+                        <Link to="/Guides">Hướng dẫn</Link>
                     </li>
                 </ul>
             </div>
