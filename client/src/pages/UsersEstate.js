@@ -27,7 +27,7 @@ const UserEstate = () => {
 
     return (
         <div>
-            <h1>Timeshare của bạn</h1>
+            <h1>Căn hộ nghỉ dưỡng của bạn</h1>
             <div className="estates-list">
                 {estates.length > 0 ? (
                     estates.map((estate) => (
@@ -39,12 +39,28 @@ const UserEstate = () => {
                                 style={{ maxWidth: "100%", height: "auto" }}
                             />
                             <p>{estate.description}</p>
-                            <div>Category: {estate.category}</div>
-                            <div>Location: {estate.location}</div>
-                            <div>Amount: {estate.amount}</div>
-                            <div>Price: {estate.price}</div>
-                            <div>Check-in: {estate.checkIn}</div>
-                            <div>Check-out: {estate.checkOut}</div>
+                            <div>
+                                <strong>Loại Hình:</strong> {estate.category}
+                            </div>
+                            <div>
+                                <strong>Địa điểm:</strong> {estate.location}
+                            </div>
+                            <div>
+                                <strong>Số lượng người tham gia tối đa:</strong>{" "}
+                                {estate.amount}
+                            </div>
+                            <div>
+                                <strong>Giá/ngày:</strong> {estate.price}
+                            </div>
+                            <div>
+                                <strong>Thời gian nhận phòng:</strong>{" "}
+                                {estate.checkIn}
+                            </div>
+                            <div>
+                                <strong>Thời gian trả phòng:</strong>{" "}
+                                {estate.checkOut}
+                            </div>
+                            <br />
                             <Link to={`/showEstateDetail/${estate.id}`}>
                                 Xem chi tiết
                             </Link>
