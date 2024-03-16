@@ -26,10 +26,9 @@ const EstateShow = () => {
             );
             setEstates(approvedEstates);
         } catch (err) {
-            console.error("Error fetching estates:", err);
+            console.error("Có lỗi trong quá trình lấy dữ liệu căn hộ:", err);
             setError(
-                err.response?.data?.message ||
-                    "Failed to load estates. Please try again later."
+                err.response?.data?.message || "Lỗi khi lấy dữ liệu căn hộ."
             );
         } finally {
             setIsLoading(false);
@@ -50,7 +49,7 @@ const EstateShow = () => {
             .replace("₫", "đ");
     };
 
-    if (isLoading) return <div aria-live="polite">Loading...</div>;
+    if (isLoading) return <div aria-live="polite">Đang tải...</div>;
     if (error) return <div>Error: {error}</div>;
 
     return (

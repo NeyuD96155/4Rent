@@ -155,7 +155,7 @@ const ProfilePage = () => {
                 </Form.Item>
 
                 <Form.Item label="Địa chỉ" name="address">
-                    <Input placeholder="Nhập số điện thoại" />
+                    <Input placeholder="Nhập địa chỉ của bạn" />
                 </Form.Item>
                 <Form.Item label="Email" name="email">
                     <Input placeholder="Nhập số điện thoại" disabled />
