@@ -104,13 +104,14 @@ const BookingHistory = () => {
                                         {formatDate(bookingDate)}
                                     </p>
                                     <p>
-                                        <strong>Price:</strong> {price}
+                                        <strong>Giá:</strong> {price}
                                     </p>
                                     <p>
-                                        <strong>Amount:</strong> {amount}
+                                        <strong>Số người tham gia:</strong>{" "}
+                                        {amount}
                                     </p>
                                     <p>
-                                        <strong>Booked by:</strong>{" "}
+                                        <strong>Đặt bởi:</strong>{" "}
                                         {users.fullname}
                                     </p>
                                     <button
