@@ -73,7 +73,7 @@ const DashBoard = () => {
         try {
             await dispatch(deleteAccount(accountId)); // Dispatch action deleteAccount
         } catch (error) {
-            console.error("Error deleting account:", error);
+            console.error("Có lỗi khi xóa tài khoản:", error);
         }
     };
 
@@ -81,7 +81,7 @@ const DashBoard = () => {
         try {
             await dispatch(approveEstate(estateId)); // Dispatch action to approve estate
         } catch (error) {
-            console.error("Error approving estate:", error);
+            console.error("Xảy ra lỗi trong quá trình duyệt bài đăng:", error);
         }
     };
 
@@ -89,7 +89,7 @@ const DashBoard = () => {
         try {
             await dispatch(rejectEstate(estateId)); // Dispatch action to reject estate
         } catch (error) {
-            console.error("Error rejecting estate:", error);
+            console.error("Có lỗi trong quá trình từ chối bài đăng:", error);
         }
     };
     // Xóa Estate
@@ -97,7 +97,7 @@ const DashBoard = () => {
         try {
             await dispatch(deleteEstate(estateId)); // Dispatch action deleteEstate
         } catch (error) {
-            console.error("Error deleting estate:", error);
+            console.error("Có lỗi trong quá trình xóa bài:", error);
         }
     };
 
@@ -274,7 +274,8 @@ const DashBoard = () => {
                     )}
                 </Content>
                 <Footer style={{ textAlign: "center" }}>
-                    4Rent ©{new Date().getFullYear()} Created by 4Rent
+                    4Rent ©{new Date().getFullYear()} Thiết kế sử dụng Ant
+                    Design
                 </Footer>
             </Layout>
             <Modal
