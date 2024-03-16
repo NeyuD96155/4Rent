@@ -59,16 +59,20 @@ const NavigationBar = () => {
                 <Link to="/show-estate" className="navbar-link">
                     Xem căn hộ
                 </Link>
-                {isLoggedIn && userRole !== "ADMIN" && (
-                    <Link to="/users-estate" className="navbar-link">
-                        Căn hộ của bạn
-                    </Link>
-                )}
-                {isLoggedIn && userRole !== "ADMIN" && (
-                    <Link to="/estate-form" className="navbar-link">
-                        Đăng căn hộ
-                    </Link>
-                )}
+                {isLoggedIn &&
+                    userRole !== "ADMIN" &&
+                    userRole !== "RENTER" && (
+                        <Link to="/users-estate" className="navbar-link">
+                            Căn hộ của bạn
+                        </Link>
+                    )}
+                {isLoggedIn &&
+                    userRole !== "ADMIN" &&
+                    userRole !== "RENTER" && (
+                        <Link to="/estate-form" className="navbar-link">
+                            Đăng căn hộ
+                        </Link>
+                    )}
                 {isLoggedIn && userRole === "ADMIN" && (
                     <Link to="/dash-board" className="navbar-link">
                         DashBoard
