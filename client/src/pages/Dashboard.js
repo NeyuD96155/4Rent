@@ -159,6 +159,12 @@ const DashBoard = () => {
 
     const transactionColumns = [
         {
+            title: "Người đặt",
+            dataIndex: "to",
+            key: "username",
+            render: (user) => user.users.fullname,
+        },
+        {
             title: "Id",
             dataIndex: "id",
             key: "id",
@@ -193,6 +199,11 @@ const DashBoard = () => {
             title: "Amount",
             dataIndex: "amount",
             key: "amount",
+        },
+        {
+            title: "Trạng Thái",
+            dataIndex: "estateStatus",
+            key: "estateStatus",
         },
         {
             title: "Duyệt",

@@ -45,6 +45,12 @@ const EstateDetail = () => {
 
     const columns = [
         {
+            title: "Người Đặt",
+            dataIndex: "users",
+            key: "fullname",
+            render: (users) => users.fullname,
+        },
+        {
             title: "Ngày Đặt",
             dataIndex: "bookingDate",
             key: "bookingDate",

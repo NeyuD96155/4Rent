@@ -13,6 +13,12 @@ const WalletPage = () => {
     const navigate = useNavigate();
     const columns = [
         {
+            title: "Người đặt",
+            dataIndex: "to",
+            key: "username",
+            render: (user) => user.users.fullname,
+        },
+        {
             title: "Mã giao dịch",
             dataIndex: "id",
             key: "id",
