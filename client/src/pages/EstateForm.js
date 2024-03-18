@@ -171,7 +171,6 @@ const EstateForm = () => {
                 autoComplete="off"
                 className="post-form-container"
             >
-               
                 <Form.Item
                     name="title"
                     label="Tiêu đề"
@@ -187,6 +186,11 @@ const EstateForm = () => {
                     label="Mô tả"
                     rules={[
                         { required: true, message: "Vui lòng nhập mô tả!" },
+                        { min: 20, message: "Mô tả phải có ít nhất 20 ký tự!" },
+                        {
+                            max: 500,
+                            message: "Mô tả không được vượt quá 500 ký tự!",
+                        },
                     ]}
                     className="post-form-item"
                 >
@@ -198,14 +202,16 @@ const EstateForm = () => {
                     rules={[
                         { required: true, message: "Vui lòng nhập giá!" },
                         {
-                            validator: (_, value) =>
-                                value && value >= 300000
-                                    ? Promise.resolve()
-                                    : Promise.reject(
-                                          new Error(
-                                              "Giá trị nhập vào phải tối thiểu là 300.000 VND!"
-                                          )
-                                      ),
+                            type: "number",
+                            min: 300000,
+                            message:
+                                "Giá trị nhập vào phải tối thiểu là 300.000 VND!",
+                        },
+                        {
+                            type: "number",
+                            max: 100000000,
+                            message:
+                                "Giá trị nhập vào không được vượt quá 100.000.000 VND!",
                         },
                     ]}
                     className="post-form-item"
@@ -213,7 +219,6 @@ const EstateForm = () => {
                     <InputNumber
                         style={{ width: "100%" }}
                         value={price}
-                        onChange={setPrice}
                         formatter={formatCurrency}
                         parser={parseCurrency}
                     />
@@ -268,11 +273,42 @@ const EstateForm = () => {
                 <Form.Item
                     name="checkOut"
                     label="Thời gian trả phòng"
+                    dependencies={["checkIn"]} // Phụ thuộc vào giá trị của checkIn
                     rules={[
                         {
                             required: true,
                             message: "Vui lòng chọn thời gian trả phòng!",
                         },
+                        ({ getFieldValue }) => ({
+                            validator(_, value) {
+                                const checkInTime = getFieldValue("checkIn");
+                                if (!value || !checkInTime) {
+                                    return Promise.reject(
+                                        new Error(
+                                            "Bạn cần chọn cả thời gian nhận và trả phòng!"
+                                        )
+                                    );
+                                }
+                                // Chuyển thời gian nhận phòng và thời gian trả phòng thành các đối tượng dayjs để so sánh
+                                const checkInMoment = dayjs(checkInTime);
+                                const checkOutMoment = dayjs(value);
+                                // Kiểm tra xem thời gian trả phòng có ít nhất 2 tiếng trước thời gian nhận phòng tiếp theo không
+                                if (
+                                    checkInMoment.diff(
+                                        checkOutMoment,
+                                        "hour",
+                                        true
+                                    ) < 2
+                                ) {
+                                    return Promise.reject(
+                                        new Error(
+                                            "Thời gian trả phòng phải ít nhất 2 tiếng trước thời gian nhận phòng kế tiếp để dọn dẹp và chuẩn bị!"
+                                        )
+                                    );
+                                }
+                                return Promise.resolve();
+                            },
+                        }),
                     ]}
                     className="post-form-item"
                 >
