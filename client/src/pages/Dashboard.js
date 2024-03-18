@@ -12,7 +12,16 @@ import {
 } from "../redux/features/estatesSlice"; // Import action deleteEstate
 
 import { useNavigate } from "react-router-dom";
-import { Layout, Menu, Breadcrumb, Table, Modal, Button } from "antd";
+import {
+    Layout,
+    Menu,
+    Breadcrumb,
+    Table,
+    Modal,
+    Button,
+    Avatar,
+    Switch,
+} from "antd";
 import { formatDistance } from "date-fns";
 import {
     PieChartOutlined,
@@ -28,6 +37,8 @@ const DashBoard = () => {
     const accounts = useSelector((state) => state.accounts.items);
     const transactions = useSelector((state) => state.transactions.items);
     const estates = useSelector((state) => state.estates.estates);
+    const [estateData, setEstateData] = useState([]); // Khởi tạo state estateData
+
     const [collapsed, setCollapsed] = useState(false);
     const [isDetailModalVisible, setIsDetailModalVisible] = useState(false);
     const [showTransactionsTable, setShowTransactionsTable] = useState(false);
@@ -43,6 +54,10 @@ const DashBoard = () => {
         dispatch(fetchTransactions());
         dispatch(fetchEstates());
     }, [dispatch]);
+
+    useEffect(() => {
+        setEstateData(estates);
+    }, [estates]);
 
     const handleMenuClick = (e) => {
         if (e.key === "2") {
@@ -81,7 +96,14 @@ const DashBoard = () => {
 
     const handleApproveEstate = async (estateId) => {
         try {
-            await dispatch(approveEstate(estateId)); // Dispatch action to approve estate
+            await dispatch(approveEstate(estateId));
+            setEstateData((prevState) =>
+                prevState.map((estate) =>
+                    estate.id === estateId
+                        ? { ...estate, estateStatus: "APPROVED" }
+                        : estate
+                )
+            );
             toast.success("Duyệt timeshare thành công!");
         } catch (error) {
             console.error("Xảy ra lỗi trong quá trình duyệt timeshare:", error);
@@ -90,17 +112,27 @@ const DashBoard = () => {
 
     const handleRejectEstate = async (estateId) => {
         try {
-            await dispatch(rejectEstate(estateId)); // Dispatch action to reject estate
+            await dispatch(rejectEstate(estateId));
+            setEstateData((prevState) =>
+                prevState.map((estate) =>
+                    estate.id === estateId
+                        ? { ...estate, estateStatus: "REJECTED" }
+                        : estate
+                )
+            );
             toast.success("Đã từ chối duyệt timeshare!");
         } catch (error) {
             console.error("Có lỗi trong quá trình từ chối timeshare:", error);
         }
     };
-    // Xóa Estate
+
     const handleDeleteEstate = async (estateId) => {
         try {
             await dispatch(deleteEstate(estateId));
             toast.success("Xóa timeshare thành công!");
+            setEstateData((prevState) =>
+                prevState.filter((estate) => estate.id !== estateId)
+            );
         } catch (error) {
             console.error("Có lỗi trong quá trình xóa timeshare:", error);
         }
@@ -186,17 +218,23 @@ const DashBoard = () => {
     ];
     const estateColumns = [
         {
-            title: "Title",
+            title: "Tên TimeShare",
             dataIndex: "title",
             key: "title",
         },
         {
-            title: "Description",
+            title: "Ảnh",
+            key: "avatar",
+            render: (_, record) => <Avatar src={record.resources[0].url} />,
+        },
+
+        {
+            title: "Mô Tả",
             dataIndex: "description",
             key: "description",
         },
         {
-            title: "Amount",
+            title: "Số Người",
             dataIndex: "amount",
             key: "amount",
         },
@@ -206,30 +244,24 @@ const DashBoard = () => {
             key: "estateStatus",
         },
         {
-            title: "Duyệt",
-            key: "approve",
+            title: "Duyệt/Từ Chối",
+            key: "switch",
             render: (_, record) => (
-                <Button
-                    type="primary"
-                    onClick={() => handleApproveEstate(record.id)}
-                >
-                    Duyệt
-                </Button>
+                <Switch
+                    checkedChildren=""
+                    unCheckedChildren=""
+                    checked={record.estateStatus === "APPROVED"}
+                    onChange={(checked) => {
+                        if (checked) {
+                            handleApproveEstate(record.id);
+                        } else {
+                            handleRejectEstate(record.id);
+                        }
+                    }}
+                />
             ),
         },
-        {
-            title: "Từ Chối",
-            key: "reject",
-            render: (_, record) => (
-                <Button
-                    type="primary"
-                    danger
-                    onClick={() => handleRejectEstate(record.id)}
-                >
-                    Từ Chối
-                </Button>
-            ),
-        },
+
         {
             title: "Xóa",
             key: "delete",
@@ -286,7 +318,10 @@ const DashBoard = () => {
                     )}
 
                     {showWalletPage && ( // Render estates table when showWalletPage is true
-                        <Table dataSource={estates} columns={estateColumns} />
+                        <Table
+                            dataSource={estateData}
+                            columns={estateColumns}
+                        />
                     )}
                 </Content>
                 <Footer style={{ textAlign: "center" }}>
