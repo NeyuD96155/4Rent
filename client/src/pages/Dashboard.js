@@ -8,7 +8,7 @@ import {
     deleteEstate,
     approveEstate,
     rejectEstate,
-} from "../redux/features/EstatesSlice"; // Import action deleteEstate
+} from "../redux/features/estatesSlice"; // Import action deleteEstate
 
 import { useNavigate } from "react-router-dom";
 import { Layout, Menu, Breadcrumb, Table, Modal, Button } from "antd";
