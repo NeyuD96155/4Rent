@@ -45,7 +45,7 @@ const EstateDetail = () => {
 
     const columns = [
         {
-            title: "Date",
+            title: "Ngày Đặt",
             dataIndex: "bookingDate",
             key: "bookingDate",
             render: (value) => {
@@ -55,12 +55,12 @@ const EstateDetail = () => {
             },
         },
         {
-            title: "Status",
+            title: "Trạng Thái",
             dataIndex: "bookingStatus",
             key: "bookingStatus",
         },
         {
-            title: "Check In",
+            title: "Ngày Nhận Phòng",
             dataIndex: "checkIn",
             key: "checkIn",
             render: (value) => {
@@ -70,7 +70,7 @@ const EstateDetail = () => {
             },
         },
         {
-            title: "Check Out",
+            title: "Ngày Trả Phòng",
             dataIndex: "checkOut",
             key: "checkOut",
             render: (value) => {
@@ -79,7 +79,7 @@ const EstateDetail = () => {
             },
         },
         {
-            title: "Action",
+            title: "Duyệt",
             dataIndex: "id",
             key: "id",
             render: (value, record) => {

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { fetchAccounts, deleteAccount } from "../redux/features/accountsSlice"; // Import action deleteAccount
 import { fetchTransactions } from "../redux/features/transactionsSlice";
 
@@ -72,6 +73,7 @@ const DashBoard = () => {
     const handleDeleteAccount = async (accountId) => {
         try {
             await dispatch(deleteAccount(accountId)); // Dispatch action deleteAccount
+            toast.success("Xóa tài khoản thành công!");
         } catch (error) {
             console.error("Có lỗi khi xóa tài khoản:", error);
         }
@@ -80,24 +82,27 @@ const DashBoard = () => {
     const handleApproveEstate = async (estateId) => {
         try {
             await dispatch(approveEstate(estateId)); // Dispatch action to approve estate
+            toast.success("Duyệt timeshare thành công!");
         } catch (error) {
-            console.error("Xảy ra lỗi trong quá trình duyệt bài đăng:", error);
+            console.error("Xảy ra lỗi trong quá trình duyệt timeshare:", error);
         }
     };
 
     const handleRejectEstate = async (estateId) => {
         try {
             await dispatch(rejectEstate(estateId)); // Dispatch action to reject estate
+            toast.success("Đã từ chối duyệt timeshare!");
         } catch (error) {
-            console.error("Có lỗi trong quá trình từ chối bài đăng:", error);
+            console.error("Có lỗi trong quá trình từ chối timeshare:", error);
         }
     };
     // Xóa Estate
     const handleDeleteEstate = async (estateId) => {
         try {
-            await dispatch(deleteEstate(estateId)); // Dispatch action deleteEstate
+            await dispatch(deleteEstate(estateId));
+            toast.success("Xóa timeshare thành công!");
         } catch (error) {
-            console.error("Có lỗi trong quá trình xóa bài:", error);
+            console.error("Có lỗi trong quá trình xóa timeshare:", error);
         }
     };
 
