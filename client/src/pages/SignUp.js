@@ -91,6 +91,35 @@ const SignUp = () => {
                             required: true,
                             message: "Hãy nhập tên đăng nhập của bạn!",
                         },
+                        () => ({
+                            validator(_, value) {
+                                if (!value) {
+                                    return Promise.reject(
+                                        new Error(
+                                            "Tên đăng nhập không được để trống!"
+                                        )
+                                    );
+                                }
+                                if (!/^[a-zA-Z]/.test(value)) {
+                                    return Promise.reject(
+                                        new Error(
+                                            "Tên đăng nhập phải bắt đầu bằng một chữ cái!"
+                                        )
+                                    );
+                                }
+                                if (
+                                    !/\d/.test(value) ||
+                                    !/[a-zA-Z]/.test(value)
+                                ) {
+                                    return Promise.reject(
+                                        new Error(
+                                            "Tên đăng nhập phải chứa cả chữ cái và số!"
+                                        )
+                                    );
+                                }
+                                return Promise.resolve();
+                            },
+                        }),
                     ]}
                 >
                     <Input placeholder="Tên đăng nhập" />
