@@ -100,44 +100,64 @@ const Booking = ({ userId, estateId }) => {
         }
     };
     const handleSubmit = async (values) => {
-        const checkInDate = values.checkIn
-            ? moment(values.checkIn).format("YYYY-MM-DDTHH:mm:ss")
-            : null;
-        const checkOutDate = values.checkOut
-            ? moment(values.checkOut).format("YYYY-MM-DDTHH:mm:ss")
-            : null;
-        const bookingDate = moment().format("YYYY-MM-DDTHH:mm:ss");
-
-        const diffTime = Math.abs(values.checkIn - values.checkOut);
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-        const formattedValues = {
-            ...values,
-            userId,
-            estateId,
-            checkIn: checkInDate,
-            checkOut: checkOutDate,
-            bookingDate: bookingDate,
-            status: values.status || false,
-        };
+        // Giả định bạn đã lấy được token từ localStorage hoặc state
+        const token = localStorage.getItem("token");
 
         try {
-            //   const response = await api.estate('/vn-pay', formattedValues);
-            //   toast.success("Đặt phòng thành công! Vui lòng thanh toán.");
-            //   form.resetFields();
-            //   navigate('/payment', { state: { bookingDetails: formattedValues, bookingResponse: response.data, estateDetails: estate } });
+            // Gọi API để lấy thông tin profile của user
+            const profileResponse = await api.get("/api/profile", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            const profileData = profileResponse.data;
+            // Kiểm tra thông tin profile đã đầy đủ hay chưa
+            const isProfileComplete =
+                profileData.fullname &&
+                profileData.phoneNumber &&
+                profileData.dateOfBirth &&
+                profileData.address &&
+                profileData.gender;
+
+            if (!isProfileComplete) {
+                // Nếu thông tin chưa đầy đủ
+                toast.error(
+                    "Cần cập nhật thông tin profile để tiếp tục booking."
+                );
+                return; // Dừng quy trình booking
+            }
+
+            // Tiếp tục với quy trình booking nếu thông tin đã đầy đủ
+            const checkInDate = values.checkIn
+                ? moment(values.checkIn).format("YYYY-MM-DDTHH:mm:ss")
+                : null;
+            const checkOutDate = values.checkOut
+                ? moment(values.checkOut).format("YYYY-MM-DDTHH:mm:ss")
+                : null;
+            const bookingDate = moment().format("YYYY-MM-DDTHH:mm:ss");
+            const diffTime = Math.abs(values.checkIn - values.checkOut);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            const formattedValues = {
+                ...values,
+                // userId, estateId cần được khai báo hoặc lấy từ một nguồn nào đó
+                checkIn: checkInDate,
+                checkOut: checkOutDate,
+                bookingDate: bookingDate,
+                status: values.status || false,
+            };
+
+            // Tiến hành gọi API để booking...
             const response = await api.post("/vn-pay", {
-                date: dayjs(values.checkIn).toDate(),
-                numberOfDate: diffDays,
-                estateId: estate.id,
-                price: totalPrice,
-                amount: amounts,
+                // Các thông tin cần thiết cho booking
             });
             console.log(response.data);
             window.open(response.data, "_self", "noreferrer");
         } catch (error) {
+            // Xử lý lỗi khi gọi API hoặc thông tin profile chưa đầy đủ
             const errorMessage = error.response?.data?.message || error.message;
-            toast.error(`Đặt phòng thất bại: ${errorMessage}`);
+            toast.error(`Lỗi: ${errorMessage}`);
         }
     };
 
