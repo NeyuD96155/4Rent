@@ -12,6 +12,7 @@ function SearchBar({ onSearch }) {
     const [selectedLocation, setSelectedLocation] = useState(null);
     const [dateRange, setDateRange] = useState([]);
     const [amount, setAmount] = useState(0);
+    const [resultCount, setResultCount] = useState(0);
 
     // Fetch categories
     const fetchCategories = async () => {
@@ -52,7 +53,8 @@ function SearchBar({ onSearch }) {
 
         try {
             const response = await axios.get("/search", { params });
-            onSearch(response.data); // Gọi callback 
+            onSearch(response.data); // Gọi callback
+            setResultCount(response.data.length);
         } catch (error) {
             console.error("Có lỗi khi tìm kiếm :", error);
         }
@@ -70,13 +72,11 @@ function SearchBar({ onSearch }) {
                     placeholder="Chọn địa điểm"
                     onChange={setSelectedLocation}
                     options={locations}
-                    
                 />
                 <RangePicker
                     placeholder={["Ngày nhận phòng", "Ngày trả phòng"]}
                     onChange={(dates, dateStrings) => setDateRange(dateStrings)}
                     style={{ width: "40%" }}
-                    
                 />
                 <Select
                     placeholder="Chọn số người tham gia"
@@ -85,11 +85,11 @@ function SearchBar({ onSearch }) {
                     <Select.Option value={1}>1 người</Select.Option>
                     <Select.Option value={2}>2 người</Select.Option>
                     <Select.Option value={3}>3 người</Select.Option>
-                
                 </Select>
                 <Button type="primary" htmlType="submit" className="search-btn">
                     Tìm kiếm
                 </Button>
+                <p className="result-count">Có {resultCount} kết quả phù hợp</p>
             </form>
         </div>
     );

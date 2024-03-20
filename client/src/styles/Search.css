@@ -8,6 +8,25 @@
         opacity: 1;
     }
 }
+/*Result Count*/
+.result-count {
+    font-size: 20px;
+    color: #000000;
+    margin-top: 8px;
+    background-color: #ffffff;
+    padding: 8px 16px; /* Thêm padding để tạo khoảng cách xung quanh văn bản */
+    border-radius: 8px; /* Bo tròn viền */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+    transition: all 0.3s ease; /* Hiệu ứng mượt mà khi thay đổi */
+}
+
+.result-count:hover {
+    background-color: #f0f0f0; /* Thay đổi màu nền khi hover */
+}
+
+
+
+
 
 .search-container {
     width: 1000px;
