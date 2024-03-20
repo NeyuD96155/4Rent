@@ -28,15 +28,6 @@ const Booking = ({ userId, estateId }) => {
     const navigate = useNavigate();
     const [modalVisible, setModalVisible] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0);
-    const disabledPastDates = (current) => {
-        const currentDate = moment();
-        // Trả về true nếu ngày hiện tại lớn hơn hoặc bằng ngày được chọn
-        return current && current <= currentDate.startOf("day");
-    };
-    const disabledEndDate = (current) => {
-        const checkInDate = form.getFieldValue("checkIn");
-        return current && current < moment(checkInDate).endOf("day");
-    };
 
     useEffect(() => {
         const fetchEstateDetail = async () => {
@@ -109,8 +100,27 @@ const Booking = ({ userId, estateId }) => {
         }
     };
     const handleSubmit = async (values) => {
-        // Giả định bạn đã lấy được token từ localStorage hoặc state
         const token = localStorage.getItem("token");
+        const checkInDate = values.checkIn
+            ? moment(values.checkIn).format("YYYY-MM-DDTHH:mm:ss")
+            : null;
+        const checkOutDate = values.checkOut
+            ? moment(values.checkOut).format("YYYY-MM-DDTHH:mm:ss")
+            : null;
+        const bookingDate = moment().format("YYYY-MM-DDTHH:mm:ss");
+
+        const diffTime = Math.abs(values.checkIn - values.checkOut);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        const formattedValues = {
+            ...values,
+            userId,
+            estateId,
+            checkIn: checkInDate,
+            checkOut: checkOutDate,
+            bookingDate: bookingDate,
+            status: values.status || false,
+        };
 
         try {
             // Gọi API để lấy thông tin profile của user
@@ -136,39 +146,80 @@ const Booking = ({ userId, estateId }) => {
                 );
                 return; // Dừng quy trình booking
             }
-
-            // Tiếp tục với quy trình booking nếu thông tin đã đầy đủ
-            const checkInDate = values.checkIn
-                ? moment(values.checkIn).format("YYYY-MM-DDTHH:mm:ss")
-                : null;
-            const checkOutDate = values.checkOut
-                ? moment(values.checkOut).format("YYYY-MM-DDTHH:mm:ss")
-                : null;
-            const bookingDate = moment().format("YYYY-MM-DDTHH:mm:ss");
-            const diffTime = Math.abs(values.checkIn - values.checkOut);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-            const formattedValues = {
-                ...values,
-                // userId, estateId cần được khai báo hoặc lấy từ một nguồn nào đó
-                checkIn: checkInDate,
-                checkOut: checkOutDate,
-                bookingDate: bookingDate,
-                status: values.status || false,
-            };
-
-            // Tiến hành gọi API để booking...
+            //   const response = await api.estate('/vn-pay', formattedValues);
+            //   toast.success("Đặt phòng thành công! Vui lòng thanh toán.");
+            //   form.resetFields();
+            //   navigate('/payment', { state: { bookingDetails: formattedValues, bookingResponse: response.data, estateDetails: estate } });
             const response = await api.post("/vn-pay", {
-                // Các thông tin cần thiết cho booking
+                date: dayjs(values.checkIn).add(7, "hour").toDate(),
+                numberOfDate: diffDays,
+                estateId: estate.id,
+                price: totalPrice,
+                amount: amounts,
             });
             console.log(response.data);
             window.open(response.data, "_self", "noreferrer");
         } catch (error) {
-            // Xử lý lỗi khi gọi API hoặc thông tin profile chưa đầy đủ
             const errorMessage = error.response?.data?.message || error.message;
-            toast.error(`Lỗi: ${errorMessage}`);
+            toast.error(`Đặt phòng thất bại: ${errorMessage}`);
         }
     };
+
+    function disabledDate(current) {
+        current = moment(current.$d)
+            .set({ hour: 21, minute: 1, second: 0 })
+            .utcOffset("+0000");
+        current = moment(current._d);
+        console.log(current);
+        let res = false;
+        // Disable dates within booked periods
+        estate?.bookings?.forEach((booking) => {
+            const checkIn = moment(booking.checkIn);
+            const checkOut = moment(booking.checkOut);
+            console.log(current);
+            console.log(checkIn);
+            console.log(checkOut);
+            console.log(current.isBetween(checkIn, checkOut, null, "[]"));
+            if (!res) {
+                res = current.isBetween(checkIn, checkOut, null, "[]"); // '[]' includes checkIn and checkOut dates
+            }
+        });
+
+        if (!res) {
+            const currentDate = moment();
+            return current && current <= currentDate.startOf("day");
+        }
+
+        return res;
+    }
+
+    function disabledDate2(current) {
+        current = moment(current.$d)
+            .set({ hour: 19, minute: 0, second: 0 })
+            .utcOffset("+0000");
+        current = moment(current._d);
+        console.log(current);
+        let res = false;
+        // Disable dates within booked periods
+        estate?.bookings?.forEach((booking) => {
+            const checkIn = moment(booking.checkIn);
+            const checkOut = moment(booking.checkOut);
+            console.log(current);
+            console.log(checkIn);
+            console.log(checkOut);
+            console.log(current.isBetween(checkIn, checkOut, null, "[)"));
+            if (!res) {
+                res = current.isBetween(checkIn, checkOut, null, "[]"); // '[]' includes checkIn and checkOut dates
+            }
+        });
+
+        if (!res) {
+            const currentDate = moment();
+            return current && current <= currentDate.startOf("day");
+        }
+
+        return res;
+    }
 
     return (
         <div className="booking-container">
@@ -253,39 +304,18 @@ const Booking = ({ userId, estateId }) => {
                             <DatePicker
                                 showTime
                                 format="DD-MM-YYYY HH:mm"
-                                disabledDate={disabledPastDates}
+                                disabledDate={disabledDate}
                             />
                         </Form.Item>
                         <Form.Item
                             name="checkOut"
                             label="Ngày trả phòng"
-                            rules={[
-                                { required: true },
-                                // Thêm luật kiểm tra để đảm bảo ngày trả phòng luôn sau ngày nhận phòng
-                                ({ getFieldValue }) => ({
-                                    validator(_, value) {
-                                        const checkInDate =
-                                            getFieldValue("checkIn");
-                                        if (
-                                            !value ||
-                                            !checkInDate ||
-                                            value.isAfter(checkInDate)
-                                        ) {
-                                            return Promise.resolve();
-                                        }
-                                        return Promise.reject(
-                                            new Error(
-                                                "Ngày trả phòng phải sau ngày nhận phòng"
-                                            )
-                                        );
-                                    },
-                                }),
-                            ]}
+                            rules={[{ required: true }]}
                         >
                             <DatePicker
                                 showTime
                                 format="DD-MM-YYYY HH:mm"
-                                disabledDate={disabledEndDate}
+                                disabledDate={disabledDate2}
                             />
                         </Form.Item>
                         <Form.Item
