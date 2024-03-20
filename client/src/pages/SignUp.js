@@ -107,7 +107,27 @@ const SignUp = () => {
                                         )
                                     );
                                 }
-
+                                if (value.length < 6 || value.length > 20) {
+                                    return Promise.reject(
+                                        new Error(
+                                            "Tên đăng nhập phải có từ 6 đến 20 ký tự!"
+                                        )
+                                    );
+                                }
+                                if (!/^[a-zA-Z0-9_]+$/.test(value)) {
+                                    return Promise.reject(
+                                        new Error(
+                                            "Tên đăng nhập chỉ được chứa chữ cái, số và dấu gạch dưới!"
+                                        )
+                                    );
+                                }
+                                if (/\s/.test(value)) {
+                                    return Promise.reject(
+                                        new Error(
+                                            "Tên đăng nhập không được chứa khoảng trắng!"
+                                        )
+                                    );
+                                }
                                 return Promise.resolve();
                             },
                         }),
@@ -115,7 +135,6 @@ const SignUp = () => {
                 >
                     <Input placeholder="Tên đăng nhập" />
                 </Form.Item>
-
                 <Form.Item
                     name="password"
                     label="Mật khẩu"

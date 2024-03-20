@@ -76,20 +76,18 @@ const WalletPage = () => {
     if (isLoading) return <div>Đang tải...</div>;
     if (error) return <div>Lỗi: {error}</div>;
     if (!walletData)
-        return (
-            <div>
-                <p>
-                    Bạn chưa thuê timeshare nào !<br />
+        if (!walletData)
+            return (
+                <div className="no-timeshare-message">
+                    <p>Bạn chưa thuê timeshare nào!</p>
                     <button onClick={() => navigate("/show-estate")}>
                         Thuê ngay
                     </button>
-                    <br />
                     <button onClick={() => navigate("/")}>
                         Trở về trang chủ
                     </button>
-                </p>
-            </div>
-        );
+                </div>
+            );
 
     return (
         <center>

@@ -76,16 +76,12 @@ const UserEstate = () => {
                         </div>
                     ))
                 ) : (
-                    <p>
-                        Bạn chưa đăng timeshare nào !<br />
+                    <div className="no-timeshare-message">
+                        <p>Bạn chưa đăng timeshare nào!</p>
                         <button onClick={() => navigate("/estate-form")}>
                             Đăng ngay
                         </button>
-                        <br />
-                        <button onClick={() => navigate("/signup")}>
-                            Đăng kí member để có thể trở thành chủ sở hữu
-                        </button>
-                    </p>
+                    </div>
                 )}
             </div>
         </div>

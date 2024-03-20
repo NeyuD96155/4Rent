@@ -3,43 +3,51 @@
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
-  }
-  
-  .estate-item {
-    border: 1px solid #ccc;
-    padding: 20px;
-    width: 300px; /* Bạn có thể điều chỉnh chiều rộng này để phù hợp với layout của mình */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    border-radius: 5px;
+}
+
+.estate-item {
+    border: 1px solid #ddd;
+    width: 300px;
     background-color: #fff;
-  }
-  
-  .estate-item h2 {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    padding: 15px;
+    margin: 0 10px 20px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.estate-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.estate-item h2 {
+    color: #007bff;
+    font-size: 18px;
     margin-top: 0;
-    color: #333;
-    font-size: 20px;
-  }
-  
-  .estate-item img {
+}
+
+.estate-item img {
     width: 100%;
     height: auto;
-    margin-bottom: 15px;
     border-radius: 5px;
-  }
-  
-  .estate-item p {
+    margin-bottom: 10px;
+}
+
+.estate-item p {
     font-size: 16px;
     line-height: 1.5;
     color: #666;
-  }
-  
-  .estate-item div {
+}
+
+.estate-item div {
     margin-top: 10px;
-    font-size: 14px;
     color: #666;
-  }
-  
-  .link {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.link {
     display: inline-block;
     margin-top: 15px;
     padding: 10px 15px;
@@ -48,9 +56,51 @@
     border-radius: 5px;
     text-decoration: none;
     font-size: 14px;
-  }
-  
-  .link:hover {
+}
+.estate-item div {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+.link:hover {
     background-color: #0056b3;
-  }
-  
+}
+
+.no-timeshare-message {
+    width: 97%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+    background-color: #f8d7da;
+    border: 1px solid #f5c2c7;
+    border-radius: 8px;
+    color: #842029;
+    align-items: center;
+}
+
+.no-timeshare-message button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.no-timeshare-message button:first-child {
+    background-color: #007bff;
+    color: white;
+}
+
+.no-timeshare-message button:first-child:hover {
+    background-color: #0056b3;
+}
+
+.no-timeshare-message button:last-child {
+    background-color: #6c757d;
+    color: white;
+}
+
+.no-timeshare-message button:last-child:hover {
+    background-color: #545b62;
+}
