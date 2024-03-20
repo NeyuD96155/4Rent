@@ -58,6 +58,15 @@ const DashBoard = () => {
     useEffect(() => {
         setEstateData(estates);
     }, [estates]);
+    const estateStatusDisplay = (status) => {
+        const statusMap = {
+            REJECTED: "TỪ CHỐI",
+            APPROVED: "ĐÃ DUYỆT",
+            DELETED: "đã xóa",
+        };
+
+        return statusMap[status] || status;
+    };
 
     const handleMenuClick = (e) => {
         if (e.key === "2") {
@@ -104,9 +113,9 @@ const DashBoard = () => {
                         : estate
                 )
             );
-            toast.success("Duyệt timeshare thành công!");
+            toast.success("Duyệt căn hộ thành công!");
         } catch (error) {
-            console.error("Xảy ra lỗi trong quá trình duyệt timeshare:", error);
+            console.error("Xảy ra lỗi trong quá trình duyệt căn hộ:", error);
         }
     };
 
@@ -137,7 +146,15 @@ const DashBoard = () => {
             console.error("Có lỗi trong quá trình xóa timeshare:", error);
         }
     };
-
+    const formatCurrency = (amount) => {
+        return new Intl.NumberFormat("vi-VN", {
+            style: "currency",
+            currency: "VND",
+            minimumFractionDigits: 0,
+        })
+            .format(amount)
+            .replace("₫", "đ");
+    };
     const columns = [
         {
             title: "Email",
@@ -160,7 +177,7 @@ const DashBoard = () => {
             key: "role",
         },
         {
-            title: "Action",
+            title: "Thông tin",
             key: "action",
             render: (_, record) => (
                 <Button
@@ -197,17 +214,18 @@ const DashBoard = () => {
             render: (user) => user.users.fullname,
         },
         {
-            title: "Id",
+            title: "Mã số",
             dataIndex: "id",
             key: "id",
         },
         {
-            title: "Value",
+            title: "Thành tiền",
             dataIndex: "value",
             key: "value",
+            render: (value) => formatCurrency(value),
         },
         {
-            title: "Create At",
+            title: "Thời gian tạo",
             dataIndex: "createAt",
             key: "createAt",
             render: (value) =>
@@ -242,6 +260,7 @@ const DashBoard = () => {
             title: "Trạng Thái",
             dataIndex: "estateStatus",
             key: "estateStatus",
+            render: (text) => estateStatusDisplay(text),
         },
         {
             title: "Duyệt/Từ Chối",
