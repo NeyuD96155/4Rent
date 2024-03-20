@@ -28,6 +28,15 @@ const Booking = ({ userId, estateId }) => {
     const navigate = useNavigate();
     const [modalVisible, setModalVisible] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0);
+    const disabledPastDates = (current) => {
+        const currentDate = moment();
+        // Trả về true nếu ngày hiện tại lớn hơn hoặc bằng ngày được chọn
+        return current && current <= currentDate.startOf("day");
+    };
+    const disabledEndDate = (current) => {
+        const checkInDate = form.getFieldValue("checkIn");
+        return current && current < moment(checkInDate).endOf("day");
+    };
 
     useEffect(() => {
         const fetchEstateDetail = async () => {
@@ -241,14 +250,43 @@ const Booking = ({ userId, estateId }) => {
                             label="Ngày nhận phòng"
                             rules={[{ required: true }]}
                         >
-                            <DatePicker showTime format="DD-MM-YYYY HH:mm" />
+                            <DatePicker
+                                showTime
+                                format="DD-MM-YYYY HH:mm"
+                                disabledDate={disabledPastDates}
+                            />
                         </Form.Item>
                         <Form.Item
                             name="checkOut"
                             label="Ngày trả phòng"
-                            rules={[{ required: true }]}
+                            rules={[
+                                { required: true },
+                                // Thêm luật kiểm tra để đảm bảo ngày trả phòng luôn sau ngày nhận phòng
+                                ({ getFieldValue }) => ({
+                                    validator(_, value) {
+                                        const checkInDate =
+                                            getFieldValue("checkIn");
+                                        if (
+                                            !value ||
+                                            !checkInDate ||
+                                            value.isAfter(checkInDate)
+                                        ) {
+                                            return Promise.resolve();
+                                        }
+                                        return Promise.reject(
+                                            new Error(
+                                                "Ngày trả phòng phải sau ngày nhận phòng"
+                                            )
+                                        );
+                                    },
+                                }),
+                            ]}
                         >
-                            <DatePicker showTime format="DD-MM-YYYY HH:mm" />
+                            <DatePicker
+                                showTime
+                                format="DD-MM-YYYY HH:mm"
+                                disabledDate={disabledEndDate}
+                            />
                         </Form.Item>
                         <Form.Item
                             name="amount"

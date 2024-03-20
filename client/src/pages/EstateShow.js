@@ -53,7 +53,7 @@ const EstateShow = () => {
     if (error) return <div>Error: {error}</div>;
 
     return (
-        <div className="timeshare-estates-container">
+        <div className="timeshare-estates-container estate-show-container">
             <SearchBar onSearch={handleSearchResults} />
             <div className="estates">
                 {estates.map((estate) => (

@@ -7,6 +7,14 @@ body,
 }
 
 /* ========== SHOW ESTATE==========   */
+.estate-show-container {
+    background-image: url('https://1floor.vn/Uploads/965/images/T%E1%BA%A5m%20%E1%BB%91p%20lam%20s%C3%B3ng/background-phong-khach-dep-3.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 1; /* Đặt giá trị opacity tùy ý, ví dụ 0.8 */
+}
+
+
 .timeshare-estates-container {
     display: flex;
     flex-direction: column;
@@ -79,6 +87,7 @@ button:focus {
 
 /* ==========  ESTATE DETAIL ==========  */
 .estate-detail-container {
+    
     max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
