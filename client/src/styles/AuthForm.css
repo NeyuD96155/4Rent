@@ -1,0 +1,146 @@
+.auth-container {
+    max-width: 450px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #eaeaea;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.35s ease-out, padding 0.3s ease-in-out;
+    background: #ffffff;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.ant-input {
+    height: 40px;
+    /* Tăng chiều cao */
+    font-size: 16px;
+    /* Tăng kích thước font */
+}
+
+/* Trong file AuthForm.css của bạn */
+.input-custom,
+.ant-select-selector,
+.ant-checkbox-wrapper {
+    height: 40px;
+    /* Tăng chiều cao */
+    font-size: 16px;
+    /* Tăng kích thước font */
+    display: flex;
+    align-items: center;
+    /* Căn giữa nội dung theo chiều dọc */
+}
+
+/* Điều chỉnh chiều cao cho select và checkbox của Ant Design */
+.ant-select-selector {
+    height: 40px !important;
+    align-items: center;
+}
+
+.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+    height: 40px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.ant-checkbox-wrapper {
+    align-items: center;
+}
+
+.border-container {
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    background-color: #107ace;
+}
+
+.nav-item {
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: color 0.1s ease-in-out;
+}
+
+
+.auth-form .form-actions {
+    display: flex;
+    justify-content: center;
+
+}
+
+.signup-submit {
+    background-color: #1890ff;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease;
+    max-width: 300px;
+    margin-top: 30px;
+}
+
+.signup-submit:hover {
+    background-color: #107ace;
+    transform: translateY(-2px);
+}
+
+.signup-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.signup-footer a {
+    color: #1890ff;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.signup-footer a:hover {
+    text-decoration: underline;
+    color: #107ace;
+}
+
+.link-simulated {
+    color: #1890ff;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.link-simulated:hover {
+    color: #40a9ff;
+}
+
+.form-field {
+    max-width: 300px;
+    margin: 10px auto 20px;
+}
+
+@media only screen and (max-width: 600px) {
+    .form-field {
+        max-width: 100%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .auth-container {
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-item {
+        padding: 5px 15px;
+    }
+
+    .signup-submit,
+    .form-field {
+        width: 100%;
+        max-width: none;
+        padding: 10px 25px;
+    }
+}

@@ -45,6 +45,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import UserEstate from "./pages/UsersEstate";
 import { NonAuthorize } from "./pages/NonAuthorize";
 import WalletPage from "./pages/Wallet";
+import AuthForm from "./pages/AuthForm";
 
 function LayoutWrapper() {
     const location = useLocation();
@@ -102,7 +103,7 @@ function LayoutWrapper() {
                 <Route path="/search" element={<SearchBar />} />
                 <Route path="/success" element={<Success />} />
                 <Route path="/access-denied" element={<AccessDeniedPage />} />
-
+                <Route path="/auth" element={<AuthForm />} />
                 <Route
                     path="/dash-board"
                     element={

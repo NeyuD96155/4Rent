@@ -5,7 +5,7 @@ import api from "../../config/axios";
 export const fetchEstates = createAsyncThunk(
     "estates/fetchEstates",
     async () => {
-        const response = await api.get("/showEstate");
+        const response = await api.get("/showEstateToAdmin");
         return response.data;
     }
 );
