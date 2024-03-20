@@ -127,7 +127,7 @@ const Booking = ({ userId, estateId }) => {
             //   form.resetFields();
             //   navigate('/payment', { state: { bookingDetails: formattedValues, bookingResponse: response.data, estateDetails: estate } });
             const response = await api.post("/vn-pay", {
-                date: dayjs(values.checkIn).toDate(),
+                date: dayjs(values.checkIn).add(7, "hour").toDate(),
                 numberOfDate: diffDays,
                 estateId: estate.id,
                 price: totalPrice,
@@ -140,6 +140,62 @@ const Booking = ({ userId, estateId }) => {
             toast.error(`Đặt phòng thất bại: ${errorMessage}`);
         }
     };
+
+    function disabledDate(current) {
+        current = moment(current.$d)
+            .set({ hour: 21, minute: 1, second: 0 })
+            .utcOffset("+0000");
+        current = moment(current._d);
+        console.log(current);
+        let res = false;
+        // Disable dates within booked periods
+        estate?.bookings?.forEach((booking) => {
+            const checkIn = moment(booking.checkIn);
+            const checkOut = moment(booking.checkOut);
+            console.log(current);
+            console.log(checkIn);
+            console.log(checkOut);
+            console.log(current.isBetween(checkIn, checkOut, null, "[]"));
+            if (!res) {
+                res = current.isBetween(checkIn, checkOut, null, "[]"); // '[]' includes checkIn and checkOut dates
+            }
+        });
+
+        if (!res) {
+            const currentDate = moment();
+            return current && current <= currentDate.startOf("day");
+        }
+
+        return res;
+    }
+
+    function disabledDate2(current) {
+        current = moment(current.$d)
+            .set({ hour: 19, minute: 0, second: 0 })
+            .utcOffset("+0000");
+        current = moment(current._d);
+        console.log(current);
+        let res = false;
+        // Disable dates within booked periods
+        estate?.bookings?.forEach((booking) => {
+            const checkIn = moment(booking.checkIn);
+            const checkOut = moment(booking.checkOut);
+            console.log(current);
+            console.log(checkIn);
+            console.log(checkOut);
+            console.log(current.isBetween(checkIn, checkOut, null, "[)"));
+            if (!res) {
+                res = current.isBetween(checkIn, checkOut, null, "[]"); // '[]' includes checkIn and checkOut dates
+            }
+        });
+
+        if (!res) {
+            const currentDate = moment();
+            return current && current <= currentDate.startOf("day");
+        }
+
+        return res;
+    }
 
     return (
         <div className="booking-container">
@@ -221,14 +277,22 @@ const Booking = ({ userId, estateId }) => {
                             label="Ngày nhận phòng"
                             rules={[{ required: true }]}
                         >
-                            <DatePicker showTime format="DD-MM-YYYY HH:mm" />
+                            <DatePicker
+                                showTime
+                                format="DD-MM-YYYY HH:mm"
+                                disabledDate={disabledDate}
+                            />
                         </Form.Item>
                         <Form.Item
                             name="checkOut"
                             label="Ngày trả phòng"
                             rules={[{ required: true }]}
                         >
-                            <DatePicker showTime format="DD-MM-YYYY HH:mm" />
+                            <DatePicker
+                                showTime
+                                format="DD-MM-YYYY HH:mm"
+                                disabledDate={disabledDate2}
+                            />
                         </Form.Item>
                         <Form.Item
                             name="amount"
