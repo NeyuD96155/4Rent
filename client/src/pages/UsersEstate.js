@@ -24,7 +24,15 @@ const UserEstate = () => {
 
         fetchEstates();
     }, []);
-
+    const formatCurrency = (amount) => {
+        return new Intl.NumberFormat("vi-VN", {
+            style: "currency",
+            currency: "VND",
+            minimumFractionDigits: 0,
+        })
+            .format(amount)
+            .replace("₫", "đ");
+    };
     return (
         <div>
             <h1>Căn hộ nghỉ dưỡng của bạn</h1>
@@ -50,7 +58,8 @@ const UserEstate = () => {
                                 {estate.amount}
                             </div>
                             <div>
-                                <strong>Giá/ngày:</strong> {estate.price}
+                                <strong>Giá/ngày:</strong>{" "}
+                                {formatCurrency(estate.price)}
                             </div>
                             <div>
                                 <strong>Thời gian nhận phòng:</strong>{" "}

@@ -107,16 +107,7 @@ const SignUp = () => {
                                         )
                                     );
                                 }
-                                if (
-                                    !/\d/.test(value) ||
-                                    !/[a-zA-Z]/.test(value)
-                                ) {
-                                    return Promise.reject(
-                                        new Error(
-                                            "Tên đăng nhập phải chứa cả chữ cái và số!"
-                                        )
-                                    );
-                                }
+
                                 return Promise.resolve();
                             },
                         }),

@@ -27,6 +27,7 @@ const WalletPage = () => {
             title: "Thành tiền",
             dataIndex: "value",
             key: "value",
+            render: (value) => formatCurrency(value),
         },
         {
             title: "Thời gian tạo",
@@ -38,7 +39,15 @@ const WalletPage = () => {
                 }),
         },
     ];
-
+    const formatCurrency = (amount) => {
+        return new Intl.NumberFormat("vi-VN", {
+            style: "currency",
+            currency: "VND",
+            minimumFractionDigits: 0,
+        })
+            .format(amount)
+            .replace("₫", "đ");
+    };
     const fetchTransaction = async () => {
         const response = await api.get("/transaction");
         setTransactions(response.data);
@@ -93,7 +102,7 @@ const WalletPage = () => {
                     </p>
                     <p>
                         <span className="info-label">Số dư:</span>{" "}
-                        {walletData.balance}
+                        {formatCurrency(walletData.balance)}
                     </p>
                     {/* <p><span className="info-label">User ID:</span> {walletData.users.id}</p>
                     <p><span className="info-label">Username:</span> {walletData.users.username}</p>
