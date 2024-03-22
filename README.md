@@ -6,7 +6,6 @@
 ## Tính Năng
 - **Tìm kiếm và đặt chỗ linh hoạt:** Người dùng có thể tìm kiếm và đặt chỗ cho các kỳ nghỉ ngắn hạn hoặc dài hạn tại các địa điểm khác nhau.
 - **Chia sẻ timeshare:** Chủ sở hữu timeshare có thể đăng ký và chia sẻ timeshare của họ với cộng đồng.
-- **Đánh giá và xếp hạng:** Hệ thống đánh giá và xếp hạng giúp người dùng có thể lựa chọn dựa trên kinh nghiệm của những người khác.
 - **Thanh toán an toàn:** Hệ thống thanh toán đảm bảo an toàn và bảo mật cho cả chủ sở hữu và người thuê.
 
 ## Bắt Đầu
