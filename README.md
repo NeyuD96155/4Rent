@@ -1,34 +1,37 @@
-# 4Rent - Dự Án Cho Thuê Timeshare
+# 🏡 4Rent - Dự Án Cho Thuê Timeshare
 
-## Giới Thiệu
+## 🌟 Giới Thiệu
 4Rent là một dự án cho phép người dùng thuê timeshare một cách linh hoạt và thuận tiện. Dự án nhằm mục tiêu tạo ra một cộng đồng cho phép mọi người có thể dễ dàng tìm kiếm, đặt chỗ, và chia sẻ các cơ sở lưu trú cho những chuyến đi ngắn hạn hoặc dài hạn.
 
-## Tính Năng
-- **Tìm kiếm và đặt chỗ linh hoạt:** Người dùng có thể tìm kiếm và đặt chỗ cho các kỳ nghỉ ngắn hạn hoặc dài hạn tại các địa điểm khác nhau.
-- **Chia sẻ timeshare:** Chủ sở hữu timeshare có thể đăng ký và chia sẻ timeshare của họ với cộng đồng.
-- **Thanh toán an toàn:** Hệ thống thanh toán đảm bảo an toàn và bảo mật cho cả chủ sở hữu và người thuê.
+## 🚀 Tính Năng
+- **🔍 Tìm kiếm và đặt chỗ linh hoạt:** Người dùng có thể tìm kiếm và đặt chỗ cho các kỳ nghỉ ngắn hạn hoặc dài hạn tại các địa điểm khác nhau.
+- **🏠 Chia sẻ timeshare:** Chủ sở hữu timeshare có thể đăng ký và chia sẻ timeshare của họ với cộng đồng.
+- **💳 Thanh toán an toàn:** Hệ thống thanh toán đảm bảo an toàn và bảo mật cho cả chủ sở hữu và người thuê.
 
-## Bắt Đầu
-### Yêu Cầu
+## 📦 Bắt Đầu
+
+### ✅ Yêu Cầu
 Đảm bảo bạn đã cài đặt [Node.js](https://nodejs.org/) và [npm](https://www.npmjs.com/) trên máy tính của bạn.
 
-### Cài Đặt
+### 🛠 Cài Đặt
 Sao chép kho lưu trữ và cài đặt các gói phụ thuộc:
+```bash
 git clone https://github.com/yourrepository/4Rent.git
 cd 4Rent
-npm install
-
-### Chạy Dự Án
+npm install  
+```
+### 🚀Chạy Dự Án
 Sau khi cài đặt, bạn có thể chạy dự án bằng cách sử dụng:
-npm start
-
-## Hướng Dẫn Sử Dụng
+```bash
+npm start  
+```
+### 📘Hướng Dẫn Sử Dụng
 Bạn truy cập trang web 4Rent.tech và đăng kí với vai trò là một người thuê để có thể đặt chỗ cho các kì nghỉ của mình hoặc bạn có thể đăng kí dưới vai trò là một chủ sở hữu để chia sẻ cho mọi người căn hộ nghỉ dưỡng mà bạn sở hữu. Các hướng dẫn chi tiết hơn đã được cập nhật tại phần [Hướng dẫn](http://4rent.tech/Guides).
 
-## Đóng Góp
+### 👐Đóng Góp
 Mọi đóng góp và ý kiến có thể thông qua [4Rent](https://github.com/NeyuD96155/4Rent), hãy cùng [Thảo luận](https://github.com/NeyuD96155/4Rent/discussions) để nâng cấp và cải tiến cho 4Rent.
 
-## Liên Hệ
+### 💬Liên Hệ
 [Ấn vào đây](https://github.com/NeyuD96155/4Rent/discussions/categories/q-a) để đặt câu hỏi và cùng thảo luận với cộng đồng 4Rent.
 
 **Referral link:**  
