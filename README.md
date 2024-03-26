@@ -9,23 +9,22 @@
 - **💳 Thanh toán an toàn:** Hệ thống thanh toán đảm bảo an toàn và bảo mật cho cả chủ sở hữu và người thuê.
 
 ## 📦 Bắt Đầu
-
-### ✅ Yêu Cầu
+- **✅ Yêu Cầu**
 Đảm bảo bạn đã cài đặt [Node.js](https://nodejs.org/) và [npm](https://www.npmjs.com/) trên máy tính của bạn.
 
-### 🛠 Cài Đặt
+- **🛠 Cài Đặt**
 Sao chép kho lưu trữ và cài đặt các gói phụ thuộc:
 ```bash
 git clone https://github.com/yourrepository/4Rent.git
 cd 4Rent
 npm install  
 ```
-### 🚀Chạy Dự Án
+- **🚀Chạy Dự Án**
 Sau khi cài đặt, bạn có thể chạy dự án bằng cách sử dụng:
 ```bash
 npm start  
 ```
-### 📘Hướng Dẫn Sử Dụng
+### 📘Hướng Dẫn
 Bạn truy cập trang web 4Rent.tech và đăng kí với vai trò là một người thuê để có thể đặt chỗ cho các kì nghỉ của mình hoặc bạn có thể đăng kí dưới vai trò là một chủ sở hữu để chia sẻ cho mọi người căn hộ nghỉ dưỡng mà bạn sở hữu. Các hướng dẫn chi tiết hơn đã được cập nhật tại phần [Hướng dẫn](http://4rent.tech/Guides).
 
 ### 👐Đóng Góp
