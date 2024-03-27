@@ -3,11 +3,15 @@ import api from "../config/axios";
 import { Link } from "react-router-dom";
 import "../styles/UsersEstate.css";
 import { useNavigate } from "react-router-dom";
+import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader";
 const UserEstate = () => {
     const [estates, setEstates] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     useEffect(() => {
         const fetchEstates = async () => {
+            setIsLoading(true);
+            const fetchStartTime = Date.now();
             try {
                 const response = await api.get("/allRealEstateOfCurrentUser");
                 // Sử dụng Map để loại bỏ trùng lặp và giữ lại bản ghi đầu tiên của mỗi ID duy nhất
@@ -19,6 +23,16 @@ const UserEstate = () => {
                 setEstates(uniqueEstates);
             } catch (error) {
                 console.error("Error fetching estates:", error);
+            } finally {
+                const fetchEndTime = Date.now();
+                const loadTime = fetchEndTime - fetchStartTime;
+                if (loadTime < 1000) {
+                    setTimeout(() => {
+                        setIsLoading(false);
+                    }, 1000 - loadTime);
+                } else {
+                    setIsLoading(false);
+                }
             }
         };
 
@@ -33,6 +47,14 @@ const UserEstate = () => {
             .format(amount)
             .replace("₫", "đ");
     };
+    if (isLoading) {
+        return (
+            <div className="loader-container">
+                <ClimbingBoxLoader color="#36d7b7" size={30} />
+            </div>
+        );
+    }
+
     return (
         <div>
             <h1>Căn hộ nghỉ dưỡng của bạn</h1>
