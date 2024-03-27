@@ -136,8 +136,15 @@ const EstateDetail = () => {
                 <strong>Thể loại: </strong> {estate.category}
             </p>
             <p>
-                {" "}
-                <strong>Mô tả: </strong> {estate.description}
+                <strong>Mô tả: </strong>
+                <span
+                    style={{
+                        maxWidth: "100%",
+                        overflowWrap: "break-word",
+                    }}
+                >
+                    {estate.description}
+                </span>
             </p>
             <p>
                 <strong>Số người tối đa: </strong> {estate.amount}

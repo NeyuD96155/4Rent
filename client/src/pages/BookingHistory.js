@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import api from "../config/axios";
 import "../styles/BookingHistory.css";
+import { toast } from "react-toastify";
 
 const useFetchBookingHistory = () => {
     const [bookingHistory, setBookingHistory] = useState([]);
@@ -57,9 +58,9 @@ const BookingHistory = () => {
                 (booking) => booking.id !== bookingId
             );
             setBookingHistory(updatedBookingHistory);
-        } catch (err) {
-            console.error("Error canceling the booking:", err);
-            alert("Failed to cancel the booking. Please try again later.");
+        } catch (error) {
+            console.log(error);
+            toast.error(error.response.data);
         }
     };
 
@@ -83,6 +84,7 @@ const BookingHistory = () => {
                                 amount,
                                 users,
                                 realEstate,
+                                enable,
                             }) => (
                                 <div key={id} className="booking-history-entry">
                                     <h3 className="booking-id">
@@ -114,12 +116,20 @@ const BookingHistory = () => {
                                         <strong>Đặt bởi:</strong>{" "}
                                         {users.fullname}
                                     </p>
-                                    <button
-                                        className="cancel-button"
-                                        onClick={() => cancelBooking(id)}
-                                    >
-                                        Hủy đặt phòng
-                                    </button>
+                                    <p>
+                                        <strong>Trạng thái:</strong>{" "}
+                                        {enable
+                                            ? "Đã hoàn thành"
+                                            : "Đang chờ..."}
+                                    </p>
+                                    {enable ? null : (
+                                        <button
+                                            className="cancel-button"
+                                            onClick={() => cancelBooking(id)}
+                                        >
+                                            Hủy đặt phòng
+                                        </button>
+                                    )}
                                 </div>
                             )
                         )}

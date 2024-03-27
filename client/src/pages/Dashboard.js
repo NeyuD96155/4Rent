@@ -250,6 +250,18 @@ const DashBoard = () => {
             title: "Mô Tả",
             dataIndex: "description",
             key: "description",
+            render: (text) => (
+                <span>
+                    {text
+                        .match(new RegExp(`.{1,${100}}`, "g"))
+                        .map((part, index) => (
+                            <React.Fragment key={index}>
+                                {part}
+                                <br />
+                            </React.Fragment>
+                        ))}
+                </span>
+            ),
         },
         {
             title: "Số Người",

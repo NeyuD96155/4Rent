@@ -160,8 +160,8 @@ const Booking = ({ userId, estateId }) => {
             console.log(response.data);
             window.open(response.data, "_self", "noreferrer");
         } catch (error) {
-            const errorMessage = error.response?.data?.message || error.message;
-            toast.error(`Đặt phòng thất bại: ${errorMessage}`);
+            console.log(error);
+            toast.error("Đặt Phòng thất bại: " + error.response.data);
         }
     };
 
@@ -221,6 +221,21 @@ const Booking = ({ userId, estateId }) => {
         return res;
     }
 
+    const checkCheckOutDate = (_, value) => {
+        const checkInDate = form.getFieldValue("checkIn");
+        if (value && checkInDate && value.isBefore(checkInDate)) {
+            return Promise.reject(
+                new Error("Ngày trả phòng phải sau ngày nhận phòng")
+            );
+        }
+        if (value && checkInDate && value.isSame(checkInDate, "day")) {
+            return Promise.reject(
+                new Error("Ngày trả phòng không thể trùng với ngày nhận phòng")
+            );
+        }
+        return Promise.resolve();
+    };
+
     return (
         <div className="booking-container">
             <div className="content-container">
@@ -251,7 +266,7 @@ const Booking = ({ userId, estateId }) => {
                                     <strong>Tiêu đề: </strong> {estate.title}
                                 </li>
                                 <li>
-                                    <strong>Địa điểm: </strong>
+                                    <strong>Địa điểm: </strong>{" "}
                                     {estate.location}
                                 </li>
                                 <li>
@@ -260,8 +275,20 @@ const Booking = ({ userId, estateId }) => {
                                 </li>
                                 <li>
                                     <strong>Mô tả: </strong>
-                                    {estate.description}
+                                    <span
+                                        style={{
+                                            maxWidth: "100%",
+                                            overflowWrap: "break-word",
+                                        }}
+                                    >
+                                        {estate.description}
+                                    </span>
                                 </li>
+
+                                <p>
+                                    <strong>Số người tối đa: </strong>{" "}
+                                    {estate.amount}
+                                </p>
                                 <li>
                                     <strong>Giá/ngày: </strong> {estate.price}{" "}
                                     ₫/ngày
@@ -309,7 +336,12 @@ const Booking = ({ userId, estateId }) => {
                         <Form.Item
                             name="checkOut"
                             label="Ngày trả phòng"
-                            rules={[{ required: true }]}
+                            rules={[
+                                {
+                                    required: true,
+                                    validator: checkCheckOutDate,
+                                },
+                            ]}
                         >
                             <DatePicker
                                 format="DD-MM-YYYY"
