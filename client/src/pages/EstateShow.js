@@ -3,7 +3,7 @@ import api from "../config/axios";
 import { useNavigate } from "react-router-dom";
 import "../styles/Estate.css";
 import SearchBar from "../components/SearchBar";
-
+import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader";
 const EstateShow = () => {
     const [estates, setEstates] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -11,14 +11,12 @@ const EstateShow = () => {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        fetchEstates();
-    }, []);
     const handleSearchResults = (results) => {
         setEstates(results);
     };
     const fetchEstates = async (search = "") => {
         setIsLoading(true);
+        const fetchStartTime = Date.now();
         try {
             const response = await api.get(`/search?query=${search}`);
             const approvedEstates = response.data.filter(
@@ -31,10 +29,21 @@ const EstateShow = () => {
                 err.response?.data?.message || "Lỗi khi lấy dữ liệu căn hộ."
             );
         } finally {
-            setIsLoading(false);
+            const fetchEndTime = Date.now();
+            const loadTime = fetchEndTime - fetchStartTime;
+            if (loadTime < 1000) {
+                setTimeout(() => {
+                    setIsLoading(false);
+                }, 1000 - loadTime);
+            } else {
+                setIsLoading(false);
+            }
         }
     };
 
+    useEffect(() => {
+        fetchEstates();
+    }, []);
     const handleEstateClick = async (estateId) => {
         navigate(`/showEstateDetail/${estateId}`);
     };
@@ -49,7 +58,12 @@ const EstateShow = () => {
             .replace("₫", "đ");
     };
 
-    if (isLoading) return <div aria-live="polite">Đang tải...</div>;
+    if (isLoading)
+        return (
+            <div className="loader-container">
+                <ClimbingBoxLoader color="#36d7b7" size={30} />
+            </div>
+        );
     if (error) return <div>Error: {error}</div>;
 
     return (
