@@ -46,16 +46,12 @@ const Booking = ({ userId, estateId }) => {
 
     const onFormValuesChange = (_, allValues) => {
         const pricePerDay = estate ? estate.price : 0;
-        const { dateRange } = allValues;
-        if (dateRange && dateRange.length === 2) {
-            const [checkIn, checkOut] = dateRange;
-            const totalPrice = calculateTotalPrice(
-                checkIn,
-                checkOut,
-                pricePerDay
-            );
-            setTotalPrice(totalPrice);
-        }
+        const totalPrice = calculateTotalPrice(
+            allValues.checkIn,
+            allValues.checkOut,
+            pricePerDay
+        );
+        setTotalPrice(totalPrice);
     };
 
     useEffect(() => {
@@ -300,33 +296,26 @@ const Booking = ({ userId, estateId }) => {
                         onValuesChange={onFormValuesChange}
                         layout="vertical"
                     >
-                        <Form
-                            form={form}
-                            onFinish={handleSubmit}
-                            onValuesChange={onFormValuesChange}
-                            layout="vertical"
+                        <Form.Item
+                            name="checkIn"
+                            label="Ngày nhận phòng"
+                            rules={[{ required: true }]}
                         >
-                            <Form.Item
-                                label="Chọn ngày nhận và trả phòng"
-                                name="dateRange"
-                                rules={[
-                                    {
-                                        type: "array",
-                                        required: true,
-                                        message:
-                                            "Vui lòng chọn ngày nhận và trả phòng!",
-                                    },
-                                ]}
-                            >
-                                <DatePicker.RangePicker
-                                    showTime={{ format: "HH:mm" }}
-                                    format="DD-MM-YYYY HH:mm"
-                                    disabledDate={(current) =>
-                                        disabledDate(current, "checkIn")
-                                    }
-                                />
-                            </Form.Item>
-                        </Form>
+                            <DatePicker
+                                format="DD-MM-YYYY"
+                                disabledDate={disabledDate}
+                            />
+                        </Form.Item>
+                        <Form.Item
+                            name="checkOut"
+                            label="Ngày trả phòng"
+                            rules={[{ required: true }]}
+                        >
+                            <DatePicker
+                                format="DD-MM-YYYY"
+                                disabledDate={disabledDate2}
+                            />
+                        </Form.Item>
                         <Form.Item
                             name="amount"
                             label="Số lượng khách"
