@@ -5,19 +5,11 @@ export const NonAuthorize = () => {
     const navigate = useNavigate();
     return (
         <div className="non-authorize">
-            <p className="non-authorize">
-                Bạn cần đăng kí dưới vai trò chủ sở hữu để có thể đăng bài
-                timeshare
-            </p>
+            <h1 className="non-authorize">
+                Bạn không có quyền truy cập trang này
+            </h1>
             <button className="non-authorize" onClick={() => navigate("/")}>
                 Trở về trang chủ
-            </button>
-            <br />
-            <button
-                className="non-authorize"
-                onClick={() => navigate("/signup")}
-            >
-                Đăng kí member để có thể trở thành chủ sở hữu
             </button>
         </div>
     );

@@ -2,8 +2,16 @@ import React, { useEffect } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext ";
 import { toast } from "react-toastify";
+//note các phân quyền cần thiết: 
+// estateform: member
+// userestate: member
+// showestate: member, renter, guest, admin
+// dashboard: admin
+// booking : renter
+
 
 const PrivateRoute = ({ children }) => {
+
     const { userRole } = useAuth();
     const location = useLocation();
 
@@ -19,15 +27,12 @@ const PrivateRoute = ({ children }) => {
         if (location.pathname === "/dash-board" && userRole !== "ADMIN") {
             toast.warn("Chỉ ADMIN mới có quyền truy cập vào trang này.");
         }
-        if (location.pathname === "/estate-form" && userRole !== "MEMBER") {
-            toast.warn("Chỉ MEMBER mới có quyền truy cập vào trang này.");
-        }
         if (
             (location.pathname === "/estate-form" ||
                 location.pathname === "/users-estate") &&
             userRole !== "MEMBER"
         ) {
-            toast.warn("Chỉ MEMBER mới có thể đăng và sở hữu estate.");
+            toast.warn("Chỉ MEMBER mới có quyền truy cập vào trang này.");
         }
     }, [userRole, location.pathname]);
 
@@ -36,8 +41,7 @@ const PrivateRoute = ({ children }) => {
     } else if (
         (location.pathname === "/estate-form" ||
             location.pathname === "/users-estate") &&
-        userRole !== "MEMBER" &&
-        userRole !== "ADMIN"
+        userRole !== "MEMBER"
     ) {
         return <Navigate to="/non-authorize" replace />;
     } else if (
