@@ -302,8 +302,7 @@ const Booking = ({ userId, estateId }) => {
                             rules={[{ required: true }]}
                         >
                             <DatePicker
-                                showTime
-                                format="DD-MM-YYYY HH:mm"
+                                format="DD-MM-YYYY"
                                 disabledDate={disabledDate}
                             />
                         </Form.Item>
@@ -313,8 +312,7 @@ const Booking = ({ userId, estateId }) => {
                             rules={[{ required: true }]}
                         >
                             <DatePicker
-                                showTime
-                                format="DD-MM-YYYY HH:mm"
+                                format="DD-MM-YYYY"
                                 disabledDate={disabledDate2}
                             />
                         </Form.Item>
