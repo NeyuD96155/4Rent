@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import api from "../config/axios";
 import "../styles/BookingHistory.css";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const useFetchBookingHistory = () => {
     const [bookingHistory, setBookingHistory] = useState([]);
@@ -122,6 +123,7 @@ const BookingHistory = () => {
                                             ? "Đã hoàn thành"
                                             : "Đang chờ..."}
                                     </p>
+
                                     {enable ? null : (
                                         <button
                                             className="cancel-button"
@@ -130,6 +132,9 @@ const BookingHistory = () => {
                                             Hủy đặt phòng
                                         </button>
                                     )}
+                                    {/* <Link to={`/showEstateDetail/${estate.id}`}>
+                                Xem chi tiết
+                            </Link> */}
                                 </div>
                             )
                         )}

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../config/axios";
@@ -7,8 +8,10 @@ import { Button, Modal, Table } from "antd";
 import { formatDistance } from "date-fns";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
+import { useAuth } from "../context/AuthContext ";
 
 const EstateDetail = () => {
+    const { userRole } = useAuth();
     const [estate, setEstate] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState("");
@@ -168,9 +171,11 @@ const EstateDetail = () => {
                     Thông tin/ trạng thái
                 </button>
             ) : (
-                <button onClick={handleBooking} className="booking-button">
-                    Đặt ngay
-                </button>
+                userRole !== "ADMIN" && (
+                    <button onClick={handleBooking} className="booking-button">
+                        Đặt ngay
+                    </button>
+                )
             )}
 
             <Modal
