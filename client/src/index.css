@@ -9,10 +9,9 @@ body {
     margin: 0;
     height: 100%;
     min-height: 100vh;
-    /* Chiều cao tối thiểu cho body và #root bằng với viewport */
     display: flex;
     flex-direction: column;
-    /* Sử dụng flex để sắp xếp nội dung */
+
     font-family: sans-serif;
 }
 

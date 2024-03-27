@@ -22,7 +22,6 @@ root.render(
     <React.StrictMode>
         <ScrollToTop smooth color="#000" top={100} height={50} width={50} />
         <AuthProvider>
-            
             <ToastContainer
                 position="top-right"
                 autoClose={2000}
