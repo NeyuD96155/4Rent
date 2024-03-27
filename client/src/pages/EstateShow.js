@@ -61,7 +61,7 @@ const EstateShow = () => {
     if (isLoading)
         return (
             <div className="loader-container">
-                <ClimbingBoxLoader color="#36d7b7" size={30} />
+                <ClimbingBoxLoader color="#000000" size={30} />
             </div>
         );
     if (error) return <div>Error: {error}</div>;
