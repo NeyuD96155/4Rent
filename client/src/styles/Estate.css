@@ -5,6 +5,7 @@ body,
     font-family: 'Arial', sans-serif;
     color: #333;
 }
+
 /* ========== SORT==========   */
 .sort-options {
     margin-bottom: 20px;
@@ -27,10 +28,13 @@ body,
 
 /* ========== SHOW ESTATE==========   */
 .estate-show-container {
-    background-image: url('https://1floor.vn/Uploads/965/images/T%E1%BA%A5m%20%E1%BB%91p%20lam%20s%C3%B3ng/background-phong-khach-dep-3.jpg');
-    background-size: cover;
-    background-position: center;
-    opacity: 1; /* Đặt giá trị opacity tùy ý, ví dụ 0.8 */
+    /* background-image: url('https://1floor.vn/Uploads/965/images/T%E1%BA%A5m%20%E1%BB%91p%20lam%20s%C3%B3ng/background-phong-khach-dep-3.jpg'); */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background: linear-gradient(135deg, #b9c7f4, #f7f1ff);
+    padding: 20px;
+    gap: 20px;
 }
 
 
@@ -40,7 +44,7 @@ body,
     align-items: center;
     margin: 0 auto;
     padding: 20px;
-    background-color: #969696ab;
+    background-color: #dbdbdbab;
 }
 
 .estates {
@@ -60,28 +64,31 @@ body,
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     overflow: hidden;
+    border: 1px solid #ddd;
 }
 
 .estate-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .estate-image {
     width: 100%;
-    height: 180px;
+    height: 200px;
     object-fit: cover;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     border-radius: 5px;
+
 }
 
 .estate-info {
     padding: 15px;
+    background: linear-gradient(145deg, #f0f0f0, #ffffff);
 }
 
 .estate-info h5 {
-    margin: 10px 0;
+    margin: 5px 0;
     font-size: 1.1rem;
 
 }
@@ -100,13 +107,17 @@ body,
     }
 }
 
+.estate-info strong {
+    color: #333;
+}
+
 button:focus {
     outline: none;
 }
 
 /* ==========  ESTATE DETAIL ==========  */
 .estate-detail-container {
-    
+
     max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
@@ -185,4 +196,36 @@ button:focus {
         width: 100%;
         padding: 15px 0;
     }
+}
+
+.sort-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sort-label {
+    margin-right: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+.sort-select {
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.sort-select:focus {
+    border-color: #007bff;
 }
