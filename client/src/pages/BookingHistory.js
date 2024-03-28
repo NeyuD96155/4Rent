@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import api from "../config/axios";
 import "../styles/BookingHistory.css";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const useFetchBookingHistory = () => {
     const [bookingHistory, setBookingHistory] = useState([]);

@@ -78,18 +78,23 @@ const NavigationBar = () => {
                         DashBoard
                     </Link>
                 )}
-
                 {isLoggedIn ? (
                     <Dropdown overlay={menu} placement="bottomRight">
-                        <a
+                        <button
                             onClick={(e) => e.preventDefault()}
                             className="avatar-link"
+                            style={{
+                                background: "none",
+                                border: "none",
+                                padding: 0,
+                                cursor: "pointer",
+                            }}
                         >
                             <Avatar
                                 style={{ backgroundColor: "#87d068" }}
                                 icon={<UserOutlined />}
                             />
-                        </a>
+                        </button>
                     </Dropdown>
                 ) : (
                     <>

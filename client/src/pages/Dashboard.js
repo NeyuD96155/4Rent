@@ -30,7 +30,7 @@ import {
     FileOutlined,
 } from "@ant-design/icons";
 
-const { Header, Content, Footer, Sider } = Layout;
+const {  Content, Footer, Sider } = Layout;
 
 const DashBoard = () => {
     const dispatch = useDispatch();

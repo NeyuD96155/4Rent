@@ -1,18 +1,17 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from "react";
 import {
     Form,
     Button,
     DatePicker,
-    Switch,
     Card,
     InputNumber,
     Checkbox,
     Modal,
 } from "antd";
 import api from "../config/axios";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { format } from "date-fns";
+import {  useParams } from "react-router-dom";
 import moment from "moment";
 import { toast } from "react-toastify";
 import "../styles/Booking.css";
@@ -25,7 +24,7 @@ const Booking = ({ userId, estateId }) => {
     const { id } = useParams();
     const [estate, setEstate] = useState(null);
     const [amounts, setAmount] = useState(null);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [modalVisible, setModalVisible] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0);
 
@@ -101,26 +100,26 @@ const Booking = ({ userId, estateId }) => {
     };
     const handleSubmit = async (values) => {
         const token = localStorage.getItem("token");
-        const checkInDate = values.checkIn
-            ? moment(values.checkIn).format("YYYY-MM-DDTHH:mm:ss")
-            : null;
-        const checkOutDate = values.checkOut
-            ? moment(values.checkOut).format("YYYY-MM-DDTHH:mm:ss")
-            : null;
-        const bookingDate = moment().format("YYYY-MM-DDTHH:mm:ss");
+        // const checkInDate = values.checkIn
+        //     ? moment(values.checkIn).format("YYYY-MM-DDTHH:mm:ss")
+        //     : null;
+        // const checkOutDate = values.checkOut
+        //     ? moment(values.checkOut).format("YYYY-MM-DDTHH:mm:ss")
+        //     : null;
+        // const bookingDate = moment().format("YYYY-MM-DDTHH:mm:ss");
 
         const diffTime = Math.abs(values.checkIn - values.checkOut);
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-        const formattedValues = {
-            ...values,
-            userId,
-            estateId,
-            checkIn: checkInDate,
-            checkOut: checkOutDate,
-            bookingDate: bookingDate,
-            status: values.status || false,
-        };
+        // const formattedValues = {
+        //     ...values,
+        //     userId,
+        //     estateId,
+        //     checkIn: checkInDate,
+        //     checkOut: checkOutDate,
+        //     bookingDate: bookingDate,
+        //     status: values.status || false,
+        // };
 
         try {
             // Gọi API để lấy thông tin profile của user
@@ -410,7 +409,6 @@ const Booking = ({ userId, estateId }) => {
                             onCancel={() => setModalVisible(false)}
                             footer={null}
                         >
-                            {/* Nội dung điều khoản và chính sách của bạn ở đây */}
 
                             <p>
                                 <b>1.Phạm vi của dịch vụ: </b>
