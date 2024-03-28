@@ -5,10 +5,9 @@ const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(
-        !!localStorage.getItem("token")
-    );
+    const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
     const [userRole, setUserRole] = useState(localStorage.getItem("userRole"));
+    const [isProfileUpdated, setIsProfileUpdated] = useState(localStorage.getItem("profileUpdated") === "true");
 
     const login = (token, username, role) => {
         localStorage.setItem("token", token);
@@ -25,25 +24,31 @@ export const AuthProvider = ({ children }) => {
     };
 
     const logout = () => {
-        // Đặt một item vào localStorage để trigger sự kiện storage trên các tab khác
         localStorage.setItem("logout", Date.now().toString());
-        
-        // xóa thông tin người dùng từ local storage
         localStorage.removeItem("token");
         localStorage.removeItem("userRole");
         localStorage.removeItem("username");
-    
-        // Cập nhật trạng thái đăng nhập và vai trò người dùng
+        localStorage.removeItem("profileUpdated"); // Đảm bảo xóa trạng thái cập nhật hồ sơ khi đăng xuất
+
         setIsLoggedIn(false);
         setUserRole(null);
+        setIsProfileUpdated(false); // Cập nhật trạng thái hồ sơ khi đăng xuất
     };
-    
+
+    // Phương thức để cập nhật trạng thái cập nhật hồ sơ của người dùng
+    const updateProfileStatus = (updated) => {
+        setIsProfileUpdated(updated);
+        localStorage.setItem("profileUpdated", updated.toString());
+    };
+
     useEffect(() => {
         const syncLogout = (event) => {
             if (event.key === "logout") {
                 setIsLoggedIn(false);
                 setUserRole(null);
+                setIsProfileUpdated(false); // Đảm bảo cập nhật trạng thái khi đồng bộ đăng xuất
                 localStorage.removeItem("username");
+                localStorage.removeItem("profileUpdated");
             }
         };
 
@@ -52,7 +57,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn, login, logout, userRole }}>
+        <AuthContext.Provider value={{ isLoggedIn, login, logout, userRole, isProfileUpdated, updateProfileStatus }}>
             {children}
         </AuthContext.Provider>
     );

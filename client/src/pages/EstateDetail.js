@@ -11,11 +11,11 @@ import utc from "dayjs/plugin/utc";
 import { useAuth } from "../context/AuthContext ";
 
 const EstateDetail = () => {
+    const { isProfileUpdated, navigate } = useAuth();
     const { userRole } = useAuth();
     const [estate, setEstate] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState("");
-    const navigate = useNavigate();
     const { id } = useParams();
     const [showModal, setShowModal] = useState(false);
 
@@ -43,7 +43,11 @@ const EstateDetail = () => {
     if (error) return <div>Error: {error}</div>;
     if (!estate) return <div>No estate details available.</div>;
     const handleBooking = () => {
-        navigate(`/booking/${id}`);
+        if (isProfileUpdated) {
+            navigate(`/booking/${id}`);
+        } else {
+            navigate("/profile");
+        }
     };
 
     const columns = [

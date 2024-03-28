@@ -102,10 +102,7 @@ const ProfilePage = () => {
             case "profile":
                 fetchProfile();
                 return renderProfileForm();
-            case "security":
-                return renderSecurityForm();
-            case "notifications":
-                return renderNotificationSettings();
+
             default:
                 return null;
         }
@@ -122,14 +119,63 @@ const ProfilePage = () => {
                             required: true,
                             message: "Vui lòng nhập họ và tên!",
                         },
+                        {
+                            min: 3,
+                            message: "Tên phải dài ít nhất 3 ký tự!",
+                        },
+                        {
+                            max: 50,
+                            message: "Tên không được dài quá 50 ký tự!",
+                        },
+                        {
+                            pattern: /^[a-zA-ZÀ-ỹ\s]+$/,
+                            message:
+                                "Tên chỉ được chứa chữ cái và khoảng trắng!",
+                        },
+                        {
+                            pattern: /.*\s+.*/,
+                            message: "Vui lòng nhập cả họ và tên!",
+                        },
+                        {
+                            // Thêm quy tắc này để kiểm tra việc viết hoa chữ cái đầu của mỗi từ
+                            pattern:
+                                /^(?:[A-ZÀ-Ẏ][a-zà-ỹ]*\s)*[A-ZÀ-Ẏ][a-zà-ỹ]*$/,
+                            message:
+                                "Mỗi từ trong tên phải bắt đầu bằng một chữ cái viết hoa!",
+                        },
                     ]}
                 >
                     <Input placeholder="Nhập họ và tên của bạn" />
                 </Form.Item>
-                <Form.Item label="Số điện thoại" name="phone">
+
+                <Form.Item
+                    label="Số điện thoại"
+                    name="phone"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Vui lòng nhập số điện thoại của bạn!",
+                        },
+                        {
+                            // Kiểm tra định dạng và độ dài số điện thoại
+                            pattern: /^[0-9]{10,11}$/,
+                            message: "Số điện thoại phải là 10-11 chữ số.",
+                        },
+                    ]}
+                >
                     <Input placeholder="Nhập số điện thoại của bạn" />
                 </Form.Item>
-                <Form.Item label="Ngày sinh" name="dob">
+
+                <Form.Item
+                    label="Ngày sinh"
+                    name="dob"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Vui lòng chọn ngày sinh!",
+                        },
+                    ]}
+                >
                     <DatePicker
                         defaultValue={moment("01-01-2000", "DD-MM-YYYY")}
                         format="DD-MM-YYYY"
@@ -137,7 +183,16 @@ const ProfilePage = () => {
                     />
                 </Form.Item>
 
-                <Form.Item label="Giới tính" name="gender">
+                <Form.Item
+                    label="Giới tính"
+                    name="gender"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Vui lòng chọn giới tính",
+                        },
+                    ]}
+                >
                     <Select
                         placeholder="Chọn giới tính"
                         dropdownRender={(menu) => (
@@ -154,80 +209,40 @@ const ProfilePage = () => {
                     </Select>
                 </Form.Item>
 
-                <Form.Item label="Địa chỉ" name="address">
+                <Form.Item
+                    label="Địa chỉ"
+                    name="address"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Vui lòng nhập địa chỉ!",
+                        },
+                        {
+                            min: 5,
+                            message: "Địa chỉ phải dài ít nhất 5 ký tự!",
+                        },
+                        {
+                            max: 100,
+                            message: "Địa chỉ không được dài quá 100 ký tự!",
+                        },
+
+                        {
+                            pattern: /^[a-zA-Z0-9À-ỹ\s,.#-]{5,100}$/,
+                            message:
+                                "Địa chỉ có thể bao gồm chữ cái, số, và các ký tự , . # -",
+                        },
+                    ]}
+                >
                     <Input placeholder="Nhập địa chỉ của bạn" />
                 </Form.Item>
+
                 <Form.Item label="Email" name="email">
-                    <Input placeholder="Nhập số điện thoại" disabled />
+                    <Input disabled />
                 </Form.Item>
 
                 <Form.Item>
                     <Button type="primary" htmlType="submit">
                         Cập nhật hồ sơ
-                    </Button>
-                </Form.Item>
-            </Form>
-        </Card>
-    );
-
-    const renderSecurityForm = () => (
-        <Card title="Bảo mật">
-            <Form layout="vertical" onFinish={onFinish}>
-                <Form.Item
-                    label="Mật khẩu hiện tại"
-                    name="currentPassword"
-                    rules={[{ required: true }]}
-                >
-                    <Input.Password
-                        placeholder="khong the nhap vi ban da den"
-                        disabled
-                    />
-                </Form.Item>
-                <Form.Item
-                    label="Mật khẩu mới"
-                    name="newPassword"
-                    rules={[{ required: true }]}
-                >
-                    <Input.Password
-                        placeholder="khong the nhap vi ban da den"
-                        disabled
-                    />
-                </Form.Item>
-                <Form.Item
-                    label="Xác nhận mật khẩu mới"
-                    name="confirmNewPassword"
-                    rules={[{ required: true }]}
-                >
-                    <Input.Password
-                        placeholder="khong the nhap vi ban da den"
-                        disabled
-                    />
-                </Form.Item>
-                <Form.Item>
-                    <Button type="primary" htmlType="submit">
-                        Đổi mật khẩu
-                    </Button>
-                </Form.Item>
-            </Form>
-        </Card>
-    );
-
-    const renderNotificationSettings = () => (
-        <Card title="Cài đặt thông báo">
-            <Form layout="vertical" onFinish={onFinish}>
-                <Form.Item
-                    label="Thông báo email"
-                    name="emailNotifications"
-                    valuePropName="checked"
-                >
-                    <Select defaultValue="subscribed">
-                        <Option value="subscribed">Đăng kí</Option>
-                        <Option value="unsubscribed">Hủy đăng kí</Option>
-                    </Select>
-                </Form.Item>
-                <Form.Item>
-                    <Button type="primary" htmlType="submit">
-                        Cập nhật thông báo
                     </Button>
                 </Form.Item>
             </Form>
@@ -245,12 +260,6 @@ const ProfilePage = () => {
                 >
                     <Menu.Item key="profile" icon={<UserOutlined />}>
                         Hồ sơ
-                    </Menu.Item>
-                    <Menu.Item key="security" icon={<LockOutlined />}>
-                        Bảo mật
-                    </Menu.Item>
-                    <Menu.Item key="notifications" icon={<MailOutlined />}>
-                        Thông báo
                     </Menu.Item>
                 </Menu>
             </Sider>
