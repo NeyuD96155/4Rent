@@ -12,17 +12,17 @@ const EstateShow = () => {
     const navigate = useNavigate();
 
     const handleSearchResults = (results) => {
-        setEstates(results);
+        const approvedEstates = results.filter(
+            (estate) => estate.estateStatus === "APPROVED"
+        );
+        setEstates(approvedEstates);
     };
     const fetchEstates = async (search = "") => {
         setIsLoading(true);
         const fetchStartTime = Date.now();
         try {
             const response = await api.get(`/search?query=${search}`);
-            const approvedEstates = response.data.filter(
-                (estate) => estate.estateStatus === "APPROVED"
-            );
-            setEstates(approvedEstates);
+            handleSearchResults(response.data);
         } catch (err) {
             console.error("Có lỗi trong quá trình lấy dữ liệu căn hộ:", err);
             setError(

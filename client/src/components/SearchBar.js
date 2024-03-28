@@ -53,8 +53,11 @@ function SearchBar({ onSearch }) {
 
         try {
             const response = await axios.get("/search", { params });
-            onSearch(response.data); // Gọi callback
-            setResultCount(response.data.length);
+            const approvedEstates = response.data.filter(
+                (estate) => estate.estateStatus === "APPROVED"
+            );
+            onSearch(approvedEstates); // Gọi callback với danh sách đã lọc
+            setResultCount(approvedEstates.length); // Đếm số lượng căn hộ đã lọc được
         } catch (error) {
             console.error("Có lỗi khi tìm kiếm :", error);
         }
