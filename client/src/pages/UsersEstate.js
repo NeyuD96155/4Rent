@@ -14,11 +14,9 @@ const UserEstate = () => {
             const fetchStartTime = Date.now();
             try {
                 const response = await api.get("/allRealEstateOfCurrentUser");
-                // Sử dụng Map để loại bỏ trùng lặp và giữ lại bản ghi đầu tiên của mỗi ID duy nhất
                 const uniqueEstatesMap = new Map(
                     response.data.map((estate) => [estate.id, estate])
                 );
-                // Chuyển Map trở lại thành array để set state
                 const uniqueEstates = Array.from(uniqueEstatesMap.values());
                 setEstates(uniqueEstates);
             } catch (error) {

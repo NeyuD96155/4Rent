@@ -15,8 +15,9 @@ import { PlusOutlined } from "@ant-design/icons";
 import uploadFile from "../utils/upload";
 import { v4 as uuidv4 } from "uuid";
 import dayjs from "dayjs";
-
+import { useAuth } from "../context/AuthContext ";
 const EstateForm = () => {
+    const { isProfileUpdated } = useAuth();
     const [categories, setCategories] = useState([]);
     const [locations, setLocations] = useState([]);
     const [form] = Form.useForm();
@@ -28,6 +29,10 @@ const EstateForm = () => {
     const timeFormat = "HH:mm";
     // fetch category
     const fetchCategories = async () => {
+        if (!isProfileUpdated) {
+            toast.info("Vui lòng cập nhật hồ sơ đầy đủ trước khi đăng căn hộ.");
+            return;
+        }
         const response = await api.get("/showCate");
         setCategories(
             response.data.map((item) => {
@@ -69,10 +74,11 @@ const EstateForm = () => {
         return value.replace(/\D/g, "");
     };
     const handleSubmit = async (values) => {
-        // if (fileList.length < 5) {
-        //     toast.info("Vui lòng tải lên ít nhất 5 ảnh.");
-        //     return;
-        // }
+        if (fileList.length < 5) {
+            toast.info("Vui lòng tải lên ít nhất 5 ảnh.");
+            return;
+        }
+
         const checkInTime = values.checkIn
             ? dayjs(values.checkIn).format("HH:mm:ss")
             : null;

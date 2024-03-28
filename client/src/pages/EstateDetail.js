@@ -9,16 +9,17 @@ import { formatDistance } from "date-fns";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { useAuth } from "../context/AuthContext ";
+import { toast } from "react-toastify";
 
 const EstateDetail = () => {
-    const { isProfileUpdated, navigate } = useAuth();
+    const { isProfileUpdated } = useAuth();
     const { userRole } = useAuth();
     const [estate, setEstate] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState("");
     const { id } = useParams();
     const [showModal, setShowModal] = useState(false);
-
+    const navigate = useNavigate();
     const username = localStorage.getItem("username");
     const fetchEstateDetail = async () => {
         try {
@@ -46,6 +47,9 @@ const EstateDetail = () => {
         if (isProfileUpdated) {
             navigate(`/booking/${id}`);
         } else {
+            toast.info(
+                "Bạn cần cập nhật thông tin đầy đủ để có thể đặt căn hộ"
+            );
             navigate("/profile");
         }
     };
