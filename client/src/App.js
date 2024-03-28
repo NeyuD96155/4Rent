@@ -36,7 +36,7 @@ import EstateShow from "./pages/EstateShow";
 import Guides from "./pages/Guides";
 import Landing from "./pages/Landing";
 import News from "./pages/News";
-import PaymentPage from "./pages/Payment";
+
 import ProfilePage from "./pages/Profile";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
@@ -54,7 +54,6 @@ function LayoutWrapper() {
         <>
             {!isDashboard && <NavigationBar />}
             <Routes>
-                <Route path="/payment" element={<PaymentPage />} />
                 <Route
                     path="/cancellation-policy"
                     element={<CancellationPolicy />}
