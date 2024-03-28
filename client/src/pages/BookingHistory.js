@@ -31,7 +31,15 @@ const useFetchBookingHistory = () => {
 
     return { bookingHistory, isLoading, error, setBookingHistory };
 };
-
+const formatCurrency = (amount) => {
+    return new Intl.NumberFormat("vi-VN", {
+        style: "currency",
+        currency: "VND",
+        minimumFractionDigits: 0,
+    })
+        .format(amount)
+        .replace("₫", "đ");
+};
 const formatDate = (date) => new Date(date).toLocaleString();
 
 const Loading = () => (
@@ -107,7 +115,8 @@ const BookingHistory = () => {
                                         {formatDate(bookingDate)}
                                     </p>
                                     <p>
-                                        <strong>Giá:</strong> {price}
+                                        <strong>Giá:</strong>{" "}
+                                        {formatCurrency(price)}
                                     </p>
                                     <p>
                                         <strong>Số người tham gia:</strong>{" "}

@@ -110,7 +110,15 @@ const EstateDetail = () => {
             },
         },
     ];
-
+    const formatCurrency = (amount) => {
+        return new Intl.NumberFormat("vi-VN", {
+            style: "currency",
+            currency: "VND",
+            minimumFractionDigits: 0,
+        })
+            .format(amount)
+            .replace("₫", "đ");
+    };
     return (
         <div className="estate-detail-container">
             {estate?.resources?.length > 0 && (
@@ -127,7 +135,7 @@ const EstateDetail = () => {
                 <strong>Tiêu đề: </strong> {estate.title}
             </p>
             <p>
-                <strong>Giá/ngày: </strong> {estate.price} vnd
+                <strong>Giá/ngày: </strong> {formatCurrency(estate.price)}
             </p>
             <p>
                 {" "}
